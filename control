@@ -1,0 +1,10 @@
+Package: ws.hbang.typestatus
+Name: TypeStatus
+Pre-Depends: firmware (>= 5.0)
+Depends: mobilesubstrate, libstatusbar
+Version: 1.0
+Architecture: iphoneos-arm
+Description: iMessage typing indicator in status bar
+Maintainer: HASHBANG Productions <typestatus@hbang.ws>
+Author: HASHBANG Productions <typestatus@hbang.ws>
+Section: Tweaks
