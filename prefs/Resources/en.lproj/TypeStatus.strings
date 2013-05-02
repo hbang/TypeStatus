@@ -1,0 +1,16 @@
+"Hide Inside Messages" = "Hide Inside Messages";
+"Disables all indicators while Messages or biteSMS is open." = "Disables all indicators while Messages or biteSMS is open.";
+"Typing" = "Typing";
+"Typing: %@" = "Typing: %@";
+"Status Bar Icon" = "Status Bar Icon";
+"Status Bar Overlay" = "Status Bar Overlay";
+"Overlay Hide Timeout" = "Overlay Hide Timeout";
+"Test Typing" = "Test Typing";
+"Read" = "Read";
+"Read: %@" = "Read: %@";
+"Test Read" = "Test Read";
+"“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification. This will support contact names in a future update.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification. This will support contact names in a future update.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.";
+"Overlay Animation" = "Overlay Animation";
+"Slide" = "Slide";
+"Fade" = "Fade";
+"Follow @%@ on Twitter" = "Follow @%@ on Twitter";

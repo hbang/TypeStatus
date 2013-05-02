@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Typing</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>TypingIcon</string>
+			<key>label</key>
+			<string>Status Bar Icon</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>TypingStatus</string>
+			<key>label</key>
+			<string>Status Bar Overlay</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>TypingTimeout</string>
+			<key>label</key>
+			<string>Hide Text After 5 Sec.</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>HideInMessages</string>
+			<key>label</key>
+			<string>Hide Inside Messages</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>testTypingStatus</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Test Typing</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification. This will support contact names in a future update.
+“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.</string>
+			<key>label</key>
+			<string>Read</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>ReadStatus</string>
+			<key>label</key>
+			<string>Status Bar Overlay</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>ReadHideInMessages</string>
+			<key>label</key>
+			<string>Hide Inside Messages</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>testReadStatus</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Test Read</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Overlay Animation</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>OverlaySlide</string>
+			<key>label</key>
+			<string>Slide</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>OverlayFade</string>
+			<key>label</key>
+			<string>Fade</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>HBTSAboutListController</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>About</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>TypeStatus</string>
+</dict>
+</plist>

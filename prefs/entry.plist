@@ -1,0 +1,10 @@
+{
+	entry = {
+		bundle = TypeStatus;
+		cell = PSLinkCell;
+		detail = HBTSListController;
+		icon = icon.png;
+		isController = 1;
+		label = TypeStatus;
+	};
+}
