@@ -13,6 +13,7 @@ BOOL updatingClock = NO;
 NSTimer *typingTimer;
 NSBundle *prefsBundle;
 BOOL isTyping = NO;
+BOOL firstLoad = YES;
 
 BOOL typingHideInMessages = YES;
 BOOL typingIcon = YES;
@@ -24,6 +25,8 @@ BOOL overlaySlide = YES;
 BOOL overlayFade = YES;
 
 NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS", @"com.bitesms", nil];
+
+void HBTSLoadPrefs();
 
 #define GET_BOOL(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] boolValue] : default)
 #define I18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
@@ -171,9 +174,10 @@ static void HBTSTestRead() {
 	overlayWindow = [[HBTSStatusBarOverlayWindow alloc] init];
 	overlayWindow.shouldSlide = overlaySlide;
 	overlayWindow.shouldFade = overlayFade;
+
+	HBTSLoadPrefs();
 }
 
-/*
 - (void)noteInterfaceOrientationChanged:(UIInterfaceOrientation)interfaceOrientation duration:(float)duration updateMirroredDisplays:(BOOL)update force:(BOOL)force {
 	%orig;
 
@@ -183,15 +187,14 @@ static void HBTSTestRead() {
 		overlayWindow.frame = frame;
 		overlayWindow.rootViewController.view.frame = frame;
 
-  		overlayWindow.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * (interfaceOrientation - 1));
+  		//overlayWindow.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * (interfaceOrientation - 1));
 	}];
 }
-*/
 %end
 
 #pragma mark - Preferences management
 
-static void HBTSLoadPrefs() {
+void HBTSLoadPrefs() {
 	NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/ws.hbang.typestatus.plist"];
 
 	typingHideInMessages = GET_BOOL(@"HideInMessages", YES);
@@ -202,10 +205,14 @@ static void HBTSLoadPrefs() {
 	overlaySlide = GET_BOOL(@"OverlaySlide", YES);
 	overlayFade = GET_BOOL(@"OverlayFade", NO);
 
-	if (!typingIcon || !typingStatus) {
-		HBTSTypingEnded();
-	} else if (!readStatus) {
-		HBTSSetStatusBar(nil, NO);
+	if (!firstLoad) {
+		if (!typingIcon || !typingStatus) {
+			HBTSTypingEnded();
+		} else if (!readStatus) {
+			HBTSSetStatusBar(nil, NO);
+		}
+	} else {
+		firstLoad = NO;
 	}
 
 	if (overlayWindow) {
@@ -215,8 +222,6 @@ static void HBTSLoadPrefs() {
 }
 
 %ctor {
-	HBTSLoadPrefs();
-
 	prefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
 
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
