@@ -1,5 +1,7 @@
 #import <libstatusbar/LSStatusBarItem.h>
+#import <ChatKit/CKIMEntity.h>
 #import <IMFoundation/FZMessage.h>
+#import <QuartzCore/QuartzCore.h>
 #import <SpringBoard/SBStatusBarDataManager.h>
 #import <SpringBoard/SBUserAgent.h>
 #import <UIKit/UIViewController+Private.h>
@@ -14,6 +16,7 @@ NSTimer *typingTimer;
 NSBundle *prefsBundle;
 BOOL isTyping = NO;
 BOOL firstLoad = YES;
+NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] init];
 
 BOOL typingHideInMessages = YES;
 BOOL typingIcon = YES;
@@ -35,13 +38,25 @@ void HBTSLoadPrefs();
 
 #pragma mark - Hide while Messages is open
 
-static BOOL HBTSShouldHide(BOOL typing) {
+BOOL HBTSShouldHide(BOOL typing) {
 	return (typing ? typingHideInMessages : readHideInMessages) ? [messagesApps containsObject:[[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]] : NO;
+}
+
+#pragma mark - Get contact name
+
+NSString *HBTSNameForHandle(NSString *handle) {
+	if ([nameCache objectForKey:handle]) {
+		return [nameCache objectForKey:handle];
+	} else {
+		CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease]; // linker hates me
+		[nameCache setObject:entity.name forKey:handle];
+		return entity.name;
+	}
 }
 
 #pragma mark - Show/hide functions
 
-static void HBTSSetStatusBar(NSString *string, BOOL typing) {
+void HBTSSetStatusBar(NSString *string, BOOL typing) {
 	overlayWindow.string = string ? [string copy] : nil;
 
 	if (string) {
@@ -51,7 +66,7 @@ static void HBTSSetStatusBar(NSString *string, BOOL typing) {
 	}
 }
 
-static void HBTSTypingStarted(FZMessage *message, BOOL testing) {
+void HBTSTypingStarted(FZMessage *message, BOOL testing) {
 	typingIndicators++;
 	isTyping = YES;
 
@@ -79,11 +94,11 @@ static void HBTSTypingStarted(FZMessage *message, BOOL testing) {
 	}
 
 	if (typingStatus) {
-		HBTSSetStatusBar([NSString stringWithFormat:I18N(@"Typing: %@"), message.handle], !testing);
+		HBTSSetStatusBar([NSString stringWithFormat:I18N(@"Typing: %@"), HBTSNameForHandle(message.handle)], !testing);
 	}
 }
 
-static void HBTSTypingEnded() {
+void HBTSTypingEnded() {
 	typingIndicators--;
 
 	if (typingIndicators <= 0) {
@@ -108,15 +123,15 @@ static void HBTSTypingEnded() {
 	}
 }
 
-static void HBTSMessageRead(FZMessage *message) {
+void HBTSMessageRead(FZMessage *message) {
 	if (readStatus && [[NSDate date] timeIntervalSinceDate:message.timeRead] < 1 && !HBTSShouldHide(NO)) {
-		HBTSSetStatusBar([NSString stringWithFormat:I18N(@"Read: %@"), message.handle], NO);
+		HBTSSetStatusBar([NSString stringWithFormat:I18N(@"Read: %@"), HBTSNameForHandle(message.handle)], NO);
 	}
 }
 
 #pragma mark - Test functions
 
-static void HBTSTestTyping() {
+void HBTSTestTyping() {
 	typingIndicators = 0;
 
 	/*
@@ -131,7 +146,7 @@ static void HBTSTestTyping() {
 	HBTSTypingStarted(message, YES);
 }
 
-static void HBTSTestRead() {
+void HBTSTestRead() {
 	FZMessage *message = [[[%c(FZMessage) alloc] init] autorelease];
 	message.handle = @"example@hbang.ws";
 	message.timeRead = [NSDate date];
@@ -172,8 +187,6 @@ static void HBTSTestRead() {
 	%orig;
 
 	overlayWindow = [[HBTSStatusBarOverlayWindow alloc] init];
-	overlayWindow.shouldSlide = overlaySlide;
-	overlayWindow.shouldFade = overlayFade;
 
 	HBTSLoadPrefs();
 }
@@ -184,10 +197,23 @@ static void HBTSTestRead() {
 	[UIView animateWithDuration:duration animations:^{
 		CGRect frame = overlayWindow.frame;
 		frame.size.width = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
+
+		/*switch (interfaceOrientation) {
+			case UIInterfaceOrientationPortrait:
+				overlayWindow.transform = nil;
+				break;
+
+			case UIInterfaceOrientationLandscapeLeft:
+				break;
+
+			case UIInterfaceOrientationLandscape
+		}*///NSLog(@"%@",[[overlayWindow retain]retain]);
+
+		overlayWindow.layer.anchorPoint = CGPointMake(1.f, 0);
+  		overlayWindow.transform = CGAffineTransformMakeRotation(((interfaceOrientation - 1) * 90) / 180 * M_PI);
+
 		overlayWindow.frame = frame;
 		overlayWindow.rootViewController.view.frame = frame;
-
-  		//overlayWindow.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * (interfaceOrientation - 1));
 	}];
 }
 %end

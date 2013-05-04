@@ -7,6 +7,7 @@ THEOS_BUILD_DIR = debs
 TWEAK_NAME = TypeStatus
 TypeStatus_FILES = Tweak.xm $(wildcard *.m)
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics
+TypeStatus_PRIVATE_FRAMEWORKS = ChatKit
 
 SUBPROJECTS = prefs
 
