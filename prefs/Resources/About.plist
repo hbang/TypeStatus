@@ -121,6 +121,26 @@
 			<string>Thay__T</string>
 		</dict>
 		<dict>
+			<key>alignment</key>
+			<integer>1</integer>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Russian: @vladkorotnev</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Follow @vladkorotnev on Twitter</string>
+			<key>user</key>
+			<string>vladkorotnev</string>
+		</dict>
+		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
