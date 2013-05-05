@@ -13,7 +13,7 @@
 "Overlay Display Duration" = "Overlay Display Duration";
 "Overlay Hide Timeout" = "Overlay Hide Timeout";
 "Read" = "Read";
-"Read: %@" = "Read: %@";
+"Read:" = "Read:";
 "Single Tap" = "Single Tap";
 "Slide" = "Slide";
 "Status Bar Icon" = "Status Bar Icon";
@@ -22,5 +22,5 @@
 "Test Read" = "Test Read";
 "Test Typing" = "Test Typing";
 "Typing" = "Typing";
-"Typing: %@" = "Typing: %@";
+"Typing:" = "Typing:";
 "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.";

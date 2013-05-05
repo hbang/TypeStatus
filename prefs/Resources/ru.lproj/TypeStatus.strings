@@ -13,7 +13,7 @@
 "Overlay Display Duration" = "Длительность оверлея";
 "Overlay Hide Timeout" = "Скрывать оверлей через";
 "Read" = "Прочитано";
-"Read: %@" = "Прочитано: %@";
+"Read:" = "Прочитано:";
 "Single Tap" = "Одно нажатие";
 "Slide" = "Провести пальцем";
 "Status Bar Icon" = "Значок статусбара";
@@ -22,5 +22,5 @@
 "Test Read" = "Тест прочтения";
 "Test Typing" = "Тест печати";
 "Typing" = "Набор сообщения...";
-"Typing: %@" = "%@ печатает";
+"Typing:" = "печатает";
 "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Оверлей статусбара” на время замещает статусбар именем того, кто вызвал уведомление.\n“Скрыть, когда в Сообщениях” отключит все индикаторы тогда, когда открыты Сообщения или biteSMS.";

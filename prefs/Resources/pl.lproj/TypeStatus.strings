@@ -7,12 +7,12 @@
 "Overlay Display Duration" = "Długośc animacji nakładki";
 "Overlay Hide Timeout" = "Czas zamykania nakładki";
 "Read" = "Odczytanie";
-"Read: %@" = "Odczytał: %@";
+"Read:" = "Odczytał:";
 "Slide" = "Wysuwanie";
 "Status Bar Icon" = "Ikona stanu na pasku";
 "Status Bar Overlay" = "Nakładka na pasek stanu";
 "Test Read" = "Testuj odczytanie";
 "Test Typing" = "Testuj pisanie...";
 "Typing" = "Pisanie";
-"Typing: %@" = "Pisze: %@";
+"Typing:" = "Pisze:";
 "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.";

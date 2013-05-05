@@ -2,13 +2,13 @@
 "Hide Inside Messages" = "Απόκρυψη μέσα στην εφαρμογή μηνυμάτων";
 "Disables all indicators while Messages or biteSMS is open." = "Απενεργοποιείστε όλες τις ενδείξεις, ενώ η εφαρμογή μηνυμάτων ή η εφαρμογή BiteSMS ειναι ανοιχτή.";
 "Typing" = "Πληκτρολογεί";
-"Typing: %@" = "Πληκτρολογεί: %@";
+"Typing:" = "Πληκτρολογεί:";
 "Status Bar Icon" = "Εικονίδιο Status Bar";
 "Status Bar Overlay" = "Status Bar Overlay";
 "Hide Text After 5 Sec." = "Απόκρυψη κειμένου μετά από 5 Sec.";
 "Test Typing" = "Δοκιμή επιλογής \"Πληκτρολόγησης\"";
 "Read" = "Διαβάστηκε";
-"Read: %@" = "Διαβάστηκε: %@";
+"Read:" = "Διαβάστηκε:";
 "Test Read" = "Δοκιμή επιλογής \"Διαβάστηκε\"";
 "“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification. This will support contact names in a future update." = "Η επιλογή \"Status Bar Overlay\" εμφανίζει στην status bar τον αριθμό ή το mail από το άτομο που θα λάβουμε την ειδοποίηση. Αυτή η επιλογή θα αναβαθμιστεί με την υποστήριξη των επαφών.";
 "Overlay Animation" = "Overlay Animation";
