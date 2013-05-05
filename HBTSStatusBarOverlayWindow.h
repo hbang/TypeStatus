@@ -13,6 +13,7 @@
 - (void)hide;
 
 @property (nonatomic, retain) NSString *string;
+@property (nonatomic, retain) UIView *containerContainerView;
 @property BOOL shouldSlide;
 @property BOOL shouldFade;
 @end

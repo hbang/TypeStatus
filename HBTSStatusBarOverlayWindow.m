@@ -1,21 +1,22 @@
 #import "HBTSStatusBarOverlayWindow.h"
+#import "HBTSStatusBarViewController.h"
 #import <UIKit/UIImage+Private.h>
 
 @implementation HBTSStatusBarOverlayWindow
-@synthesize shouldSlide = _shouldSlide, shouldFade = _shouldFade;
+@synthesize shouldSlide = _shouldSlide, shouldFade = _shouldFade, containerContainerView = _containerContainerView;
 
 - (id)init {
-	self = [super init];
+	self = [super initWithFrame:[UIScreen mainScreen].bounds];
 
 	if (self) {
 		self.windowLevel = UIWindowLevelStatusBar + 1.f;
 		self.hidden = NO;
 		self.userInteractionEnabled = NO;
-		self.rootViewController = [[UIViewController alloc] init];
-		self.rootViewController.view.frame = CGRectMake(0, 0, 0, 20.f);
+		self.rootViewController = [[HBTSStatusBarViewController alloc] init];
+		self.rootViewController.view.userInteractionEnabled = NO;
 
-		_containerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 20.f)];
-		_containerContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		_containerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20.f)];
+		_containerContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		_containerContainerView.hidden = YES;
 		[self.rootViewController.view addSubview:_containerContainerView];
 
@@ -24,7 +25,7 @@
 		backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[_containerContainerView addSubview:backgroundImageView];
 
-		_containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, _containerContainerView.frame.size.height)];
+		_containerView = [[UIView alloc] initWithFrame:_containerContainerView.frame];
 		_containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 		[_containerContainerView addSubview:_containerView];
 
@@ -39,8 +40,6 @@
 		_label.font = [UIFont boldSystemFontOfSize:14.f];
 		_label.backgroundColor = [UIColor clearColor];
 		_label.textColor = [UIColor whiteColor];
-		_label.shadowOffset = CGSizeMake(0, 1.f);
-		_label.shadowColor = [UIColor blackColor];
 		[_containerView addSubview:_label];
 	}
 

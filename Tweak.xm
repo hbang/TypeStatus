@@ -2,9 +2,11 @@
 #import <ChatKit/CKIMEntity.h>
 #import <IMFoundation/FZMessage.h>
 #import <QuartzCore/QuartzCore.h>
+#import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBStatusBarDataManager.h>
 #import <SpringBoard/SBUserAgent.h>
 #import <UIKit/UIViewController+Private.h>
+#import <UIKit/UIWindow+Private.h>
 #import "HBTSStatusBarOverlayWindow.h"
 
 int typingIndicators = 0;
@@ -195,25 +197,10 @@ void HBTSTestRead() {
 	%orig;
 
 	[UIView animateWithDuration:duration animations:^{
-		CGRect frame = overlayWindow.frame;
-		frame.size.width = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
-
-		/*switch (interfaceOrientation) {
-			case UIInterfaceOrientationPortrait:
-				overlayWindow.transform = nil;
-				break;
-
-			case UIInterfaceOrientationLandscapeLeft:
-				break;
-
-			case UIInterfaceOrientationLandscape
-		}*///NSLog(@"%@",[[overlayWindow retain]retain]);
-
-		overlayWindow.layer.anchorPoint = CGPointMake(1.f, 0);
-  		overlayWindow.transform = CGAffineTransformMakeRotation(((interfaceOrientation - 1) * 90) / 180 * M_PI);
-
-		overlayWindow.frame = frame;
-		overlayWindow.rootViewController.view.frame = frame;
+		UIWindow *keyWindow = UIWindow.keyWindow;
+		[overlayWindow makeKeyWindow];
+		overlayWindow.rootViewController.interfaceOrientation = interfaceOrientation;
+		[keyWindow makeKeyWindow];
 	}];
 }
 %end
