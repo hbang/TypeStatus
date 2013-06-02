@@ -159,7 +159,7 @@
 		CGRect foregroundFrame = foregroundView.frame;
 		foregroundFrame.origin.y = 0;
 		foregroundFrame.size.height = kHBTSStatusBarHeight;
-		foregroundView.frame = frame;
+		foregroundView.frame = foregroundFrame;
 
 		foregroundView.alpha = 1;
 
