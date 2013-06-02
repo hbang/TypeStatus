@@ -2,7 +2,7 @@
 #import "HBTSStatusBarView.h"
 #import <UIKit/UIApplication+Private.h>
 #import <UIKit/UIImage+Private.h>
-#import <UIkit/UIStatusBar.h>
+#import <UIKit/UIStatusBar.h>
 
 #define kHBTSStatusBarHeight 20.f
 
@@ -15,6 +15,7 @@
 	if (self) {
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		self.clipsToBounds = NO;
+		self.hidden = YES;
 
 		_containerView = [[UIView alloc] initWithFrame:self.frame];
 		_containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -40,7 +41,6 @@
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
 		[_containerView addSubview:_contactLabel];
-UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");NSLog(@"{{init}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame),NSStringFromCGRect(foregroundView.frame),NSStringFromCGRect(_typeLabel.frame),NSStringFromCGRect(_contactLabel.frame));
 	}
 
 	return self;
@@ -86,11 +86,11 @@ UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView
 	}
 
 	CGRect typeFrame = _typeLabel.frame;
-	typeFrame.size.width = [_typeLabel.text sizeWithFont:_typeLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].height;
+	typeFrame.size.width = [_typeLabel.text sizeWithFont:_typeLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width;
 	_typeLabel.frame = typeFrame;
 
 	CGRect labelFrame = _contactLabel.frame;
-	labelFrame.origin.y = typeFrame.origin.y + typeFrame.size.width + 4.f;
+	labelFrame.origin.x = typeFrame.origin.x + typeFrame.size.width + 4.f;
 	_contactLabel.frame = labelFrame;
 }
 
@@ -101,6 +101,7 @@ UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView
 
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
+	self.hidden = NO;
 	_isAnimating = YES;
 
 	if (_shouldSlide) {
@@ -112,7 +113,6 @@ UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView
 	self.alpha = _shouldFade ? 0 : 1;
 	self.hidden = NO;
 
-NSLog(@"{{show before}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame),NSStringFromCGRect(foregroundView.frame),NSStringFromCGRect(_typeLabel.frame),NSStringFromCGRect(_contactLabel.frame));
 	[UIView animateWithDuration:0.3f animations:^{
 		if (_shouldSlide) {
 			CGRect frame = self.frame;
@@ -135,7 +135,6 @@ NSLog(@"{{show before}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame
 	} completion:^(BOOL finished) {
 		_isAnimating = NO;
 		_timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
-NSLog(@"{{show after}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame),NSStringFromCGRect(foregroundView.frame),NSStringFromCGRect(_typeLabel.frame),NSStringFromCGRect(_contactLabel.frame));
 	}];
 }
 
@@ -152,7 +151,6 @@ NSLog(@"{{show after}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame)
 
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
-NSLog(@"{{hide before}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame),NSStringFromCGRect(foregroundView.frame),NSStringFromCGRect(_typeLabel.frame),NSStringFromCGRect(_contactLabel.frame));
 	[UIView animateWithDuration:0.3f animations:^{
 		CGRect frame = self.frame;
 		frame.origin.y = -kHBTSStatusBarHeight;
@@ -168,7 +166,6 @@ NSLog(@"{{hide before}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame
 		if (_shouldFade) {
 			self.alpha = 0;
 		}
-
 	} completion:^(BOOL finished) {
 		self.hidden = YES;
 
@@ -178,13 +175,11 @@ NSLog(@"{{hide before}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame
 
 		self.alpha = 1;
 
-		foregroundView.clipsToBounds = NO;
-
 		_typeLabel.text = @"";
 		_contactLabel.text = @"";
 
+		self.hidden = YES;
 		_isAnimating = NO;
-NSLog(@"{{hide after}} %@ //// %@ /// %@ //// %@",NSStringFromCGRect(self.frame),NSStringFromCGRect(foregroundView.frame),NSStringFromCGRect(_typeLabel.frame),NSStringFromCGRect(_contactLabel.frame));
 	}];
 }
 @end
