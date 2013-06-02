@@ -17,7 +17,7 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 Main.xmi: Tweak.xm HBTSStatusBarView.xm
-	touch %@
+	touch $@
 
 after-stage::
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
