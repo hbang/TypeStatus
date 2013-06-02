@@ -1,5 +1,6 @@
 #import "../Global.h"
 #import "HBTSListController.h"
+#import <UIKit/UIActivityViewController.h>
 #import <Twitter/Twitter.h>
 #include <notify.h>
 
