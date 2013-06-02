@@ -152,9 +152,11 @@
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
 	[UIView animateWithDuration:0.3f animations:^{
-		CGRect frame = self.frame;
-		frame.origin.y = -kHBTSStatusBarHeight;
-		self.frame = frame;
+		if (_shouldSlide) {
+			CGRect frame = self.frame;
+			frame.origin.y = -kHBTSStatusBarHeight;
+			self.frame = frame;
+		}
 
 		CGRect foregroundFrame = foregroundView.frame;
 		foregroundFrame.origin.y = 0;
