@@ -1,6 +1,8 @@
 #import "Global.h"
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKIMEntity.h>
+#import <ChatKit/CKMadridEntity.h>
+#import <ChatKit/CKMadridService.h>
 #import <IMFoundation/FZMessage.h>
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBUserAgent.h>
@@ -46,9 +48,19 @@ NSString *HBTSNameForHandle(NSString *handle) {
 	if ([nameCache objectForKey:handle]) {
 		return [nameCache objectForKey:handle];
 	} else {
-		CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease]; // linker hates me
-		[nameCache setObject:entity.name forKey:handle];
-		return entity.name;
+		NSString *name = handle;
+
+		if (%c(CKIMEntity)) {
+			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
+			name = entity.name;
+		} else if (%c(CKMadridService)) {
+			CKMadridService *service = [[[CKMadridService alloc] init] autorelease];
+			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
+			name = entity.name;
+		}
+
+		[nameCache setObject:name forKey:handle];
+		return name;
 	}
 }
 
