@@ -1,21 +1,18 @@
+#import "Global.h"
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKIMEntity.h>
 #import <IMFoundation/FZMessage.h>
-#import <QuartzCore/QuartzCore.h>
 #import <SpringBoard/SpringBoard.h>
-#import <SpringBoard/SBStatusBarDataManager.h>
 #import <SpringBoard/SBUserAgent.h>
-#import <UIKit/UIViewController+Private.h>
-#import <UIKit/UIWindow+Private.h>
-#import "HBTSStatusBarOverlayWindow.h"
+#import <UIKit/UIApplication+Private.h>
+#import "HBTSStatusBarView.h"
 
 int typingIndicators = 0;
 LSStatusBarItem *statusBarItem;
 
-HBTSStatusBarOverlayWindow *overlayWindow;
+HBTSStatusBarView *overlayView;
 BOOL updatingClock = NO;
 NSTimer *typingTimer;
-NSBundle *prefsBundle;
 BOOL isTyping = NO;
 BOOL firstLoad = YES;
 NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] init];
@@ -34,7 +31,6 @@ NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS",
 void HBTSLoadPrefs();
 
 #define GET_BOOL(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] boolValue] : default)
-#define I18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
 #define kHBTSStatusBarTimeout 5
 #define kHBTSTypingTimeout 60
 
@@ -58,13 +54,14 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 #pragma mark - Show/hide functions
 
-void HBTSSetStatusBar(NSString *string, BOOL typing) {
-	overlayWindow.string = string ? [string copy] : nil;
+void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
+	overlayView.type = type;
+	overlayView.string = string ?: nil;
 
 	if (string) {
-		[overlayWindow showWithTimeout:typing ? kHBTSTypingTimeout : kHBTSStatusBarTimeout];
+		[overlayView showWithTimeout:typing ? kHBTSTypingTimeout : kHBTSStatusBarTimeout];
 	} else {
-		[overlayWindow hide];
+		[overlayView hide];
 	}
 }
 
@@ -96,7 +93,7 @@ void HBTSTypingStarted(FZMessage *message, BOOL testing) {
 	}
 
 	if (typingStatus) {
-		HBTSSetStatusBar([NSString stringWithFormat:I18N(@"Typing: %@"), HBTSNameForHandle(message.handle)], !testing);
+		HBTSSetStatusBar(HBTSStatusBarTypeTyping, HBTSNameForHandle(message.handle), !testing);
 	}
 }
 
@@ -120,14 +117,14 @@ void HBTSTypingEnded() {
 		}
 
 		if (typingStatus) {
-			HBTSSetStatusBar(nil, NO);
+			HBTSSetStatusBar(HBTSStatusBarTypeTyping, nil, NO);
 		}
 	}
 }
 
 void HBTSMessageRead(FZMessage *message) {
 	if (readStatus && [[NSDate date] timeIntervalSinceDate:message.timeRead] < 1 && !HBTSShouldHide(NO)) {
-		HBTSSetStatusBar([NSString stringWithFormat:I18N(@"Read: %@"), HBTSNameForHandle(message.handle)], NO);
+		HBTSSetStatusBar(HBTSStatusBarTypeRead, HBTSNameForHandle(message.handle), NO);
 	}
 }
 
@@ -188,20 +185,12 @@ void HBTSTestRead() {
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	%orig;
 
-	overlayWindow = [[HBTSStatusBarOverlayWindow alloc] init];
+	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
+
+	overlayView = [[HBTSStatusBarView alloc] initWithFrame:foregroundView.frame];
+	[[UIApplication sharedApplication].statusBar addSubview:overlayView];
 
 	HBTSLoadPrefs();
-}
-
-- (void)noteInterfaceOrientationChanged:(UIInterfaceOrientation)interfaceOrientation duration:(float)duration updateMirroredDisplays:(BOOL)update force:(BOOL)force {
-	%orig;
-
-	[UIView animateWithDuration:duration animations:^{
-		UIWindow *keyWindow = UIWindow.keyWindow;
-		[overlayWindow makeKeyWindow];
-		overlayWindow.rootViewController.interfaceOrientation = interfaceOrientation;
-		[keyWindow makeKeyWindow];
-	}];
 }
 %end
 
@@ -222,15 +211,15 @@ void HBTSLoadPrefs() {
 		if (!typingIcon || !typingStatus) {
 			HBTSTypingEnded();
 		} else if (!readStatus) {
-			HBTSSetStatusBar(nil, NO);
+			HBTSSetStatusBar(HBTSStatusBarTypeRead, nil, NO);
 		}
 	} else {
 		firstLoad = NO;
 	}
 
-	if (overlayWindow) {
-		overlayWindow.shouldSlide = overlaySlide;
-		overlayWindow.shouldFade = overlayFade;
+	if (overlayView) {
+		overlayView.shouldSlide = overlaySlide;
+		overlayView.shouldFade = overlayFade;
 	}
 }
 
@@ -240,5 +229,4 @@ void HBTSLoadPrefs() {
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, 0);
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, 0);
-
 }

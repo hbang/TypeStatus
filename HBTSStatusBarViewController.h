@@ -1,2 +1,0 @@
-@interface HBTSStatusBarViewController : UIViewController
-@end
