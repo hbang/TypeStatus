@@ -177,6 +177,8 @@
 
 		self.alpha = 1;
 
+		foregroundView.clipsToBounds = NO;
+
 		_typeLabel.text = @"";
 		_contactLabel.text = @"";
 
