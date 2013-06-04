@@ -27,7 +27,7 @@ void HBTSLoadPrefs();
 
 void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
 	overlayView.type = type;
-	overlayView.string = string ?: nil;
+	overlayView.string = string;
 
 	if (string) {
 		[overlayView showWithTimeout:typing ? kHBTSTypingTimeout : kHBTSStatusBarTimeout];
