@@ -8,7 +8,7 @@ THEOS_BUILD_DIR = debs
 TWEAK_NAME = TypeStatus
 TypeStatus_FILES = Main.xmi
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics
-TypeStatus_PRIVATE_FRAMEWORKS = ChatKit
+TypeStatus_PRIVATE_FRAMEWORKS = ChatKit AppSupport
 TypeStatus_CFLAGS = -Qunused-arguments
 
 SUBPROJECTS = prefs

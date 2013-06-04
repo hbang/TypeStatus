@@ -1,2 +1,3 @@
 #include "Tweak.xm"
 #include "HBTSStatusBarView.xm"
+#include "HBTSMessageServer.m"

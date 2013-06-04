@@ -1,0 +1,2 @@
+@interface HBTSMessageServer : NSObject
+@end
