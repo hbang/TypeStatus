@@ -76,10 +76,12 @@
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
 			_typeLabel.text = I18N(@"Typing:");
+			_iconImageView.image = [UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"];
 			break;
 
 		case HBTSStatusBarTypeRead:
 			_typeLabel.text = I18N(@"Read:");
+			_iconImageView.image = [UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatusRead"];
 			break;
 	}
 
