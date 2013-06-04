@@ -7,7 +7,7 @@
 	self = [super init];
 
 	if (self) {
-		CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:@"ws.hbang.typestatus.server"];
+		CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:[@"ws.hbang.typestatus.server_for_app_" stringByAppendingString:[NSBundle mainBundle].bundleIdentifier]];
 		[messagingCenter runServerOnCurrentThread];
 		[messagingCenter registerForMessageName:@"SetState" target:self selector:@selector(_receivedMessage:userInfo:)];
 	}

@@ -17,6 +17,8 @@ HBTSMessageServer *messageServer;
 BOOL firstLoad = YES;
 BOOL overlaySlide = YES;
 BOOL overlayFade = YES;
+BOOL typingStatus = YES;
+BOOL readStatus = YES;
 
 void HBTSLoadPrefs();
 
@@ -35,8 +37,8 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
 		[overlayView hide];
 	}
 
-	if (IN_SPRINGBOARD) {
-		[[CPDistributedMessagingCenter centerNamed:@"ws.hbang.typestatus.server"] sendMessageAndReceiveReplyName:@"SetState" userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+	if (IN_SPRINGBOARD && [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]) {
+		[[CPDistributedMessagingCenter centerNamed:[@"ws.hbang.typestatus.server_for_app_" stringByAppendingString:[[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]]] sendMessageAndReceiveReplyName:@"SetState" userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithInt:type], @"Type",
 			string, @"Name",
 			[NSNumber numberWithBool:typing], @"Typing",
@@ -57,10 +59,8 @@ NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] init];
 
 BOOL typingHideInMessages = YES;
 BOOL typingIcon = YES;
-BOOL typingStatus = YES;
 BOOL typingTimeout = NO;
 BOOL readHideInMessages = YES;
-BOOL readStatus = YES;
 
 NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS", @"com.bitesms", nil];
 
@@ -253,8 +253,6 @@ void HBTSLoadPrefs() {
 		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, 0);
 
 		%init(HBTSSpringBoard);
-	} else {
-		messageServer = [[HBTSMessageServer alloc] init];
 	}
 
 #pragma mark - Status bar overlay management
@@ -266,5 +264,9 @@ void HBTSLoadPrefs() {
 		[[UIApplication sharedApplication].statusBar addSubview:overlayView];
 
 		HBTSLoadPrefs();
+
+		if (!IN_SPRINGBOARD) {
+			messageServer = [[HBTSMessageServer alloc] init];
+		}
 	}];
 }
