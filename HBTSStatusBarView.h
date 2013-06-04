@@ -4,7 +4,7 @@
 	UIView *_containerView;
 	UILabel *_typeLabel;
 	UILabel *_contactLabel;
-	float _iconWidth;
+	UIImageView *_iconImageView;
 	BOOL _shouldSlide;
 	BOOL _shouldFade;
 	BOOL _isAnimating;

@@ -21,14 +21,12 @@
 		_containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 		[self addSubview:_containerView];
 
-		UIImageView *iconImageView = [[[UIImageView alloc] initWithImage:[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"]] autorelease];
-		iconImageView.center = CGPointMake(iconImageView.center.x, self.frame.size.height / 2.f);
-		iconImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-		[_containerView addSubview:iconImageView];
+		_iconImageView = [[[UIImageView alloc] initWithImage:[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"]] autorelease];
+		_iconImageView.center = CGPointMake(_iconImageView.center.x, self.frame.size.height / 2.f);
+		_iconImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[_containerView addSubview:_iconImageView];
 
-		_iconWidth = iconImageView.frame.size.width;
-
-		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconWidth + 4.f, 0, 0, self.frame.size.height)];
+		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, 0, 0, self.frame.size.height)];
 		_typeLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		_typeLabel.font = [UIFont boldSystemFontOfSize:14.f];
 		_typeLabel.backgroundColor = [UIColor clearColor];
