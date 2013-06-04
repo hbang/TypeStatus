@@ -265,7 +265,7 @@ void HBTSLoadPrefs() {
 
 		HBTSLoadPrefs();
 
-		if (!IN_SPRINGBOARD) {
+		if (!IN_SPRINGBOARD && ![[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.mobilemail"]) {
 			messageServer = [[HBTSMessageServer alloc] init];
 		}
 	}];
