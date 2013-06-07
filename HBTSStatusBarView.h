@@ -8,6 +8,7 @@
 	BOOL _shouldSlide;
 	BOOL _shouldFade;
 	BOOL _isAnimating;
+	BOOL _isVisible;
 	NSTimer *_timer;
 	HBTSStatusBarType _type;
 }

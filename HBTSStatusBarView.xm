@@ -95,7 +95,7 @@
 }
 
 - (void)showWithTimeout:(double)timeout {
-	if (_timer || _isAnimating) {
+	if (_timer || _isAnimating || _isVisible) {
 		return;
 	}
 
@@ -103,6 +103,7 @@
 
 	self.hidden = NO;
 	_isAnimating = YES;
+	_isVisible = YES;
 
 	if (_shouldSlide) {
 		CGRect frame = self.frame;
@@ -139,7 +140,7 @@
 }
 
 - (void)hide {
-	if (!_timer || _isAnimating) {
+	if (!_timer || _isAnimating || !_isVisible) {
 		return;
 	}
 
@@ -184,6 +185,7 @@
 
 		self.hidden = YES;
 		_isAnimating = NO;
+		_isVisible = NO;
 	}];
 }
 @end
