@@ -113,7 +113,7 @@
 	self.alpha = _shouldFade ? 0 : 1;
 	self.hidden = NO;
 
-	[UIView animateWithDuration:0.3f animations:^{
+	[UIView animateWithDuration:_shouldSlide || _shouldFade ? 0.3f : 0 animations:^{
 		if (_shouldSlide) {
 			CGRect frame = self.frame;
 			frame.origin.y = 0;
@@ -129,7 +129,7 @@
 
 		self.alpha = 1;
 
-		if (_shouldFade) {
+		if (_shouldFade || !_shouldSlide) {
 			foregroundView.alpha = 0;
 		}
 	} completion:^(BOOL finished) {
