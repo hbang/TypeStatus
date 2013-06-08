@@ -5,6 +5,7 @@ TypeStatus_FILES = $(wildcard *.x) $(wildcard *.m)
 TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics Twitter
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
+TypeStatus_LIBRARIES = substrate
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

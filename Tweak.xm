@@ -17,6 +17,7 @@ HBTSMessageServer *messageServer;
 BOOL firstLoad = YES;
 BOOL overlaySlide = YES;
 BOOL overlayFade = YES;
+float overlayDuration = 5.f;
 BOOL typingStatus = YES;
 BOOL readStatus = YES;
 
@@ -24,7 +25,7 @@ void HBTSLoadPrefs();
 
 #define IN_SPRINGBOARD ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
 #define GET_BOOL(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] boolValue] : default)
-#define kHBTSStatusBarTimeout 5
+#define GET_FLOAT(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] floatValue] : default)
 #define kHBTSTypingTimeout 60
 
 void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
@@ -32,7 +33,7 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
 	overlayView.string = string;
 
 	if (string) {
-		[overlayView showWithTimeout:typing ? kHBTSTypingTimeout : kHBTSStatusBarTimeout];
+		[overlayView showWithTimeout:typing ? kHBTSTypingTimeout : overlayDuration];
 	} else {
 		[overlayView hide];
 	}
@@ -117,7 +118,7 @@ void HBTSTypingStarted(FZMessage *message, BOOL testing) {
 		}
 
 		if (typingTimeout || testing) {
-			typingTimer = [[NSTimer scheduledTimerWithTimeInterval:testing ? kHBTSStatusBarTimeout : kHBTSTypingTimeout target:message selector:@selector(typeStatus_typingEnded) userInfo:nil repeats:NO] retain];
+			typingTimer = [[NSTimer scheduledTimerWithTimeInterval:testing ? overlayDuration : kHBTSTypingTimeout target:message selector:@selector(typeStatus_typingEnded) userInfo:nil repeats:NO] retain];
 		}
 	}
 
@@ -224,6 +225,7 @@ void HBTSLoadPrefs() {
 
 	overlaySlide = GET_BOOL(@"OverlaySlide", YES);
 	overlayFade = GET_BOOL(@"OverlayFade", NO);
+	overlayDuration = GET_FLOAT(@"OverlayDuration", 5.f);
 
 	if (!firstLoad) {
 		if ((IN_SPRINGBOARD && !typingIcon) || !typingStatus) {
