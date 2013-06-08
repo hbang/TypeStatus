@@ -152,7 +152,7 @@ void HBTSTypingEnded() {
 }
 
 void HBTSMessageRead(FZMessage *message) {
-	if (readStatus && [[NSDate date] timeIntervalSinceDate:message.timeRead] < 1 && !HBTSShouldHide(NO)) {
+	if (readStatus && !message.sender && [[NSDate date] timeIntervalSinceDate:message.timeRead] < 1 && !HBTSShouldHide(NO)) {
 		HBTSSetStatusBar(HBTSStatusBarTypeRead, HBTSNameForHandle(message.handle), NO);
 	}
 }
