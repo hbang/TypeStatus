@@ -29,5 +29,5 @@ endif
 
 after-install::
 ifeq ($(RESPRING),0)
-	install.exec "killall Preferences; sbopenurl prefs:root=TypeStatus"
+	install.exec "killall Preferences; sbopenurl 'prefs:root=Cydia&path=TypeStatus'"
 endif
