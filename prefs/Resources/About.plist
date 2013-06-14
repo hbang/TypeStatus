@@ -11,154 +11,128 @@
 			<string>PSGroupCell</string>
 			<key>footerText</key>
 			<string>© 2013, HASHBANG Productions</string>
-			<key>label</key>
-			<string>TypeStatus 1.1</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSHeaderCell</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>HASHBANG Productions</string>
+			<key>user</key>
+			<string>hbangws</string>
+			<key>height</key>
+			<integer>54</integer>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Lead Developer</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
-			<string>Follow @hbangws on Twitter</string>
+			<string>Adam D</string>
 			<key>user</key>
-			<string>hbangws</string>
+			<string>thekirbylover</string>
+			<key>height</key>
+			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>Thank you to the following people for contributing to TypeStatus:</string>
-			<key>label</key>
-			<string> </string>
+			<string>Thank you to the following people for contributing to TypeStatus.</string>
 		</dict>
 		<dict>
-			<key>alignment</key>
-			<integer>1</integer>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>Jeff Benjamin</string>
 			<key>label</key>
 			<string>Idea</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-		</dict>
-		<dict>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
-			<string>Follow @JeffBenjam on Twitter</string>
+			<string>Jeff Benjamin</string>
 			<key>user</key>
 			<string>JeffBenjam</string>
+			<key>height</key>
+			<integer>54</integer>
 		</dict>
 		<dict>
-			<key>alignment</key>
-			<integer>1</integer>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>Surenix</string>
 			<key>label</key>
 			<string>Icons</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-		</dict>
-		<dict>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
-			<string>Follow @Surenix on Twitter</string>
+			<string>Thientam Bach</string>
 			<key>user</key>
 			<string>Surenix</string>
+			<key>height</key>
+			<integer>54</integer>
 		</dict>
 		<dict>
-			<key>alignment</key>
-			<integer>1</integer>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>Greek: @iFasMan7</string>
+			<string></string>
 			<key>label</key>
 			<string>Translations</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-		</dict>
-		<dict>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
-			<string>Follow @iFasMan7 on Twitter</string>
+			<string>Greek</string>
 			<key>user</key>
 			<string>iFasMan7</string>
-		</dict>
-		<dict>
-			<key>alignment</key>
-			<integer>1</integer>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>Norwegian: @Thay__T</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
+			<key>small</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
-			<string>Follow @Thay__T on Twitter</string>
+			<string>Norwegian</string>
 			<key>user</key>
 			<string>Thay__T</string>
-		</dict>
-		<dict>
-			<key>alignment</key>
-			<integer>1</integer>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>Russian: @vladkorotnev</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
+			<key>small</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
-			<string>Follow @vladkorotnev on Twitter</string>
+			<string>Russian</string>
 			<key>user</key>
 			<string>vladkorotnev</string>
-		</dict>
-		<dict>
-			<key>alignment</key>
-			<integer>1</integer>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>Swedish: @c0redev</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
+			<key>small</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
-			<string>Follow @c0redev on Twitter</string>
+			<string>Swedish</string>
 			<key>user</key>
 			<string>c0redev</string>
+			<key>small</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>cell</key>
