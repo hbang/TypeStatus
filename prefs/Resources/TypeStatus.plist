@@ -9,6 +9,8 @@
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Typing</string>
+			<key>footerText</key>
+			<string>The delay can be set with the “Overlay Display Duration” slider below.</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -48,7 +50,7 @@
 			<key>key</key>
 			<string>TypingTimeout</string>
 			<key>label</key>
-			<string>Hide Text After 5 Sec.</string>
+			<string>Hide Text After Delay</string>
 			<key>PostNotification</key>
 			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
