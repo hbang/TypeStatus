@@ -22,6 +22,7 @@ BOOL typingStatus = YES;
 BOOL readStatus = YES;
 
 void HBTSLoadPrefs();
+BOOL HBTSShouldHide(BOOL typing);
 
 #define IN_SPRINGBOARD ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
 #define GET_BOOL(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] boolValue] : default)
@@ -38,7 +39,7 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
 		[overlayView hide];
 	}
 
-	if (IN_SPRINGBOARD && [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]) {
+	if (IN_SPRINGBOARD && [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID] && !HBTSShouldHide(typing)) {
 		[[CPDistributedMessagingCenter centerNamed:[@"ws.hbang.typestatus.server_for_app_" stringByAppendingString:[[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]]] sendMessageAndReceiveReplyName:@"SetState" userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithInt:type], @"Type",
 			string, @"Name",
