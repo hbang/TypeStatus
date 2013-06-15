@@ -89,8 +89,42 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string></string>
+			<key>label</key>
+			<string>Being Awesome</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Ryan</string>
+			<key>user</key>
+			<string>rg0rd</string>
+			<key>height</key>
+			<integer>54</integer>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Aehmlo Lxaitn</string>
+			<key>user</key>
+			<string>Aehmlo</string>
+			<key>height</key>
+			<integer>54</integer>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Jonathan Seals</string>
+			<key>user</key>
+			<string>JonathanSeals</string>
+			<key>height</key>
+			<integer>54</integer>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Translations</string>
 		</dict>
@@ -138,7 +172,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>…and our beta testers and users!</string>
+			<string>…and our beta testers and users. You guys rock!</string>
 		</dict>
 	</array>
 	<key>title</key>
