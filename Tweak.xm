@@ -58,7 +58,7 @@ BOOL updatingClock = NO;
 NSTimer *typingTimer;
 BOOL isTyping = NO;
 NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-	@"John Appleseed", "example@hbang.ws",
+	@"John Appleseed", @"example@hbang.ws",
 	@"The Devil", @"imast777@imast777.me",
 	nil];
 
