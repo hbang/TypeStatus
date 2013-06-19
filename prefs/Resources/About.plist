@@ -5,7 +5,7 @@
 	<key>items</key>
 	<array>
 		<dict>
-			<key>alignment</key>
+			<key>footerAlignment</key>
 			<integer>1</integer>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -119,6 +119,16 @@
 			<string>Jonathan Seals</string>
 			<key>user</key>
 			<string>JonathanSeals</string>
+			<key>height</key>
+			<integer>54</integer>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>chickenfriez</string>
+			<key>user</key>
+			<string>chickenfriez</string>
 			<key>height</key>
 			<integer>54</integer>
 		</dict>
