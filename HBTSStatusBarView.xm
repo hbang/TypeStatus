@@ -31,6 +31,8 @@
 		_typeLabel.font = [UIFont boldSystemFontOfSize:13.f];
 		_typeLabel.backgroundColor = [UIColor clearColor];
 		_typeLabel.textColor = [UIColor whiteColor];
+		_typeLabel.shadowOffset = CGSizeMake(0, 1.f);
+		_typeLabel.shadowColor = [UIColor blackColor];
 		[_containerView addSubview:_typeLabel];
 
 		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
@@ -38,6 +40,8 @@
 		_contactLabel.font = [UIFont systemFontOfSize:13.f];
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
+		_contactLabel.shadowOffset = CGSizeMake(0, 1.f);
+		_contactLabel.shadowColor = [UIColor blackColor];
 		[_containerView addSubview:_contactLabel];
 	}
 
