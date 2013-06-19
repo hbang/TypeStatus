@@ -28,14 +28,14 @@
 
 		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, 0, 0, self.frame.size.height)];
 		_typeLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-		_typeLabel.font = [UIFont boldSystemFontOfSize:14.f];
+		_typeLabel.font = [UIFont boldSystemFontOfSize:13.f];
 		_typeLabel.backgroundColor = [UIColor clearColor];
 		_typeLabel.textColor = [UIColor whiteColor];
 		[_containerView addSubview:_typeLabel];
 
 		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
 		_contactLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-		_contactLabel.font = [UIFont systemFontOfSize:14.f];
+		_contactLabel.font = [UIFont systemFontOfSize:13.f];
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
 		[_containerView addSubview:_contactLabel];
