@@ -29,6 +29,12 @@ BOOL HBTSShouldHide(BOOL typing);
 #define GET_FLOAT(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] floatValue] : default)
 #define kHBTSTypingTimeout 60
 
+/*
+void HBTSShowOverlay() {
+
+}
+*/
+
 void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
 	overlayView.type = type;
 	overlayView.string = string;
@@ -263,6 +269,8 @@ void HBTSLoadPrefs() {
 
 #pragma mark - Status bar overlay management
 
+	// CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSShowOverlay, CFSTR("ws.hbang.typestatus/ShowOverlay"), NULL, 0);
+
 	[[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
@@ -273,6 +281,7 @@ void HBTSLoadPrefs() {
 
 		if (!IN_SPRINGBOARD && ![[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.mobilemail"]) {
 			messageServer = [[HBTSMessageServer alloc] init];
+			// TODO: xpc awesomeness
 		}
 	}];
 }
