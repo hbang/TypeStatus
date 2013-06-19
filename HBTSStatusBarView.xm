@@ -3,8 +3,10 @@
 #import <UIKit/UIApplication+Private.h>
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBar.h>
+#import <version.h>
 
 #define kHBTSStatusBarHeight 20.f
+#define kHBTSStatusBarFontSize 14.f
 
 @implementation HBTSStatusBarView
 @synthesize shouldSlide = _shouldSlide, shouldFade = _shouldFade;
@@ -26,24 +28,62 @@
 		_iconImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[_containerView addSubview:_iconImageView];
 
-		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, 0, 0, self.frame.size.height)];
-		_typeLabel.font = [UIFont boldSystemFontOfSize:13.f];
+		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, -0.5f, 0, self.frame.size.height)];
+		_typeLabel.font = [UIFont boldSystemFontOfSize:kHBTSStatusBarFontSize];
 		_typeLabel.backgroundColor = [UIColor clearColor];
 		_typeLabel.textColor = [UIColor whiteColor];
-		_typeLabel.shadowOffset = CGSizeMake(0, 1.f);
-		_typeLabel.shadowColor = [UIColor blackColor];
 		[_containerView addSubview:_typeLabel];
 
-		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
-		_contactLabel.font = [UIFont systemFontOfSize:13.f];
+		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -0.5f, 0, self.frame.size.height)];
+		_contactLabel.font = [UIFont systemFontOfSize:kHBTSStatusBarFontSize];
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
-		_contactLabel.shadowOffset = CGSizeMake(0, 1.f);
-		_contactLabel.shadowColor = [UIColor blackColor];
 		[_containerView addSubview:_contactLabel];
 	}
 
 	return self;
+}
+
+- (void)_updateForCurrentStatusBarStyle {
+	NSString *prefix;
+
+	if (!IS_IOS_OR_NEWER(iOS_6_0) && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
+		prefix = @"ColorOnGrayShadow_";
+
+		_typeLabel.textColor = [UIColor blackColor];
+		_contactLabel.textColor = [UIColor blackColor];
+
+		_typeLabel.shadowColor = [UIColor whiteColor];
+		_contactLabel.shadowColor = [UIColor whiteColor];
+
+		_typeLabel.shadowOffset = CGSizeMake(0, 1.f);
+		_contactLabel.shadowOffset = CGSizeMake(0, 1.f);
+	} else {
+		prefix = @"WhiteOnBlackEtch_";
+
+		_typeLabel.textColor = [UIColor whiteColor];
+		_contactLabel.textColor = [UIColor whiteColor];
+
+		_typeLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
+		_contactLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
+
+		_typeLabel.shadowOffset = CGSizeMake(0, -1.f);
+		_contactLabel.shadowOffset = CGSizeMake(0, -1.f);
+	}
+
+	NSString *iconName;
+
+	switch (_type) {
+		case HBTSStatusBarTypeTyping:
+			iconName = @"TypeStatus";
+			break;
+
+		case HBTSStatusBarTypeRead:
+			iconName = @"TypeStatusRead";
+			break;
+	}
+
+	_iconImageView.image = [UIImage kitImageNamed:[prefix stringByAppendingString:iconName]];
 }
 
 - (NSString *)string {
@@ -78,14 +118,14 @@
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
 			_typeLabel.text = I18N(@"Typing:");
-			_iconImageView.image = [UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"];
 			break;
 
 		case HBTSStatusBarTypeRead:
 			_typeLabel.text = I18N(@"Read:");
-			_iconImageView.image = [UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatusRead"];
 			break;
 	}
+
+	[self _updateForCurrentStatusBarStyle];
 
 	CGRect typeFrame = _typeLabel.frame;
 	typeFrame.size.width = [_typeLabel.text sizeWithFont:_typeLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width;
