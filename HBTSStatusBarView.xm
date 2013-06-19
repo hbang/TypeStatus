@@ -18,7 +18,7 @@
 		self.hidden = YES;
 
 		_containerView = [[UIView alloc] initWithFrame:self.frame];
-		_containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+		_containerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 		[self addSubview:_containerView];
 
 		_iconImageView = [[[UIImageView alloc] initWithImage:[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"]] autorelease];
@@ -27,7 +27,6 @@
 		[_containerView addSubview:_iconImageView];
 
 		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, 0, 0, self.frame.size.height)];
-		_typeLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		_typeLabel.font = [UIFont boldSystemFontOfSize:13.f];
 		_typeLabel.backgroundColor = [UIColor clearColor];
 		_typeLabel.textColor = [UIColor whiteColor];
@@ -36,7 +35,6 @@
 		[_containerView addSubview:_typeLabel];
 
 		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
-		_contactLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		_contactLabel.font = [UIFont systemFontOfSize:13.f];
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
