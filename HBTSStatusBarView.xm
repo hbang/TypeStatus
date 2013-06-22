@@ -47,7 +47,7 @@
 - (void)_updateForCurrentStatusBarStyle {
 	NSString *prefix;
 
-	if (!IS_IOS_OR_NEWER(iOS_6_0) && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
+	if (!IS_IOS_OR_NEWER(iOS_6_0) && !IS_IPAD && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
 		prefix = @"ColorOnGrayShadow_";
 
 		_typeLabel.textColor = [UIColor blackColor];
