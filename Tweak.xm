@@ -46,11 +46,13 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
 	}
 
 	if (IN_SPRINGBOARD && [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID] && !HBTSShouldHide(typing)) {
-		[[CPDistributedMessagingCenter centerNamed:[@"ws.hbang.typestatus.server_for_app_" stringByAppendingString:[[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]]] sendMessageAndReceiveReplyName:@"SetState" userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithInt:type], @"Type",
-			string, @"Name",
-			[NSNumber numberWithBool:typing], @"Typing",
-			nil]];
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			[[CPDistributedMessagingCenter centerNamed:[@"ws.hbang.typestatus.server_for_app_" stringByAppendingString:[[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]]] sendMessageAndReceiveReplyName:@"SetState" userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+				[NSNumber numberWithInt:type], @"Type",
+				string, @"Name",
+				[NSNumber numberWithBool:typing], @"Typing",
+				nil]];
+		});
 	}
 }
 
