@@ -229,5 +229,12 @@
 		_isAnimating = NO;
 		_isVisible = NO;
 	}];
+
+	if (IN_SPRINGBOARD) {
+		currentType = HBTSStatusBarTypeTyping;
+		[currentName release];
+		currentName = nil;
+		currentTyping = NO;
+	}
 }
 @end

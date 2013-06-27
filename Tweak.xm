@@ -10,10 +10,10 @@
 #import <UIKit/UIApplication+Private.h>
 #import "HBTSStatusBarView.h"
 #import "HBTSMessageServer.h"
+#include <notify.h>
 
 #pragma mark - Global stuff
 
-HBTSMessageServer *messageServer;
 BOOL firstLoad = YES;
 BOOL overlaySlide = YES;
 BOOL overlayFade = YES;
@@ -24,41 +24,51 @@ BOOL readStatus = YES;
 void HBTSLoadPrefs();
 BOOL HBTSShouldHide(BOOL typing);
 
-#define IN_SPRINGBOARD ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
 #define GET_BOOL(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] boolValue] : default)
 #define GET_FLOAT(key, default) ([prefs objectForKey:key] ? [[prefs objectForKey:key] floatValue] : default)
 #define kHBTSTypingTimeout 60
 
-/*
 void HBTSShowOverlay() {
+	if (IN_SPRINGBOARD) {
+		return;
+	}
 
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		NSDictionary *data = [[CPDistributedMessagingCenter centerNamed:@"ws.hbang.typestatus.server"] sendMessageAndReceiveReplyName:@"GetState" userInfo:[NSDictionary dictionary]];
+
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if ([data objectForKey:@"Reset"] && ((NSNumber *)[data objectForKey:@"Reset"]).boolValue) {
+				HBTSSetStatusBar(HBTSStatusBarTypeTyping, nil, YES);
+			} else {
+				HBTSSetStatusBar((HBTSStatusBarType)((NSNumber *)[data objectForKey:@"Type"]).intValue, [data objectForKey:@"Name"], ((NSNumber *)[data objectForKey:@"Typing"]).boolValue);
+			}
+		});
+	});
 }
-*/
 
-void HBTSSetStatusBar(HBTSStatusBarType type, NSString *string, BOOL typing) {
+void HBTSSetStatusBar(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	overlayView.type = type;
-	overlayView.string = string;
+	overlayView.string = name;
 
-	if (string) {
+	if (name) {
 		[overlayView showWithTimeout:typing ? kHBTSTypingTimeout : overlayDuration];
 	} else {
 		[overlayView hide];
 	}
 
 	if (IN_SPRINGBOARD && [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID] && !HBTSShouldHide(typing)) {
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-			[[CPDistributedMessagingCenter centerNamed:[@"ws.hbang.typestatus.server_for_app_" stringByAppendingString:[[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]]] sendMessageAndReceiveReplyName:@"SetState" userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithInt:type], @"Type",
-				string, @"Name",
-				[NSNumber numberWithBool:typing], @"Typing",
-				nil]];
-		});
+		currentType = type;
+		currentName = name;
+		currentTyping = typing;
+
+		notify_post("ws.hbang.typestatus/ShowOverlay");
 	}
 }
 
 #pragma mark - SpringBoard specific stuff
 
 %group HBTSSpringBoard
+HBTSMessageServer *messageServer;
 int typingIndicators = 0;
 LSStatusBarItem *statusBarItem;
 
@@ -271,7 +281,7 @@ void HBTSLoadPrefs() {
 
 #pragma mark - Status bar overlay management
 
-	// CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSShowOverlay, CFSTR("ws.hbang.typestatus/ShowOverlay"), NULL, 0);
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSShowOverlay, CFSTR("ws.hbang.typestatus/ShowOverlay"), NULL, 0);
 
 	[[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
@@ -281,9 +291,8 @@ void HBTSLoadPrefs() {
 
 		HBTSLoadPrefs();
 
-		if (!IN_SPRINGBOARD && ![[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.mobilemail"]) {
+		if (IN_SPRINGBOARD) {
 			messageServer = [[HBTSMessageServer alloc] init];
-			// TODO: xpc awesomeness
 		}
 	}];
 }
