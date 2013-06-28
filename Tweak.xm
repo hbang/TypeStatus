@@ -103,12 +103,12 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 		if (%c(CKIMEntity)) {
 			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
-			name = entity.name;
+			name = [entity.name retain];
 		} else if (%c(CKMadridService)) {
 			CKMadridService *service = [[%c(CKMadridService) alloc] init];
 			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
 			[service release];
-			name = entity.name;
+			name = [entity.name retain];
 		}
 
 		[nameCache setObject:name forKey:handle];
