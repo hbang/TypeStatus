@@ -105,8 +105,9 @@ NSString *HBTSNameForHandle(NSString *handle) {
 			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
 			name = entity.name;
 		} else if (%c(CKMadridService)) {
-			CKMadridService *service = [[[%c(CKMadridService) alloc] init] autorelease];
+			CKMadridService *service = [[%c(CKMadridService) alloc] init];
 			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
+			[service release];
 			name = entity.name;
 		}
 
