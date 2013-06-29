@@ -21,8 +21,6 @@
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSLinkCell</string>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
