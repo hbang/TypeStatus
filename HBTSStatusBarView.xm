@@ -5,8 +5,10 @@
 #import <UIKit/UIStatusBar.h>
 #import <version.h>
 
+#define IS_RETINA ([UIScreen mainScreen].scale > 1)
+
 #define kHBTSStatusBarHeight 20.f
-#define kHBTSStatusBarFontSize 14.f
+#define kHBTSStatusBarFontSize (IS_RETINA ? 14.f : 13.f)
 
 @implementation HBTSStatusBarView
 @synthesize shouldSlide = _shouldSlide, shouldFade = _shouldFade;
@@ -24,17 +26,17 @@
 		[self addSubview:_containerView];
 
 		_iconImageView = [[[UIImageView alloc] initWithImage:[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"]] autorelease];
-		_iconImageView.center = CGPointMake(_iconImageView.center.x, self.frame.size.height / 2.f);
+		_iconImageView.center = CGPointMake(_iconImageView.center.x, self.frame.size.height / 2);
 		_iconImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[_containerView addSubview:_iconImageView];
 
-		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, -0.5f, 0, self.frame.size.height)];
+		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, IS_RETINA ? -0.5f : -1.f, 0, self.frame.size.height)];
 		_typeLabel.font = [UIFont boldSystemFontOfSize:kHBTSStatusBarFontSize];
 		_typeLabel.backgroundColor = [UIColor clearColor];
 		_typeLabel.textColor = [UIColor whiteColor];
 		[_containerView addSubview:_typeLabel];
 
-		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -0.5f, 0, self.frame.size.height)];
+		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_RETINA ? -0.5f : -1.f, 0, self.frame.size.height)];
 		_contactLabel.font = [UIFont systemFontOfSize:kHBTSStatusBarFontSize];
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
