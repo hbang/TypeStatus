@@ -250,14 +250,14 @@ void HBTSLoadPrefs() {
 	overlayFade = GET_BOOL(@"OverlayFade", NO);
 	overlayDuration = GET_FLOAT(@"OverlayDuration", 5.f);
 
-	if (!firstLoad) {
+	if (firstLoad) {
+		firstLoad = NO;
+	} else {
 		if ((IN_SPRINGBOARD && !typingIcon) || !typingStatus) {
 			HBTSTypingEnded();
 		} else if (!readStatus) {
 			HBTSSetStatusBar(HBTSStatusBarTypeRead, nil, NO);
 		}
-	} else {
-		firstLoad = NO;
 	}
 
 	if (overlayView) {
