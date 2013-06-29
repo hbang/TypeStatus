@@ -8,7 +8,7 @@
 #define IS_RETINA ([UIScreen mainScreen].scale > 1)
 
 #define kHBTSStatusBarHeight 20.f
-#define kHBTSStatusBarFontSize (IS_RETINA ? 14.f : 13.f)
+#define kHBTSStatusBarFontSize 14.f
 
 @implementation HBTSStatusBarView
 @synthesize shouldSlide = _shouldSlide, shouldFade = _shouldFade;
@@ -97,7 +97,7 @@
 		_contactLabel.text = string ?: @"";
 
 		CGRect labelFrame = _contactLabel.frame;
-		labelFrame.size.width = [_contactLabel.text sizeWithFont:_contactLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width;
+		labelFrame.size.width = (int)[_contactLabel.text sizeWithFont:_contactLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width;
 		_contactLabel.frame = labelFrame;
 
 		CGRect containerFrame = _containerView.frame;
@@ -130,7 +130,7 @@
 	[self _updateForCurrentStatusBarStyle];
 
 	CGRect typeFrame = _typeLabel.frame;
-	typeFrame.size.width = [_typeLabel.text sizeWithFont:_typeLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width;
+	typeFrame.size.width = (int)[_typeLabel.text sizeWithFont:_typeLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width;
 	_typeLabel.frame = typeFrame;
 
 	CGRect labelFrame = _contactLabel.frame;
