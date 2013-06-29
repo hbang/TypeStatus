@@ -14,6 +14,7 @@
 		_highlightedImage = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"twitter_selected" ofType:@"png"]];
 
 		self.detailTextLabel.text = [@"@" stringByAppendingString:[specifier.properties objectForKey:@"user"]];
+		self.detailTextLabel.textColor = [UIColor tableCellValue1BlueColor];
 		self.selectionStyle = UITableViewCellSelectionStyleBlue;
 		self.accessoryView = [[UIImageView alloc] initWithImage:_defaultImage];
 	}
