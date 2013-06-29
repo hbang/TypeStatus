@@ -21,6 +21,8 @@
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>
+			<key>big</key>
+			<true/>
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
@@ -29,8 +31,28 @@
 			<string>hbangws</string>
 			<key>height</key>
 			<integer>54</integer>
-			<key>big</key>
-			<true/>
+			<key>requiredCapabilities</key>
+			<array>
+				<dict>
+					<key>ipad</key>
+					<false/>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>HASHBANG Productions</string>
+			<key>user</key>
+			<string>hbangws</string>
+			<key>requiredCapabilities</key>
+			<array>
+				<dict>
+					<key>ipad</key>
+					<true/>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>cell</key>
