@@ -57,9 +57,9 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *name, BOOL typing) {
 		[overlayView hide];
 	}
 
-	if (IN_SPRINGBOARD && [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID] && !HBTSShouldHide(typing)) {
+	if (IN_SPRINGBOARD) {
 		currentType = type;
-		currentName = name;
+		currentName = [name retain];
 		currentTyping = typing;
 
 		notify_post("ws.hbang.typestatus/ShowOverlay");
@@ -90,7 +90,11 @@ NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS",
 #pragma mark - Hide while Messages is open
 
 BOOL HBTSShouldHide(BOOL typing) {
-	return (typing ? typingHideInMessages : readHideInMessages) ? [messagesApps containsObject:[[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID]] : NO;
+	if (typing ? typingHideInMessages : readHideInMessages) {
+		return [messagesApps containsObject:IN_SPRINGBOARD ? [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID] : [NSBundle mainBundle].bundleIdentifier];
+	}
+
+	return NO;
 }
 
 #pragma mark - Get contact name
