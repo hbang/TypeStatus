@@ -29,6 +29,8 @@
 			<string>hbangws</string>
 			<key>height</key>
 			<integer>54</integer>
+			<key>big</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -43,8 +45,6 @@
 			<string>Adam D</string>
 			<key>user</key>
 			<string>thekirbylover</string>
-			<key>height</key>
-			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -65,8 +65,6 @@
 			<string>Jeff Benjamin</string>
 			<key>user</key>
 			<string>JeffBenjam</string>
-			<key>height</key>
-			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -81,8 +79,6 @@
 			<string>Thientam Bach</string>
 			<key>user</key>
 			<string>Surenix</string>
-			<key>height</key>
-			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -97,8 +93,6 @@
 			<string>Ryan</string>
 			<key>user</key>
 			<string>rg0rd</string>
-			<key>height</key>
-			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -107,8 +101,6 @@
 			<string>Aehmlo Lxaitn</string>
 			<key>user</key>
 			<string>Aehmlo</string>
-			<key>height</key>
-			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -117,8 +109,6 @@
 			<string>Jonathan Seals</string>
 			<key>user</key>
 			<string>JonathanSeals</string>
-			<key>height</key>
-			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -127,8 +117,6 @@
 			<string>chickenfriez</string>
 			<key>user</key>
 			<string>chickenfriez</string>
-			<key>height</key>
-			<integer>54</integer>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -143,8 +131,6 @@
 			<string>Greek</string>
 			<key>user</key>
 			<string>iFasMan7</string>
-			<key>small</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -153,8 +139,6 @@
 			<string>Norwegian</string>
 			<key>user</key>
 			<string>Thay__T</string>
-			<key>small</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -163,8 +147,6 @@
 			<string>Russian</string>
 			<key>user</key>
 			<string>vladkorotnev</string>
-			<key>small</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -173,8 +155,6 @@
 			<string>Swedish</string>
 			<key>user</key>
 			<string>c0redev</string>
-			<key>small</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>cell</key>

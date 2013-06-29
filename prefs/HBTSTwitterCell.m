@@ -1,8 +1,9 @@
 #import "HBTSTwitterCell.h"
+#import <UIKit/UIColor+Private.h>
 
 @implementation HBTSTwitterCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier specifier:(PSSpecifier *)specifier {
-	self = [super initWithStyle:[specifier.properties objectForKey:@"small"] && ((NSNumber *)[specifier.properties objectForKey:@"small"]).boolValue ? UITableViewCellStyleValue1 : UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier specifier:specifier];
+	self = [super initWithStyle:[specifier.properties objectForKey:@"big"] && ((NSNumber *)[specifier.properties objectForKey:@"big"]).boolValue ? UITableViewCellStyleSubtitle : UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier specifier:specifier];
 
 	if (self) {
 		_user = [specifier.properties objectForKey:@"user"];
