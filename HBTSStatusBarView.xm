@@ -139,7 +139,16 @@
 }
 
 - (void)showWithTimeout:(double)timeout {
-	if (_timer || _isAnimating || _isVisible) {
+	if (_isAnimating || _isVisible) {
+		return;
+	}
+
+	if (_timer) {
+		[_timer invalidate];
+		[_timer release];
+
+		_timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
+
 		return;
 	}
 
