@@ -19,6 +19,7 @@ BOOL overlaySlide = YES;
 BOOL overlayFade = YES;
 float overlayDuration = 5.f;
 BOOL typingStatus = YES;
+BOOL typingTimeout = NO;
 BOOL readStatus = YES;
 
 void HBTSLoadPrefs();
@@ -51,7 +52,7 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	overlayView.string = name;
 
 	if (name) {
-		[overlayView showWithTimeout:typing ? kHBTSTypingTimeout : overlayDuration];
+		[overlayView showWithTimeout:typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration];
 	} else {
 		[overlayView hide];
 	}
@@ -82,7 +83,6 @@ NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] initWithObjectsAnd
 
 BOOL typingHideInMessages = YES;
 BOOL typingIcon = YES;
-BOOL typingTimeout = NO;
 BOOL readHideInMessages = YES;
 
 NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS", @"com.bitesms", nil];
@@ -249,6 +249,7 @@ void HBTSLoadPrefs() {
 	overlaySlide = GET_BOOL(@"OverlaySlide", YES);
 	overlayFade = GET_BOOL(@"OverlayFade", NO);
 	overlayDuration = GET_FLOAT(@"OverlayDuration", 5.f);
+	typingTimeout = GET_BOOL(@"TypingTimeout", NO);
 
 	if (firstLoad) {
 		firstLoad = NO;
