@@ -27,6 +27,15 @@
 
 "About" = "About";
 
+/* About page */
+"Lead Developer" = "Lead Developer";
+"Thank you to the following people for contributing to TypeStatus." = "Thank you to the following people for contributing to TypeStatus.";
+"Idea" = "Idea";
+"Icons" = "Icons";
+"Being Awesome" = "Being Awesome";
+"Translations" = "Translations";
+"…and our beta testers and users. You guys rock!" = "…and our beta testers and users. You guys rock!";
+
 /* For future features */
 "Overlay Gestures" = "Overlay Gestures";
 
