@@ -4,7 +4,7 @@ Pre-Depends: firmware (>= 5.0)
 Depends: mobilesubstrate, libstatusbar, preferenceloader
 Version: 1.1~beta
 Architecture: iphoneos-arm
-Description: iMessage typing indicator in status bar & more
+Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <typestatus@hbang.ws>
 Author: HASHBANG Productions <typestatus@hbang.ws>
 Section: Tweaks
