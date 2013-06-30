@@ -1,27 +1,41 @@
-"About" = "About";
+/* Sharing text */
 "Check out #TypeStatus by HASHBANG Productions!" = "Check out #TypeStatus by HASHBANG Productions!";
-"Dismiss" = "Dismiss";
-"Double Tap" = "Double Tap";
-"Fade" = "Fade";
-"Follow @%@ on Twitter" = "Follow @%@ on Twitter";
-"Overlay Gestures" = "Overlay Gestures";
-"Hide Inside Messages" = "Hide Inside Messages";
-"Hide Text After 5 Sec." = "Hide Text After 5 Sec.";
-"No Action" = "No Action";
-"Open biteSMS" = "Open biteSMS";
-"Open Messages" = "Open Messages";
-"Overlay Animation" = "Overlay Animation";
-"Overlay Display Duration" = "Overlay Display Duration";
-"Overlay Hide Timeout" = "Overlay Hide Timeout";
-"Read" = "Read";
+
+/* Overlay strings */
 "Read:" = "Read:";
-"Single Tap" = "Single Tap";
-"Slide" = "Slide";
+"Typing:" = "Typing:";
+
+/* Settings */
+"Typing" = "Typing";
 "Status Bar Icon" = "Status Bar Icon";
 "Status Bar Overlay" = "Status Bar Overlay";
-"Tap Action" = "Tap Action";
-"Test Read" = "Test Read";
+"Hide Text After Delay" = "Hide Text After Delay";
+"Hide Inside Messages" = "Hide Inside Messages";
 "Test Typing" = "Test Typing";
-"Typing" = "Typing";
-"Typing:" = "Typing:";
+"The delay can be set with the “Overlay Display Duration” slider below." = "The delay can be set with the “Overlay Display Duration” slider below.";
+
+"Read" = "Read";
+"Test Read" = "Test Read";
+
 "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.";
+
+"Overlay Display Duration" = "Overlay Display Duration";
+
+"Overlay Animation" = "Overlay Animation";
+"Slide" = "Slide";
+"Fade" = "Fade";
+
+"About" = "About";
+
+/* For future features */
+"Overlay Gestures" = "Overlay Gestures";
+
+"Single Tap" = "Single Tap";
+"Double Tap" = "Double Tap";
+"Swipe Left" = "Swipe Left";
+"Swipe Right" = "Swipe Right";
+
+"No Action" = "No Action";
+"Dismiss" = "Dismiss";
+"Open biteSMS" = "Open biteSMS";
+"Open Messages" = "Open Messages";
