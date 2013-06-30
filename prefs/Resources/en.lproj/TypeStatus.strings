@@ -17,7 +17,7 @@
 "Read" = "Read";
 "Test Read" = "Test Read";
 
-"“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.";
+"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.";
 
 "Overlay Display Duration" = "Overlay Display Duration";
 

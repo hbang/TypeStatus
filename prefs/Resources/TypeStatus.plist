@@ -80,7 +80,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.
+			<string>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
 “Hide Inside Messages” disables all indicators while Messages or biteSMS is open.</string>
 			<key>label</key>
 			<string>Read</string>
