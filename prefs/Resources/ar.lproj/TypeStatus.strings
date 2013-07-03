@@ -12,12 +12,12 @@
 "Hide Text After Delay" = "إخفاء النص عند التأخير";
 "Hide Inside Messages" = "إخفاء محتوى الرسالة";
 "Test Typing" = "تجربة الكتابة";
-"The delay can be set with the “Overlay Display Duration” slider below." = "تستطيع تعيين التأخير مع "مدة عرض الغطاء" من خلال شريط التمرير أدناه.";
+"The delay can be set with the “Overlay Display Duration” slider below." = "تستطيع تعيين التأخير مع \"مدة عرض الغطاء\" من خلال شريط التمرير أدناه.";
  
 "Read" = "عند القراءة";
 "Test Read" = "تجربة القراءة";
  
-"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = ""الغطاء في شريط الحالة العلوي" يظهر غطاء في شريط الحالة العلوي لفترة وجيزة مع اسم الشخص الذي تسبب في هذا الإشعار.\n"إخفاء محتوى الرسالة" يتم اخفاء جميع المؤشرات في حين برنامج الرسائل او biteSMS مفتوح.";
+"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "\"الغطاء في شريط الحالة العلوي\" يظهر غطاء في شريط الحالة العلوي لفترة وجيزة مع اسم الشخص الذي تسبب في هذا الإشعار.\n\"إخفاء محتوى الرسالة\" يتم اخفاء جميع المؤشرات في حين برنامج الرسائل او biteSMS مفتوح.";
  
 "Overlay Display Duration" = "مدة عرض الغطاء";
  
