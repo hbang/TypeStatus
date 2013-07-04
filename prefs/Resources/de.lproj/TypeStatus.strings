@@ -1,0 +1,41 @@
+"About" = "Über";
+"Check out #TypeStatus by HASHBANG Productions!" = "Check out #TypeStatus by HASHBANG Productions!";
+"Dismiss" = "Ausblenden";
+"Double Tap" = "Doppel-tippen";
+"Fade" = "Überblenden";
+"Follow @%@ on Twitter" = "Folge @%@ auf Twitter";
+"Overlay Gestures" = "Overlay Gesten";
+"Hide Inside Messages" = "Verstecke in Nachrichten";
+"Hide Text After 5 Sec." = "Verstecke text nach 5 sek.";
+"No Action" = "Keine Aktion";
+"Open biteSMS" = "Öffne biteSMS";
+"Open Messages" = "Öffne Messages";
+"Overlay Animation" = "Overlay Animation";
+"Overlay Display Duration" = "Overlay Anzeigedauer";
+"Overlay Hide Timeout" = "Overlay Timeout";
+"Read" = "Gelesen";
+"Read:" = "Gelesen:";
+"Single Tap" = "einfaches Tippen";
+"Slide" = "Schieben";
+"Status Bar Icon" = "Statusleisten Symbol";
+"Status Bar Overlay" = "Statusleisten Overlay";
+"Tap Action" = "Tip Aktion";
+"Test Read" = "Test gelesen";
+"Test Typing" = "Test tippen";
+"Typing" = "Tippen";
+"Typing:" = "Tippt:";
+"“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Statusleisten Overlay” überlagert die Statusleiste mit der e-mail adresse oder der Telefonnummer der Person, welche die Benachrichtigung verursacht hat.\n“Verstecke in Nachrichten” schaltet Typestatus aus, wenn Nachrichten oder biteSMS geöffnet ist.";
+"Hide Text After Delay" = "Verstecke text nach verzögerung";
+"The delay can be set with the “Overlay Display Duration” slider below." = "Die Verzögerung kann mit \"Overlay Anzeigedauer\" eingestellt werden.";
+"Swipe Left" = "Nach links wischen";
+"Swipe Right" = "Nach rechts wischen";
+
+/* About page */
+"Lead Developer" = "leitender Entwickler";
+"Thank you to the following people for contributing to TypeStatus." = "Danke and die folgenden Personen dafür, dass sie mit TypeStatus geholfen haben";
+"Idea" = "Idee";
+"Icons" = "Symbole";
+"Being Awesome" = "Unterstützer";
+"Translations" = "Übersetzungen";
+"…and our beta testers and users. You guys rock!" = "…und unsere beta Tester und Benutzer. Vielen Dank!";
+
