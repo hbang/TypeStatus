@@ -150,6 +150,22 @@
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
+			<string>Arabic: iD7me</string>
+			<key>user</key>
+			<string>iD7me</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>German: Bensge</string>
+			<key>user</key>
+			<string>bensge</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
 			<string>Greek: George Fasidis</string>
 			<key>user</key>
 			<string>iFasMan7</string>
@@ -161,6 +177,10 @@
 			<string>Norwegian: Thay</string>
 			<key>user</key>
 			<string>Thay__T</string>
+		</dict>
+		<dict>
+			<key>label</key>
+			<string>Polish: Unknown :(</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
