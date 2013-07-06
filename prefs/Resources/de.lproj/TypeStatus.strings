@@ -25,7 +25,7 @@
 "Typing" = "Tippen";
 "Typing:" = "Tippt:";
 "The delay can be set with the “Overlay Display Duration” slider below." = "Die Verzögerung kann mit \"Overlay Anzeigedauer\" eingestellt werden.";
-"“Status Bar Overlay” briefly overlays the status bar with the email address or phone number of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Statusleisten Overlay” überlagert die Statusleiste mit der e-mail adresse oder der Telefonnummer der Person, welche die Benachrichtigung verursacht hat.\n“Verstecke in Nachrichten” schaltet Typestatus aus, wenn Nachrichten oder biteSMS geöffnet ist.";
+"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "“Statusleisten Overlay” überlagert die Statusleiste mit der name der Person, welche die Benachrichtigung verursacht hat.\n“Verstecke in Nachrichten” schaltet Typestatus aus, wenn Nachrichten oder biteSMS geöffnet ist.";
 
 /* About page */
 "Lead Developer" = "leitender Entwickler";
