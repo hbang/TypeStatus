@@ -194,6 +194,14 @@
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
+			<string>Spanish: Gonzalo</string>
+			<key>user</key>
+			<string>gadc333</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
 			<string>Swedish: c0redev</string>
 			<key>user</key>
 			<string>c0redev</string>

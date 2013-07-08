@@ -1,0 +1,50 @@
+/* Sharing text */
+"Check out #TypeStatus by HASHBANG Productions!" = "¡Échale un vistazo a #TypeStatus de \"HASHBANG Productions\"!";
+
+/* Overlay strings */
+"Read:" = "Leído:";
+"Typing:" = "Escribiendo:";
+
+/* Settings */
+"Typing" = "Escribiendo";
+"Status Bar Icon" = "Icono en el Status Bar";
+"Status Bar Overlay" = "Texto en el Status Bar";
+"Hide Text After Delay" = "Ocultar Texto al Acabar";
+"Hide Inside Messages" = "Ocultar en \"Mensajes\"";
+"Test Typing" = "Prueba \"Escribiendo\"";
+"The delay can be set with the “Overlay Display Duration” slider below." = "La duración puede ser consigurada a continuación, en el slider de \"Duración del Texto\".";
+
+"Read" = "Leído";
+"Test Read" = "Pueba \"Leído\"";
+
+"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open." = "El “Texto en el Status Bar” se superpone en el Status Bar (la barra de estado) con el nombre de la persona de la notificación.\n“Ocultar en Mensajes” deshabilita todas las notificaciones si tienes la aplicación de Mensajes o biteSMS abierta.";
+
+"Overlay Display Duration" = "Duración del Texto";
+
+"Overlay Animation" = "Animación del Texto";
+"Slide" = "Deslizado";
+"Fade" = "Esfumado";
+
+"About" = "Acerca de";
+
+/* About page */
+"Lead Developer" = "Desarrollador Principal";
+"Thank you to the following people for contributing to TypeStatus." = "Muchas gracias a las siguientes personas por su contribución en TypeStatus.";
+"Idea" = "Idea";
+"Icons" = "Iconos";
+"Being Awesome" = "Increíbles";
+"Translations" = "Traducciones";
+"…and our beta testers and users. You guys rock!" = "…y nuestros beta testers y usuarios. ¡Sois geniales!";
+
+/* For future features */
+"Overlay Gestures" = "Gestos para el Texto";
+
+"Single Tap" = "Un Toque";
+"Double Tap" = "Dos Toques";
+"Swipe Left" = "Deslizar Izquierda";
+"Swipe Right" = "Deslizar Derecha";
+
+"No Action" = "Ninguna Acción";
+"Dismiss" = "Rechazar";
+"Open biteSMS" = "Abrir biteSMS";
+"Open Messages" = "Abir Mensajes";
