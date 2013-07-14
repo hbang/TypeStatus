@@ -82,7 +82,7 @@ NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] initWithObjectsAnd
 	nil];
 
 BOOL typingHideInMessages = YES;
-BOOL typingIcon = YES;
+BOOL typingIcon = NO;
 BOOL readHideInMessages = YES;
 
 NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS", @"com.bitesms", nil];
@@ -245,7 +245,7 @@ void HBTSLoadPrefs() {
 	if (IN_SPRINGBOARD) {
 		typingHideInMessages = GET_BOOL(@"HideInMessages", YES);
 		readHideInMessages = GET_BOOL(@"HideReadInMessages", YES);
-		typingIcon = GET_BOOL(@"TypingIcon", YES);
+		typingIcon = GET_BOOL(@"TypingIcon", NO);
 		typingStatus = GET_BOOL(@"TypingStatus", YES);
 		readStatus = GET_BOOL(@"ReadStatus", YES);
 	}
