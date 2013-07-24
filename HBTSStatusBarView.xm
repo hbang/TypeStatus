@@ -4,6 +4,7 @@
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBar.h>
 #import <version.h>
+#include <notify.h>
 
 #define IS_RETINA ([UIScreen mainScreen].scale > 1)
 
@@ -152,6 +153,10 @@
 		return;
 	}
 
+	if (IN_SPRINGBOARD) {
+		notify_post("ws.hbang.typestatus/OverlayWillShow");
+	}
+
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
 	self.hidden = NO;
@@ -239,13 +244,10 @@
 		self.hidden = YES;
 		_isAnimating = NO;
 		_isVisible = NO;
-	}];
 
-	if (IN_SPRINGBOARD) {
-		currentType = HBTSStatusBarTypeTyping;
-		[currentName release];
-		currentName = nil;
-		currentTyping = NO;
-	}
+		if (IN_SPRINGBOARD) {
+			notify_post("ws.hbang.typestatus/OverlayDidHide");
+		}
+	}];
 }
 @end

@@ -1,0 +1,42 @@
+#include "Global.xm"
+#include "HBTSStatusBarView.xm"
+
+#import <Foundation/NSDistributedNotificationCenter.h>
+#import <UIKit/UIApplication+Private.h>
+#import "HBTSStatusBarView.h"
+
+#pragma mark - Show/Hide Overlay
+
+void HBTSSetStatusBar(HBTSStatusBarType type, NSString *name, BOOL typing) {
+	overlayView.type = type;
+	overlayView.string = name;
+
+	if (name) {
+		[overlayView showWithTimeout:typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration];
+	} else {
+		[overlayView hide];
+	}
+}
+
+#pragma mark - Preferences management
+
+%ctor {
+	prefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
+
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
+
+#pragma mark - Status bar overlay management
+
+	[[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
+
+		overlayView = [[HBTSStatusBarView alloc] initWithFrame:foregroundView.frame];
+		[[UIApplication sharedApplication].statusBar addSubview:overlayView];
+
+		HBTSLoadPrefs();
+
+		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:@"HBTSClientSetStatusBar" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+			HBTSSetStatusBar((HBTSStatusBarType)((NSNumber *)[notification.userInfo objectForKey:@"Type"]).intValue, [notification.userInfo	objectForKey:@"Name"], ((NSNumber *)[notification.userInfo objectForKey:@"Typing"]).boolValue);
+		}];
+	}];
+}

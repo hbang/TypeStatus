@@ -5,11 +5,14 @@ include theos/makefiles/common.mk
 
 THEOS_BUILD_DIR = debs
 
-TWEAK_NAME = TypeStatus
-TypeStatus_FILES = Main.xmi
-TypeStatus_FRAMEWORKS = UIKit CoreGraphics
-TypeStatus_PRIVATE_FRAMEWORKS = ChatKit AppSupport
+TWEAK_NAME = TypeStatus TypeStatusClient
+TypeStatus_FILES = Server.xmi
+TypeStatus_PRIVATE_FRAMEWORKS = ChatKit
 TypeStatus_CFLAGS = -Qunused-arguments
+
+TypeStatusClient_FILES = Client.xmi
+TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
+TypeStatusClient_CFLAGS = -Qunused-arguments
 
 SUBPROJECTS = prefs
 
@@ -23,7 +26,7 @@ after-stage::
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 	cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 
-ifneq ($(DEBUG),1)
+ifeq ($(SHIPIT),1)
 	find $(THEOS_STAGING_DIR) -iname \*.plist -exec plutil -convert binary1 {} \;
 endif
 

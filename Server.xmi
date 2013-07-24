@@ -1,0 +1,197 @@
+#define SPRINGBOARD 1
+
+#include "Global.xm"
+
+#import <libstatusbar/LSStatusBarItem.h>
+#import <ChatKit/CKIMEntity.h>
+#import <ChatKit/CKMadridEntity.h>
+#import <ChatKit/CKMadridService.h>
+#import <Foundation/NSDistributedNotificationCenter.h>
+#import <IMFoundation/FZMessage.h>
+#import <SpringBoard/SpringBoard.h>
+#import <SpringBoard/SBUserAgent.h>
+#include <notify.h>
+
+int typingIndicators = 0;
+LSStatusBarItem *statusBarItem;
+
+NSTimer *typingTimer;
+BOOL isTyping = NO;
+NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+	@"John Appleseed", @"example@hbang.ws",
+	@"The Devil", @"imast777@imast777.me",
+	nil];
+
+NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS", @"com.bitesms", nil];
+
+#pragma mark - Communication with clients
+
+void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		NSNotification *notification = [NSNotification notificationWithName:@"HBTSClientSetStatusBar" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithInt:type], @"Type",
+			string, @"Name",
+			[NSNumber numberWithBool:typing], @"Typing",
+			nil]];
+
+		[[NSDistributedNotificationCenter defaultCenter] postNotification:notification];
+	});
+}
+
+#pragma mark - Hide while Messages is open
+
+BOOL HBTSShouldHide(BOOL typing) {
+	if (typing ? typingHideInMessages : readHideInMessages) {
+		return [messagesApps containsObject:IN_SPRINGBOARD ? [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID] : [NSBundle mainBundle].bundleIdentifier];
+	}
+
+	return NO;
+}
+
+#pragma mark - Get contact name
+
+NSString *HBTSNameForHandle(NSString *handle) {
+	if ([nameCache objectForKey:handle]) {
+		return [nameCache objectForKey:handle];
+	} else {
+		NSString *name = handle;
+
+		if (%c(CKIMEntity)) {
+			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
+			name = [entity.name retain];
+		} else if (%c(CKMadridService)) {
+			CKMadridService *service = [[%c(CKMadridService) alloc] init];
+			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
+			[service release];
+			name = [entity.name retain];
+		}
+
+		[nameCache setObject:name forKey:handle];
+		return name;
+	}
+}
+
+#pragma mark - Show/hide functions
+
+void HBTSTypingStarted(FZMessage *message, BOOL testing) {
+	typingIndicators++;
+	isTyping = YES;
+
+	if (HBTSShouldHide(YES)) {
+		return;
+	}
+
+	if (typingIcon) {
+		if (!statusBarItem) {
+			statusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
+			statusBarItem.imageName = @"TypeStatus";
+		}
+
+		statusBarItem.visible = YES;
+
+		if (typingTimer) {
+			[typingTimer invalidate];
+			[typingTimer release];
+			typingTimer = nil;
+		}
+
+		if (typingTimeout || testing) {
+			typingTimer = [[NSTimer scheduledTimerWithTimeInterval:testing ? overlayDuration : kHBTSTypingTimeout target:message selector:@selector(typeStatus_typingEnded) userInfo:nil repeats:NO] retain];
+		}
+	}
+
+	if (typingStatus) {
+		HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(message.handle), !testing);
+	}
+}
+
+void HBTSTypingEnded() {
+	typingIndicators--;
+
+	if (typingIndicators <= 0) {
+		typingIndicators = 0;
+		isTyping = NO;
+	}
+
+	if (!isTyping) {
+		if (statusBarItem) {
+			statusBarItem.visible = NO;
+		}
+
+		if (typingTimer) {
+			[typingTimer invalidate];
+			[typingTimer release];
+			typingTimer = nil;
+		}
+
+		if (typingStatus) {
+			HBTSPostMessage(HBTSStatusBarTypeTyping, nil, NO);
+		}
+	}
+}
+
+void HBTSMessageRead(FZMessage *message) {
+	if (readStatus && !message.sender && [[NSDate date] timeIntervalSinceDate:message.timeRead] < 1 && !HBTSShouldHide(NO)) {
+		HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(message.handle), NO);
+	}
+}
+
+#pragma mark - Test functions
+
+void HBTSTestTyping() {
+	typingIndicators = 0;
+
+	/*
+	 We could have linked against IMFoundation, if not for it
+	 being set up insanely on iOS 5:
+	 IMCore.framework/Frameworks/IMFoundation.framework
+	*/
+
+	FZMessage *message = [[[%c(FZMessage) alloc] init] autorelease];
+	message.handle = @"example@hbang.ws";
+
+	HBTSTypingStarted(message, YES);
+}
+
+void HBTSTestRead() {
+	FZMessage *message = [[[%c(FZMessage) alloc] init] autorelease];
+	message.handle = @"example@hbang.ws";
+	message.timeRead = [NSDate date];
+}
+
+#pragma mark - iMessage typing status receiver
+
+%hook IMChatRegistry
+- (void)account:(id)account chat:(id)chat style:(unsigned char)style chatProperties:(id)properties messageReceived:(FZMessage *)message {
+	%orig;
+
+	if (message.flags == 4096) {
+		HBTSTypingStarted(message, NO);
+	} else {
+		HBTSTypingEnded();
+	}
+}
+%end
+
+#pragma mark - iMessage read receipt receiver
+
+%hook FZMessage
+- (void)setTimeRead:(NSDate *)timeRead {
+	%orig;
+
+	HBTSMessageRead(self);
+}
+
+%new - (void)typeStatus_typingEnded {
+	HBTSTypingEnded();
+}
+%end
+
+#pragma mark - Preferences management and notification listeners
+
+%ctor {
+	HBTSLoadPrefs();
+
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, 0);
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, 0);
+}
