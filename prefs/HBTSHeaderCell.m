@@ -32,6 +32,7 @@
 		statusLabel.frame = CGRectMake(typeLabel.frame.origin.x + typeLabel.frame.size.width, typeLabel.frame.origin.y, [statusLabel.text sizeWithFont:statusLabel.font].width, imageView.image.size.height);
 		containerView.frame = CGRectMake(0, typeLabel.frame.origin.y, statusLabel.frame.origin.x + statusLabel.frame.size.width, imageView.image.size.height);
 		containerView.center = CGPointMake(self.contentView.frame.size.width / 2.f, containerView.center.y);
+		imageView.center = CGPointMake(imageView.center.x, containerView.frame.size.height / 2.f)
 	}
 
 	return self;
