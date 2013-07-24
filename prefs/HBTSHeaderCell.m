@@ -23,7 +23,7 @@
 		[containerView addSubview:typeLabel];
 
 		UILabel *statusLabel = [[[UILabel alloc] init] autorelease];
-		statusLabel.text = @"Status 1.1";
+		statusLabel.text = @"Status 1.1.1";
 		statusLabel.backgroundColor = [UIColor clearColor];
 		statusLabel.font = [UIFont systemFontOfSize:kHBTSHeaderCellFontSize];
 		[containerView addSubview:statusLabel];
