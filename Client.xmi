@@ -36,7 +36,13 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *name, BOOL typing) {
 		HBTSLoadPrefs();
 
 		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:@"HBTSClientSetStatusBar" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-			HBTSSetStatusBar((HBTSStatusBarType)((NSNumber *)[notification.userInfo objectForKey:@"Type"]).intValue, [notification.userInfo	objectForKey:@"Name"], ((NSNumber *)[notification.userInfo objectForKey:@"Typing"]).boolValue);
+			BOOL typing = ((NSNumber *)[notification.userInfo objectForKey:@"Typing"]).boolValue;
+
+			if ([[NSDate date] timeIntervalSinceDate:[notification.userInfo objectForKey:@"Date"]] > (typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration)) {
+				return;
+			}
+
+			HBTSSetStatusBar((HBTSStatusBarType)((NSNumber *)[notification.userInfo objectForKey:@"Type"]).intValue, [notification.userInfo	objectForKey:@"Name"], typing);
 		}];
 	}];
 }
