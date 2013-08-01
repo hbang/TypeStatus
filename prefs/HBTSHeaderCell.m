@@ -23,7 +23,7 @@
 		[containerView addSubview:typeLabel];
 
 		UILabel *statusLabel = [[[UILabel alloc] init] autorelease];
-		statusLabel.text = @"Status 1.1";
+		statusLabel.text = @"Status 1.1.1";
 		statusLabel.backgroundColor = [UIColor clearColor];
 		statusLabel.font = [UIFont systemFontOfSize:kHBTSHeaderCellFontSize];
 		[containerView addSubview:statusLabel];
@@ -32,6 +32,7 @@
 		statusLabel.frame = CGRectMake(typeLabel.frame.origin.x + typeLabel.frame.size.width, typeLabel.frame.origin.y, [statusLabel.text sizeWithFont:statusLabel.font].width, imageView.image.size.height);
 		containerView.frame = CGRectMake(0, typeLabel.frame.origin.y, statusLabel.frame.origin.x + statusLabel.frame.size.width, imageView.image.size.height);
 		containerView.center = CGPointMake(self.contentView.frame.size.width / 2.f, containerView.center.y);
+		imageView.center = CGPointMake(imageView.center.x, containerView.frame.size.height / 2.f)
 	}
 
 	return self;
