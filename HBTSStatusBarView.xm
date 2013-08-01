@@ -22,6 +22,8 @@
 		self.clipsToBounds = NO;
 		self.hidden = YES;
 
+		_foregroundViewAlpha = 0;
+
 		_containerView = [[UIView alloc] initWithFrame:self.frame];
 		_containerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 		[self addSubview:_containerView];
@@ -159,6 +161,10 @@
 
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
+	if (_foregroundViewAlpha == 0) {
+		_foregroundViewAlpha = foregroundView.alpha;
+	}
+
 	self.hidden = NO;
 	_isAnimating = YES;
 	_isVisible = YES;
@@ -169,7 +175,7 @@
 		self.frame = frame;
 	}
 
-	self.alpha = _shouldFade ? 0 : 1;
+	self.alpha = _shouldFade ? 0 : _foregroundViewAlpha;
 	self.hidden = NO;
 
 	[UIView animateWithDuration:_shouldSlide || _shouldFade ? 0.3f : 0 animations:^{
@@ -186,7 +192,7 @@
 			foregroundView.frame = foregroundFrame;
 		}
 
-		self.alpha = 1;
+		self.alpha = _foregroundViewAlpha;
 
 		if (_shouldFade || !_shouldSlide) {
 			foregroundView.alpha = 0;
@@ -222,7 +228,7 @@
 		foregroundFrame.size.height = kHBTSStatusBarHeight;
 		foregroundView.frame = foregroundFrame;
 
-		foregroundView.alpha = 1;
+		foregroundView.alpha = _foregroundViewAlpha;
 
 		if (_shouldFade) {
 			self.alpha = 0;
@@ -234,7 +240,7 @@
 		frame.origin.y = 0;
 		self.frame = frame;
 
-		self.alpha = 1;
+		self.alpha = _foregroundViewAlpha;
 
 		foregroundView.clipsToBounds = NO;
 
