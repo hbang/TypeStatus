@@ -11,6 +11,7 @@
 	BOOL _isVisible;
 	NSTimer *_timer;
 	HBTSStatusBarType _type;
+	float _foregroundViewAlpha;
 }
 
 - (void)showWithTimeout:(double)timeout;
