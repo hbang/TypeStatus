@@ -12,6 +12,7 @@
 	NSTimer *_timer;
 	HBTSStatusBarType _type;
 	float _foregroundViewAlpha;
+	float _statusBarHeight;
 }
 
 - (void)showWithTimeout:(double)timeout;

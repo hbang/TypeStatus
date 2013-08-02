@@ -8,7 +8,6 @@
 
 #define IS_RETINA ([UIScreen mainScreen].scale > 1)
 
-#define kHBTSStatusBarHeight 20.f
 #define kHBTSStatusBarFontSize 14.f
 
 @implementation HBTSStatusBarView
@@ -23,6 +22,7 @@
 		self.hidden = YES;
 
 		_foregroundViewAlpha = 0;
+		_statusBarHeight = frame.size.height;
 
 		_containerView = [[UIView alloc] initWithFrame:self.frame];
 		_containerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -171,36 +171,43 @@
 
 	if (_shouldSlide) {
 		CGRect frame = self.frame;
-		frame.origin.y = -kHBTSStatusBarHeight;
+		frame.origin.y = -_statusBarHeight;
 		self.frame = frame;
 	}
 
 	self.alpha = _shouldFade ? 0 : _foregroundViewAlpha;
 	self.hidden = NO;
 
-	[UIView animateWithDuration:_shouldSlide || _shouldFade ? 0.3f : 0 animations:^{
-		if (_shouldSlide) {
-			CGRect frame = self.frame;
-			frame.origin.y = 0;
-			self.frame = frame;
-
-			foregroundView.clipsToBounds = YES;
-
-			CGRect foregroundFrame = foregroundView.frame;
-			foregroundFrame.origin.y = kHBTSStatusBarHeight;
-			foregroundFrame.size.height = 0;
-			foregroundView.frame = foregroundFrame;
-		}
-
-		self.alpha = _foregroundViewAlpha;
-
-		if (_shouldFade || !_shouldSlide) {
-			foregroundView.alpha = 0;
-		}
-	} completion:^(BOOL finished) {
+	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
 		_isAnimating = NO;
 		_timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
-	}];
+	};
+
+	if (_shouldSlide || _shouldFade) {
+		[UIView animateWithDuration:0.3f animations:^{
+			if (_shouldSlide) {
+				CGRect frame = self.frame;
+				frame.origin.y = 0;
+				self.frame = frame;
+
+				foregroundView.clipsToBounds = YES;
+
+				CGRect foregroundFrame = foregroundView.frame;
+				foregroundFrame.origin.y = _statusBarHeight;
+				foregroundFrame.size.height = 0;
+				foregroundView.frame = foregroundFrame;
+			}
+
+			self.alpha = _foregroundViewAlpha;
+
+			if (_shouldFade) {
+				foregroundView.alpha = 0;
+			}
+		} completion:completionBlock];
+	} else {
+		foregroundView.hidden = YES;
+		completionBlock(YES);
+	}
 }
 
 - (void)hide {
@@ -216,44 +223,50 @@
 
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
-	[UIView animateWithDuration:0.3f animations:^{
-		if (_shouldSlide) {
-			CGRect frame = self.frame;
-			frame.origin.y = -kHBTSStatusBarHeight;
-			self.frame = frame;
-		}
 
-		CGRect foregroundFrame = foregroundView.frame;
-		foregroundFrame.origin.y = 0;
-		foregroundFrame.size.height = kHBTSStatusBarHeight;
-		foregroundView.frame = foregroundFrame;
-
-		foregroundView.alpha = _foregroundViewAlpha;
-
-		if (_shouldFade) {
-			self.alpha = 0;
-		}
-	} completion:^(BOOL finished) {
+	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
 		self.hidden = YES;
 
 		CGRect frame = self.frame;
 		frame.origin.y = 0;
 		self.frame = frame;
 
-		self.alpha = _foregroundViewAlpha;
+		if (self.alpha != _foregroundViewAlpha) {
+			self.alpha = _foregroundViewAlpha;
+		}
 
 		foregroundView.clipsToBounds = NO;
 
 		_typeLabel.text = @"";
 		_contactLabel.text = @"";
 
-		self.hidden = YES;
 		_isAnimating = NO;
 		_isVisible = NO;
 
 		if (IN_SPRINGBOARD) {
 			notify_post("ws.hbang.typestatus/OverlayDidHide");
 		}
-	}];
+	};
+
+	if (_shouldSlide || _shouldFade) {
+		[UIView animateWithDuration:0.3f animations:^{
+			if (_shouldSlide) {
+				CGRect frame = self.frame;
+				frame.origin.y = -_statusBarHeight;
+				self.frame = frame;
+			}
+
+			CGRect foregroundFrame = foregroundView.frame;
+			foregroundFrame.origin.y = 0;
+			foregroundFrame.size.height = _statusBarHeight;
+			foregroundView.frame = foregroundFrame;
+
+			self.alpha = 0;
+			foregroundView.alpha = _foregroundViewAlpha;
+		} completion:completionBlock];
+	} else {
+		foregroundView.hidden = NO;
+		completionBlock(YES);
+	}
 }
 @end
