@@ -14,7 +14,7 @@ void HBTSLoadPrefs() {
 #endif
 
 	overlaySlide = GET_BOOL(@"OverlaySlide", YES);
-	overlayFade = GET_BOOL(@"OverlayFade", NO);
+	overlayFade = GET_BOOL(@"OverlayFade", YES);
 	overlayDuration = GET_FLOAT(@"OverlayDuration", 5.f);
 	typingTimeout = GET_BOOL(@"TypingTimeout", NO);
 
