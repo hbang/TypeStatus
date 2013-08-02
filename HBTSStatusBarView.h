@@ -5,14 +5,19 @@
 	UILabel *_typeLabel;
 	UILabel *_contactLabel;
 	UIImageView *_iconImageView;
+
 	BOOL _shouldSlide;
 	BOOL _shouldFade;
+
 	BOOL _isAnimating;
 	BOOL _isVisible;
 	NSTimer *_timer;
 	HBTSStatusBarType _type;
+
 	float _foregroundViewAlpha;
 	float _statusBarHeight;
+	BOOL _statusBarWasHidden;
+	UIStatusBarStyle _oldStatusBarStyle;
 }
 
 - (void)showWithTimeout:(double)timeout;
