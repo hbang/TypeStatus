@@ -208,9 +208,6 @@
 			}
 		} completion:completionBlock];
 	} else {
-		foregroundView.hidden = YES;
-		completionBlock(YES);
-
 		if ([UIApplication sharedApplication].statusBarHidden && !IN_SPRINGBOARD) {
 			UIStatusBarAnimation animation = UIStatusBarAnimationNone;
 
@@ -226,7 +223,17 @@
 			_oldStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 
 			[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
+
+			if (_foregroundViewAlpha == 0) {
+				_foregroundViewAlpha = foregroundView.alpha;
+			}
+
+			self.alpha = _foregroundViewAlpha == 0 ? 1.f : _foregroundViewAlpha;
 		}
+
+		foregroundView.alpha = 0;
+		self.hidden = NO;
+		completionBlock(YES);
 	}
 }
 
