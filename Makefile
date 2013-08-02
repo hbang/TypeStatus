@@ -19,7 +19,7 @@ SUBPROJECTS = prefs
 include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
-Main.xmi: Tweak.xm HBTSStatusBarView.xm
+Client.xmi: HBTSStatusBarView.xm
 	touch $@
 
 after-stage::
