@@ -313,4 +313,17 @@
 		completionBlock(YES);
 	}
 }
+
+- (void)dealloc {
+	[_containerView release];
+	[_typeLabel release];
+	[_contactLabel release];
+	[_iconImageView release];
+
+	if (_timer) {
+		[_timer release];
+	}
+
+	[super dealloc];
+}
 @end
