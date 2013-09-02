@@ -158,6 +158,14 @@
 			<key>cellClass</key>
 			<string>HBTSTwitterCell</string>
 			<key>label</key>
+			<string>French: Adam McNight</string>
+			<key>user</key>
+			<string>AdaMcNight</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
 			<string>German: Bensge</string>
 			<key>user</key>
 			<string>bensge</string>
