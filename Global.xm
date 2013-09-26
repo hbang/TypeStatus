@@ -12,6 +12,7 @@ void HBTSLoadPrefs() {
 	typingStatus = GET_BOOL(@"TypingStatus", YES);
 	readStatus = GET_BOOL(@"ReadStatus", YES);
 	shouldUndim = GET_BOOL(@"Undim", YES);
+	showBulletin = GET_BOOL(@"LockScreenBulletin", YES);
 #endif
 
 	overlaySlide = GET_BOOL(@"OverlaySlide", YES);
