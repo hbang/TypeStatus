@@ -67,7 +67,10 @@ NSString *HBTSNameForHandle(NSString *handle) {
 			name = [entity.name retain];
 		}
 
-		[nameCache setObject:name forKey:handle];
+		if (![name isEqualToString:handle]) {
+			[nameCache setObject:name forKey:handle];
+		}
+
 		return name;
 	}
 }
