@@ -3,6 +3,7 @@
 
 @interface HBTSBulletinProvider : NSObject <BBDataProvider>
 
-+ (void)showBulletinOfType:(HBTSOverlayType)type string:(NSString *)string;
++ (instancetype)sharedInstance;
+- (void)showBulletinOfType:(HBTSOverlayType)type string:(NSString *)string;
 
 @end
