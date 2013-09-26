@@ -40,6 +40,7 @@ BOOL typingHideInMessages = YES;
 BOOL typingIcon = NO;
 BOOL readHideInMessages = YES;
 BOOL shouldUndim = YES;
+BOOL useBulletin = YES;
 #else
 HBTSStatusBarView *overlayView;
 #endif
