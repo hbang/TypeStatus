@@ -12,7 +12,7 @@
 	return sharedInstance;
 }
 
-- (void)showBulletinOfType:(HBTSOverlayType)type string:(NSString *)string {
+- (void)showBulletinOfType:(HBTSStatusBarType)type string:(NSString *)string {
 	BBDataProviderWithdrawBulletinsWithRecordID(self, @"ws.hbang.typestatus.bulletin");
 
 	if (!string) {
