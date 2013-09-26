@@ -29,7 +29,10 @@ NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS",
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
-	if (shouldUndim && ((SpringBoard *)[UIApplication sharedApplication])._isDim) {
+	if (useBulletins && ((SpringBoard *)[UIApplication sharedApplication]).isLocked) {
+		[[HBTSBulletinProvider sharedInstance] showBulletinOfType:type string:string];
+		return;
+	} else if (shouldUndim && ((SpringBoard *)[UIApplication sharedApplication])._isDim) {
 		[(SpringBoard *)[UIApplication sharedApplication] undim];
 		[[%c(SBAwayController) sharedInstance] undim];
 	}
