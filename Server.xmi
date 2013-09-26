@@ -34,7 +34,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
 		return;
 	} else if (shouldUndim && ((SpringBoard *)[UIApplication sharedApplication])._isDim) {
 		[(SpringBoard *)[UIApplication sharedApplication] undim];
-		[[%c(SBAwayController) sharedInstance] undim];
+		[[%c(SBAwayController) sharedAwayController] undim];
 	}
 
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
