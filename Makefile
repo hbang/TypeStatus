@@ -6,7 +6,7 @@ include theos/makefiles/common.mk
 THEOS_BUILD_DIR = debs
 
 TWEAK_NAME = TypeStatus TypeStatusClient
-TypeStatus_FILES = Server.xmi HBTSBulletinProvider.m
+TypeStatus_FILES = Server.xmi
 TypeStatus_PRIVATE_FRAMEWORKS = ChatKit BulletinBoard
 TypeStatus_CFLAGS = -Qunused-arguments
 
