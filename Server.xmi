@@ -1,6 +1,7 @@
 #define SPRINGBOARD 1
 
 #include "Global.xm"
+#include "HBTSBulletinProvider.m"
 
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKIMEntity.h>
