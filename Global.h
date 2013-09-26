@@ -18,7 +18,7 @@ void HBTSTypingEnded();
 
 NSBundle *prefsBundle;
 
-#define IN_SPRINGBOARD ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
+#define IN_SPRINGBOARD (SPRINGBOARD || [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
 #define I18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
 #define GET_BOOL(key, default) ([prefs objectForKey:key] ? ((NSNumber *)[prefs objectForKey:key]).boolValue : default)
 #define GET_FLOAT(key, default) ([prefs objectForKey:key] ? ((NSNumber *)[prefs objectForKey:key]).floatValue : default)
@@ -39,6 +39,7 @@ BOOL readStatus = YES;
 BOOL typingHideInMessages = YES;
 BOOL typingIcon = NO;
 BOOL readHideInMessages = YES;
+BOOL shouldUndim = YES;
 #else
 HBTSStatusBarView *overlayView;
 #endif
