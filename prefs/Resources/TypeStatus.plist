@@ -184,6 +184,42 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>“Show as Bulletin” will show a standard notification box instead of an overlay on the lock screen.</string>
+			<key>label</key>
+			<string>Lock Screen</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>Undim</string>
+			<key>label</key>
+			<string>Undim Screen</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>LockScreenBulletin</string>
+			<key>label</key>
+			<string>Show as Bulletin</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 		</dict>
 		<dict>
 			<key>cell</key>
