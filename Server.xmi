@@ -9,6 +9,7 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMFoundation/FZMessage.h>
 #import <SpringBoard/SpringBoard.h>
+#import <SpringBoard/SBAwayController.h>
 #import <SpringBoard/SBUserAgent.h>
 #include <notify.h>
 
@@ -27,6 +28,11 @@ NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS",
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
+	if (shouldUndim && ((SpringBoard *)[UIApplication sharedApplication])._isDim) {
+		[(SpringBoard *)[UIApplication sharedApplication] undim];
+		[[%c(SBAwayController) sharedInstance] undim];
+	}
+
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSNotification *notification = [NSNotification notificationWithName:@"HBTSClientSetStatusBar" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithInt:type], @"Type",
