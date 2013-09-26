@@ -319,10 +319,7 @@
 	[_typeLabel release];
 	[_contactLabel release];
 	[_iconImageView release];
-
-	if (_timer) {
-		[_timer release];
-	}
+	[_timer release];
 
 	[super dealloc];
 }
