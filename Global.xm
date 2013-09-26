@@ -11,6 +11,7 @@ void HBTSLoadPrefs() {
 	typingIcon = GET_BOOL(@"TypingIcon", NO);
 	typingStatus = GET_BOOL(@"TypingStatus", YES);
 	readStatus = GET_BOOL(@"ReadStatus", YES);
+	shouldUndim = GET_BOOL(@"Undim", YES);
 #endif
 
 	overlaySlide = GET_BOOL(@"OverlaySlide", YES);
