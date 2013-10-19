@@ -209,6 +209,13 @@
 		} completion:completionBlock];
 	} else {
 		if ([UIApplication sharedApplication].statusBarHidden && !IN_SPRINGBOARD) {
+			foregroundView.clipsToBounds = YES;
+
+			CGRect foregroundFrame = foregroundView.frame;
+			foregroundFrame.origin.y = _statusBarHeight;
+			foregroundFrame.size.height = 0;
+			foregroundView.frame = foregroundFrame;
+
 			UIStatusBarAnimation animation = UIStatusBarAnimationNone;
 
 			if (_shouldSlide) {
@@ -250,7 +257,6 @@
 
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
-
 	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
 		self.hidden = YES;
 		self.frame = foregroundView.frame;
@@ -270,6 +276,8 @@
 	};
 
 	if (_statusBarWasHidden) {
+		_statusBarWasHidden = NO;
+
 		if (![UIApplication sharedApplication].statusBarHidden) {
 			UIStatusBarAnimation animation = UIStatusBarAnimationNone;
 
@@ -279,20 +287,15 @@
 				animation = UIStatusBarAnimationFade;
 			}
 
-			[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:animation];
-
-			_statusBarWasHidden = NO;
+			[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:animation];
 		}
 
 		if ([UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleBlackTranslucent && [UIApplication sharedApplication].statusBarStyle != _oldStatusBarStyle) {
 			[[UIApplication sharedApplication] setStatusBarStyle:_oldStatusBarStyle animated:YES];
 		}
+	}
 
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-			foregroundView.hidden = NO;
-			completionBlock(YES);
-		});
-	} else if (_shouldSlide || _shouldFade) {
+	if (![UIApplication sharedApplication].statusBarHidden && (_shouldSlide || _shouldFade)) {
 		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:^{
 			if (_shouldSlide) {
 				CGRect frame = self.frame;
