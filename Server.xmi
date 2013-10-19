@@ -1,6 +1,7 @@
 #define SPRINGBOARD 1
 
 #include "Global.xm"
+#include "HBTSBulletinProvider.m"
 
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKIMEntity.h>
@@ -9,6 +10,7 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMFoundation/FZMessage.h>
 #import <SpringBoard/SpringBoard.h>
+#import <SpringBoard/SBAwayController.h>
 #import <SpringBoard/SBUserAgent.h>
 #include <notify.h>
 
@@ -27,6 +29,14 @@ NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS",
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
+	if (useBulletins && ((SpringBoard *)[UIApplication sharedApplication]).isLocked) {
+		[[HBTSBulletinProvider sharedInstance] showBulletinOfType:type string:string];
+		return;
+	} else if (shouldUndim && ((SpringBoard *)[UIApplication sharedApplication])._isDim) {
+		[(SpringBoard *)[UIApplication sharedApplication] undim];
+		[[%c(SBAwayController) sharedAwayController] undim];
+	}
+
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSNotification *notification = [NSNotification notificationWithName:@"HBTSClientSetStatusBar" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithInt:type], @"Type",
@@ -67,7 +77,10 @@ NSString *HBTSNameForHandle(NSString *handle) {
 			name = [entity.name retain];
 		}
 
-		[nameCache setObject:name forKey:handle];
+		if (![name isEqualToString:handle]) {
+			[nameCache setObject:name forKey:handle];
+		}
+
 		return name;
 	}
 }
