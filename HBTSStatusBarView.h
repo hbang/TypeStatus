@@ -1,24 +1,6 @@
 #import "Global.h"
 
-@interface HBTSStatusBarView : UIView {
-	UIView *_containerView;
-	UILabel *_typeLabel;
-	UILabel *_contactLabel;
-	UIImageView *_iconImageView;
-
-	BOOL _shouldSlide;
-	BOOL _shouldFade;
-
-	BOOL _isAnimating;
-	BOOL _isVisible;
-	NSTimer *_timer;
-	HBTSStatusBarType _type;
-
-	float _foregroundViewAlpha;
-	float _statusBarHeight;
-	BOOL _statusBarWasHidden;
-	UIStatusBarStyle _oldStatusBarStyle;
-}
+@interface HBTSStatusBarView : UIView
 
 - (void)showWithTimeout:(double)timeout;
 - (void)hide;
@@ -27,4 +9,5 @@
 @property BOOL shouldSlide;
 @property BOOL shouldFade;
 @property HBTSStatusBarType type;
+
 @end

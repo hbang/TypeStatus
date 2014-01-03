@@ -1,4 +1,5 @@
-#import <Preferences/Preferences.h>
+#import <Preferences/PSListController.h>
 
 @interface HBTSAboutListController : PSListController
+
 @end

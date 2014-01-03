@@ -11,8 +11,29 @@
 #define kHBTSStatusBarFontSize 14.f
 #define kHBTSStatusBarAnimationDuration 0.25f
 
+@interface HBTSStatusBarView () {
+	UIView *_containerView;
+	UILabel *_typeLabel;
+	UILabel *_contactLabel;
+	UIImageView *_iconImageView;
+
+	BOOL _shouldSlide;
+	BOOL _shouldFade;
+
+	BOOL _isAnimating;
+	BOOL _isVisible;
+	NSTimer *_timer;
+	HBTSStatusBarType _type;
+
+	CGFloat _foregroundViewAlpha;
+	CGFloat _statusBarHeight;
+	BOOL _statusBarWasHidden;
+	UIStatusBarStyle _oldStatusBarStyle;
+}
+
+@end
+
 @implementation HBTSStatusBarView
-@synthesize shouldSlide = _shouldSlide, shouldFade = _shouldFade;
 
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
@@ -134,7 +155,7 @@
 	[self _updateForCurrentStatusBarStyle];
 
 	CGRect typeFrame = _typeLabel.frame;
-	typeFrame.size.width = (int)[_typeLabel.text sizeWithFont:_typeLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width;
+	typeFrame.size.width = floorf([_typeLabel.text sizeWithFont:_typeLabel.font constrainedToSize:self.frame.size lineBreakMode:UILineBreakModeTailTruncation].width);
 	_typeLabel.frame = typeFrame;
 
 	CGRect labelFrame = _contactLabel.frame;

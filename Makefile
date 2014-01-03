@@ -1,13 +1,14 @@
 ARCHS = armv7
-TARGET = :clang
+TARGET = :clang::5.0
 
 include theos/makefiles/common.mk
 
 THEOS_BUILD_DIR = debs
 
 TWEAK_NAME = TypeStatus TypeStatusClient
+
 TypeStatus_FILES = Server.xmi
-TypeStatus_PRIVATE_FRAMEWORKS = ChatKit BulletinBoard
+TypeStatus_PRIVATE_FRAMEWORKS = BulletinBoard ChatKit IMCore UIKit
 TypeStatus_CFLAGS = -Qunused-arguments
 
 TypeStatusClient_FILES = Client.xmi
@@ -15,14 +16,21 @@ TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_CFLAGS = -Qunused-arguments
 
 SUBPROJECTS = prefs
+RESPRING = 0
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
-Client.xmi: HBTSStatusBarView.xm
+Client.xmi: Global.xm HBTSStatusBarView.xm
+	touch $@
+
+Server.xmi: Global.xm HBTSBulletinProvider.m
 	touch $@
 
 after-stage::
+	mkdir -p $(THEOS_STAGING_DIR)/DEBIAN
+	cp postinst $(THEOS_STAGING_DIR)/DEBIAN
+
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 	cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 
@@ -31,6 +39,5 @@ ifeq ($(SHIPIT),1)
 endif
 
 after-install::
-ifeq ($(RESPRING),0)
-	install.exec "killall Preferences; sbopenurl 'prefs:root=Cydia&path=TypeStatus'"
-endif
+	@# install.exec "killall Preferences; sbopenurl 'prefs:root=Cydia&path=TypeStatus'"
+	install.exec "killall MobileSMS; sblaunch com.apple.MobileSMS"

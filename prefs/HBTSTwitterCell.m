@@ -1,20 +1,32 @@
 #import "HBTSTwitterCell.h"
+#import <Preferences/PSSpecifier.h>
 #import <UIKit/UIColor+Private.h>
+#import <UIKit/UIImage+Private.h>
+#import <version.h>
+
+@interface HBTSTwitterCell () {
+	NSString *_user;
+	UIImage *_defaultImage;
+	UIImage *_highlightedImage;
+}
+
+@end
 
 @implementation HBTSTwitterCell
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier specifier:(PSSpecifier *)specifier {
-	self = [super initWithStyle:[specifier.properties objectForKey:@"big"] && ((NSNumber *)[specifier.properties objectForKey:@"big"]).boolValue ? UITableViewCellStyleSubtitle : UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier specifier:specifier];
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier specifier:(PSSpecifier *)specifier {
+	self = [super initWithStyle:specifier.properties[@"big"] && ((NSNumber *)specifier.properties[@"big"]).boolValue ? UITableViewCellStyleSubtitle : UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier specifier:specifier];
 
 	if (self) {
-		_user = [specifier.properties objectForKey:@"user"];
+		_user = specifier.properties[@"user"];
 
 		NSBundle *bundle = [NSBundle bundleForClass:self.class];
 
 		_defaultImage = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"twitter" ofType:@"png"]];
-		_highlightedImage = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"twitter_selected" ofType:@"png"]];
+		_highlightedImage = IS_IOS_OR_NEWER(iOS_7_0) ? _defaultImage : [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"twitter_selected" ofType:@"png"]];
 
-		self.detailTextLabel.text = [@"@" stringByAppendingString:[specifier.properties objectForKey:@"user"]];
-		self.detailTextLabel.textColor = [UIColor tableCellValue1BlueColor];
+		self.detailTextLabel.text = [@"@" stringByAppendingString:specifier.properties[@"user"]];
+		self.detailTextLabel.textColor = IS_IOS_OR_NEWER(iOS_7_0) ? [UIColor colorWithWhite:0.5568627451f alpha:1] : [UIColor tableCellValue1BlueColor];
 		self.selectionStyle = UITableViewCellSelectionStyleBlue;
 		self.accessoryView = [[UIImageView alloc] initWithImage:_defaultImage];
 	}
@@ -28,7 +40,6 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
 	[super setHighlighted:highlighted animated:animated];
-
 	((UIImageView *)self.accessoryView).image = highlighted ? _highlightedImage : _defaultImage;
 }
 
@@ -38,7 +49,9 @@
 		return;
 	}
 
-	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:"]]) {
+	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"aphelion:"]]) {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"aphelion://profile/" stringByAppendingString:_user]]];
+	} else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:"]]) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"tweetbot:///user_profile/" stringByAppendingString:_user]]];
 	} else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitterrific:"]]) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"twitterrific:///profile?screen_name=" stringByAppendingString:_user]]];
@@ -50,4 +63,13 @@
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://mobile.twitter.com/" stringByAppendingString:_user]]];
 	}
 }
+
+- (void)dealloc {
+	[_user release];
+	[_defaultImage release];
+	[_highlightedImage release];
+
+	[super dealloc];
+}
+
 @end

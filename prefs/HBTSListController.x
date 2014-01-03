@@ -1,12 +1,12 @@
 #import "../Global.h"
 #import "HBTSListController.h"
-#import <UIKit/UIActivityViewController.h>
 #import <Twitter/Twitter.h>
 #include <notify.h>
 
 #define URL_ENCODE(string) [(NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)(string), NULL, CFSTR(":/=,!$& '()*+;[]@#?"), kCFStringEncodingUTF8) autorelease]
 
 @implementation HBTSListController
+
 - (void)loadView {
 	[super loadView];
 
@@ -38,7 +38,7 @@
 	NSURL *url = [NSURL URLWithString:@"http://hbang.ws/typestatus"];
 
 	if (%c(UIActivityViewController)) {
-		UIActivityViewController *viewController = [[[%c(UIActivityViewController) alloc] initWithActivityItems:[NSArray arrayWithObjects:text, url, nil] applicationActivities:nil] autorelease];
+		UIActivityViewController *viewController = [[[UIActivityViewController alloc] initWithActivityItems:@[ text, url ] applicationActivities:nil] autorelease];
 		[self.navigationController presentViewController:viewController animated:YES completion:NULL];
 	} else if (%c(TWTweetComposeViewController) && [TWTweetComposeViewController canSendTweet]) {
 		TWTweetComposeViewController *viewController = [[[TWTweetComposeViewController alloc] init] autorelease];
@@ -49,4 +49,5 @@
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=%@%%20%@", URL_ENCODE(text), URL_ENCODE(url.absoluteString)]]];
 	}
 }
+
 @end

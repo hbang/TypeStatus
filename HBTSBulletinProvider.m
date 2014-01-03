@@ -1,10 +1,15 @@
 #import "HBTSBulletinProvider.h"
+#import <BulletinBoard/BBAction.h>
+#import <BulletinBoard/BBBulletinRequest.h>
+#import <BulletinBoard/BBSectionInfo.h>
+#import <BulletinBoard/BBServer.h>
+#import <UIKit/UIImage+Private.h>
 
 @implementation HBTSBulletinProvider
 
 + (instancetype)sharedInstance {
-	static HBTSBulletinProvider *sharedInstance;
-	static dispatch_once_t *onceToken;
+	static HBTSBulletinProvider *sharedInstance = nil;
+	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		sharedInstance = [[self alloc] init];
 	});
@@ -13,44 +18,46 @@
 }
 
 - (void)showBulletinOfType:(HBTSStatusBarType)type string:(NSString *)string {
-	BBDataProviderWithdrawBulletinsWithRecordID(self, @"ws.hbang.typestatus.bulletin");
+	BBDataProviderWithdrawBulletinsWithRecordID(self, @"com.apple.MobileSMS");
 
 	if (!string) {
 		return;
 	}
 
-	static BBBulletinRequest *bulletinRequest;
-	static dispatch_once_t *onceToken;
+	static BBBulletinRequest *bulletinRequest = nil;
+	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		bulletinRequest = [[BBBulletinRequest alloc] init];
-		bulletinRequest.bulletinID = @"ws.hbang.typestatus.bulletin";
-		bulletinRequest.sectionID = @"ws.hbang.typestatus.bulletin";
-		bulletinRequest.publisherBulletinID = @"ws.hbang.typestatus.bulletin";
-		bulletinRequest.recordID = @"ws.hbang.typestatus.bulletin";
+		bulletinRequest.bulletinID = @"ws.hbang.typestatus.banner";
+		bulletinRequest.sectionID = @"ws.hbang.typestatus";
+		bulletinRequest.publisherBulletinID = @"ws.hbang.typestatus.banner";
+		bulletinRequest.recordID = @"ws.hbang.typestatus.banner";
 		bulletinRequest.showsUnreadIndicator = NO;
 	});
-	
+
 	bulletinRequest.title = @"TypeStatus";
-	
+
 	switch (type) {
-		case HBTSOverlayTypeTyping:
-			bulletinRequest.title = L18N(@"Typing");
+		case HBTSStatusBarTypeTyping:
+			bulletinRequest.title = I18N(@"Typing");
 			break;
 
-		case HBTSOverlayTypeRead:
-			bulletinRequest.title = L18N(@"Read");
+		case HBTSStatusBarTypeRead:
+			bulletinRequest.title = I18N(@"Read");
 			break;
 	}
 
 	bulletinRequest.message = string;
 	bulletinRequest.date = [NSDate date];
 	bulletinRequest.lastInterruptDate = [NSDate date];
+	bulletinRequest.defaultAction = [BBAction actionWithLaunchBundleID:@"com.apple.MobileSMS" callblock:nil];
+
 	BBDataProviderAddBulletin(self, bulletinRequest);
 }
 
 #pragma mark - BBDataProvider
 
-- (NSArray *)bulletinsFilteredBy:(unsigned)filter count:(unsigned)count lastCleared:(NSDate *)lastCleared {
+- (NSArray *)bulletinsFilteredBy:(NSUInteger)filter count:(NSUInteger)count lastCleared:(NSDate *)lastCleared {
 	return nil;
 }
 
@@ -62,7 +69,7 @@
 }
 
 - (NSString *)sectionIdentifier {
-	return @"ws.hbang.typestatus.bulletin";
+	return @"ws.hbang.typestatus";
 }
 
 - (NSString *)sectionDisplayName {
@@ -70,7 +77,7 @@
 }
 
 - (NSArray *)sortDescriptors {
-	return [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
+	return @[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO] ];
 }
 
 @end

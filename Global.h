@@ -20,17 +20,24 @@ NSBundle *prefsBundle;
 
 #define IN_SPRINGBOARD (SPRINGBOARD || [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
 #define I18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
-#define GET_BOOL(key, default) ([prefs objectForKey:key] ? ((NSNumber *)[prefs objectForKey:key]).boolValue : default)
-#define GET_FLOAT(key, default) ([prefs objectForKey:key] ? ((NSNumber *)[prefs objectForKey:key]).floatValue : default)
+#define GET_BOOL(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).boolValue : default)
+#define GET_FLOAT(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).floatValue : default)
 
-#define kHBTSTypingTimeout 60
+#define kHBTSTypingTimeout 60.0
+
+/*
+ old notification name is used here for compatibility with
+ tweaks that listen into typestatus' notifications
+*/
+
+static NSString *const HBTSClientSetStatusBarNotification = @"HBTSClientSetStatusBar";
 
 #pragma mark - Preferences
 
 BOOL firstLoad = YES;
 BOOL overlaySlide = YES;
 BOOL overlayFade = YES;
-float overlayDuration = 5.f;
+CGFloat overlayDuration = 5.f;
 BOOL typingStatus = YES;
 BOOL typingTimeout = NO;
 BOOL readStatus = YES;

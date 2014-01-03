@@ -4,57 +4,56 @@
 #include "HBTSBulletinProvider.m"
 
 #import <libstatusbar/LSStatusBarItem.h>
-#import <ChatKit/CKIMEntity.h>
+#import <ChatKit/CKEntity.h>
 #import <ChatKit/CKMadridEntity.h>
 #import <ChatKit/CKMadridService.h>
 #import <Foundation/NSDistributedNotificationCenter.h>
+#import <IMCore/IMHandle.h>
 #import <IMFoundation/FZMessage.h>
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBAwayController.h>
 #import <SpringBoard/SBUserAgent.h>
 #include <notify.h>
 
-int typingIndicators = 0;
+NSUInteger typingIndicators = 0;
 LSStatusBarItem *statusBarItem;
 
 NSTimer *typingTimer;
 BOOL isTyping = NO;
-NSMutableDictionary *nameCache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-	@"John Appleseed", @"example@hbang.ws",
-	@"The Devil", @"imast777@imast777.me",
-	nil];
+NSMutableDictionary *nameCache = [@{
+	@"example@hbang.ws": @"John Appleseed",
+	@"imast777@imast777.me": @"The Devil",
+} mutableCopy];
 
-NSArray *messagesApps = [[NSArray alloc] initWithObjects:@"com.apple.MobileSMS", @"com.bitesms", nil];
+NSArray *messagesApps = @[ @"com.apple.MobileSMS", @"com.bitesms" ];
 
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
-	if (useBulletins && ((SpringBoard *)[UIApplication sharedApplication]).isLocked) {
+	/*if (useBulletin && ((SpringBoard *)[UIApplication sharedApplication]).isLocked) {
 		[[HBTSBulletinProvider sharedInstance] showBulletinOfType:type string:string];
 		return;
-	} else if (shouldUndim && ((SpringBoard *)[UIApplication sharedApplication])._isDim) {
+	} else if (shouldUndim && ((SBAwayController *)[%c(SBAwayController) sharedAwayController]).isDimmed) {
 		[(SpringBoard *)[UIApplication sharedApplication] undim];
 		[[%c(SBAwayController) sharedAwayController] undim];
-	}
+	}*/
 
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		NSNotification *notification = [NSNotification notificationWithName:@"HBTSClientSetStatusBar" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithInt:type], @"Type",
-			string, @"Name",
-			[NSNumber numberWithBool:typing], @"Typing",
-			[NSDate date], @"Date",
-			nil]];
-
-		[[NSDistributedNotificationCenter defaultCenter] postNotification:notification];
+		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
+			@"Type": @(type),
+			@"Name": string,
+			@"Typing": @(typing),
+			@"Date": [NSDate date]
+		}]];
 	});
 }
 
 #pragma mark - Hide while Messages is open
 
 BOOL HBTSShouldHide(BOOL typing) {
-	if (typing ? typingHideInMessages : readHideInMessages) {
-		return [messagesApps containsObject:IN_SPRINGBOARD ? [[%c(SBUserAgent) sharedUserAgent] foregroundApplicationDisplayID] : [NSBundle mainBundle].bundleIdentifier];
-	}
+	/*if (typing ? typingHideInMessages : readHideInMessages) {
+		return [messagesApps containsObject:IN_SPRINGBOARD ? ((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID : [NSBundle mainBundle].bundleIdentifier];
+	}*/
 
 	return NO;
 }
@@ -62,26 +61,30 @@ BOOL HBTSShouldHide(BOOL typing) {
 #pragma mark - Get contact name
 
 NSString *HBTSNameForHandle(NSString *handle) {
-	if ([nameCache objectForKey:handle]) {
-		return [nameCache objectForKey:handle];
+	if (nameCache[handle]) {
+		return nameCache[handle];
 	} else {
 		NSString *name = handle;
 
-		if (%c(CKIMEntity)) {
-			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
-			name = [entity.name retain];
-		} else if (%c(CKMadridService)) {
-			CKMadridService *service = [[%c(CKMadridService) alloc] init];
+		if (%c(CKEntity)) { // 6.0+
+			CKEntity *entity = [[CKEntity copyEntityForAddressString:handle] autorelease];
+
+			if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
+				name = entity.handle._displayNameWithAbbreviation;
+			} else { // 6.x
+				name = entity.name;
+			}
+		} else if (%c(CKMadridService)) { // 5.x
+			CKMadridService *service = [[[%c(CKMadridService) alloc] init] autorelease];
 			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
-			[service release];
-			name = [entity.name retain];
+			name = entity.name;
 		}
 
-		if (![name isEqualToString:handle]) {
-			[nameCache setObject:name forKey:handle];
+		if (name && ![name isEqualToString:handle]) {
+			nameCache[handle] = [name copy];
 		}
 
-		return name;
+		return name ?: handle;
 	}
 }
 
@@ -176,34 +179,51 @@ void HBTSTestRead() {
 #pragma mark - iMessage typing status receiver
 
 %hook IMChatRegistry
+
 - (void)account:(id)account chat:(id)chat style:(unsigned char)style chatProperties:(id)properties messageReceived:(FZMessage *)message {
 	%orig;
 
-	if (message.flags == 4096) {
+	if (message.flags == FZMessageFlagsTypingBegan) {
 		HBTSTypingStarted(message, NO);
 	} else {
 		HBTSTypingEnded();
 	}
 }
+
 %end
 
 #pragma mark - iMessage read receipt receiver
 
 %hook FZMessage
+
 - (void)setTimeRead:(NSDate *)timeRead {
 	%orig;
-
 	HBTSMessageRead(self);
 }
 
 %new - (void)typeStatus_typingEnded {
 	HBTSTypingEnded();
 }
+
+%end
+
+#pragma mark - Register bulletin data provider
+
+%hook BBDataProviderManager
+
+- (void)_loadAllDataProviderPluginBundles {
+	%orig;
+	[self _addDataProvider:[HBTSBulletinProvider sharedInstance] sortSectionsNow:YES];
+}
+
 %end
 
 #pragma mark - Preferences management and notification listeners
 
 %ctor {
+	Class serverClass = %c(BBDataProviderManager) ?: BBServer.class;
+	%init(BBDataProviderManager = serverClass);
+
 	HBTSLoadPrefs();
 
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
