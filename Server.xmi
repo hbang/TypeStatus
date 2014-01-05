@@ -3,6 +3,7 @@
 #include "Global.xm"
 #include "HBTSBulletinProvider.m"
 
+#include <substrate.h>
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKEntity.h>
 #import <ChatKit/CKMadridEntity.h>
@@ -10,6 +11,8 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
 #import <IMFoundation/FZMessage.h>
+#import <Security/Security.h>
+#import <Security/SecTask.h>
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBAwayController.h>
 #import <SpringBoard/SBUserAgent.h>
@@ -41,7 +44,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			@"Type": @(type),
-			@"Name": string,
+			@"Name": string ?: @"",
 			@"Typing": @(typing),
 			@"Date": [NSDate date]
 		}]];
@@ -68,10 +71,12 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 		if (%c(CKEntity)) { // 6.0+
 			CKEntity *entity = [[CKEntity copyEntityForAddressString:handle] autorelease];
-
+NSLog(@"A%@%@%@",handle,entity,entity.handle);
 			if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
-				name = entity.handle._displayNameWithAbbreviation;
+				NSLog(@"b");
+				name = entity.handle._displayNameWithAbbreviation ?: entity.name;
 			} else { // 6.x
+				NSLog(@"c");
 				name = entity.name;
 			}
 		} else if (%c(CKMadridService)) { // 5.x
@@ -148,7 +153,7 @@ void HBTSTypingEnded() {
 }
 
 void HBTSMessageRead(FZMessage *message) {
-	if (readStatus && !message.sender && [[NSDate date] timeIntervalSinceDate:message.timeRead] < 1 && !HBTSShouldHide(NO)) {
+	if (readStatus && !HBTSShouldHide(NO)) {
 		HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(message.handle), NO);
 	}
 }
@@ -173,14 +178,23 @@ void HBTSTestTyping() {
 void HBTSTestRead() {
 	FZMessage *message = [[[%c(FZMessage) alloc] init] autorelease];
 	message.handle = @"example@hbang.ws";
-	message.timeRead = [NSDate date];
+
+	HBTSMessageRead(message);
 }
 
 #pragma mark - iMessage typing status receiver
 
-%hook IMChatRegistry
+@interface IMDMessageStore : NSObject
 
-- (void)account:(id)account chat:(id)chat style:(unsigned char)style chatProperties:(id)properties messageReceived:(FZMessage *)message {
++ (instancetype)sharedInstance;
+
+- (FZMessage *)messageWithGUID:(NSString *)guid;
+
+@end
+
+%hook IMDServiceSession
+
+- (void)didReceiveMessage:(FZMessage *)message forChat:(id)chat style:(unsigned char)style {
 	%orig;
 
 	if (message.flags == FZMessageFlagsTypingBegan) {
@@ -190,16 +204,16 @@ void HBTSTestRead() {
 	}
 }
 
+- (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID date:(NSDate *)date completionBlock:(id)completion {
+	%orig;
+	HBTSMessageRead([[IMDMessageStore sharedInstance] messageWithGUID:messageID]);
+}
+
 %end
 
 #pragma mark - iMessage read receipt receiver
 
 %hook FZMessage
-
-- (void)setTimeRead:(NSDate *)timeRead {
-	%orig;
-	HBTSMessageRead(self);
-}
 
 %new - (void)typeStatus_typingEnded {
 	HBTSTypingEnded();

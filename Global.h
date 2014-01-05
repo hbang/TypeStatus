@@ -9,8 +9,6 @@ typedef enum {
 	HBTSStatusBarTypeRead
 } HBTSStatusBarType;
 
-#import "HBTSStatusBarView.h"
-
 #if SPRINGBOARD
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing);
 void HBTSTypingEnded();

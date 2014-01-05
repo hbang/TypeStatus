@@ -2,12 +2,13 @@
 
 @interface HBTSStatusBarView : UIView
 
-- (void)showWithTimeout:(double)timeout;
+- (void)showWithType:(HBTSStatusBarType)type name:(NSString *)name timeout:(NSTimeInterval)timeout;
 - (void)hide;
 
-@property (nonatomic, retain) NSString *string;
+@property (nonatomic, retain) NSString *name;
+@property HBTSStatusBarType type;
+
 @property BOOL shouldSlide;
 @property BOOL shouldFade;
-@property HBTSStatusBarType type;
 
 @end

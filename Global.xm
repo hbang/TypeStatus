@@ -1,4 +1,5 @@
 #import "Global.h"
+#import "HBTSStatusBarView.h"
 
 #pragma mark - Preferences management
 

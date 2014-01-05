@@ -8,7 +8,8 @@ THEOS_BUILD_DIR = debs
 TWEAK_NAME = TypeStatus TypeStatusClient
 
 TypeStatus_FILES = Server.xmi
-TypeStatus_PRIVATE_FRAMEWORKS = BulletinBoard ChatKit IMCore UIKit
+TypeStatus_FRAMEWORKS = Security
+TypeStatus_PRIVATE_FRAMEWORKS = BulletinBoard ChatKit IMCore IMDaemonCore UIKit
 TypeStatus_CFLAGS = -Qunused-arguments
 
 TypeStatusClient_FILES = Client.xmi
@@ -21,7 +22,7 @@ RESPRING = 0
 include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
-Client.xmi: Global.xm HBTSStatusBarView.xm
+Client.xmi: Global.xm HBTSStatusBarView.mm
 	touch $@
 
 Server.xmi: Global.xm HBTSBulletinProvider.m

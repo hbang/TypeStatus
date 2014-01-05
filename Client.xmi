@@ -1,18 +1,15 @@
 #include "Global.xm"
-#include "HBTSStatusBarView.xm"
+#include "HBTSStatusBarView.mm"
 
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <UIKit/UIApplication+Private.h>
-#import "HBTSStatusBarView.h"
+#import <UIKit/UIStatusBarForegroundView.h>
 
 #pragma mark - Show/Hide Overlay
 
 void HBTSSetStatusBar(HBTSStatusBarType type, NSString *name, BOOL typing) {
-	overlayView.type = type;
-	overlayView.string = name;
-
-	if (name) {
-		[overlayView showWithTimeout:typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration];
+	if (name && ![name isEqualToString:@""]) {
+		[overlayView showWithType:type name:name timeout:typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration];
 	} else {
 		[overlayView hide];
 	}
@@ -36,13 +33,13 @@ void HBTSSetStatusBar(HBTSStatusBarType type, NSString *name, BOOL typing) {
 		HBTSLoadPrefs();
 
 		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSClientSetStatusBarNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-			BOOL typing = ((NSNumber *)[notification.userInfo objectForKey:@"Typing"]).boolValue;
+			BOOL typing = ((NSNumber *)notification.userInfo[@"Typing"]).boolValue;
 
-			if ([[NSDate date] timeIntervalSinceDate:[notification.userInfo objectForKey:@"Date"]] > (typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration)) {
+			if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[@"Date"]] > (typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration)) {
 				return;
 			}
 
-			HBTSSetStatusBar((HBTSStatusBarType)((NSNumber *)[notification.userInfo objectForKey:@"Type"]).intValue, [notification.userInfo	objectForKey:@"Name"], typing);
+			HBTSSetStatusBar((HBTSStatusBarType)((NSNumber *)notification.userInfo[@"Type"]).intValue, notification.userInfo[@"Name"], typing);
 		}];
 	}];
 }
