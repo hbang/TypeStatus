@@ -8,8 +8,7 @@ THEOS_BUILD_DIR = debs
 TWEAK_NAME = TypeStatus TypeStatusClient
 
 TypeStatus_FILES = Server.xmi
-TypeStatus_FRAMEWORKS = Security
-TypeStatus_PRIVATE_FRAMEWORKS = BulletinBoard ChatKit IMCore IMDaemonCore SpringBoardServices
+TypeStatus_PRIVATE_FRAMEWORKS = ChatKit IMCore IMDaemonCore SpringBoardServices
 TypeStatus_CFLAGS = -Qunused-arguments
 
 TypeStatusClient_FILES = Client.xmi
@@ -40,5 +39,4 @@ ifeq ($(SHIPIT),1)
 endif
 
 after-install::
-	@# install.exec "killall Preferences; sbopenurl 'prefs:root=Cydia&path=TypeStatus'"
 	install.exec "killall MobileSMS; sblaunch com.apple.MobileSMS"

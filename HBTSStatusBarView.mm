@@ -93,8 +93,8 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 	dispatch_once(&onceToken, ^{
 		if (IS_MODERN) {
-			TypingImage = [[[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
-			ReadImage = [[[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatusRead"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
+			TypingImage = [[[UIImage kitImageNamed:@"Black_TypeStatus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
+			ReadImage = [[[UIImage kitImageNamed:@"Black_TypeStatusRead"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
 		} else {
 			TypingImage = [[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"] retain];
 			ReadImage = [[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatusRead"] retain];
