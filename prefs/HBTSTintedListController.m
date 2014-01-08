@@ -8,7 +8,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	if (IS_MODERN) {
-		UIColor *tintColor = [UIColor colorWithRed:0 green:0.9215686275f blue:0.168627451f alpha:1];
+		UIColor *tintColor = [UIColor colorWithRed:0 green:0.9019607843f blue:0.3960784314f alpha:1];
 		self.view.tintColor = tintColor;
 		self.navigationController.navigationBar.tintColor = tintColor;
 	}
