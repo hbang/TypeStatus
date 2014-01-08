@@ -231,6 +231,16 @@
 			<key>label</key>
 			<string>About</string>
 		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>HBTSCreditsListController</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>Credits</string>
+		</dict>
 	</array>
 	<key>title</key>
 	<string>TypeStatus</string>

@@ -7,11 +7,14 @@
 
 @implementation HBTSListController
 
+#pragma mark - UIViewController
+
 - (void)loadView {
 	[super loadView];
-
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareTapped:)];
 }
+
+#pragma mark - PSListController
 
 - (NSArray *)specifiers {
 	if (!_specifiers) {
@@ -20,6 +23,8 @@
 
 	return _specifiers;
 }
+
+#pragma mark - Callbacks
 
 - (void)testTypingStatus {
 	notify_post("ws.hbang.typestatus/TestTyping");

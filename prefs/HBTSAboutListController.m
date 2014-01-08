@@ -12,4 +12,14 @@
 	return _specifiers;
 }
 
+#pragma mark - Callbacks
+
+- (void)openWebsite {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://hbang.ws"]];
+}
+
+- (void)openDonate {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://hbang.ws/donate"]];
+}
+
 @end

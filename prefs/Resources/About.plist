@@ -10,7 +10,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>© 2013, HASHBANG Productions</string>
+			<string>© 2013—2014, HASHBANG Productions</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -21,212 +21,30 @@
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>
-			<key>big</key>
-			<true/>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>HASHBANG Productions</string>
-			<key>user</key>
-			<string>hbangws</string>
-			<key>height</key>
-			<integer>54</integer>
-			<key>requiredCapabilities</key>
-			<array>
-				<dict>
-					<key>ipad</key>
-					<false/>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>HASHBANG Productions</string>
-			<key>user</key>
-			<string>hbangws</string>
-			<key>requiredCapabilities</key>
-			<array>
-				<dict>
-					<key>ipad</key>
-					<true/>
-				</dict>
-			</array>
-		</dict>
-		<dict>
+			<key>action</key>
+			<string>openHashbang</string>
 			<key>cell</key>
-			<string>PSGroupCell</string>
+			<string>PSButtonCell</string>
 			<key>label</key>
-			<string>Lead Developer</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Adam D</string>
-			<key>user</key>
-			<string>thekirbylover</string>
+			<string>Website</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>Thank you to the following people for contributing to TypeStatus.</string>
+			<string>If you like TypeStatus, please consider a donation.</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Idea</string>
 		</dict>
 		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Jeff Benjamin</string>
-			<key>user</key>
-			<string>JeffBenjam</string>
-		</dict>
-		<dict>
+			<key>action</key>
+			<string>openDonate</string>
 			<key>cell</key>
-			<string>PSGroupCell</string>
+			<string>PSButtonCell</string>
 			<key>label</key>
-			<string>Icons</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Thientam Bach</string>
-			<key>user</key>
-			<string>Surenix</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Being Awesome</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Ryan</string>
-			<key>user</key>
-			<string>rg0rd</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Aehmlo Lxaitn</string>
-			<key>user</key>
-			<string>Aehmlo</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Jonathan Seals</string>
-			<key>user</key>
-			<string>JonathanSeals</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>chickenfriez</string>
-			<key>user</key>
-			<string>chickenfriez</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Translations</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Arabic: iD7me</string>
-			<key>user</key>
-			<string>iD7me</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>French: Adam McNight</string>
-			<key>user</key>
-			<string>AdaMcNight</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>German: Bensge</string>
-			<key>user</key>
-			<string>bensge</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Greek: George Fasidis</string>
-			<key>user</key>
-			<string>iFasMan7</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Italian: Gianvito</string>
-			<key>user</key>
-			<string>gianvito_t</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Norwegian: Thay</string>
-			<key>user</key>
-			<string>Thay__T</string>
-		</dict>
-		<dict>
-			<key>label</key>
-			<string>Polish: Unknown :(</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Russian: vladkorotnev</string>
-			<key>user</key>
-			<string>vladkorotnev</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Spanish: Gonzalo</string>
-			<key>user</key>
-			<string>gadc333</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Swedish: c0redev</string>
-			<key>user</key>
-			<string>c0redev</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>…and our beta testers and users. You guys rock!</string>
+			<string>Donate</string>
 		</dict>
 	</array>
 	<key>title</key>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Lead Developer</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Adam D</string>
+			<key>user</key>
+			<string>thekirbylover</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Thank you to the following people for contributing to TypeStatus.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Idea</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Jeff Benjamin</string>
+			<key>user</key>
+			<string>JeffBenjam</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Icons</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Thientam Bach</string>
+			<key>user</key>
+			<string>Surenix</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Being Awesome</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Ryan</string>
+			<key>user</key>
+			<string>rg0rd</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Aehmlo Lxaitn</string>
+			<key>user</key>
+			<string>Aehmlo</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Jonathan Seals</string>
+			<key>user</key>
+			<string>JonathanSeals</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>chickenfriez</string>
+			<key>user</key>
+			<string>chickenfriez</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Translations</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Arabic: iD7me</string>
+			<key>user</key>
+			<string>iD7me</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>French: Adam McNight</string>
+			<key>user</key>
+			<string>AdaMcNight</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>German: Bensge</string>
+			<key>user</key>
+			<string>bensge</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Greek: George Fasidis</string>
+			<key>user</key>
+			<string>iFasMan7</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Italian: Gianvito</string>
+			<key>user</key>
+			<string>gianvito_t</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Norwegian: Thay</string>
+			<key>user</key>
+			<string>Thay__T</string>
+		</dict>
+		<dict>
+			<key>label</key>
+			<string>Polish: Unknown :(</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Russian: vladkorotnev</string>
+			<key>user</key>
+			<string>vladkorotnev</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Spanish: Gonzalo</string>
+			<key>user</key>
+			<string>gadc333</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTSTwitterCell</string>
+			<key>label</key>
+			<string>Swedish: c0redev</string>
+			<key>user</key>
+			<string>c0redev</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>…and our beta testers and users. You guys rock!</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Credits</string>
+</dict>
+</plist>
