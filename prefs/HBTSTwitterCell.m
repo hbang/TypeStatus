@@ -18,12 +18,12 @@
 	self = [super initWithStyle:specifier.properties[@"big"] && ((NSNumber *)specifier.properties[@"big"]).boolValue ? UITableViewCellStyleSubtitle : UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier specifier:specifier];
 
 	if (self) {
-		_user = specifier.properties[@"user"];
+		_user = [specifier.properties[@"user"] copy];
 
 		NSBundle *bundle = [NSBundle bundleForClass:self.class];
 
-		_defaultImage = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"twitter" ofType:@"png"]];
-		_highlightedImage = IS_IOS_OR_NEWER(iOS_7_0) ? _defaultImage : [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"twitter_selected" ofType:@"png"]];
+		_defaultImage = [[UIImage imageNamed:@"twitter" inBundle:bundle] retain];
+		_highlightedImage = IS_IOS_OR_NEWER(iOS_7_0) ? _defaultImage : [[UIImage imageNamed:@"twitter_selected" inBundle:bundle] retain];
 
 		self.detailTextLabel.text = [@"@" stringByAppendingString:specifier.properties[@"user"]];
 		self.detailTextLabel.textColor = IS_IOS_OR_NEWER(iOS_7_0) ? [UIColor colorWithWhite:0.5568627451f alpha:1] : [UIColor tableCellValue1BlueColor];
