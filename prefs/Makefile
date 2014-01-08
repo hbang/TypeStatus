@@ -3,7 +3,7 @@ include theos/makefiles/common.mk
 BUNDLE_NAME = TypeStatus
 TypeStatus_FILES = $(wildcard *.x) $(wildcard *.m)
 TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
-TypeStatus_FRAMEWORKS = UIKit CoreGraphics Twitter
+TypeStatus_FRAMEWORKS = CoreGraphics MessageUI Twitter UIKit
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
 TypeStatus_LIBRARIES = substrate
 

@@ -8,12 +8,14 @@ THEOS_BUILD_DIR = debs
 TWEAK_NAME = TypeStatus TypeStatusClient
 
 TypeStatus_FILES = Server.xmi
-TypeStatus_PRIVATE_FRAMEWORKS = ChatKit IMCore IMDaemonCore SpringBoardServices
+TypeStatus_PRIVATE_FRAMEWORKS = BulletinBoard ChatKit IMCore SpringBoardServices
 TypeStatus_CFLAGS = -Qunused-arguments
+TypeStatus_LDFLAGS = -fobjc-arc
 
 TypeStatusClient_FILES = Client.xmi
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_CFLAGS = -Qunused-arguments
+TypeStatusClient_LDFLAGS = -fobjc-arc
 
 SUBPROJECTS = prefs
 RESPRING = 0

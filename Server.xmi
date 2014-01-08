@@ -9,9 +9,11 @@
 #import <ChatKit/CKMadridService.h>
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
+#import <IMDaemonCore/IMDMessageStore.h>
 #import <IMFoundation/FZMessage.h>
 #import <SpringBoardServices/SpringBoardServices.h>
 #include <notify.h>
+#import <version.h>
 
 NSUInteger typingIndicators = 0;
 LSStatusBarItem *statusBarItem;
@@ -71,12 +73,10 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 		if (%c(CKEntity)) { // 6.0+
 			CKEntity *entity = [[CKEntity copyEntityForAddressString:handle] autorelease];
-NSLog(@"A%@%@%@",handle,entity,entity.handle);
+
 			if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
-				NSLog(@"b");
 				name = entity.handle._displayNameWithAbbreviation ?: entity.name;
 			} else { // 6.x
-				NSLog(@"c");
 				name = entity.name;
 			}
 		} else if (%c(CKMadridService)) { // 5.x
@@ -182,15 +182,9 @@ void HBTSTestRead() {
 	HBTSMessageRead(message);
 }
 
-#pragma mark - iMessage typing status receiver
+#pragma mark - iMessage hooks
 
-@interface IMDMessageStore : NSObject
-
-+ (instancetype)sharedInstance;
-
-- (FZMessage *)messageWithGUID:(NSString *)guid;
-
-@end
+%group JonyIveIsCool
 
 %hook IMDServiceSession
 
@@ -206,12 +200,44 @@ void HBTSTestRead() {
 
 - (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID date:(NSDate *)date completionBlock:(id)completion {
 	%orig;
-	HBTSMessageRead([[IMDMessageStore sharedInstance] messageWithGUID:messageID]);
+	HBTSMessageRead([[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID]);
 }
 
 %end
 
-#pragma mark - iMessage read receipt receiver
+%end
+
+%group ForstallForTheWin
+
+%hook IMDaemonListener
+
+- (void)account:(id)account chat:(id)chat style:(unsigned char)style chatProperties:(id)properties messageReceived:(FZMessage *)message {
+	%orig;
+
+	if (message.flags == FZMessageFlagsTypingBegan) {
+		HBTSTypingStarted(message, NO);
+	} else {
+		HBTSTypingEnded();
+	}
+}
+
+%end
+
+%hook FZMessage
+
+// todo: make this less hacky
+
+- (void)setTimeRead:(NSDate *)timeRead {
+	%orig;
+
+	if (!self.sender && [[NSDate date] timeIntervalSinceDate:self.timeRead] < 1) {
+		HBTSMessageRead(self);
+	}
+}
+
+%end
+
+%end
 
 %hook FZMessage
 
@@ -223,6 +249,7 @@ void HBTSTestRead() {
 
 #pragma mark - Register bulletin data provider
 
+/*
 %hook BBDataProviderManager
 
 - (void)_loadAllDataProviderPluginBundles {
@@ -231,17 +258,32 @@ void HBTSTestRead() {
 }
 
 %end
+*/
 
 #pragma mark - Preferences management and notification listeners
 
 %ctor {
-	Class serverClass = %c(BBDataProviderManager) ?: BBServer.class;
-	%init(BBDataProviderManager = serverClass);
+	@autoreleasepool {
+		/*
+		Class serverClass = %c(BBDataProviderManager) ?: BBServer.class;
+		%init(BBDataProviderManager = serverClass);
+		*/
 
-	HBTSLoadPrefs();
+		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
+		%init;
 
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, 0);
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, 0);
+		if (IS_IOS_OR_NEWER(iOS_7_0)) {
+			%init(JonyIveIsCool);
+		} else {
+			%init(ForstallForTheWin);
+		}
+
+		HBTSLoadPrefs();
+
+		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
+
+		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, 0);
+		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, 0);
+	}
 }
