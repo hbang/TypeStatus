@@ -1,8 +1,7 @@
-#define SPRINGBOARD 1
+#define IMAGENT 1
 
 #include "Global.xm"
 #include "HBTSBulletinProvider.m"
-
 #include <substrate.h>
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKEntity.h>
@@ -11,11 +10,7 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
 #import <IMFoundation/FZMessage.h>
-#import <Security/Security.h>
-#import <Security/SecTask.h>
-#import <SpringBoard/SpringBoard.h>
-#import <SpringBoard/SBAwayController.h>
-#import <SpringBoard/SBUserAgent.h>
+#import <SpringBoardServices/SpringBoardServices.h>
 #include <notify.h>
 
 NSUInteger typingIndicators = 0;
@@ -33,13 +28,15 @@ NSArray *messagesApps = @[ @"com.apple.MobileSMS", @"com.bitesms" ];
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
-	/*if (useBulletin && ((SpringBoard *)[UIApplication sharedApplication]).isLocked) {
-		[[HBTSBulletinProvider sharedInstance] showBulletinOfType:type string:string];
+	BOOL lockStatus;
+	SBGetScreenLockStatus(SBSSpringBoardServerPort(), &lockStatus, NULL);
+
+	if (useBulletin && lockStatus) {
+		//[[HBTSBulletinProvider sharedInstance] showBulletinOfType:type string:string];
 		return;
-	} else if (shouldUndim && ((SBAwayController *)[%c(SBAwayController) sharedAwayController]).isDimmed) {
-		[(SpringBoard *)[UIApplication sharedApplication] undim];
-		[[%c(SBAwayController) sharedAwayController] undim];
-	}*/
+	} else if (shouldUndim && lockStatus) {
+		SBSUndimScreen();
+	}
 
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
@@ -54,9 +51,12 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
 #pragma mark - Hide while Messages is open
 
 BOOL HBTSShouldHide(BOOL typing) {
-	/*if (typing ? typingHideInMessages : readHideInMessages) {
-		return [messagesApps containsObject:IN_SPRINGBOARD ? ((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID : [NSBundle mainBundle].bundleIdentifier];
-	}*/
+	if (typing ? typingHideInMessages : readHideInMessages) {
+		char frontmostIdentifier[256];
+		SBFrontmostApplicationDisplayIdentifier(SBSSpringBoardServerPort(), frontmostIdentifier);
+
+		return [messagesApps containsObject:IN_SPRINGBOARD ? [NSString stringWithUTF8String:frontmostIdentifier] : [NSBundle mainBundle].bundleIdentifier];
+	}
 
 	return NO;
 }

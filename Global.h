@@ -4,12 +4,16 @@
 #define SPRINGBOARD 0
 #endif
 
+#ifndef IMAGENT
+#define IMAGENT 0
+#endif
+
 typedef enum {
 	HBTSStatusBarTypeTyping,
 	HBTSStatusBarTypeRead
 } HBTSStatusBarType;
 
-#if SPRINGBOARD
+#if IMAGENT
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing);
 void HBTSTypingEnded();
 #endif
@@ -40,7 +44,7 @@ BOOL typingStatus = YES;
 BOOL typingTimeout = NO;
 BOOL readStatus = YES;
 
-#if SPRINGBOARD
+#if IMAGENT
 BOOL typingHideInMessages = YES;
 BOOL typingIcon = NO;
 BOOL readHideInMessages = YES;

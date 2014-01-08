@@ -6,7 +6,7 @@
 void HBTSLoadPrefs() {
 	NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/ws.hbang.typestatus.plist"];
 
-#if SPRINGBOARD
+#if IMAGENT
 	typingHideInMessages = GET_BOOL(@"HideInMessages", YES);
 	readHideInMessages = GET_BOOL(@"HideReadInMessages", YES);
 	typingIcon = GET_BOOL(@"TypingIcon", NO);
@@ -24,7 +24,7 @@ void HBTSLoadPrefs() {
 	if (firstLoad) {
 		firstLoad = NO;
 	} else {
-#if SPRINGBOARD
+#if IMAGENT
 		if (!typingIcon || !typingStatus) {
 			HBTSTypingEnded();
 		} else if (!readStatus) {
@@ -33,7 +33,7 @@ void HBTSLoadPrefs() {
 #endif
 	}
 
-#if !SPRINGBOARD
+#if !IMAGENT
 	if (overlayView) {
 		overlayView.shouldSlide = overlaySlide;
 		overlayView.shouldFade = overlayFade;

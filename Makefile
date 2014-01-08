@@ -9,7 +9,7 @@ TWEAK_NAME = TypeStatus TypeStatusClient
 
 TypeStatus_FILES = Server.xmi
 TypeStatus_FRAMEWORKS = Security
-TypeStatus_PRIVATE_FRAMEWORKS = BulletinBoard ChatKit IMCore IMDaemonCore UIKit
+TypeStatus_PRIVATE_FRAMEWORKS = BulletinBoard ChatKit IMCore IMDaemonCore SpringBoardServices
 TypeStatus_CFLAGS = -Qunused-arguments
 
 TypeStatusClient_FILES = Client.xmi
