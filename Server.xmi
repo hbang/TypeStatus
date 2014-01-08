@@ -5,6 +5,7 @@
 #include <substrate.h>
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKEntity.h>
+#import <ChatKit/CKIMEntity.h>
 #import <ChatKit/CKMadridEntity.h>
 #import <ChatKit/CKMadridService.h>
 #import <Foundation/NSDistributedNotificationCenter.h>
@@ -30,7 +31,8 @@ NSArray *messagesApps = @[ @"com.apple.MobileSMS", @"com.bitesms" ];
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
-	BOOL lockStatus;
+	/*
+	BOOL lockStatus = NO;
 	SBGetScreenLockStatus(SBSSpringBoardServerPort(), &lockStatus, NULL);
 
 	if (useBulletin && lockStatus) {
@@ -39,6 +41,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing) {
 	} else if (shouldUndim && lockStatus) {
 		SBSUndimScreen();
 	}
+	*/
 
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
@@ -66,13 +69,17 @@ BOOL HBTSShouldHide(BOOL typing) {
 #pragma mark - Get contact name
 
 NSString *HBTSNameForHandle(NSString *handle) {
+	if (IS_IOS_OR_NEWER(iOS_7_0)) {
+		return handle; // quick hack
+	}
+
 	if (nameCache[handle]) {
 		return nameCache[handle];
 	} else {
 		NSString *name = handle;
 
-		if (%c(CKEntity)) { // 6.0+
-			CKEntity *entity = [[CKEntity copyEntityForAddressString:handle] autorelease];
+		if (%c(CKIMEntity)) { // 6.x
+			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
 
 			if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
 				name = entity.handle._displayNameWithAbbreviation ?: entity.name;
