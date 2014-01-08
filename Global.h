@@ -8,6 +8,10 @@
 #define IMAGENT 0
 #endif
 
+#ifndef PREFERENCES
+#define PREFERENCES 0
+#endif
+
 typedef enum {
 	HBTSStatusBarTypeTyping,
 	HBTSStatusBarTypeRead
@@ -25,7 +29,8 @@ NSBundle *prefsBundle;
 #define GET_BOOL(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).boolValue : default)
 #define GET_FLOAT(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).floatValue : default)
 
-#define kHBTSTypingTimeout 60.0
+#if !PREFERENCES
+static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
 /*
  old notification name is used here for compatibility with
@@ -52,4 +57,5 @@ BOOL shouldUndim = YES;
 BOOL useBulletin = YES;
 #else
 HBTSStatusBarView *overlayView;
+#endif
 #endif

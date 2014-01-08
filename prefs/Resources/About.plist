@@ -22,11 +22,29 @@
 		</dict>
 		<dict>
 			<key>action</key>
-			<string>openHashbang</string>
+			<string>openWebsite</string>
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>label</key>
-			<string>Website</string>
+			<string>Visit Website</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Experiencing issues? Send us an email and we’ll help you.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>sendSupportEmail</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Email Support</string>
 		</dict>
 		<dict>
 			<key>cell</key>

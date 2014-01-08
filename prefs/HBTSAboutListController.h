@@ -1,5 +1,6 @@
 #import "HBTSTintedListController.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface HBTSAboutListController : HBTSTintedListController
+@interface HBTSAboutListController : HBTSTintedListController <MFMailComposeViewControllerDelegate>
 
 @end

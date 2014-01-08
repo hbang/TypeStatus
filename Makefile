@@ -39,4 +39,4 @@ ifeq ($(SHIPIT),1)
 endif
 
 after-install::
-	install.exec "killall MobileSMS; sblaunch com.apple.MobileSMS"
+	install.exec "killall Preferences; sleep 0.2; sbopenurl prefs:root=TypeStatus"
