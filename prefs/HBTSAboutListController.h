@@ -1,5 +1,5 @@
-#import <Preferences/PSListController.h>
+#import "HBTSTintedListController.h"
 
-@interface HBTSAboutListController : PSListController
+@interface HBTSAboutListController : HBTSTintedListController
 
 @end
