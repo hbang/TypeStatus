@@ -1,7 +1,7 @@
 #define IMAGENT 1
 
 #include "Global.xm"
-#include "HBTSBulletinProvider.m"
+//#include "HBTSBulletinProvider.m"
 #include <substrate.h>
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKEntity.h>
