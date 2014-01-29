@@ -186,10 +186,12 @@
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>
+			<key>bundle</key>
+			<string>libhbangprefs</string>
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>detail</key>
-			<string>HBTSAboutListController</string>
+			<string>HBAboutListController</string>
 			<key>isController</key>
 			<true/>
 			<key>label</key>

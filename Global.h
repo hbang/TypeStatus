@@ -1,3 +1,6 @@
+#ifndef _TYPESTATUS_GLOBAL_H
+#define _TYPESTATUS_GLOBAL_H
+
 @class HBTSStatusBarView;
 
 #ifndef SPRINGBOARD
@@ -25,7 +28,7 @@ void HBTSTypingEnded();
 NSBundle *prefsBundle;
 
 #define IN_SPRINGBOARD (SPRINGBOARD || [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
-#define I18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
+#define L18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
 #define GET_BOOL(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).boolValue : default)
 #define GET_FLOAT(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).floatValue : default)
 
@@ -57,5 +60,6 @@ BOOL shouldUndim = YES;
 BOOL useBulletin = YES;
 #else
 HBTSStatusBarView *overlayView;
+#endif
 #endif
 #endif

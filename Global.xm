@@ -1,6 +1,10 @@
 #import "Global.h"
 #import "HBTSStatusBarView.h"
 
+%ctor {
+	prefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
+}
+
 #pragma mark - Preferences management
 
 void HBTSLoadPrefs() {

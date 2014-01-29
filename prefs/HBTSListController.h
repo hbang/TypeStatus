@@ -1,5 +1,5 @@
-#import "HBTSTintedListController.h"
+#import <libhbangcommon/HBRootListController.h>
 
-@interface HBTSListController : HBTSTintedListController
+@interface HBTSListController : HBRootListController
 
 @end

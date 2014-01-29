@@ -181,11 +181,11 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
-			_typeLabel.text = I18N(@"Typing:");
+			_typeLabel.text = L18N(@"Typing:");
 			break;
 
 		case HBTSStatusBarTypeRead:
-			_typeLabel.text = I18N(@"Read:");
+			_typeLabel.text = L18N(@"Read:");
 			break;
 	}
 

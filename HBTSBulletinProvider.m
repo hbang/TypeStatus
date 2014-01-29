@@ -39,11 +39,11 @@
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
-			bulletinRequest.title = I18N(@"Typing");
+			bulletinRequest.title = L18N(@"Typing");
 			break;
 
 		case HBTSStatusBarTypeRead:
-			bulletinRequest.title = I18N(@"Read");
+			bulletinRequest.title = L18N(@"Read");
 			break;
 	}
 
