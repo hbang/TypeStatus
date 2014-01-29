@@ -9,6 +9,7 @@
 
 #define IS_RETINA ([UIScreen mainScreen].scale > 1)
 #define IS_MODERN IS_IOS_OR_NEWER(iOS_7_0)
+;
 
 static CGFloat const kHBTSStatusBarFontSize = IS_MODERN ? 12.f : 14.f;
 static CGFloat const kHBTSStatusBarAnimationDuration = IS_MODERN ? .3f : 0.25f;

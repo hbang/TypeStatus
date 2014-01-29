@@ -135,6 +135,10 @@ void HBTSTypingStarted(FZMessage *message, BOOL testing) {
 }
 
 void HBTSTypingEnded() {
+	if (typingIndicators == 0) {
+		return;
+	}
+
 	typingIndicators--;
 
 	if (typingIndicators <= 0) {
