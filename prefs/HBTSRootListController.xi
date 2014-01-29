@@ -16,7 +16,7 @@
 }
 
 + (UIColor *)hb_tintColor {
-	return [UIColor colorWithRed:0 green:0.9019607843f blue:0.3960784314f alpha:1];
+	return [UIColor colorWithRed:83.f / 255.f green:215.f / 255.f blue:106.f / 255.f alpha:1];
 }
 
 #pragma mark - PSListController
