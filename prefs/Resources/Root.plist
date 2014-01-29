@@ -73,6 +73,8 @@
 			<string>testTypingStatus</string>
 			<key>cell</key>
 			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>Test Typing</string>
 		</dict>
@@ -118,6 +120,8 @@
 			<string>testReadStatus</string>
 			<key>cell</key>
 			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>Test Read</string>
 		</dict>
@@ -186,12 +190,10 @@
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>
-			<key>bundle</key>
-			<string>libhbangprefs</string>
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>detail</key>
-			<string>HBAboutListController</string>
+			<string>HBTSAboutListController</string>
 			<key>isController</key>
 			<true/>
 			<key>label</key>

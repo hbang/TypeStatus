@@ -1,5 +1,5 @@
-#import "HBTSTintedListController.h"
+#import <libhbangcommon/HBListController.h>
 
-@interface HBTSCreditsListController : HBTSTintedListController
+@interface HBTSCreditsListController : HBListController
 
 @end

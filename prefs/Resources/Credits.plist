@@ -12,7 +12,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Adam D</string>
 			<key>user</key>
@@ -28,11 +28,11 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Idea</string>
+			<string>Original Idea</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Jeff Benjamin</string>
 			<key>user</key>
@@ -46,7 +46,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Thientam Bach</string>
 			<key>user</key>
@@ -56,49 +56,11 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Being Awesome</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Ryan</string>
-			<key>user</key>
-			<string>rg0rd</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Aehmlo Lxaitn</string>
-			<key>user</key>
-			<string>Aehmlo</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>Jonathan Seals</string>
-			<key>user</key>
-			<string>JonathanSeals</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
-			<key>label</key>
-			<string>chickenfriez</string>
-			<key>user</key>
-			<string>chickenfriez</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
 			<string>Translations</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Arabic: iD7me</string>
 			<key>user</key>
@@ -106,7 +68,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>French: Adam McNight</string>
 			<key>user</key>
@@ -114,7 +76,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>German: Bensge</string>
 			<key>user</key>
@@ -122,7 +84,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Greek: George Fasidis</string>
 			<key>user</key>
@@ -130,7 +92,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Italian: Gianvito</string>
 			<key>user</key>
@@ -138,7 +100,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Norwegian: Thay</string>
 			<key>user</key>
@@ -150,7 +112,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Russian: vladkorotnev</string>
 			<key>user</key>
@@ -158,7 +120,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Spanish: Gonzalo</string>
 			<key>user</key>
@@ -166,7 +128,7 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBTSTwitterCell</string>
+			<string>HBTwitterCell</string>
 			<key>label</key>
 			<string>Swedish: c0redev</string>
 			<key>user</key>

@@ -27,6 +27,10 @@ void HBTSTypingEnded();
 
 NSBundle *prefsBundle;
 
+#ifdef IN_SPRINGBOARD
+#undef IN_SPRINGBOARD
+#endif
+
 #define IN_SPRINGBOARD (SPRINGBOARD || [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
 #define L18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
 #define GET_BOOL(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).boolValue : default)

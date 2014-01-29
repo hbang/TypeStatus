@@ -1,9 +1,9 @@
 #include "../Global.xm"
 
-#import "HBTSListController.h"
+#import "HBTSRootListController.h"
 #include <notify.h>
 
-@implementation HBTSListController
+@implementation HBTSRootListController
 
 #pragma mark - Constants
 
@@ -15,11 +15,15 @@
 	return [NSURL URLWithString:@"http://hbang.ws/typestatus"];
 }
 
++ (UIColor *)hb_tintColor {
+	return [UIColor colorWithRed:0 green:0.9019607843f blue:0.3960784314f alpha:1];
+}
+
 #pragma mark - PSListController
 
 - (NSArray *)specifiers {
 	if (!_specifiers) {
-		_specifiers = [[self loadSpecifiersFromPlistName:@"TypeStatus" target:self] retain];
+		_specifiers = [[self loadSpecifiersFromPlistName:@"Root" target:self] retain];
 	}
 
 	return _specifiers;

@@ -22,9 +22,11 @@
 		</dict>
 		<dict>
 			<key>action</key>
-			<string>openWebsite</string>
+			<string>hb_openWebsite</string>
 			<key>cell</key>
-			<string>PSButtonCell</string>
+			<string>PSTableCell</string>
+			<key>cellClass</key>
+			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>Visit Website</string>
 		</dict>
@@ -40,9 +42,11 @@
 		</dict>
 		<dict>
 			<key>action</key>
-			<string>sendSupportEmail</string>
+			<string>hb_sendSupportEmail</string>
 			<key>cell</key>
-			<string>PSButtonCell</string>
+			<string>PSTableCell</string>
+			<key>cellClass</key>
+			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>Email Support</string>
 		</dict>
@@ -58,9 +62,11 @@
 		</dict>
 		<dict>
 			<key>action</key>
-			<string>openDonate</string>
+			<string>hb_openDonate</string>
 			<key>cell</key>
-			<string>PSButtonCell</string>
+			<string>PSTableCell</string>
+			<key>cellClass</key>
+			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>Donate</string>
 		</dict>

@@ -32,7 +32,7 @@ static CGFloat const kHBTSHeaderCellFontSize = 25.f;
 		statusLabel.font = [UIFont systemFontOfSize:kHBTSHeaderCellFontSize];
 		[containerView addSubview:statusLabel];
 
-		typeLabel.frame = CGRectMake(imageView.image.size.width + 10.f, -2.f, [typeLabel.text sizeWithFont:typeLabel.font].width, imageView.image.size.height);
+		typeLabel.frame = CGRectMake(imageView.image.size.width + 10.f, -1.f, [typeLabel.text sizeWithFont:typeLabel.font].width, imageView.image.size.height);
 		statusLabel.frame = CGRectMake(typeLabel.frame.origin.x + typeLabel.frame.size.width, typeLabel.frame.origin.y, [statusLabel.text sizeWithFont:statusLabel.font].width, imageView.image.size.height);
 		containerView.frame = CGRectMake(0, 0, statusLabel.frame.origin.x + statusLabel.frame.size.width, imageView.image.size.height);
 		containerView.center = CGPointMake(self.contentView.frame.size.width / 2.f, containerView.center.y);
