@@ -132,8 +132,8 @@
 			<string>Overlay Display Duration</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSSliderCell</string>
+			<key>cellClass</key>
+			<string>HBStepperTableCell</string>
 			<key>default</key>
 			<real>5</real>
 			<key>defaults</key>
@@ -141,13 +141,13 @@
 			<key>key</key>
 			<string>OverlayDuration</string>
 			<key>label</key>
-			<string>Overlay Display Duration</string>
+			<string>%i Seconds</string>
 			<key>max</key>
 			<real>15</real>
 			<key>min</key>
 			<real>1</real>
-			<key>showValue</key>
-			<true/>
+			<key>singularLabel</key>
+			<string>1 Second</string>
 			<key>PostNotification</key>
 			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
