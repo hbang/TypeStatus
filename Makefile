@@ -8,6 +8,7 @@ THEOS_BUILD_DIR = debs
 TWEAK_NAME = TypeStatus TypeStatusClient
 
 TypeStatus_FILES = Server.xmi
+TypeStatus_FRAMEWORKS = AddressBook
 TypeStatus_PRIVATE_FRAMEWORKS = SpringBoardServices
 TypeStatus_CFLAGS = -Qunused-arguments
 TypeStatus_LDFLAGS = -fobjc-arc

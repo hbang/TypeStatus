@@ -3,6 +3,7 @@
 #include "Global.xm"
 //#include "HBTSBulletinProvider.m"
 #include <substrate.h>
+#import <AddressBook/AddressBook.h>
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKEntity.h>
 #import <ChatKit/CKIMEntity.h>
@@ -69,34 +70,54 @@ BOOL HBTSShouldHide(BOOL typing) {
 #pragma mark - Get contact name
 
 NSString *HBTSNameForHandle(NSString *handle) {
-	if (IS_IOS_OR_NEWER(iOS_7_0)) {
-		return handle; // quick hack
-	}
-
 	if (nameCache[handle]) {
 		return nameCache[handle];
 	} else {
-		NSString *name = handle;
+		CFErrorRef error = NULL;
+		ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &error);
 
-		if (%c(CKIMEntity)) { // 6.x
-			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
+		if (error) {
+			NSLog(@"error creating address book: %@", (NSError *)error);
+			return handle;
+		}
 
-			if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
-				name = entity.handle._displayNameWithAbbreviation ?: entity.name;
-			} else { // 6.x
-				name = entity.name;
+		NSArray *people = [(NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook) autorelease];
+		BOOL found = NO;
+
+		for (NSInteger i = 0; i < people.count; i++) {
+			BOOL innerFound = NO;
+			ABRecordRef record = people[i];
+			ABMultiValueRef emails = [(NSString *)ABRecordCopyValue(record, kABPersonEmailProperty) autorelease];
+
+			for (NSUInteger j = 0; j < ABMultiValueGetCount(emails); j++) {
+				if ([[(NSString *)ABMultiValueCopyValueAtIndex(emails, j) autorelease] isEqualToString:handle]) {
+					nameCache[handle] = [NSString stringWithFormat:@"%@ %@", [(NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty) autorelease], [(NSString *)ABRecordCopyValue(record, kABPersonLastNameProperty) autorelease]];
+					found = YES;
+					innerFound = YES;
+					break;
+				}
 			}
-		} else if (%c(CKMadridService)) { // 5.x
-			CKMadridService *service = [[[%c(CKMadridService) alloc] init] autorelease];
-			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
-			name = entity.name;
+
+			if (!found) {
+				ABMultiValueRef numbers = [(NSString *)ABRecordCopyValue(record, kABPersonPhoneProperty) autorelease];
+
+				for (NSUInteger j = 0; j < ABMultiValueGetCount(numbers); j++) {
+					if ([[(NSString *)ABMultiValueCopyValueAtIndex(numbers, j) autorelease] isEqualToString:handle]) {
+						nameCache[handle] = [NSString stringWithFormat:@"%@ %@", [(NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty) autorelease], [(NSString *)ABRecordCopyValue(record, kABPersonLastNameProperty) autorelease]];
+						found = YES;
+						break;
+					}
+				}
+			}
+
+			if (innerFound) {
+				break;
+			}
 		}
 
-		if (name && ![name isEqualToString:handle]) {
-			nameCache[handle] = [name copy];
-		}
+		CFRelease(addressBook);
 
-		return name ?: handle;
+		return nameCache[handle] ?: handle;
 	}
 }
 
