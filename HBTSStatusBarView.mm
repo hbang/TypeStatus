@@ -12,7 +12,7 @@
 ;
 
 static CGFloat const kHBTSStatusBarFontSize = IS_MODERN ? 12.f : 14.f;
-static CGFloat const kHBTSStatusBarAnimationDuration = IS_MODERN ? .3f : 0.25f;
+static NSTimeInterval const kHBTSStatusBarAnimationDuration = IS_MODERN ? 0.3 : 0.25;
 static CGFloat const kHBTSStatusBarAnimationDamping = 1.f;
 static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
