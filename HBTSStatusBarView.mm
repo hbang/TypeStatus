@@ -4,6 +4,7 @@
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBar.h>
 #import <UIKit/UIStatusBarForegroundView.h>
+#import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <version.h>
 #include <notify.h>
 
@@ -112,18 +113,25 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	CGSize shadowOffset;
 	BOOL isWhite = NO;
 
-	if (!IS_IOS_OR_NEWER(iOS_6_0) && !IS_IPAD && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
-		textColor = [UIColor blackColor];
-		shadowColor = [UIColor whiteColor];
-		shadowOffset = CGSizeMake(0, 1.f);
-		isWhite = YES;
+	if (IS_MODERN) {
+		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
+
+		textColor = MSHookIvar<UIColor *>(foregroundView.foregroundStyle, "_tintColor");
+		isWhite = !MSHookIvar<BOOL>(foregroundView.foregroundStyle, "_isTintColorBlack");
 	} else {
-		if (IS_MODERN && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
+		if (!IS_IOS_OR_NEWER(iOS_6_0) && !IS_IPAD && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
 			textColor = [UIColor blackColor];
+			shadowColor = [UIColor whiteColor];
+			shadowOffset = CGSizeMake(0, 1.f);
+			isWhite = YES;
 		} else {
-			textColor = [UIColor whiteColor];
-			shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
-			shadowOffset = CGSizeMake(0, -1.f);
+			if (IS_MODERN) {
+				textColor = [UIColor blackColor];
+			} else {
+				textColor = [UIColor whiteColor];
+				shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
+				shadowOffset = CGSizeMake(0, -1.f);
+			}
 		}
 	}
 
