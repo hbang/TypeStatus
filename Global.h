@@ -17,10 +17,11 @@
 
 typedef enum {
 	HBTSStatusBarTypeTyping,
+	HBTSStatusBarTypeTypingEnded,
 	HBTSStatusBarTypeRead
 } HBTSStatusBarType;
 
-#if IMAGENT
+#if SPRINGBOARD
 void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing);
 void HBTSTypingEnded();
 #endif
@@ -45,6 +46,7 @@ static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 */
 
 static NSString *const HBTSClientSetStatusBarNotification = @"HBTSClientSetStatusBar";
+static NSString *const HBTSSpringBoardReceivedMessageNotification = @"HBTSSpringBoardReceivedMessageNotification";
 
 #pragma mark - Preferences
 
@@ -56,13 +58,15 @@ BOOL typingStatus = YES;
 BOOL typingTimeout = NO;
 BOOL readStatus = YES;
 
-#if IMAGENT
+#if SPRINGBOARD
 BOOL typingHideInMessages = YES;
 BOOL typingIcon = NO;
 BOOL readHideInMessages = YES;
 BOOL shouldUndim = YES;
 BOOL useBulletin = YES;
-#else
+#endif
+
+#if !SPRINGBOARD && !IMAGENT
 HBTSStatusBarView *overlayView;
 #endif
 #endif

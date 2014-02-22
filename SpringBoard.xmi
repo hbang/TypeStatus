@@ -1,0 +1,173 @@
+#define SPRINGBOARD 1
+
+#include "Global.xm"
+#include <substrate.h>
+#import <AddressBook/AddressBook.h>
+#import <libstatusbar/LSStatusBarItem.h>
+#import <ChatKit/CKEntity.h>
+#import <ChatKit/CKIMEntity.h>
+#import <ChatKit/CKMadridEntity.h>
+#import <ChatKit/CKMadridService.h>
+#import <Foundation/NSDistributedNotificationCenter.h>
+#import <IMCore/IMHandle.h>
+#import <SpringBoard/SBUserAgent.h>
+#include <notify.h>
+#import <version.h>
+
+NSUInteger typingIndicators = 0;
+LSStatusBarItem *statusBarItem;
+
+NSTimer *typingTimer;
+BOOL isTyping = NO;
+NSMutableDictionary *nameCache = [@{
+	@"example@hbang.ws": @"John Appleseed",
+	@"imast777@imast777.me": @"The Devil",
+} mutableCopy];
+
+NSArray *messagesApps = @[ @"com.apple.MobileSMS", @"com.bitesms" ];
+
+#pragma mark - Communication with clients
+
+void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
+			@"Type": @(type),
+			@"Name": name ?: @"",
+			@"Typing": @(typing),
+			@"Date": [NSDate date]
+		}]];
+	});
+}
+
+#pragma mark - Hide while Messages is open
+
+BOOL HBTSShouldHide(BOOL typing) {
+	if (typing ? typingHideInMessages : readHideInMessages) {
+		return [messagesApps containsObject:((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID];
+	}
+
+	return NO;
+}
+
+#pragma mark - Get contact name
+
+NSString *HBTSNameForHandle(NSString *handle) {
+	if (nameCache[handle]) {
+		return nameCache[handle];
+	} else {
+		NSString *name = handle;
+
+		if (%c(CKIMEntity)) { // 6.x
+			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
+
+			if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
+				name = entity.handle._displayNameWithAbbreviation ?: entity.name;
+			} else { // 6.x
+				name = entity.name;
+			}
+		} else if (%c(CKMadridService)) { // 5.x
+			CKMadridService *service = [[[%c(CKMadridService) alloc] init] autorelease];
+			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
+			name = entity.name;
+		}
+
+		if (name && ![name isEqualToString:handle]) {
+			nameCache[handle] = [name copy];
+		}
+
+		return nameCache[handle] ?: handle;
+	}
+}
+
+#pragma mark - Constructor
+
+%ctor {
+	@autoreleasepool {
+		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
+
+		HBTSLoadPrefs();
+
+		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
+
+		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+			switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[@"Type"]).intValue) {
+				case HBTSStatusBarTypeTyping:
+				{
+					BOOL isTesting = !((NSNumber *)notification.userInfo[@"Typing"]).boolValue;
+
+					typingIndicators++;
+					isTyping = YES;
+
+					if (HBTSShouldHide(YES)) {
+						return;
+					}
+
+					if (typingIcon) {
+						static dispatch_once_t onceToken;
+						dispatch_once(&onceToken, ^{
+							statusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
+							statusBarItem.imageName = @"TypeStatus";
+						});
+
+						statusBarItem.visible = YES;
+
+						if (typingTimer) {
+							[typingTimer invalidate];
+							[typingTimer release];
+							typingTimer = nil;
+						}
+
+						if (typingTimeout || isTesting) {
+							// typingTimer = [[NSTimer scheduledTimerWithTimeInterval:isTesting ? overlayDuration : kHBTSTypingTimeout target:message selector:@selector(typeStatus_typingEnded) userInfo:nil repeats:NO] retain];
+						}
+					}
+
+					if (typingStatus) {
+						HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[@"Name"]), !isTesting);
+					}
+
+					break;
+				}
+
+				case HBTSStatusBarTypeTypingEnded:
+				{
+					if (typingIndicators == 0) {
+						return;
+					}
+
+					typingIndicators--;
+
+					if (typingIndicators <= 0) {
+						typingIndicators = 0;
+						isTyping = NO;
+					}
+
+					if (!isTyping) {
+						if (statusBarItem) {
+							statusBarItem.visible = NO;
+						}
+
+						if (typingTimer) {
+							[typingTimer invalidate];
+							[typingTimer release];
+							typingTimer = nil;
+						}
+
+						if (typingStatus) {
+							HBTSPostMessage(HBTSStatusBarTypeTyping, nil, NO);
+						}
+					}
+
+					break;
+				}
+
+				case HBTSStatusBarTypeRead:
+					if (readStatus && !HBTSShouldHide(NO)) {
+						HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[@"Name"]), NO);
+					}
+
+					break;
+			}
+		}];
+	}
+}

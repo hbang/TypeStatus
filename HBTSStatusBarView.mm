@@ -144,6 +144,9 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 			case HBTSStatusBarTypeRead:
 				_iconImageView.image = isWhite ? ReadImageWhite : ReadImage;
 				break;
+
+			case HBTSStatusBarTypeTypingEnded:
+				break;
 		}
 	}
 
@@ -195,6 +198,9 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 		case HBTSStatusBarTypeRead:
 			_typeLabel.text = L18N(@"Read:");
+			break;
+
+		case HBTSStatusBarTypeTypingEnded:
 			break;
 	}
 

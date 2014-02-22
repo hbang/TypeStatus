@@ -37,7 +37,7 @@ void HBTSLoadPrefs() {
 #endif
 	}
 
-#if !IMAGENT
+#if !IMAGENT && !SPRINGBOARD
 	if (overlayView) {
 		overlayView.shouldSlide = overlaySlide;
 		overlayView.shouldFade = overlayFade;

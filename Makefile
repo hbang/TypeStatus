@@ -5,13 +5,14 @@ include theos/makefiles/common.mk
 
 THEOS_BUILD_DIR = debs
 
-TWEAK_NAME = TypeStatus TypeStatusClient
+TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
 
-TypeStatus_FILES = Server.xmi
-TypeStatus_FRAMEWORKS = AddressBook
-TypeStatus_PRIVATE_FRAMEWORKS = SpringBoardServices
+TypeStatus_FILES = SpringBoard.xmi
 TypeStatus_CFLAGS = -Qunused-arguments
 TypeStatus_LDFLAGS = -fobjc-arc
+
+TypeStatusRelay_FILES = IMAgentRelay.x
+TypeStatusRelay_LDFLAGS = -fobjc-arc
 
 TypeStatusClient_FILES = Client.xmi
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
@@ -19,7 +20,6 @@ TypeStatusClient_CFLAGS = -Qunused-arguments
 TypeStatusClient_LDFLAGS = -fobjc-arc
 
 SUBPROJECTS = prefs
-RESPRING = 0
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
@@ -27,7 +27,7 @@ include $(THEOS_MAKE_PATH)/aggregate.mk
 Client.xmi: Global.xm HBTSStatusBarView.mm
 	touch $@
 
-Server.xmi: Global.xm HBTSBulletinProvider.m
+SpringBoard.xmi: Global.xm
 	touch $@
 
 after-stage::
@@ -42,4 +42,8 @@ ifeq ($(SHIPIT),1)
 endif
 
 after-install::
+ifeq ($(RESPRING),0)
 	install.exec "killall Preferences; sleep 0.2; sbopenurl 'prefs:root=Cydia&path=TypeStatus'"
+else
+	install.exec spring
+endif
