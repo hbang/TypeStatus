@@ -56,18 +56,20 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		return nameCache[handle];
 	} else {
 		NSString *name = handle;
+		CKEntity *entity = nil;
 
 		if (%c(CKIMEntity)) { // 6.x
-			CKIMEntity *entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
-
-			if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
-				name = entity.handle._displayNameWithAbbreviation ?: entity.name;
-			} else { // 6.x
-				name = entity.name;
-			}
+			entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
 		} else if (%c(CKMadridService)) { // 5.x
 			CKMadridService *service = [[[%c(CKMadridService) alloc] init] autorelease];
-			CKMadridEntity *entity = [[service copyEntityForAddressString:handle] autorelease];
+			entity = [[service copyEntityForAddressString:handle] autorelease];
+		} else if (%c(CKEntity)) { // 7.x
+			entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
+		}
+
+		if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
+			name = entity.handle._displayNameWithAbbreviation ?: entity.name;
+		} else { // 6.x
 			name = entity.name;
 		}
 
