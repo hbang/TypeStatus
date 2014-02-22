@@ -9,9 +9,9 @@
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSSpringBoardReceivedMessageNotification object:nil userInfo:@{
-			@"Type": @(type),
-			@"Name": name ?: @"",
-			@"Typing": @(typing)
+			kHBTSMessageTypeKey: @(type),
+			kHBTSMessageSenderKey: name ?: @"",
+			kHBTSMessageIsTypingKey: @(typing)
 		}]];
 	});
 }

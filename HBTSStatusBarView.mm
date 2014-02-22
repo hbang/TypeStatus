@@ -188,6 +188,11 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 }
 
 - (void)showWithType:(HBTSStatusBarType)type name:(NSString *)name timeout:(NSTimeInterval)timeout {
+	if (type == HBTSStatusBarTypeTypingEnded) {
+		[self hide];
+		return;
+	}
+
 	_type = type;
 	_name = [name copy];
 

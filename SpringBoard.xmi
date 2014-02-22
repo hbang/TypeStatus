@@ -31,10 +31,10 @@ NSArray *messagesApps = @[ @"com.apple.MobileSMS", @"com.bitesms" ];
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
-			@"Type": @(type),
-			@"Name": name ?: @"",
-			@"Typing": @(typing),
-			@"Date": [NSDate date]
+			kHBTSMessageTypeKey: @(type),
+			kHBTSMessageSenderKey: name ?: @"",
+			kHBTSMessageIsTypingKey: @(typing),
+			kHBTSMessageSendDateKey: [NSDate date]
 		}]];
 	});
 }
@@ -90,10 +90,10 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
 
 		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-			switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[@"Type"]).intValue) {
+			switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue) {
 				case HBTSStatusBarTypeTyping:
 				{
-					BOOL isTesting = !((NSNumber *)notification.userInfo[@"Typing"]).boolValue;
+					BOOL isTesting = !((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
 					typingIndicators++;
 					isTyping = YES;
@@ -123,7 +123,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 					}
 
 					if (typingStatus) {
-						HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[@"Name"]), !isTesting);
+						HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), !isTesting);
 					}
 
 					break;
@@ -154,7 +154,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 						}
 
 						if (typingStatus) {
-							HBTSPostMessage(HBTSStatusBarTypeTyping, nil, NO);
+							HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
 						}
 					}
 
@@ -163,7 +163,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 				case HBTSStatusBarTypeRead:
 					if (readStatus && !HBTSShouldHide(NO)) {
-						HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[@"Name"]), NO);
+						HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), NO);
 					}
 
 					break;
