@@ -14,7 +14,7 @@
 ;
 
 static CGFloat const kHBTSStatusBarFontSize = IS_MODERN ? 12.f : 14.f;
-static NSTimeInterval const kHBTSStatusBarAnimationDuration = IS_MODERN ? 0.3 : 0.25;
+static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 static CGFloat const kHBTSStatusBarAnimationDamping = 1.f;
 static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
@@ -296,11 +296,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 			self.alpha = 0;
 		}
 
-		if (IS_MODERN) {
-			[UIView animateWithDuration:kHBTSStatusBarAnimationDuration delay:0 usingSpringWithDamping:kHBTSStatusBarAnimationDamping initialSpringVelocity:kHBTSStatusBarAnimationVelocity options:kNilOptions animations:animationBlock completion:completionBlock];
-		} else {
-			[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
-		}
+		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
 	} else {
 		if ([UIApplication sharedApplication].statusBarHidden && !IN_SPRINGBOARD) {
 			foregroundView.clipsToBounds = YES;
@@ -406,11 +402,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	}
 
 	if (![UIApplication sharedApplication].statusBarHidden && (_shouldSlide || _shouldFade)) {
-		if (IS_MODERN) {
-			[UIView animateWithDuration:kHBTSStatusBarAnimationDuration delay:0 usingSpringWithDamping:kHBTSStatusBarAnimationDamping initialSpringVelocity:kHBTSStatusBarAnimationVelocity options:kNilOptions animations:animationBlock completion:completionBlock];
-		} else {
-			[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
-		}
+		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
 	} else {
 		foregroundView.hidden = NO;
 		completionBlock(YES);
