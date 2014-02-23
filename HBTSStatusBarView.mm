@@ -172,11 +172,11 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	if (_isFirstTime || _previousType != _type || _previousStatusBarStyle != [UIApplication sharedApplication].statusBarStyle) {
 		switch (_type) {
 			case HBTSStatusBarTypeTyping:
-				_iconImageView.image = isWhite ? TypingImageWhite : TypingImage;
+				_iconImageView.image = isWhite && TypingImageWhite ? TypingImageWhite : TypingImage;
 				break;
 
 			case HBTSStatusBarTypeRead:
-				_iconImageView.image = isWhite ? ReadImageWhite : ReadImage;
+				_iconImageView.image = isWhite && ReadImageWhite ? ReadImageWhite : ReadImage;
 				break;
 
 			case HBTSStatusBarTypeTypingEnded:
