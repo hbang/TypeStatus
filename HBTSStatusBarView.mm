@@ -2,6 +2,7 @@
 #import "HBTSStatusBarView.h"
 #import <UIKit/UIApplication+Private.h>
 #import <UIKit/UIImage+Private.h>
+#import <UIKit/UIKitModernUI.h>
 #import <UIKit/UIStatusBar.h>
 #import <UIKit/UIStatusBarForegroundView.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
@@ -40,6 +41,8 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 @end
 
 @implementation HBTSStatusBarView
+
+#pragma mark - UIView
 
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
@@ -85,6 +88,27 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 	return self;
 }
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+
+	CGRect typeFrame = _typeLabel.frame;
+	typeFrame.size.width = [_typeLabel sizeThatFits:self.frame.size].width;
+	_typeLabel.frame = typeFrame;
+
+	CGRect labelFrame = _contactLabel.frame;
+	labelFrame.origin.x = typeFrame.origin.x + typeFrame.size.width + 4.f;
+	labelFrame.size.width = [_contactLabel sizeThatFits:self.frame.size].width;
+	_contactLabel.frame = labelFrame;
+
+	CGRect containerFrame = _containerView.frame;
+	containerFrame.size.width = labelFrame.origin.x + labelFrame.size.width;
+	_containerView.frame = containerFrame;
+
+	_containerView.center = CGPointMake(self.frame.size.width / 2, _containerView.center.y);
+}
+
+#pragma mark - Adapting UI
 
 - (void)_updateForCurrentStatusBarStyle {
 	static UIImage *TypingImage;
@@ -168,24 +192,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	_previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 }
 
-- (void)layoutSubviews {
-	[super layoutSubviews];
-
-	CGRect typeFrame = _typeLabel.frame;
-	typeFrame.size.width = [_typeLabel sizeThatFits:self.frame.size].width;
-	_typeLabel.frame = typeFrame;
-
-	CGRect labelFrame = _contactLabel.frame;
-	labelFrame.origin.x = typeFrame.origin.x + typeFrame.size.width + 4.f;
-	labelFrame.size.width = [_contactLabel sizeThatFits:self.frame.size].width;
-	_contactLabel.frame = labelFrame;
-
-	CGRect containerFrame = _containerView.frame;
-	containerFrame.size.width = labelFrame.origin.x + labelFrame.size.width;
-	_containerView.frame = containerFrame;
-
-	_containerView.center = CGPointMake(self.frame.size.width / 2, _containerView.center.y);
-}
+#pragma mark - Show/hide
 
 - (void)showWithType:(HBTSStatusBarType)type name:(NSString *)name timeout:(NSTimeInterval)timeout {
 	if (type == HBTSStatusBarTypeTypingEnded) {
@@ -284,7 +291,6 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		} else {
 			[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
 		}
-
 	} else {
 		if ([UIApplication sharedApplication].statusBarHidden && !IN_SPRINGBOARD) {
 			foregroundView.clipsToBounds = YES;
@@ -400,6 +406,8 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		completionBlock(YES);
 	}
 }
+
+#pragma mark - Memory management
 
 - (void)dealloc {
 	[_containerView release];
