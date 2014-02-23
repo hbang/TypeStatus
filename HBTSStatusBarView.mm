@@ -119,8 +119,18 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 	dispatch_once(&onceToken, ^{
 		if (IS_MODERN) {
-			TypingImage = [[[UIImage kitImageNamed:@"Black_TypeStatus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
-			ReadImage = [[[UIImage kitImageNamed:@"Black_TypeStatusRead"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
+			UIImage *typingImage = [[UIImage kitImageNamed:@"Black_TypeStatus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+			UIImage *readImage = [[UIImage kitImageNamed:@"Black_TypeStatusRead"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+			/*
+			if (_UIApplicationUsesLegacyUI()) {
+				typingImage = [self _whiteIconForLegacyUI:typingImage];
+				readImage = [self _whiteIconForLegacyUI:readImage];
+			}
+			*/
+
+			TypingImage = [typingImage retain];
+			ReadImage = [readImage retain];
 		} else {
 			TypingImage = [[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"] retain];
 			ReadImage = [[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatusRead"] retain];
@@ -406,6 +416,25 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		completionBlock(YES);
 	}
 }
+
+/*
+#pragma mark - Get white icon
+
+- (UIImage *)_whiteIconForLegacyUI:(UIImage *)image {
+	CGRect rect = (CGRect){ CGPointZero, image.size };
+
+	UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.f);
+
+	[[UIColor whiteColor] set];
+	UIRectFill(rect);
+	[image drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.f];
+
+	UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+
+	return result;
+}
+*/
 
 #pragma mark - Memory management
 
