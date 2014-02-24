@@ -1,7 +1,11 @@
 #include "../Global.xm"
 
 #import "HBTSRootListController.h"
+#import <Preferences/PSSpecifier.h>
 #include <notify.h>
+
+static NSString *const kHBTSTypingIconIdentifier = @"TypingIcon";
+static NSString *const kHBTSTypingStatusIdentifier = @"TypingStatus";
 
 @implementation HBTSRootListController
 
@@ -27,6 +31,23 @@
 	}
 
 	return _specifiers;
+}
+
+- (void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier {
+	PSSpecifier *otherSpecifier = nil;
+
+	if ([specifier.identifier isEqualToString:kHBTSTypingIconIdentifier]) {
+		otherSpecifier = [self specifierForID:kHBTSTypingStatusIdentifier];
+	} else if ([specifier.identifier isEqualToString:kHBTSTypingStatusIdentifier]) {
+		otherSpecifier = [self specifierForID:kHBTSTypingIconIdentifier];
+	}
+
+	if (otherSpecifier && ((NSNumber *)[self readPreferenceValue:otherSpecifier]).boolValue) {
+		[self setPreferenceValue:@NO specifier:otherSpecifier];
+		[self reloadSpecifier:otherSpecifier];
+	}
+
+	[super setPreferenceValue:value specifier:specifier];
 }
 
 #pragma mark - Callbacks
