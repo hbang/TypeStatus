@@ -18,7 +18,6 @@ NSUInteger typingIndicators = 0;
 LSStatusBarItem *statusBarItem;
 
 NSTimer *typingTimer;
-BOOL isTyping = NO;
 NSMutableDictionary *nameCache = [@{
 	@"example@hbang.ws": @"John Appleseed",
 	@"imast777@imast777.me": @"The Devil",
@@ -92,13 +91,40 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
 
 		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+			static void (^typingEnded)() = ^{
+				if (typingIndicators == 0) {
+					return;
+				}
+
+				typingIndicators--;
+
+				if (typingIndicators <= 0) {
+					typingIndicators = 0;
+				}
+
+				if (typingIndicators <= 0) {
+					if (statusBarItem) {
+						statusBarItem.visible = NO;
+					}
+
+					if (typingTimer) {
+						[typingTimer invalidate];
+						[typingTimer release];
+						typingTimer = nil;
+					}
+
+					if (typingStatus) {
+						HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
+					}
+				}
+			};
+
 			switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue) {
 				case HBTSStatusBarTypeTyping:
 				{
 					BOOL isTesting = !((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
 					typingIndicators++;
-					isTyping = YES;
 
 					if (HBTSShouldHide(YES)) {
 						return;
@@ -120,7 +146,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 						}
 
 						if (typingTimeout || isTesting) {
-							// typingTimer = [[NSTimer scheduledTimerWithTimeInterval:isTesting ? overlayDuration : kHBTSTypingTimeout target:message selector:@selector(typeStatus_typingEnded) userInfo:nil repeats:NO] retain];
+							dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((isTesting ? overlayDuration : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
 						}
 					}
 
@@ -133,33 +159,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 				case HBTSStatusBarTypeTypingEnded:
 				{
-					if (typingIndicators == 0) {
-						return;
-					}
-
-					typingIndicators--;
-
-					if (typingIndicators <= 0) {
-						typingIndicators = 0;
-						isTyping = NO;
-					}
-
-					if (!isTyping) {
-						if (statusBarItem) {
-							statusBarItem.visible = NO;
-						}
-
-						if (typingTimer) {
-							[typingTimer invalidate];
-							[typingTimer release];
-							typingTimer = nil;
-						}
-
-						if (typingStatus) {
-							HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
-						}
-					}
-
+					typingEnded();
 					break;
 				}
 
