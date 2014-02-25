@@ -25,12 +25,14 @@ static NSString *const kHBTSTypingStatusIdentifier = @"TypingStatus";
 
 #pragma mark - PSListController
 
-- (NSArray *)specifiers {
-	if (!_specifiers) {
+- (instancetype)init {
+	self = [super init];
+
+	if (self) {
 		_specifiers = [[self loadSpecifiersFromPlistName:@"Root" target:self] retain];
 	}
 
-	return _specifiers;
+	return self;
 }
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier {

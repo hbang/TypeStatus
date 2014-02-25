@@ -24,7 +24,7 @@
 			<key>action</key>
 			<string>hb_openWebsite</string>
 			<key>cell</key>
-			<string>PSTableCell</string>
+			<string>PSButtonCell</string>
 			<key>cellClass</key>
 			<string>HBTintedTableCell</string>
 			<key>label</key>
@@ -44,7 +44,7 @@
 			<key>action</key>
 			<string>hb_sendSupportEmail</string>
 			<key>cell</key>
-			<string>PSTableCell</string>
+			<string>PSButtonCell</string>
 			<key>cellClass</key>
 			<string>HBTintedTableCell</string>
 			<key>label</key>
@@ -64,7 +64,7 @@
 			<key>action</key>
 			<string>hb_openDonate</string>
 			<key>cell</key>
-			<string>PSTableCell</string>
+			<string>PSButtonCell</string>
 			<key>cellClass</key>
 			<string>HBTintedTableCell</string>
 			<key>label</key>

@@ -5,18 +5,20 @@
 
 #pragma mark - PSListController
 
-- (NSArray *)specifiers {
-	if (!_specifiers) {
+- (instancetype)init {
+	self = [super init];
+
+	if (self) {
 		_specifiers = [[self loadSpecifiersFromPlistName:@"About" target:self] retain];
 	}
 
-	return _specifiers;
+	return self;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 0 && indexPath.row == 0) {
+	if (indexPath.section == 0 && indexPath.row == 0 && [cell respondsToSelector:@selector(_setDrawsSeparatorAtTopOfSection:)]) {
 		cell._drawsSeparatorAtTopOfSection = NO;
 		cell._drawsSeparatorAtBottomOfSection = NO;
 	}
