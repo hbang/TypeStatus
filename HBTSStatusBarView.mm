@@ -149,9 +149,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 	if (IS_MODERN) {
 		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
-
 		textColor = MSHookIvar<UIColor *>(foregroundView.foregroundStyle, "_tintColor");
-		isWhite = !MSHookIvar<BOOL>(foregroundView.foregroundStyle, "_isTintColorBlack");
 	} else {
 		if (!IS_IOS_OR_NEWER(iOS_6_0) && !IS_IPAD && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
 			textColor = [UIColor blackColor];
@@ -328,7 +326,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 			self.alpha = _foregroundViewAlpha == 0 ? 1.f : _foregroundViewAlpha;
 		}
 
-		foregroundView.alpha = 0;
+		foregroundView.hidden = YES;
 		self.hidden = NO;
 		completionBlock(YES);
 	}
