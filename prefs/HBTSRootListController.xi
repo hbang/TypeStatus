@@ -2,10 +2,13 @@
 
 #import "HBTSRootListController.h"
 #import <Preferences/PSSpecifier.h>
+#import <version.h>
 #include <notify.h>
 
 static NSString *const kHBTSTypingIconIdentifier = @"TypingIcon";
 static NSString *const kHBTSTypingStatusIdentifier = @"TypingStatus";
+static NSString *const kHBTSOverlayDurationIdentifier = @"OverlayDuration";
+static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationLegacy";
 
 @implementation HBTSRootListController
 
@@ -29,7 +32,19 @@ static NSString *const kHBTSTypingStatusIdentifier = @"TypingStatus";
 	self = [super init];
 
 	if (self) {
-		_specifiers = [[self loadSpecifiersFromPlistName:@"Root" target:self] retain];
+		NSArray *oldSpecifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
+		NSMutableArray *specifiers = [[NSMutableArray alloc] init];
+
+		for (PSSpecifier *specifier in oldSpecifiers) {
+			if (([specifier.identifier isEqualToString:kHBTSOverlayDurationIdentifier] && IS_IOS_OR_OLDER(iOS_5_1))
+				|| ([specifier.identifier isEqualToString:kHBTSOverlayDurationLegacyIdentifier] && IS_IOS_OR_NEWER(iOS_6_0))) {
+				continue;
+			}
+
+			[specifiers addObject:specifier];
+		}
+
+		_specifiers = specifiers;
 	}
 
 	return self;

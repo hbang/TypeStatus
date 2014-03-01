@@ -142,6 +142,8 @@
 			<real>5</real>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>OverlayDuration</string>
 			<key>key</key>
 			<string>OverlayDuration</string>
 			<key>label</key>
@@ -154,6 +156,38 @@
 			<string>1 Second</string>
 			<key>PostNotification</key>
 			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<real>5</real>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>OverlayDurationLegacy</string>
+			<key>key</key>
+			<string>OverlayDuration</string>
+			<key>validTitles</key>
+			<array>
+				<string>3</string>
+				<string>5</string>
+				<string>8</string>
+				<string>10</string>
+				<string>15</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<real>3</real>
+				<real>5</real>
+				<real>8</real>
+				<real>10</real>
+				<real>15</real>
+			</array>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+			<key>staticTextMessage</key>
+			<string>iso6 pls</string>
 		</dict>
 		<dict>
 			<key>cell</key>
