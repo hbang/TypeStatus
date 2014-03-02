@@ -18,8 +18,6 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 #pragma mark - iMessage hooks
 
-%group JonyIveIsCool
-
 %hook IMDServiceSession
 
 - (void)didReceiveMessage:(FZMessage *)message forChat:(id)chat style:(unsigned char)style {
@@ -32,43 +30,20 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	}
 }
 
+%group JonyIveIsCool
+
 - (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID date:(NSDate *)date completionBlock:(id)completion {
 	%orig;
-
-	FZMessage *message = [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID];
-	HBTSPostMessage(HBTSStatusBarTypeRead, message.handle, NO);
+	HBTSPostMessage(HBTSStatusBarTypeRead, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
 }
-
-%end
 
 %end
 
 %group ForstallForTheWin
 
-%hook IMDaemonListener
-
-- (void)account:(id)account chat:(id)chat style:(unsigned char)style chatProperties:(id)properties messageReceived:(FZMessage *)message {
+- (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID {
 	%orig;
-
-	if (message.flags == FZMessageFlagsTypingBegan) {
-		HBTSPostMessage(HBTSStatusBarTypeTyping, message.handle, YES);
-	} else {
-		HBTSPostMessage(HBTSStatusBarTypeTypingEnded, message.handle, NO);
-	}
-}
-
-%end
-
-%hook FZMessage
-
-// todo: make this less hacky
-
-- (void)setTimeRead:(NSDate *)timeRead {
-	%orig;
-
-	if (!self.sender && [[NSDate date] timeIntervalSinceDate:self.timeRead] < 1) {
-		HBTSPostMessage(HBTSStatusBarTypeRead, self.handle, NO);
-	}
+	HBTSPostMessage(HBTSStatusBarTypeRead, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
 }
 
 %end
