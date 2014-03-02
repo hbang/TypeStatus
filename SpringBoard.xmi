@@ -145,9 +145,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 							typingTimer = nil;
 						}
 
-						if (typingTimeout || isTesting) {
-							dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((isTesting ? overlayDuration : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
-						}
+						dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((typingTimeout || isTesting ? overlayDuration : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
 					}
 
 					if (typingStatus) {
