@@ -10,8 +10,8 @@
 #import <ChatKit/CKMadridService.h>
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
+#import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBUserAgent.h>
-#include <notify.h>
 #import <version.h>
 
 NSUInteger typingIndicators = 0;
@@ -42,7 +42,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 BOOL HBTSShouldHide(BOOL typing) {
 	if (typing ? typingHideInMessages : readHideInMessages) {
-		return [messagesApps containsObject:((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID];
+		return !((SpringBoard *)[UIApplication sharedApplication]).isLocked && [messagesApps containsObject:((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID];
 	}
 
 	return NO;
@@ -158,10 +158,8 @@ NSString *HBTSNameForHandle(NSString *handle) {
 				}
 
 				case HBTSStatusBarTypeTypingEnded:
-				{
 					typingEnded();
 					break;
-				}
 
 				case HBTSStatusBarTypeRead:
 					if (readStatus && !HBTSShouldHide(NO)) {

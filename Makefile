@@ -8,6 +8,7 @@ THEOS_BUILD_DIR = debs
 TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
 
 TypeStatus_FILES = SpringBoard.xmi
+TypeStatus_FRAMEWORKS = UIKit
 TypeStatus_CFLAGS = -Qunused-arguments
 TypeStatus_LDFLAGS = -fobjc-arc
 
