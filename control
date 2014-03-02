@@ -1,8 +1,8 @@
 Package: ws.hbang.typestatus
 Name: TypeStatus
 Pre-Depends: firmware (>= 5.0)
-Depends: mobilesubstrate, libstatusbar, preferenceloader, ws.hbang.common
-Version: 1.1.1~beta4
+Depends: mobilesubstrate, libstatusbar, preferenceloader, ws.hbang.common (>> 1.0)
+Version: 1.1.1~beta5
 Architecture: iphoneos-arm
 Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <support@hbang.ws>
