@@ -57,11 +57,11 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		NSString *name = handle;
 		CKEntity *entity = nil;
 
-		if (%c(CKIMEntity)) { // 6.x
-			entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
-		} else if (%c(CKMadridService)) { // 5.x
+		if (%c(CKMadridService)) { // 5.x
 			CKMadridService *service = [[[%c(CKMadridService) alloc] init] autorelease];
 			entity = [[service copyEntityForAddressString:handle] autorelease];
+		} else if (%c(CKIMEntity)) { // 6.x
+			entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
 		} else if (%c(CKEntity)) { // 7.x
 			entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
 		}
