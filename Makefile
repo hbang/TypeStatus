@@ -34,6 +34,7 @@ SpringBoard.xmi: Global.xm
 after-stage::
 	mkdir -p $(THEOS_STAGING_DIR)/DEBIAN
 	cp postinst $(THEOS_STAGING_DIR)/DEBIAN
+	cp postinst $(THEOS_STAGING_DIR)/DEBIAN/postrm
 
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 	cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
