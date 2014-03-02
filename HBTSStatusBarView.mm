@@ -157,13 +157,9 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 			shadowOffset = CGSizeMake(0, 1.f);
 			isWhite = YES;
 		} else {
-			if (IS_MODERN) {
-				textColor = [UIColor blackColor];
-			} else {
-				textColor = [UIColor whiteColor];
-				shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
-				shadowOffset = CGSizeMake(0, -1.f);
-			}
+			textColor = [UIColor whiteColor];
+			shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
+			shadowOffset = CGSizeMake(0, -1.f);
 		}
 	}
 
