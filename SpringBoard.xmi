@@ -67,7 +67,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		}
 
 		if (([entity respondsToSelector:@selector(foundABNameForSender)] && !entity.foundABNameForSender) // 5.x/6.x
-			|| !entity.handle.isBuddy) { // 7.x
+			|| !entity.handle.person) { // 7.x
 			return handle;
 		}
 
