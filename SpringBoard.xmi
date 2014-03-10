@@ -66,17 +66,22 @@ NSString *HBTSNameForHandle(NSString *handle) {
 			entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
 		}
 
+		if (([entity respondsToSelector:@selector(foundABNameForSender)] && !entity.foundABNameForSender) // 5.x/6.x
+			|| !entity.handle.isBuddy) { // 7.x
+			return handle;
+		}
+
 		if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
 			name = entity.handle._displayNameWithAbbreviation ?: entity.name;
 		} else { // 6.x
 			name = entity.name;
 		}
 
-		if (name && ![name isEqualToString:handle]) {
+		if (name) {
 			nameCache[handle] = [name copy];
 		}
 
-		return nameCache[handle] ?: handle;
+		return nameCache[handle];
 	}
 }
 
