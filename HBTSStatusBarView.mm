@@ -65,13 +65,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		_iconImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[_containerView addSubview:_iconImageView];
 
-		CGFloat top = -1.f;
-
-		if (IS_MODERN) {
-			top = 0;
-		} else if (IS_RETINA) {
-			top = -0.5f;
-		}
+		CGFloat top = IS_RETINA ? -0.5f : -1.f;
 
 		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, top, 0, self.frame.size.height)];
 		_typeLabel.font = [UIFont boldSystemFontOfSize:kHBTSStatusBarFontSize];
