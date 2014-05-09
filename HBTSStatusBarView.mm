@@ -29,12 +29,9 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	NSTimer *_timer;
 	HBTSStatusBarType _type;
 
-	UIStatusBarStyle _previousStatusBarStyle;
-	HBTSStatusBarType _previousType;
 
 	CGFloat _foregroundViewAlpha;
 	CGFloat _statusBarHeight;
-	BOOL _isFirstTime;
 	BOOL _statusBarWasHidden;
 }
 
@@ -157,19 +154,17 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		}
 	}
 
-	if (_isFirstTime || _previousType != _type || _previousStatusBarStyle != [UIApplication sharedApplication].statusBarStyle) {
-		switch (_type) {
-			case HBTSStatusBarTypeTyping:
-				_iconImageView.image = isWhite && TypingImageWhite ? TypingImageWhite : TypingImage;
-				break;
+	switch (_type) {
+		case HBTSStatusBarTypeTyping:
+			_iconImageView.image = isWhite && TypingImageWhite ? TypingImageWhite : TypingImage;
+			break;
 
-			case HBTSStatusBarTypeRead:
-				_iconImageView.image = isWhite && ReadImageWhite ? ReadImageWhite : ReadImage;
-				break;
+		case HBTSStatusBarTypeRead:
+			_iconImageView.image = isWhite && ReadImageWhite ? ReadImageWhite : ReadImage;
+			break;
 
-			case HBTSStatusBarTypeTypingEnded:
-				break;
-		}
+		case HBTSStatusBarTypeTypingEnded:
+			break;
 	}
 
 	_typeLabel.textColor = textColor;
@@ -185,8 +180,6 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		_contactLabel.shadowOffset = shadowOffset;
 	}
 
-	_isFirstTime = NO;
-	_previousType = _type;
 	_previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 }
 
