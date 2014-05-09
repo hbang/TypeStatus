@@ -192,7 +192,6 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	}
 
 	_type = type;
-	_name = [name copy];
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
@@ -207,7 +206,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 			break;
 	}
 
-	_contactLabel.text = _name;
+	_contactLabel.text = name;
 
 	[self _updateForCurrentStatusBarStyle];
 	[self layoutSubviews];
