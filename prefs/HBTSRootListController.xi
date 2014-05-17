@@ -10,7 +10,9 @@ static NSString *const kHBTSTypingStatusIdentifier = @"TypingStatus";
 static NSString *const kHBTSOverlayDurationIdentifier = @"OverlayDuration";
 static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationLegacy";
 
-@implementation HBTSRootListController
+@implementation HBTSRootListController {
+	BOOL _isFlippingStuff;
+}
 
 #pragma mark - Constants
 
@@ -50,21 +52,25 @@ static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationL
 	return self;
 }
 
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier {
-	PSSpecifier *otherSpecifier = nil;
-
-	if ([specifier.identifier isEqualToString:kHBTSTypingIconIdentifier]) {
-		otherSpecifier = [self specifierForID:kHBTSTypingStatusIdentifier];
-	} else if ([specifier.identifier isEqualToString:kHBTSTypingStatusIdentifier]) {
-		otherSpecifier = [self specifierForID:kHBTSTypingIconIdentifier];
-	}
-
-	if (otherSpecifier && ((NSNumber *)[self readPreferenceValue:otherSpecifier]).boolValue) {
-		[self setPreferenceValue:@NO specifier:otherSpecifier];
-		[self reloadSpecifier:otherSpecifier];
-	}
-
+- (void)setPreferenceValue:(NSNumber *)value specifier:(PSSpecifier *)specifier {
 	[super setPreferenceValue:value specifier:specifier];
+
+	if (!_isFlippingStuff) {
+		PSSpecifier *otherSpecifier = nil;
+
+		if ([specifier.identifier isEqualToString:kHBTSTypingIconIdentifier]) {
+			otherSpecifier = [self specifierForID:kHBTSTypingStatusIdentifier];
+		} else if ([specifier.identifier isEqualToString:kHBTSTypingStatusIdentifier]) {
+			otherSpecifier = [self specifierForID:kHBTSTypingIconIdentifier];
+		}
+
+		if (otherSpecifier && value.boolValue && ((NSNumber *)[self readPreferenceValue:otherSpecifier]).boolValue) {
+			_isFlippingStuff = YES;
+			[super setPreferenceValue:@(!value.boolValue) specifier:otherSpecifier];
+			[self reloadSpecifier:otherSpecifier];
+			_isFlippingStuff = NO;
+		}
+	}
 }
 
 #pragma mark - Callbacks
