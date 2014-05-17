@@ -1,0 +1,11 @@
+"About" = "Πληροφορίες";
+"Disables all indicators while Messages or biteSMS is open." = "Απενεργοποιείστε όλες τις ενδείξεις, ενώ η εφαρμογή μηνυμάτων ή η εφαρμογή BiteSMS ειναι ανοιχτή.";
+"Fade" = "Ξεθώρισμα";
+"Overlay Animation" = "Κάλυψη γραμμής κατάστασης";
+"Overlay Display Duration" = "Διάρκεια κάλυψης γραμμής κατάστασης";
+"Read Receipt" = "Διαβάστηκε";
+"Read:" = "Διαβάστηκε:";
+"Slide" = "Ολίσθηση";
+"Typing" = "Πληκτρολογεί";
+"Typing:" = "Πληκτρολογεί:";
+"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.\nThe delay can be set with the Overlay Display Duration setting below." = "Η επιλογή Κάλυψη γραμμής κατάστασης εμφανίζει στην γραμμή κατάστασης το όνομα της επαφής που στέλνει το μήνυμα.\n Η επιλογή Απόκρυψη μέσα στην εφαρμογή μηνυμάτων απενεργοποιεί όλες τις ενδείξεις οταν το Bite SMS ή η εφαρμογή μηνυμάτων είναι ανοιχτή\nTο χρόνος μπορεί να ρυθμιστεί χρησιμοποιώντας την επιλογή \"Διάρκεια κάλυψης γραμμής κατάστασης\" του slider παρακάτω.";

@@ -1,0 +1,32 @@
+/* Sharing text */
+"Check out #TypeStatus by HASHBANG Productions!" = "Check out #TypeStatus by HASHBANG Productions!";
+
+/* Overlay strings */
+"Read:" = "تمت القراءة:";
+"Typing:" = "جاري الكتابة:";
+
+"Typing" = "عند الكتابة";
+"Read Receipt" = "عند القراءة";
+
+"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.\nThe delay can be set with the “Overlay Display Duration” setting below." = "\"الغطاء في شريط الحالة العلوي\" يظهر غطاء في شريط الحالة العلوي لفترة وجيزة مع اسم الشخص الذي تسبب في هذا الإشعار.\n\"إخفاء محتوى الرسالة\" يتم اخفاء جميع المؤشرات في حين برنامج الرسائل او biteSMS مفتوح.\nتستطيع تعيين التأخير مع \"مدة عرض الغطاء\" من خلال شريط التمرير أدناه.";
+
+"Overlay Display Duration" = "مدة عرض الغطاء";
+
+"Overlay Animation" = "تأثيرات عند ظهور الغطاء";
+"Slide" = "Slide";
+"Fade" = "Fade";
+
+"About" = "حول";
+
+/* For future features */
+"Overlay Gestures" = "إيماءات للغطاء";
+
+"Single Tap" = "ضغطة واحدة";
+"Double Tap" = "ضغطتين";
+"Swipe Left" = "السحب لليسار";
+"Swipe Right" = "السحب لليمين";
+
+"No Action" = "بدون حركة";
+"Dismiss" = "رفض";
+"Open biteSMS" = "فتح من خلال biteSMS";
+"Open Messages" = "فتح من خلال الرسائل";

@@ -7,127 +7,34 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Typing</string>
-			<key>footerText</key>
-			<string>The delay can be set with the “Overlay Display Duration” slider below.</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>id</key>
-			<string>TypingIcon</string>
-			<key>key</key>
-			<string>TypingIcon</string>
-			<key>label</key>
-			<string>Status Bar Icon</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>id</key>
-			<string>TypingStatus</string>
-			<key>key</key>
-			<string>TypingStatus</string>
-			<key>label</key>
-			<string>Status Bar Overlay</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>TypingTimeout</string>
-			<key>label</key>
-			<string>Hide Text After Delay</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>HideInMessages</string>
-			<key>label</key>
-			<string>Hide Inside Messages</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>testTypingStatus</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>cellClass</key>
-			<string>HBTintedTableCell</string>
-			<key>label</key>
-			<string>Test Typing</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
 			<key>footerText</key>
 			<string>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.</string>
-			<key>label</key>
-			<string>Read</string>
+“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
+The delay can be set with the “Overlay Display Duration” setting below.</string>
 		</dict>
 		<dict>
 			<key>cell</key>
-			<string>PSSwitchCell</string>
+			<string>PSLinkCell</string>
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>ReadStatus</string>
+			<key>detail</key>
+			<string>HBTSTypingListController</string>
 			<key>label</key>
-			<string>Status Bar Overlay</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
+			<string>Typing</string>
 		</dict>
 		<dict>
 			<key>cell</key>
-			<string>PSSwitchCell</string>
+			<string>PSLinkCell</string>
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>ReadHideInMessages</string>
+			<key>detail</key>
+			<string>HBTSReadListController</string>
 			<key>label</key>
-			<string>Hide Inside Messages</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>testReadStatus</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>cellClass</key>
-			<string>HBTintedTableCell</string>
-			<key>label</key>
-			<string>Test Read</string>
+			<string>Read Receipt</string>
 		</dict>
 		<dict>
 			<key>cell</key>

@@ -1,0 +1,33 @@
+/* Sharing text */
+"Check out #TypeStatus by HASHBANG Productions!" = "Dai un'occhiata a #TypeStatus di HASHBANG Productions!";
+
+/* Overlay strings */
+"Read:" = "Letto:";
+"Typing:" = "Scrivendo:";
+
+/* Settings */
+"Typing" = "Scrittura";
+"Read Receipt" = "Lettura";
+
+"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.\nThe delay can be set with the “Overlay Display Duration” setting below." = "“Sovrapposizione Barra Di Stato” mostra in breve il nome della persona che ha causato la notifica sulla barra di stato.\n“Nascondi In Messaggi” disabilita tutti gli indicatori quando Messaggi o biteSMS sono aperti.\nIl ritardo può essere configurato con lo slider “Durata Sovrapposizione” in basso.";
+
+"Overlay Display Duration" = "Durata Sovrapposizione";
+
+"Overlay Animation" = "Animazione Sovrapposizione";
+"Slide" = "Scorrimento";
+"Fade" = "Dissolvenza";
+
+"About" = "Informazioni";
+
+/* For future features */
+"Overlay Gestures" = "Gesture Di Sovrapposizione";
+
+"Single Tap" = "Singolo Tap";
+"Double Tap" = "Doppio Tap";
+"Swipe Left" = "Swipe A Sinistra";
+"Swipe Right" = "Swipe A Destra";
+
+"No Action" = "Nessuna Azione";
+"Dismiss" = "Chiudi";
+"Open biteSMS" = "Apri biteSMS";
+"Open Messages" = "Apri Messaggi";
