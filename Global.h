@@ -33,7 +33,7 @@ NSBundle *prefsBundle;
 #endif
 
 #define IN_SPRINGBOARD (SPRINGBOARD || [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
-#define L18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"TypeStatus"])
+#define L18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"Root"])
 #define GET_BOOL(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).boolValue : default)
 #define GET_FLOAT(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).floatValue : default)
 
