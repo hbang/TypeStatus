@@ -334,25 +334,6 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	}
 }
 
-/*
-#pragma mark - Get white icon
-
-- (UIImage *)_whiteIconForLegacyUI:(UIImage *)image {
-	CGRect rect = (CGRect){ CGPointZero, image.size };
-
-	UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.f);
-
-	[[UIColor whiteColor] set];
-	UIRectFill(rect);
-	[image drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.f];
-
-	UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-
-	return result;
-}
-*/
-
 #pragma mark - Memory management
 
 - (void)dealloc {
