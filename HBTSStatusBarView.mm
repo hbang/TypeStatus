@@ -186,6 +186,10 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		return;
 	}
 
+	if ([UIApplication sharedApplication].statusBarHidden) {
+		return;
+	}
+
 	_type = type;
 
 	switch (type) {
