@@ -225,6 +225,10 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 	if (IN_SPRINGBOARD) {
 		notify_post("ws.hbang.typestatus/OverlayWillShow");
+
+		if (UIAccessibilityIsVoiceOverRunning()) {
+		   UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", _typeLabel.text, _contactLabel.text]);
+		}
 	}
 
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
