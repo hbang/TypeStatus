@@ -66,8 +66,8 @@ NSString *HBTSNameForHandle(NSString *handle) {
 			entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
 		}
 
-		if (([entity respondsToSelector:@selector(foundABNameForSender)] && !entity.foundABNameForSender) // 5.x/6.x
-			|| !entity.handle.person) { // 7.x
+		if ([entity.name isEqualToString:handle] // 5.x/6.x
+			|| ([entity respondsToSelector:@selector(handle)] && !entity.handle.person)) { // 7.x
 			return handle;
 		}
 
