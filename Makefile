@@ -3,8 +3,6 @@ TARGET = :clang::5.0
 
 include theos/makefiles/common.mk
 
-THEOS_BUILD_DIR = debs
-
 TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
 
 TypeStatus_FILES = SpringBoard.xmi

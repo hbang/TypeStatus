@@ -1,4 +1,4 @@
-#import <libhbangcommon/HBListController.h>
+#import <libhbangcommon/prefs/HBListController.h>
 
 @interface HBTSTypingListController : HBListController
 
