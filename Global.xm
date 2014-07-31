@@ -8,15 +8,6 @@
 #pragma mark - Preferences management
 
 void HBTSLoadPrefs() {
-	/*
-	 AccessibilityUIServer is an xpc service which unfortunately calls
-	 UIApplicationMain() and thus UIApplicationDidFinishLaunchingNotification
-	 is sent. as it has no status bar UI it just crashes out constantly...
-	*/
-	if ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"]) {
-		return;
-	}
-
 	NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/ws.hbang.typestatus.plist"];
 
 #if SPRINGBOARD || IMAGENT
