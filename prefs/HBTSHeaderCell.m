@@ -42,8 +42,4 @@ static CGFloat const kHBTSHeaderCellFontSize = 25.f;
 	return self;
 }
 
-- (CGFloat)preferredHeightForWidth:(CGFloat)width {
-	return [@"" sizeWithFont:[UIFont systemFontOfSize:kHBTSHeaderCellFontSize]].height;
-}
-
 @end
