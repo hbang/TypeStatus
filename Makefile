@@ -39,10 +39,6 @@ after-stage::
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 	cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 
-ifeq ($(SHIPIT),1)
-	find $(THEOS_STAGING_DIR) -iname \*.plist -exec plutil -convert binary1 {} \;
-endif
-
 after-install::
 ifeq ($(RESPRING),0)
 	install.exec "killall Preferences; sleep 0.2; sbopenurl 'prefs:root=Cydia&path=TypeStatus'"
