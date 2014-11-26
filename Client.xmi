@@ -10,8 +10,6 @@
 %ctor {
 	prefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
 
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSLoadPrefs, CFSTR("ws.hbang.typestatus/ReloadPrefs"), NULL, 0);
-
 	[[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
@@ -23,16 +21,15 @@
 		overlayView = [[HBTSStatusBarView alloc] initWithFrame:foregroundView.frame];
 		[[UIApplication sharedApplication].statusBar addSubview:overlayView];
 
-		HBTSLoadPrefs();
-
 		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSClientSetStatusBarNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 			BOOL typing = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
+			NSTimeInterval duration = typing && ![userDefaults boolForKey:kHBTSPreferencesTypingTimeoutKey] ? kHBTSTypingTimeout : [userDefaults doubleForKey:kHBTSPreferencesOverlayDurationKey];
 
-			if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > (typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration)) {
+			if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > duration) {
 				return;
 			}
 
-			[overlayView showWithType:(HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue name:notification.userInfo[kHBTSMessageSenderKey] timeout:typing && !typingTimeout ? kHBTSTypingTimeout : overlayDuration];
+			[overlayView showWithType:(HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue name:notification.userInfo[kHBTSMessageSenderKey] timeout:duration];
 		}];
 	}];
 }

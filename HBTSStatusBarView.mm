@@ -227,7 +227,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		notify_post("ws.hbang.typestatus/OverlayWillShow");
 
 		if (UIAccessibilityIsVoiceOverRunning()) {
-		   UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", _typeLabel.text, _contactLabel.text]);
+			UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", _typeLabel.text, _contactLabel.text]);
 		}
 	}
 
@@ -245,7 +245,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	self.frame = foregroundView.frame;
 
 	void (^animationBlock)() = ^{
-		if (_shouldSlide) {
+		if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]) {
 			CGRect frame = self.frame;
 			frame.origin.y = 0;
 			self.frame = frame;
@@ -260,7 +260,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 		self.alpha = _foregroundViewAlpha;
 
-		if (_shouldFade) {
+		if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]) {
 			foregroundView.alpha = 0;
 		}
 	};
@@ -270,9 +270,9 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		_timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
 	};
 
-	if (_shouldSlide || _shouldFade) {
+	if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey] || [userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]) {
 		CGRect frame = foregroundView.frame;
-		frame.origin.y = _shouldSlide ? -_statusBarHeight : 0;
+		frame.origin.y = [userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey] ? -_statusBarHeight : 0;
 		self.frame = frame;
 
 		if (_shouldFade) {
@@ -301,7 +301,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
 	void (^animationBlock)() = ^{
-		if (_shouldSlide) {
+		if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]) {
 			CGRect frame = self.frame;
 			frame.origin.y = -_statusBarHeight;
 			self.frame = frame;
@@ -334,7 +334,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		}
 	};
 
-	if (_shouldSlide || _shouldFade) {
+	if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey] || [userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]) {
 		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
 	} else {
 		foregroundView.hidden = NO;

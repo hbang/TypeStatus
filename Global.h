@@ -26,16 +26,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing);
 void HBTSTypingEnded();
 #endif
 
-NSBundle *prefsBundle;
-
-#ifdef IN_SPRINGBOARD
-#undef IN_SPRINGBOARD
-#endif
-
-#define IN_SPRINGBOARD (SPRINGBOARD || [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.springboard"])
 #define L18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"Root"])
-#define GET_BOOL(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).boolValue : default)
-#define GET_FLOAT(key, default) (prefs[key] ? ((NSNumber *)prefs[key]).floatValue : default)
 
 #if !PREFERENCES
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
@@ -55,21 +46,23 @@ static NSString *const kHBTSMessageSendDateKey = @"Date";
 
 #pragma mark - Preferences
 
-BOOL firstLoad = YES;
-BOOL overlaySlide = YES;
-BOOL overlayFade = YES;
-CGFloat overlayDuration = 5.f;
-BOOL typingStatus = YES;
-BOOL typingTimeout = NO;
-BOOL readStatus = YES;
+static NSString *const kHBTSPreferencesDomain = @"ws.hbang.typestatus";
 
-#if SPRINGBOARD
-BOOL typingHideInMessages = YES;
-BOOL typingIcon = NO;
-BOOL readHideInMessages = YES;
-BOOL shouldUndim = YES;
-BOOL useBulletin = YES;
-#endif
+static NSString *const kHBTSPreferencesTypingStatusKey = @"TypingStatus";
+static NSString *const kHBTSPreferencesTypingIconKey = @"TypingIcon";
+static NSString *const kHBTSPreferencesTypingHideInMessagesKey = @"HideInMessages";
+static NSString *const kHBTSPreferencesTypingTimeoutKey = @"TypingTimeout";
+
+static NSString *const kHBTSPreferencesReadStatusKey = @"ReadStatus";
+static NSString *const kHBTSPreferencesReadHideInMessagesKey = @"HideReadInMessages";
+
+static NSString *const kHBTSPreferencesOverlayAnimationSlideKey = @"OverlaySlide";
+static NSString *const kHBTSPreferencesOverlayAnimationFadeKey = @"OverlayFade";
+static NSString *const kHBTSPreferencesOverlayDurationKey = @"OverlayDuration";
+
+NSBundle *prefsBundle;
+BOOL firstLoad = YES;
+NSUserDefaults *userDefaults;
 
 #if !SPRINGBOARD && !IMAGENT
 HBTSStatusBarView *overlayView;
