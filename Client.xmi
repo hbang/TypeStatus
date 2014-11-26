@@ -11,6 +11,11 @@
 	prefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
 
 	[[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+		if (![UIApplication sharedApplication].statusBar) {
+			NSLog(@"TypeStatus: uh oh. no status bar. bailing out.");
+			return;
+		}
+
 		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
 		if (!foregroundView) {
