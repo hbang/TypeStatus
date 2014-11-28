@@ -18,7 +18,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 static CGFloat const kHBTSStatusBarAnimationDamping = 1.f;
 static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
-@interface HBTSStatusBarView () {
+@implementation HBTSStatusBarView {
 	UIView *_containerView;
 	UILabel *_typeLabel;
 	UILabel *_contactLabel;
@@ -32,10 +32,6 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	CGFloat _foregroundViewAlpha;
 	CGFloat _statusBarHeight;
 }
-
-@end
-
-@implementation HBTSStatusBarView
 
 #pragma mark - UIView
 
