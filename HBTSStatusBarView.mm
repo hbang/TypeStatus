@@ -112,27 +112,19 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	static dispatch_once_t onceToken;
 
 	dispatch_once(&onceToken, ^{
+		NSBundle *uikitBundle = [NSBundle bundleForClass:UIView.class];
+
 		if (IS_MODERN) {
-			UIImage *typingImage = [[UIImage kitImageNamed:@"Black_TypeStatus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-			UIImage *readImage = [[UIImage kitImageNamed:@"Black_TypeStatusRead"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-
-			/*
-			if (_UIApplicationUsesLegacyUI()) {
-				typingImage = [self _whiteIconForLegacyUI:typingImage];
-				readImage = [self _whiteIconForLegacyUI:readImage];
-			}
-			*/
-
-			TypingImage = [typingImage retain];
-			ReadImage = [readImage retain];
+			TypingImage = [[[UIImage imageNamed:@"Black_TypeStatus" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
+			ReadImage = [[[UIImage imageNamed:@"Black_TypeStatusRead" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
 		} else {
-			TypingImage = [[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"] retain];
-			ReadImage = [[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatusRead"] retain];
+			TypingImage = [[UIImage imageNamed:@"WhiteOnBlackEtch_TypeStatus" inBundle:uikitBundle] retain];
+			ReadImage = [[UIImage imageNamed:@"WhiteOnBlackEtch_TypeStatusRead" inBundle:uikitBundle] retain];
 		}
 
 		if (IS_IOS_OR_OLDER(iOS_5_1) && !IS_IPAD) {
-			TypingImageWhite = [[UIImage kitImageNamed:@"ColorOnGrayShadow_TypeStatus"] retain];
-			ReadImageWhite = [[UIImage kitImageNamed:@"ColorOnGrayShadow_TypeStatusRead"] retain];
+			TypingImageWhite = [[UIImage imageNamed:@"ColorOnGrayShadow_TypeStatus" inBundle:uikitBundle] retain];
+			ReadImageWhite = [[UIImage imageNamed:@"ColorOnGrayShadow_TypeStatusRead" inBundle:uikitBundle] retain];
 		}
 	});
 
