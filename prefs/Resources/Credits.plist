@@ -76,6 +76,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>label</key>
+			<string>Chinese: zsm1703</string>
+			<key>user</key>
+			<string>zsm1703</string>
+			<key>showAvatar</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>label</key>
 			<string>French: Adam McNight</string>
 			<key>user</key>
 			<string>AdaMcNight</string>
