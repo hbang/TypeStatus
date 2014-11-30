@@ -23,7 +23,7 @@
 			return;
 		}
 
-		overlayView = [[HBTSStatusBarView alloc] initWithFrame:foregroundView.frame];
+		overlayView = [[HBTSStatusBarView alloc] initWithFrame:[UIApplication sharedApplication].statusBar.frame];
 		[[UIApplication sharedApplication].statusBar addSubview:overlayView];
 
 		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSClientSetStatusBarNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {

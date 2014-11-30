@@ -36,6 +36,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 #pragma mark - UIView
 
 - (instancetype)initWithFrame:(CGRect)frame {
+	frame.size.height = [UIStatusBar heightForStyle:UIStatusBarStyleDefault orientation:UIInterfaceOrientationPortrait];
 	self = [super initWithFrame:frame];
 
 	if (self) {
@@ -46,13 +47,13 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		_foregroundViewAlpha = 0;
 		_statusBarHeight = frame.size.height;
 
-		_containerView = [[UIView alloc] initWithFrame:self.frame];
+		_containerView = [[UIView alloc] initWithFrame:self.bounds];
 		_containerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 		[self addSubview:_containerView];
 
-		_iconImageView = [[[UIImageView alloc] initWithImage:[UIImage kitImageNamed:@"WhiteOnBlackEtch_TypeStatus"]] autorelease];
-		_iconImageView.center = CGPointMake(_iconImageView.center.x, self.frame.size.height / 2);
+		_iconImageView = [[[UIImageView alloc] init] autorelease];
 		_iconImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+		_iconImageView.center = CGPointMake(_iconImageView.center.x, self.frame.size.height / 2);
 		[_containerView addSubview:_iconImageView];
 
 		CGFloat top = 0;
@@ -61,13 +62,15 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 			top = IS_RETINA ? -0.5f : -1.f;
 		}
 
-		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_iconImageView.frame.size.width + 4.f, top, 0, self.frame.size.height)];
+		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, top, 0, self.frame.size.height)];
+		_typeLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		_typeLabel.font = [UIFont boldSystemFontOfSize:kHBTSStatusBarFontSize];
 		_typeLabel.backgroundColor = [UIColor clearColor];
 		_typeLabel.textColor = [UIColor whiteColor];
 		[_containerView addSubview:_typeLabel];
 
-		_contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, top, 0, self.frame.size.height)];
+		_contactLabel = [[UILabel alloc] initWithFrame:_typeLabel.frame];
+		_contactLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		_contactLabel.font = [UIFont systemFontOfSize:kHBTSStatusBarFontSize];
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
@@ -80,7 +83,10 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 - (void)layoutSubviews {
 	[super layoutSubviews];
 
+	[_iconImageView sizeToFit];
+
 	CGRect typeFrame = _typeLabel.frame;
+	typeFrame.origin.x = _iconImageView.frame.size.width + 4.f;
 	typeFrame.size.width = [_typeLabel sizeThatFits:self.frame.size].width;
 	_typeLabel.frame = typeFrame;
 
