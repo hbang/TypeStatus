@@ -17,7 +17,6 @@
 NSUInteger typingIndicators = 0;
 LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
-NSTimer *typingTimer;
 NSMutableDictionary *nameCache = [@{
 	@"example@hbang.ws": @"John Appleseed",
 	@"imast777@imast777.me": @"The Devil",
@@ -114,12 +113,6 @@ NSString *HBTSNameForHandle(NSString *handle) {
 						typingStatusBarItem.visible = NO;
 					}
 
-					if (typingTimer) {
-						[typingTimer invalidate];
-						[typingTimer release];
-						typingTimer = nil;
-					}
-
 					if ([userDefaults boolForKey:kHBTSPreferencesTypingStatusKey]) {
 						HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
 					}
@@ -134,7 +127,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 					typingIndicators++;
 
 					if (HBTSShouldHide(YES)) {
-						return;
+						break;
 					}
 
 					if ([userDefaults boolForKey:kHBTSPreferencesTypingIconKey]) {
@@ -145,12 +138,6 @@ NSString *HBTSNameForHandle(NSString *handle) {
 						});
 
 						typingStatusBarItem.visible = YES;
-
-						if (typingTimer) {
-							[typingTimer invalidate];
-							[typingTimer release];
-							typingTimer = nil;
-						}
 
 						dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(([userDefaults boolForKey:kHBTSPreferencesTypingTimeoutKey] || isTesting ? [userDefaults doubleForKey:kHBTSPreferencesOverlayDurationKey] : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
 					}

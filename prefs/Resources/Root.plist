@@ -61,8 +61,6 @@ The delay can be set with the “Overlay Display Duration” setting below.</str
 			<real>1</real>
 			<key>singularLabel</key>
 			<string>1 Second</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -91,8 +89,6 @@ The delay can be set with the “Overlay Display Duration” setting below.</str
 				<real>10</real>
 				<real>15</real>
 			</array>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
 			<key>staticTextMessage</key>
 			<string>iso6 pls</string>
 		</dict>
@@ -113,8 +109,6 @@ The delay can be set with the “Overlay Display Duration” setting below.</str
 			<string>OverlaySlide</string>
 			<key>label</key>
 			<string>Slide</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -127,8 +121,6 @@ The delay can be set with the “Overlay Display Duration” setting below.</str
 			<string>OverlayFade</string>
 			<key>label</key>
 			<string>Fade</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>
