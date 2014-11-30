@@ -16,7 +16,7 @@ static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationL
 }
 
 + (NSURL *)hb_shareURL {
-	return [NSURL URLWithString:@"http://hbang.ws/typestatus"];
+	return [NSURL URLWithString:@"https://typestatus.com"];
 }
 
 + (UIColor *)hb_tintColor {
