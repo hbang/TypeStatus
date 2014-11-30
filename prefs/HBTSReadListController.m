@@ -1,7 +1,13 @@
 #import "HBTSReadListController.h"
+#import <Preferences/PSSpecifier.h>
 #include <notify.h>
 
-@implementation HBTSReadListController
+static NSString *const kHBTSReadIconIdentifier = @"ReadIcon";
+static NSString *const kHBTSReadStatusIdentifier = @"ReadStatus";
+
+@implementation HBTSReadListController {
+	BOOL _isFlippingStuff;
+}
 
 #pragma mark - PSListController
 
@@ -13,6 +19,27 @@
 	}
 
 	return self;
+}
+
+- (void)setPreferenceValue:(NSNumber *)value specifier:(PSSpecifier *)specifier {
+	[super setPreferenceValue:value specifier:specifier];
+
+	if (!_isFlippingStuff) {
+		PSSpecifier *otherSpecifier = nil;
+
+		if ([specifier.identifier isEqualToString:kHBTSReadIconIdentifier]) {
+			otherSpecifier = [self specifierForID:kHBTSReadStatusIdentifier];
+		} else if ([specifier.identifier isEqualToString:kHBTSReadStatusIdentifier]) {
+			otherSpecifier = [self specifierForID:kHBTSReadIconIdentifier];
+		}
+
+		if (otherSpecifier && value.boolValue && ((NSNumber *)[self readPreferenceValue:otherSpecifier]).boolValue) {
+			_isFlippingStuff = YES;
+			[super setPreferenceValue:@(!value.boolValue) specifier:otherSpecifier];
+			[self reloadSpecifier:otherSpecifier];
+			_isFlippingStuff = NO;
+		}
+	}
 }
 
 #pragma mark - Callbacks

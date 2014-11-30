@@ -4,6 +4,8 @@
 <dict>
 	<key>Hide Inside Messages</key>
 	<string>信息程序内隐藏</string>
+	<key>Status Bar Icon</key>
+	<string>状态栏图标</string>
 	<key>Status Bar Overlay</key>
 	<string>状态栏覆盖</string>
 	<key>Test Read</key>

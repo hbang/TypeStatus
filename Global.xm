@@ -13,6 +13,7 @@
 		kHBTSPreferencesTypingTimeoutKey: @NO,
 
 		kHBTSPreferencesReadStatusKey: @YES,
+		kHBTSPreferencesReadIconKey: @NO,
 		kHBTSPreferencesReadHideInMessagesKey: @YES,
 
 		kHBTSPreferencesOverlayAnimationSlideKey: @YES,

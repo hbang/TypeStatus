@@ -54,6 +54,7 @@ static NSString *const kHBTSPreferencesTypingHideInMessagesKey = @"HideInMessage
 static NSString *const kHBTSPreferencesTypingTimeoutKey = @"TypingTimeout";
 
 static NSString *const kHBTSPreferencesReadStatusKey = @"ReadStatus";
+static NSString *const kHBTSPreferencesReadIconKey = @"ReadIcon";
 static NSString *const kHBTSPreferencesReadHideInMessagesKey = @"HideReadInMessages";
 
 static NSString *const kHBTSPreferencesOverlayAnimationSlideKey = @"OverlaySlide";

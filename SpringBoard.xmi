@@ -15,7 +15,7 @@
 #import <version.h>
 
 NSUInteger typingIndicators = 0;
-LSStatusBarItem *statusBarItem;
+LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
 NSTimer *typingTimer;
 NSMutableDictionary *nameCache = [@{
@@ -110,8 +110,8 @@ NSString *HBTSNameForHandle(NSString *handle) {
 				}
 
 				if (typingIndicators <= 0) {
-					if (statusBarItem) {
-						statusBarItem.visible = NO;
+					if (typingStatusBarItem) {
+						typingStatusBarItem.visible = NO;
 					}
 
 					if (typingTimer) {
@@ -140,11 +140,11 @@ NSString *HBTSNameForHandle(NSString *handle) {
 					if ([userDefaults boolForKey:kHBTSPreferencesTypingIconKey]) {
 						static dispatch_once_t onceToken;
 						dispatch_once(&onceToken, ^{
-							statusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
-							statusBarItem.imageName = @"TypeStatus";
+							typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
+							typingStatusBarItem.imageName = @"TypeStatus";
 						});
 
-						statusBarItem.visible = YES;
+						typingStatusBarItem.visible = YES;
 
 						if (typingTimer) {
 							[typingTimer invalidate];
@@ -167,11 +167,29 @@ NSString *HBTSNameForHandle(NSString *handle) {
 					break;
 
 				case HBTSStatusBarTypeRead:
-					if ([userDefaults boolForKey:kHBTSPreferencesReadStatusKey] && !HBTSShouldHide(NO)) {
+				{
+					if (HBTSShouldHide(NO)) {
+						break;
+					}
+
+					if ([userDefaults boolForKey:kHBTSPreferencesReadStatusKey]) {
 						HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), NO);
+					} else if ([userDefaults boolForKey:kHBTSPreferencesReadIconKey]) {
+						static dispatch_once_t onceToken;
+						dispatch_once(&onceToken, ^{
+							readStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
+							readStatusBarItem.imageName = @"TypeStatusRead";
+						});
+
+						readStatusBarItem.visible = YES;
+
+						dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([userDefaults doubleForKey:kHBTSPreferencesOverlayDurationKey] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+							readStatusBarItem.visible = NO;
+						});
 					}
 
 					break;
+				}
 			}
 		}];
 	}
