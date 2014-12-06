@@ -1,7 +1,5 @@
-#define SPRINGBOARD 1
-
-#include "Global.xm"
 #include <substrate.h>
+#import "Global.h"
 #import <AddressBook/AddressBook.h>
 #import <libstatusbar/LSStatusBarItem.h>
 #import <ChatKit/CKEntity.h>
@@ -14,6 +12,7 @@
 #import <SpringBoard/SBUserAgent.h>
 #import <version.h>
 
+NSUserDefaults *userDefaults;
 NSUInteger typingIndicators = 0;
 LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
@@ -21,8 +20,6 @@ NSMutableDictionary *nameCache = [@{
 	@"example@hbang.ws": @"John Appleseed",
 	@"imast777@imast777.me": @"The Devil",
 } mutableCopy];
-
-NSArray *messagesApps = @[ @"com.apple.MobileSMS", @"com.bitesms" ];
 
 #pragma mark - Communication with clients
 
@@ -32,7 +29,12 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 			kHBTSMessageTypeKey: @(type),
 			kHBTSMessageSenderKey: name ?: @"",
 			kHBTSMessageIsTypingKey: @(typing),
-			kHBTSMessageSendDateKey: [NSDate date]
+			kHBTSMessageSendDateKey: [NSDate date],
+
+			kHBTSPreferencesOverlayAnimationSlideKey: @([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]),
+			kHBTSPreferencesOverlayAnimationFadeKey: @([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]),
+			kHBTSPreferencesTypingTimeoutKey: @([userDefaults boolForKey:kHBTSPreferencesTypingTimeoutKey]),
+			kHBTSPreferencesOverlayDurationKey: @([userDefaults doubleForKey:kHBTSPreferencesOverlayDurationKey])
 		}]];
 	});
 }
@@ -113,9 +115,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 						typingStatusBarItem.visible = NO;
 					}
 
-					if ([userDefaults boolForKey:kHBTSPreferencesTypingStatusKey]) {
-						HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
-					}
+					HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
 				}
 			};
 
@@ -180,4 +180,22 @@ NSString *HBTSNameForHandle(NSString *handle) {
 			}
 		}];
 	}
+}
+
+%ctor {
+	userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kHBTSPreferencesDomain];
+	[userDefaults registerDefaults:@{
+		kHBTSPreferencesTypingStatusKey: @YES,
+		kHBTSPreferencesTypingIconKey: @NO,
+		kHBTSPreferencesTypingHideInMessagesKey: @YES,
+		kHBTSPreferencesTypingTimeoutKey: @NO,
+
+		kHBTSPreferencesReadStatusKey: @YES,
+		kHBTSPreferencesReadIconKey: @NO,
+		kHBTSPreferencesReadHideInMessagesKey: @YES,
+
+		kHBTSPreferencesOverlayAnimationSlideKey: @YES,
+		kHBTSPreferencesOverlayAnimationFadeKey: @YES,
+		kHBTSPreferencesOverlayDurationKey: @5.f
+	}];
 }

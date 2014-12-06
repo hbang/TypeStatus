@@ -1,33 +1,25 @@
-ARCHS = armv7
+ARCHS = armv7 arm64
 TARGET = :clang::5.0
 
 include theos/makefiles/common.mk
 
 TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
 
-TypeStatus_FILES = SpringBoard.xmi
+TypeStatus_FILES = SpringBoard.xm
 TypeStatus_FRAMEWORKS = UIKit
-TypeStatus_CFLAGS = -Qunused-arguments
 TypeStatus_LDFLAGS = -fobjc-arc
 
 TypeStatusRelay_FILES = IMAgentRelay.x
 TypeStatusRelay_LDFLAGS = -fobjc-arc
 
-TypeStatusClient_FILES = Client.xmi
+TypeStatusClient_FILES = Client.xm HBTSStatusBarView.mm
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
-TypeStatusClient_CFLAGS = -Qunused-arguments
 TypeStatusClient_LDFLAGS = -fobjc-arc
 
 SUBPROJECTS = prefs
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
-
-Client.xmi: Global.xm HBTSStatusBarView.mm
-	touch $@
-
-SpringBoard.xmi: Global.xm
-	touch $@
 
 after-stage::
 	mkdir -p $(THEOS_STAGING_DIR)/DEBIAN

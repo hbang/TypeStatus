@@ -9,14 +9,8 @@
 #import <version.h>
 #include <notify.h>
 
-#define IS_RETINA ([UIScreen mainScreen].scale > 1)
-#define IS_MODERN IS_IOS_OR_NEWER(iOS_7_0)
-;
-
-static CGFloat const kHBTSStatusBarFontSize = IS_MODERN ? 12.f : 14.f;
+static CGFloat const kHBTSStatusBarFontSize = IS_IOS_OR_NEWER(iOS_7_0) ? 12.f : 14.f;
 static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
-static CGFloat const kHBTSStatusBarAnimationDamping = 1.f;
-static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 @implementation HBTSStatusBarView {
 	UIView *_containerView;
@@ -58,8 +52,8 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 		CGFloat top = 0;
 
-		if (!IS_MODERN) {
-			top = IS_RETINA ? -0.5f : -1.f;
+		if (!IS_IOS_OR_NEWER(iOS_7_0)) {
+			top = [UIScreen mainScreen].scale > 1 ? -0.5f : -1.f;
 		}
 
 		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, top, 0, self.frame.size.height)];
@@ -114,7 +108,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	dispatch_once(&onceToken, ^{
 		NSBundle *uikitBundle = [NSBundle bundleForClass:UIView.class];
 
-		if (IS_MODERN) {
+		if (IS_IOS_OR_NEWER(iOS_7_0)) {
 			TypingImage = [[[UIImage imageNamed:@"Black_TypeStatus" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
 			ReadImage = [[[UIImage imageNamed:@"Black_TypeStatusRead" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
 		} else {
@@ -133,7 +127,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	CGSize shadowOffset;
 	BOOL isWhite = NO;
 
-	if (IS_MODERN) {
+	if (IS_IOS_OR_NEWER(iOS_7_0)) {
 		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 		textColor = MSHookIvar<UIColor *>(foregroundView.foregroundStyle, "_tintColor");
 	} else {
@@ -165,7 +159,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	_typeLabel.textColor = textColor;
 	_contactLabel.textColor = textColor;
 
-	if (IS_MODERN) {
+	if (IS_IOS_OR_NEWER(iOS_7_0)) {
 		_iconImageView.tintColor = textColor;
 	} else {
 		_typeLabel.shadowColor = shadowColor;
@@ -188,15 +182,21 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		return;
 	}
 
+	static NSBundle *PrefsBundle;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
+	});
+
 	_type = type;
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
-			_typeLabel.text = L18N(@"Typing:");
+			_typeLabel.text = [PrefsBundle localizedStringForKey:@"Typing:" value:@"Typing:" table:@"Root"];
 			break;
 
 		case HBTSStatusBarTypeRead:
-			_typeLabel.text = L18N(@"Read:");
+			_typeLabel.text = [PrefsBundle localizedStringForKey:@"Read:" value:@"Read:" table:@"Root"];
 			break;
 
 		case HBTSStatusBarTypeTypingEnded:
@@ -243,7 +243,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	self.frame = foregroundView.frame;
 
 	void (^animationBlock)() = ^{
-		if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]) {
+		if (_shouldSlide) {
 			CGRect frame = self.frame;
 			frame.origin.y = 0;
 			self.frame = frame;
@@ -258,7 +258,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 
 		self.alpha = _foregroundViewAlpha;
 
-		if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]) {
+		if (_shouldFade) {
 			foregroundView.alpha = 0;
 		}
 	};
@@ -268,9 +268,9 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		_timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
 	};
 
-	if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey] || [userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]) {
+	if (_shouldSlide || _shouldFade) {
 		CGRect frame = foregroundView.frame;
-		frame.origin.y = [userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey] ? -_statusBarHeight : 0;
+		frame.origin.y = _shouldSlide ? -_statusBarHeight : 0;
 		self.frame = frame;
 
 		if (_shouldFade) {
@@ -299,7 +299,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
 
 	void (^animationBlock)() = ^{
-		if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]) {
+		if (_shouldSlide) {
 			CGRect frame = self.frame;
 			frame.origin.y = -_statusBarHeight;
 			self.frame = frame;
@@ -332,7 +332,7 @@ static CGFloat const kHBTSStatusBarAnimationVelocity = 1.f;
 		}
 	};
 
-	if ([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey] || [userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]) {
+	if (_shouldSlide || _shouldFade) {
 		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
 	} else {
 		foregroundView.hidden = NO;

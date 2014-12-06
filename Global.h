@@ -1,34 +1,12 @@
 #ifndef _TYPESTATUS_GLOBAL_H
 #define _TYPESTATUS_GLOBAL_H
 
-@class HBTSStatusBarView;
-
-#ifndef SPRINGBOARD
-#define SPRINGBOARD 0
-#endif
-
-#ifndef IMAGENT
-#define IMAGENT 0
-#endif
-
-#ifndef PREFERENCES
-#define PREFERENCES 0
-#endif
-
 typedef enum {
 	HBTSStatusBarTypeTyping,
 	HBTSStatusBarTypeTypingEnded,
 	HBTSStatusBarTypeRead
 } HBTSStatusBarType;
 
-#if SPRINGBOARD
-void HBTSPostMessage(HBTSStatusBarType type, NSString *string, BOOL typing);
-void HBTSTypingEnded();
-#endif
-
-#define L18N(key) ([prefsBundle localizedStringForKey:key value:key table:@"Root"])
-
-#if !PREFERENCES
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
 /*
@@ -60,13 +38,4 @@ static NSString *const kHBTSPreferencesReadHideInMessagesKey = @"HideReadInMessa
 static NSString *const kHBTSPreferencesOverlayAnimationSlideKey = @"OverlaySlide";
 static NSString *const kHBTSPreferencesOverlayAnimationFadeKey = @"OverlayFade";
 static NSString *const kHBTSPreferencesOverlayDurationKey = @"OverlayDuration";
-
-NSBundle *prefsBundle;
-BOOL firstLoad = YES;
-NSUserDefaults *userDefaults;
-
-#if !SPRINGBOARD && !IMAGENT
-HBTSStatusBarView *overlayView;
-#endif
-#endif
 #endif
