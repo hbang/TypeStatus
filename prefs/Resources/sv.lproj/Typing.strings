@@ -1,5 +1,16 @@
-"Status Bar Icon" = "Status Bar Ikon";
-"Status Bar Overlay" = "Status Bar Överdrag";
-"Hide Inside Messages" = "Dölj inuti Meddelanden";
-"Hide Text After Delay" = "Dölj text efter fördröjning";
-"Test Typing" = "Test Skriver";
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Hide Inside Messages</key>
+	<string>Dölj inuti Meddelanden</string>
+	<key>Hide Text After Delay</key>
+	<string>Dölj text efter fördröjning</string>
+	<key>Status Bar Icon</key>
+	<string>Status Bar Ikon</string>
+	<key>Status Bar Overlay</key>
+	<string>Status Bar Överdrag</string>
+	<key>Test Typing</key>
+	<string>Test Skriver</string>
+</dict>
+</plist>

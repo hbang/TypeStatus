@@ -1,19 +1,48 @@
-"About" = "Om";
-"Check out #TypeStatus by HASHBANG Productions!" = "Kolla in #TypeStatus av HASHBANG Productions!";
-"Dismiss" = "Avfärda";
-"Double Tap" = "Dubbel Tryck";
-"Fade" = "Dimma";
-"No Action" = "Ingen Funktion";
-"Open biteSMS" = "Öppna biteSMS";
-"Open Messages" = "Öppna Meddelanden";
-"Overlay Animation" = "Överläggnings Animation";
-"Overlay Display Duration" = "Överläggnings Visningstid";
-"Overlay Gestures" = "Överlägg Gest";
-"Read Receipt" = "Läs";
-"Read:" = "Läs:";
-"Single Tap" = "Enkel Tryck";
-"Slide" = "Drag";
-"Tap Action" = "Tryck Funktion";
-"Typing" = "Skriver";
-"Typing:" = "Skriver:";
-"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.\nThe delay can be set with the “Overlay Display Duration” setting below." = "“Status Bar överläggning” överlägger statusbaren med namnet på den person som skickade noteringen.\n“Dölj inuti Meddelanden” stänger av alla indikationer medans Meddelanden eller biteSMS är öppen.\nFördröjningen kan sättas med “Överläggnings Vinsningstid” justering nedtill.";
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>About</key>
+	<string>Om</string>
+	<key>Check out #TypeStatus by HASHBANG Productions!</key>
+	<string>Kolla in #TypeStatus av HASHBANG Productions!</string>
+	<key>Dismiss</key>
+	<string>Avfärda</string>
+	<key>Double Tap</key>
+	<string>Dubbel Tryck</string>
+	<key>Fade</key>
+	<string>Dimma</string>
+	<key>No Action</key>
+	<string>Ingen Funktion</string>
+	<key>Open Messages</key>
+	<string>Öppna Meddelanden</string>
+	<key>Open biteSMS</key>
+	<string>Öppna biteSMS</string>
+	<key>Overlay Animation</key>
+	<string>Överläggnings Animation</string>
+	<key>Overlay Display Duration</key>
+	<string>Överläggnings Visningstid</string>
+	<key>Overlay Gestures</key>
+	<string>Överlägg Gest</string>
+	<key>Read Receipt</key>
+	<string>Läs</string>
+	<key>Read:</key>
+	<string>Läs:</string>
+	<key>Single Tap</key>
+	<string>Enkel Tryck</string>
+	<key>Slide</key>
+	<string>Drag</string>
+	<key>Tap Action</key>
+	<string>Tryck Funktion</string>
+	<key>Typing</key>
+	<string>Skriver</string>
+	<key>Typing:</key>
+	<string>Skriver:</string>
+	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
+“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
+The delay can be set with the “Overlay Display Duration” setting below.</key>
+	<string>“Status Bar överläggning” överlägger statusbaren med namnet på den person som skickade noteringen.
+“Dölj inuti Meddelanden” stänger av alla indikationer medans Meddelanden eller biteSMS är öppen.
+Fördröjningen kan sättas med “Överläggnings Vinsningstid” justering nedtill.</string>
+</dict>
+</plist>

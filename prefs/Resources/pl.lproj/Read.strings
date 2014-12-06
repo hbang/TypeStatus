@@ -1,4 +1,14 @@
-"Status Bar Icon" = "Ikona stanu na pasku";
-"Status Bar Overlay" = "Nakładka na pasek stanu";
-"Hide Inside Messages" = "Ukryj wewnątrz Wiadomości";
-"Test Read" = "Testuj odczytanie";
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Hide Inside Messages</key>
+	<string>Ukryj wewnątrz Wiadomości</string>
+	<key>Status Bar Icon</key>
+	<string>Ikona stanu na pasku</string>
+	<key>Status Bar Overlay</key>
+	<string>Nakładka na pasek stanu</string>
+	<key>Test Read</key>
+	<string>Testuj odczytanie</string>
+</dict>
+</plist>

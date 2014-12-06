@@ -1,4 +1,14 @@
-"Status Bar Icon" = "Εικονίδιο Status Bar";
-"Status Bar Overlay" = "Status Bar Overlay";
-"Hide Inside Messages" = "Απόκρυψη μέσα στην εφαρμογή των Μηνυμάτων";
-"Test Read" = "Δοκιμή επιλογής \"Διαβάστηκε\"";
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Hide Inside Messages</key>
+	<string>Απόκρυψη μέσα στην εφαρμογή των Μηνυμάτων</string>
+	<key>Status Bar Icon</key>
+	<string>Εικονίδιο Status Bar</string>
+	<key>Status Bar Overlay</key>
+	<string>Status Bar Overlay</string>
+	<key>Test Read</key>
+	<string>Δοκιμή επιλογής "Διαβάστηκε"</string>
+</dict>
+</plist>

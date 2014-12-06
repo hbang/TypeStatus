@@ -1,33 +1,50 @@
-/* Sharing text */
-"Check out #TypeStatus by HASHBANG Productions!" = "Dai un'occhiata a #TypeStatus di HASHBANG Productions!";
-
-/* Overlay strings */
-"Read:" = "Letto:";
-"Typing:" = "Scrivendo:";
-
-/* Settings */
-"Typing" = "Scrittura";
-"Read Receipt" = "Lettura";
-
-"“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.\n“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.\nThe delay can be set with the “Overlay Display Duration” setting below." = "“Sovrapposizione Barra Di Stato” mostra in breve il nome della persona che ha causato la notifica sulla barra di stato.\n“Nascondi In Messaggi” disabilita tutti gli indicatori quando Messaggi o biteSMS sono aperti.\nIl ritardo può essere configurato con lo slider “Durata Sovrapposizione” in basso.";
-
-"Overlay Display Duration" = "Durata Sovrapposizione";
-
-"Overlay Animation" = "Animazione Sovrapposizione";
-"Slide" = "Scorrimento";
-"Fade" = "Dissolvenza";
-
-"About" = "Informazioni";
-
-/* For future features */
-"Overlay Gestures" = "Gesture Di Sovrapposizione";
-
-"Single Tap" = "Singolo Tap";
-"Double Tap" = "Doppio Tap";
-"Swipe Left" = "Swipe A Sinistra";
-"Swipe Right" = "Swipe A Destra";
-
-"No Action" = "Nessuna Azione";
-"Dismiss" = "Chiudi";
-"Open biteSMS" = "Apri biteSMS";
-"Open Messages" = "Apri Messaggi";
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>About</key>
+	<string>Informazioni</string>
+	<key>Check out #TypeStatus by HASHBANG Productions!</key>
+	<string>Dai un'occhiata a #TypeStatus di HASHBANG Productions!</string>
+	<key>Dismiss</key>
+	<string>Chiudi</string>
+	<key>Double Tap</key>
+	<string>Doppio Tap</string>
+	<key>Fade</key>
+	<string>Dissolvenza</string>
+	<key>No Action</key>
+	<string>Nessuna Azione</string>
+	<key>Open Messages</key>
+	<string>Apri Messaggi</string>
+	<key>Open biteSMS</key>
+	<string>Apri biteSMS</string>
+	<key>Overlay Animation</key>
+	<string>Animazione Sovrapposizione</string>
+	<key>Overlay Display Duration</key>
+	<string>Durata Sovrapposizione</string>
+	<key>Overlay Gestures</key>
+	<string>Gesture Di Sovrapposizione</string>
+	<key>Read Receipt</key>
+	<string>Lettura</string>
+	<key>Read:</key>
+	<string>Letto:</string>
+	<key>Single Tap</key>
+	<string>Singolo Tap</string>
+	<key>Slide</key>
+	<string>Scorrimento</string>
+	<key>Swipe Left</key>
+	<string>Swipe A Sinistra</string>
+	<key>Swipe Right</key>
+	<string>Swipe A Destra</string>
+	<key>Typing</key>
+	<string>Scrittura</string>
+	<key>Typing:</key>
+	<string>Scrivendo:</string>
+	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
+“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
+The delay can be set with the “Overlay Display Duration” setting below.</key>
+	<string>“Sovrapposizione Barra Di Stato” mostra in breve il nome della persona che ha causato la notifica sulla barra di stato.
+“Nascondi In Messaggi” disabilita tutti gli indicatori quando Messaggi o biteSMS sono aperti.
+Il ritardo può essere configurato con lo slider “Durata Sovrapposizione” in basso.</string>
+</dict>
+</plist>

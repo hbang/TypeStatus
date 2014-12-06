@@ -1,8 +1,20 @@
-/* Credits page */
-"Lead Developer" = "Sviluppatore Capo";
-"Thank you to the following people for contributing to TypeStatus." = "Un ringraziamento alle seguenti persone per aver contribuito a TypeStatus.";
-"Idea" = "Idea";
-"Icons" = "Icone";
-"Being Awesome" = "Miti";
-"Translations" = "Traduzioni";
-"…and our beta testers and users. You guys rock!" = "…ed ai nostri beta tester ed utenti. Ragazzi, spaccate!";
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Being Awesome</key>
+	<string>Miti</string>
+	<key>Icons</key>
+	<string>Icone</string>
+	<key>Idea</key>
+	<string>Idea</string>
+	<key>Lead Developer</key>
+	<string>Sviluppatore Capo</string>
+	<key>Thank you to the following people for contributing to TypeStatus.</key>
+	<string>Un ringraziamento alle seguenti persone per aver contribuito a TypeStatus.</string>
+	<key>Translations</key>
+	<string>Traduzioni</string>
+	<key>…and our beta testers and users. You guys rock!</key>
+	<string>…ed ai nostri beta tester ed utenti. Ragazzi, spaccate!</string>
+</dict>
+</plist>
