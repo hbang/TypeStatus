@@ -16,11 +16,6 @@ NSUserDefaults *userDefaults;
 NSUInteger typingIndicators = 0;
 LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
-NSMutableDictionary *nameCache = [@{
-	@"example@hbang.ws": @"John Appleseed",
-	@"imast777@imast777.me": @"The Devil",
-} mutableCopy];
-
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
@@ -58,8 +53,8 @@ BOOL HBTSShouldHide(BOOL typing) {
 #pragma mark - Get contact name
 
 NSString *HBTSNameForHandle(NSString *handle) {
-	if (nameCache[handle]) {
-		return nameCache[handle];
+	if ([handle isEqualToString:@"example@hbang.ws"]) {
+		return @"John Appleseed";
 	} else {
 		NSString *name = handle;
 		CKEntity *entity = nil;
@@ -84,11 +79,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 			name = entity.name;
 		}
 
-		if (name) {
-			nameCache[handle] = [name copy];
-		}
-
-		return nameCache[handle];
+		return name;
 	}
 }
 
