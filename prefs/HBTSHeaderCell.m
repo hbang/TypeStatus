@@ -27,7 +27,7 @@ static CGFloat const kHBTSHeaderCellFontSize = 25.f;
 		[containerView addSubview:typeLabel];
 
 		UILabel *statusLabel = [[[UILabel alloc] init] autorelease];
-		statusLabel.text = @"Status 1.2";
+		statusLabel.text = @"Status 1.3";
 		statusLabel.backgroundColor = [UIColor clearColor];
 		statusLabel.font = [UIFont systemFontOfSize:kHBTSHeaderCellFontSize];
 		[containerView addSubview:statusLabel];
