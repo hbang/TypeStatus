@@ -1,5 +1,3 @@
-#include "../Global.xm"
-
 #import "HBTSRootListController.h"
 #import <Preferences/PSSpecifier.h>
 #import <version.h>
@@ -12,7 +10,7 @@ static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationL
 #pragma mark - Constants
 
 + (NSString *)hb_shareText {
-	return L18N(@"Check out #TypeStatus by HASHBANG Productions!");
+	return [[NSBundle bundleForClass:self.class] localizedStringForKey:@"Check out #TypeStatus by HASHBANG Productions!" value:@"Check out #TypeStatus by HASHBANG Productions!" table:@"Root"];
 }
 
 + (NSURL *)hb_shareURL {

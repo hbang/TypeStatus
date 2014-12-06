@@ -1,15 +1,13 @@
 TARGET = :clang::5.0
-ARCHS = armv7
 
 include theos/makefiles/common.mk
 
 BUNDLE_NAME = TypeStatus
-TypeStatus_FILES = $(wildcard *.xi) $(wildcard *.m)
+TypeStatus_FILES = $(wildcard *.x) $(wildcard *.m)
 TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
 TypeStatus_LIBRARIES = hbangprefs
-TypeStatus_CFLAGS = -Qunused-arguments
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

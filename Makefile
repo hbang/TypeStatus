@@ -1,4 +1,3 @@
-ARCHS = armv7 arm64
 TARGET = :clang::5.0
 
 include theos/makefiles/common.mk
