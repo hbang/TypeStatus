@@ -3,7 +3,7 @@ TARGET = :clang::5.0
 include theos/makefiles/common.mk
 
 BUNDLE_NAME = TypeStatus
-TypeStatus_FILES = $(wildcard *.x) $(wildcard *.m)
+TypeStatus_FILES = $(wildcard *.m)
 TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
