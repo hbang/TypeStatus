@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>About</key>
+	<string>O TypeStatus</string>
+	<key>Check out #TypeStatus by HASHBANG Productions!</key>
+	<string>Podívejte se na #TypeStatus od HASHBANG Productions!</string>
+	<key>Dismiss</key>
+	<string>Ignorovat</string>
+	<key>Double Tap</key>
+	<string>Dovjité kliknutí</string>
+	<key>Fade</key>
+	<string>Animace mizení</string>
+	<key>No Action</key>
+	<string>Bez akce</string>
+	<key>Open Messages</key>
+	<string>Otevřít aplikaci "Zprávy"</string>
+	<key>Open biteSMS</key>
+	<string>Otevřít aplikaci "biteSMS"</string>
+	<key>Overlay Animation</key>
+	<string>Animace overlaye</string>
+	<key>Overlay Display Duration</key>
+	<string>Trvání zobrazení overlaye</string>
+	<key>Overlay Gestures</key>
+	<string>Overlay gesta</string>
+	<key>Read Receipt</key>
+	<string>Přečíst</string>
+	<key>Read:</key>
+	<string>Přečteno:</string>
+	<key>Single Tap</key>
+	<string>Jedno kliknutí</string>
+	<key>Slide</key>
+	<string>Přejet</string>
+	<key>Swipe Left</key>
+	<string>Přejeďte doleva</string>
+	<key>Swipe Right</key>
+	<string>Přejeďte doprava</string>
+	<key>Typing</key>
+	<string>Píše</string>
+	<key>Typing:</key>
+	<string>Píše:</string>
+	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
+“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
+The delay can be set with the “Overlay Display Duration” setting below.</key>
+	<string>“Overlay Status Baru” Krátce překryje status bar s jménem osoby, která udělala oznámení.
+	“Nepoužívat uvnitř zpráv” Vypne všechny indikátory pokud jste v aplikacích "Zprávy" nebo "biteSMS".
+	Zpoždění je možné nastavit v “Zpoždění zobrazení overlaye” dole.</string>
+</dict>
+</plist>
