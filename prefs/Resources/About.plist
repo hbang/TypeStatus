@@ -5,16 +5,16 @@
 	<key>items</key>
 	<array>
 		<dict>
-			<key>footerAlignment</key>
-			<integer>1</integer>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>© 2013—2014, HASHBANG Productions</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSHeaderCell</string>
+			<key>condensed</key>
+			<true/>
+			<key>headerCellClass</key>
+			<string>HBPackageNameHeaderCell</string>
+			<key>icon</key>
+			<string>icon.png</string>
+			<key>packageIdentifier</key>
+			<string>ws.hbang.typestatus</string>
 		</dict>
 		<dict>
 			<key>cell</key>

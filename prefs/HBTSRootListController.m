@@ -9,6 +9,10 @@ static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationL
 
 #pragma mark - Constants
 
++ (NSString *)hb_specifierPlist {
+	return @"Root";
+}
+
 + (NSString *)hb_shareText {
 	return [[NSBundle bundleForClass:self.class] localizedStringForKey:@"Check out #TypeStatus by HASHBANG Productions!" value:@"Check out #TypeStatus by HASHBANG Productions!" table:@"Root"];
 }
@@ -23,11 +27,9 @@ static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationL
 
 #pragma mark - PSListController
 
-- (instancetype)init {
-	self = [super init];
-
-	if (self) {
-		NSArray *oldSpecifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
+- (NSArray *)specifiers {
+	if (!_specifiers) {
+		NSArray *oldSpecifiers = [super specifiers];
 		NSMutableArray *specifiers = [[NSMutableArray alloc] init];
 
 		for (PSSpecifier *specifier in oldSpecifiers) {
@@ -42,7 +44,7 @@ static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationL
 		_specifiers = specifiers;
 	}
 
-	return self;
+	return _specifiers;
 }
 
 @end

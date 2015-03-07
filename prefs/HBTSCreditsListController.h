@@ -1,4 +1,4 @@
-#import <libhbangcommon/prefs/HBListController.h>
+#import <CepheiPrefs/HBListController.h>
 
 @interface HBTSCreditsListController : HBListController
 

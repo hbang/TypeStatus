@@ -7,7 +7,7 @@ TypeStatus_FILES = $(wildcard *.m)
 TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
-TypeStatus_LIBRARIES = hbangprefs
+TypeStatus_LIBRARIES = cepheiprefs
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

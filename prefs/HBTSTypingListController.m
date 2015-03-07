@@ -2,24 +2,18 @@
 #import <Preferences/PSSpecifier.h>
 #include <notify.h>
 
-static NSString *const kHBTSTypingIconIdentifier = @"TypingIcon";
-static NSString *const kHBTSTypingStatusIdentifier = @"TypingStatus";
+static NSString *const kHBTSIconIdentifier = @"Icon";
+static NSString *const kHBTSStatusIdentifier = @"Status";
 
 @implementation HBTSTypingListController {
 	BOOL _isFlippingStuff;
 }
 
-#pragma mark - PSListController
-
-- (instancetype)init {
-	self = [super init];
-
-	if (self) {
-		_specifiers = [[self loadSpecifiersFromPlistName:@"Typing" target:self] retain];
-	}
-
-	return self;
++ (NSString *)hb_specifierPlist {
+	return @"Typing";
 }
+
+#pragma mark - PSListController
 
 - (void)setPreferenceValue:(NSNumber *)value specifier:(PSSpecifier *)specifier {
 	[super setPreferenceValue:value specifier:specifier];
@@ -27,10 +21,10 @@ static NSString *const kHBTSTypingStatusIdentifier = @"TypingStatus";
 	if (!_isFlippingStuff) {
 		PSSpecifier *otherSpecifier = nil;
 
-		if ([specifier.identifier isEqualToString:kHBTSTypingIconIdentifier]) {
-			otherSpecifier = [self specifierForID:kHBTSTypingStatusIdentifier];
-		} else if ([specifier.identifier isEqualToString:kHBTSTypingStatusIdentifier]) {
-			otherSpecifier = [self specifierForID:kHBTSTypingIconIdentifier];
+		if ([specifier.identifier isEqualToString:kHBTSIconIdentifier]) {
+			otherSpecifier = [self specifierForID:kHBTSStatusIdentifier];
+		} else if ([specifier.identifier isEqualToString:kHBTSStatusIdentifier]) {
+			otherSpecifier = [self specifierForID:kHBTSIconIdentifier];
 		}
 
 		if (otherSpecifier && value.boolValue && ((NSNumber *)[self readPreferenceValue:otherSpecifier]).boolValue) {

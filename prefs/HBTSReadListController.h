@@ -1,5 +1,5 @@
-#import <libhbangcommon/prefs/HBListController.h>
+#import "HBTSTypingListController.h"
 
-@interface HBTSReadListController : HBListController
+@interface HBTSReadListController : HBTSTypingListController
 
 @end

@@ -1,4 +1,4 @@
-#import <libhbangcommon/prefs/HBRootListController.h>
+#import <CepheiPrefs/HBRootListController.h>
 
 @interface HBTSRootListController : HBRootListController
 

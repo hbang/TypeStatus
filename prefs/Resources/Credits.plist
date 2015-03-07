@@ -16,7 +16,7 @@
 			<key>label</key>
 			<string>Adam D</string>
 			<key>user</key>
-			<string>thekirbylover</string>
+			<string>hbkirb</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -37,8 +37,6 @@
 			<string>Jeff Benjamin</string>
 			<key>user</key>
 			<string>JeffBenjam</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -53,8 +51,6 @@
 			<string>Thientam Bach</string>
 			<key>user</key>
 			<string>Surenix</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -69,8 +65,6 @@
 			<string>Arabic: iD7me</string>
 			<key>user</key>
 			<string>iD7me</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -79,8 +73,6 @@
 			<string>Chinese: zsm1703</string>
 			<key>user</key>
 			<string>zsm1703</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -89,8 +81,6 @@
 			<string>French: Adam McNight</string>
 			<key>user</key>
 			<string>AdaMcNight</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -99,8 +89,6 @@
 			<string>German: Bensge</string>
 			<key>user</key>
 			<string>bensge</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -109,8 +97,6 @@
 			<string>Greek: George Fasidis</string>
 			<key>user</key>
 			<string>iFasMan7</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -119,8 +105,6 @@
 			<string>Italian: Gianvito</string>
 			<key>user</key>
 			<string>djanvito</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -129,8 +113,6 @@
 			<string>Norwegian: Thay</string>
 			<key>user</key>
 			<string>Thay__T</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>label</key>
@@ -143,8 +125,6 @@
 			<string>Russian: vladkorotnev</string>
 			<key>user</key>
 			<string>vladkorotnev</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -153,8 +133,6 @@
 			<string>Spanish: Gonzalo</string>
 			<key>user</key>
 			<string>gadc333</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -163,8 +141,6 @@
 			<string>Swedish: c0redev</string>
 			<key>user</key>
 			<string>c0redev</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -173,8 +149,6 @@
 			<string>Czech: david19au</string>
 			<key>user</key>
 			<string>david19au</string>
-			<key>showAvatar</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>cell</key>

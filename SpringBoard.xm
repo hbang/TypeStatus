@@ -1,18 +1,19 @@
 #include <substrate.h>
 #import "Global.h"
 #import <AddressBook/AddressBook.h>
-#import <libstatusbar/LSStatusBarItem.h>
+#import <Cephei/HBPreferences.h>
 #import <ChatKit/CKEntity.h>
 #import <ChatKit/CKIMEntity.h>
 #import <ChatKit/CKMadridEntity.h>
 #import <ChatKit/CKMadridService.h>
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
+#import <libstatusbar/LSStatusBarItem.h>
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBUserAgent.h>
 #import <version.h>
 
-NSUserDefaults *userDefaults;
+HBPreferences *preferences;
 NSUInteger typingIndicators = 0;
 LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
@@ -26,10 +27,10 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 			kHBTSMessageIsTypingKey: @(typing),
 			kHBTSMessageSendDateKey: [NSDate date],
 
-			kHBTSPreferencesOverlayAnimationSlideKey: @([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]),
-			kHBTSPreferencesOverlayAnimationFadeKey: @([userDefaults boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]),
-			kHBTSPreferencesTypingTimeoutKey: @([userDefaults boolForKey:kHBTSPreferencesTypingTimeoutKey]),
-			kHBTSPreferencesOverlayDurationKey: @([userDefaults doubleForKey:kHBTSPreferencesOverlayDurationKey])
+			kHBTSPreferencesOverlayAnimationSlideKey: @([preferences boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]),
+			kHBTSPreferencesOverlayAnimationFadeKey: @([preferences boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]),
+			kHBTSPreferencesTypingTimeoutKey: @([preferences boolForKey:kHBTSPreferencesTypingTimeoutKey]),
+			kHBTSPreferencesOverlayDurationKey: @([preferences doubleForKey:kHBTSPreferencesOverlayDurationKey])
 		}]];
 	});
 }
@@ -43,7 +44,7 @@ BOOL HBTSShouldHide(BOOL typing) {
 		MessagesApps = [@[ @"com.apple.MobileSMS", @"com.bitesms" ] retain];
 	});
 
-	if ([userDefaults boolForKey:typing ? kHBTSPreferencesTypingHideInMessagesKey : kHBTSPreferencesReadHideInMessagesKey]) {
+	if ([preferences boolForKey:typing ? kHBTSPreferencesTypingHideInMessagesKey : kHBTSPreferencesReadHideInMessagesKey]) {
 		return !((SpringBoard *)[UIApplication sharedApplication]).isLocked && [MessagesApps containsObject:((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID];
 	}
 
@@ -86,96 +87,10 @@ NSString *HBTSNameForHandle(NSString *handle) {
 #pragma mark - Constructor
 
 %ctor {
-	@autoreleasepool {
-		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
+	dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 
-		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-			static void (^typingEnded)() = ^{
-				if (typingIndicators == 0) {
-					return;
-				}
-
-				typingIndicators--;
-
-				if (typingIndicators <= 0) {
-					typingIndicators = 0;
-				}
-
-				if (typingIndicators <= 0) {
-					if (typingStatusBarItem) {
-						typingStatusBarItem.visible = NO;
-					}
-
-					HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
-				}
-			};
-
-			switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue) {
-				case HBTSStatusBarTypeTyping:
-				{
-					BOOL isTesting = !((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
-
-					typingIndicators++;
-
-					if (HBTSShouldHide(YES)) {
-						break;
-					}
-
-					if ([userDefaults boolForKey:kHBTSPreferencesTypingIconKey]) {
-						static dispatch_once_t onceToken;
-						dispatch_once(&onceToken, ^{
-							typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
-							typingStatusBarItem.imageName = @"TypeStatus";
-						});
-
-						typingStatusBarItem.visible = YES;
-
-						dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(([userDefaults boolForKey:kHBTSPreferencesTypingTimeoutKey] || isTesting ? [userDefaults doubleForKey:kHBTSPreferencesOverlayDurationKey] : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
-					}
-
-					if ([userDefaults boolForKey:kHBTSPreferencesTypingStatusKey]) {
-						HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), !isTesting);
-					}
-
-					break;
-				}
-
-				case HBTSStatusBarTypeTypingEnded:
-					typingEnded();
-					break;
-
-				case HBTSStatusBarTypeRead:
-				{
-					if (HBTSShouldHide(NO)) {
-						break;
-					}
-
-					if ([userDefaults boolForKey:kHBTSPreferencesReadStatusKey]) {
-						HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), NO);
-					} else if ([userDefaults boolForKey:kHBTSPreferencesReadIconKey]) {
-						static dispatch_once_t onceToken;
-						dispatch_once(&onceToken, ^{
-							readStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
-							readStatusBarItem.imageName = @"TypeStatusRead";
-						});
-
-						readStatusBarItem.visible = YES;
-
-						dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([userDefaults doubleForKey:kHBTSPreferencesOverlayDurationKey] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-							readStatusBarItem.visible = NO;
-						});
-					}
-
-					break;
-				}
-			}
-		}];
-	}
-}
-
-%ctor {
-	userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kHBTSPreferencesDomain];
-	[userDefaults registerDefaults:@{
+	preferences = [[HBPreferences alloc] initWithIdentifier:kHBTSPreferencesDomain];
+	[preferences registerDefaults:@{
 		kHBTSPreferencesTypingStatusKey: @YES,
 		kHBTSPreferencesTypingIconKey: @NO,
 		kHBTSPreferencesTypingHideInMessagesKey: @YES,
@@ -188,5 +103,87 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		kHBTSPreferencesOverlayAnimationSlideKey: @YES,
 		kHBTSPreferencesOverlayAnimationFadeKey: @YES,
 		kHBTSPreferencesOverlayDurationKey: @5.f
+	}];
+
+	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+		static void (^typingEnded)() = ^{
+			if (typingIndicators == 0) {
+				return;
+			}
+
+			typingIndicators--;
+
+			if (typingIndicators <= 0) {
+				typingIndicators = 0;
+			}
+
+			if (typingIndicators <= 0) {
+				if (typingStatusBarItem) {
+					typingStatusBarItem.visible = NO;
+				}
+
+				HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
+			}
+		};
+
+		switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue) {
+			case HBTSStatusBarTypeTyping:
+			{
+				BOOL isTesting = !((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
+
+				typingIndicators++;
+
+				if (HBTSShouldHide(YES)) {
+					break;
+				}
+
+				if ([preferences boolForKey:kHBTSPreferencesTypingIconKey]) {
+					static dispatch_once_t onceToken;
+					dispatch_once(&onceToken, ^{
+						typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
+						typingStatusBarItem.imageName = @"TypeStatus";
+					});
+
+					typingStatusBarItem.visible = YES;
+
+					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(([preferences boolForKey:kHBTSPreferencesTypingTimeoutKey] || isTesting ? [preferences doubleForKey:kHBTSPreferencesOverlayDurationKey] : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
+				}
+
+				if ([preferences boolForKey:kHBTSPreferencesTypingStatusKey]) {
+					HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), !isTesting);
+				}
+
+				break;
+			}
+
+			case HBTSStatusBarTypeTypingEnded:
+				typingEnded();
+				break;
+
+			case HBTSStatusBarTypeRead:
+			{
+				if (HBTSShouldHide(NO)) {
+					break;
+				}
+
+				if ([preferences boolForKey:kHBTSPreferencesReadStatusKey]) {
+					HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), NO);
+				} else if ([preferences boolForKey:kHBTSPreferencesReadIconKey]) {
+					static dispatch_once_t onceToken;
+					dispatch_once(&onceToken, ^{
+						readStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
+						readStatusBarItem.imageName = @"TypeStatusRead";
+					});
+
+					readStatusBarItem.visible = YES;
+
+					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([preferences doubleForKey:kHBTSPreferencesOverlayDurationKey] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+						readStatusBarItem.visible = NO;
+					});
+				}
+
+				break;
+			}
+		}
 	}];
 }

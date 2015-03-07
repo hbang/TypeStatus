@@ -1,4 +1,4 @@
-#import <libhbangcommon/prefs/HBAboutListController.h>
+#import <CepheiPrefs/HBAboutListController.h>
 
 @interface HBTSAboutListController : HBAboutListController
 

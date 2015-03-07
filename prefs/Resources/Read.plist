@@ -16,7 +16,7 @@
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>id</key>
-			<string>ReadStatus</string>
+			<string>Status</string>
 			<key>key</key>
 			<string>ReadStatus</string>
 			<key>label</key>
@@ -30,7 +30,7 @@
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>id</key>
-			<string>ReadIcon</string>
+			<string>Icon</string>
 			<key>key</key>
 			<string>ReadIcon</string>
 			<key>label</key>

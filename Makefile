@@ -6,6 +6,7 @@ TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
 
 TypeStatus_FILES = SpringBoard.xm
 TypeStatus_FRAMEWORKS = UIKit
+TypeStatus_LIBRARIES = cephei
 TypeStatus_LDFLAGS = -fobjc-arc
 
 TypeStatusRelay_FILES = IMAgentRelay.x

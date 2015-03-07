@@ -16,7 +16,7 @@
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>id</key>
-			<string>TypingStatus</string>
+			<string>Status</string>
 			<key>key</key>
 			<string>TypingStatus</string>
 			<key>label</key>
@@ -30,7 +30,7 @@
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>id</key>
-			<string>TypingIcon</string>
+			<string>Icon</string>
 			<key>key</key>
 			<string>TypingIcon</string>
 			<key>label</key>
