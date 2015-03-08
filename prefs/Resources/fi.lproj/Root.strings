@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>About</key>
+	<string>Tietoja</string>
+	<key>Check out #TypeStatus by HASHBANG Productions!</key>
+	<string>Tutustu #TypeStatus mukaan HASHBANG Productions!</string>
+	<key>Credits</key>
+	<string>Tekijät</string>
+	<key>Dismiss</key>
+	<string>Hylkää</string>
+	<key>Double Tap</key>
+	<string>Kaksoispainallus</string>
+	<key>Fade</key>
+	<string>Häivytä</string>
+	<key>No Action</key>
+	<string>Ei toimintoa</string>
+	<key>Open Messages</key>
+	<string>Avaa Viestit</string>
+	<key>Open biteSMS</key>
+	<string>Avaa biteSMS</string>
+	<key>Overlay Animation</key>
+	<string>Tekstin animointi</string>
+	<key>Overlay Display Duration</key>
+	<string>Tekstin näkyvyyden kesto</string>
+	<key>Overlay Gestures</key>
+	<string>Eleohjaus</string>
+	<key>Read Receipt</key>
+	<string>Lukukuittaus</string>
+	<key>Read:</key>
+	<string>Luettu:</string>
+	<key>Seconds</key>
+	<string>sekunttia</string>
+	<key>Single Tap</key>
+	<string>Painallus</string>
+	<key>Slide</key>
+	<string>Liu'uta</string>
+	<key>Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification. “Hide Inside Messages” disables all indicators while Messages or biteSMS is open. The delay can be set with the “Overlay Display Duration” setting below.</key>
+	<string>Teksti tilapalkissa” näyttää tilapalkissa henkilön nimen, jota ilmoitus koskee. “Älä käytä Viestit-ohjelmassa” poistaa käytöstä kaikki ilmoitukset, kun käytät Viestit- tai biteSMS-ohjelmaa. “Tekstin näkyvyyden kesto” määrittelee, miten kauan ilmoitus näkyy tilapalkissa.</string>
+	<key>Swipe Left</key>
+	<string>Pyyhkäise vasemmalle</string>
+	<key>Swipe Right</key>
+	<string>Pyyhkäise oikealle</string>
+	<key>Tap Action</key>
+	<string>Painallustoiminnot</string>
+	<key>Typing</key>
+	<string>Kirjoituksen näyttö</string>
+	<key>Typing:</key>
+	<string>Kirjoittaa:</string>
+</dict>
+</plist>
