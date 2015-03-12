@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>About</key>
+	<string>Tietoja</string>
+	<key>Donate</key>
+	<string>Lahjoita</string>
+	<key>Email Support</key>
+	<string>Tuen sähköposti</string>
+	<key>Experiencing issues? Send us an email and we’ll help you.</key>
+	<string>Ongelmia? Lähetä meille postia, niin me autamme sinua.</string>
+	<key>If you like TypeStatus, please consider a donation.</key>
+	<string>Harkitse lahjoitusta, mikäli pidät TypeStatuksesta.</string>
+	<key>Visit Website</key>
+	<string>Vieraile nettisivulla</string>
+</dict>
+</plist>
