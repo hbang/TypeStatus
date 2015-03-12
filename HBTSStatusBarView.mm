@@ -1,5 +1,6 @@
-#include <substrate.h> // ?!!?
+#include <substrate.h>
 #import "HBTSStatusBarView.h"
+#import <Foundation/NSDistributedNotificationCenter.h>
 #import <UIKit/UIApplication+Private.h>
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIKitModernUI.h>
@@ -8,6 +9,12 @@
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <version.h>
 #include <notify.h>
+
+typedef NS_ENUM(NSUInteger, HBTSStatusBarAnimation) {
+	HBTSStatusBarAnimationNone,
+	HBTSStatusBarAnimationSlide,
+	HBTSStatusBarAnimationFade
+};
 
 static CGFloat const kHBTSStatusBarFontSize = IS_IOS_OR_NEWER(iOS_7_0) ? 12.f : 14.f;
 static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
@@ -20,11 +27,13 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 
 	BOOL _isAnimating;
 	BOOL _isVisible;
-	NSTimer *_timer;
 	HBTSStatusBarType _type;
+	HBTSStatusBarAnimation _animations;
 
 	CGFloat _foregroundViewAlpha;
 	CGFloat _statusBarHeight;
+
+	NSTimer *_hideTimer;
 }
 
 #pragma mark - UIView
@@ -69,6 +78,8 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		_contactLabel.backgroundColor = [UIColor clearColor];
 		_contactLabel.textColor = [UIColor whiteColor];
 		[_containerView addSubview:_contactLabel];
+
+		[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedStatusNotification:) name:HBTSClientSetStatusBarNotification object:nil];
 	}
 
 	return self;
@@ -128,7 +139,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 	BOOL isWhite = NO;
 
 	if (IS_IOS_OR_NEWER(iOS_7_0)) {
-		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
+		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>(self.superview, "_foregroundView");
 		textColor = MSHookIvar<UIColor *>(foregroundView.foregroundStyle, "_tintColor");
 	} else {
 		if (!IS_IOS_OR_NEWER(iOS_6_0) && !IS_IPAD && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
@@ -172,12 +183,42 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 
 #pragma mark - Show/hide
 
-- (void)showWithType:(HBTSStatusBarType)type name:(NSString *)name timeout:(NSTimeInterval)timeout {
-	if (type == HBTSStatusBarTypeTypingEnded) {
-		[self hide];
+- (void)receivedStatusNotification:(NSNotification *)notification {
+	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
+	BOOL typing = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
+	BOOL typingTimeout = ((NSNumber *)notification.userInfo[kHBTSPreferencesTypingTimeoutKey]).boolValue;
+
+	NSTimeInterval duration = kHBTSTypingTimeout;
+
+	if (!typing || typingTimeout) {
+		duration = ((NSNumber *)notification.userInfo[kHBTSPreferencesOverlayDurationKey]).doubleValue;
+	}
+
+	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > duration) {
 		return;
 	}
 
+	_animations = HBTSStatusBarAnimationNone;
+
+	if (((NSNumber *)notification.userInfo[kHBTSPreferencesOverlayAnimationSlideKey]).boolValue) {
+		_animations |= HBTSStatusBarAnimationSlide;
+	}
+
+	if (((NSNumber *)notification.userInfo[kHBTSPreferencesOverlayAnimationFadeKey]).boolValue) {
+		_animations |= HBTSStatusBarAnimationFade;
+	}
+
+	if (type == HBTSStatusBarTypeTypingEnded) {
+		[self hide];
+	} else {
+		_type = type;
+		_contactLabel.text = notification.userInfo[kHBTSMessageSenderKey];
+
+		[self showWithTimeout:duration];
+	}
+}
+
+- (void)showWithTimeout:(NSTimeInterval)timeout {
 	if ([UIApplication sharedApplication].statusBarHidden) {
 		return;
 	}
@@ -188,9 +229,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
 	});
 
-	_type = type;
-
-	switch (type) {
+	switch (_type) {
 		case HBTSStatusBarTypeTyping:
 			_typeLabel.text = [PrefsBundle localizedStringForKey:@"Typing:" value:@"Typing:" table:@"Root"];
 			break;
@@ -203,8 +242,6 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 			break;
 	}
 
-	_contactLabel.text = name;
-
 	[self _updateForCurrentStatusBarStyle];
 	[self layoutSubviews];
 
@@ -212,11 +249,11 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		return;
 	}
 
-	if (_timer) {
-		[_timer invalidate];
-		[_timer release];
+	if (_hideTimer) {
+		[_hideTimer invalidate];
+		[_hideTimer release];
 
-		_timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
+		_hideTimer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
 
 		return;
 	}
@@ -229,7 +266,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		}
 	}
 
-	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
+	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>(self.superview, "_foregroundView");
 
 	if (_foregroundViewAlpha == 0) {
 		_foregroundViewAlpha = foregroundView.alpha;
@@ -243,7 +280,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 	self.frame = foregroundView.frame;
 
 	void (^animationBlock)() = ^{
-		if (_shouldSlide) {
+		if (_animations & HBTSStatusBarAnimationSlide) {
 			CGRect frame = self.frame;
 			frame.origin.y = 0;
 			self.frame = frame;
@@ -258,48 +295,48 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 
 		self.alpha = _foregroundViewAlpha;
 
-		if (_shouldFade) {
+		if (_animations & HBTSStatusBarAnimationFade) {
 			foregroundView.alpha = 0;
 		}
 	};
 
 	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
 		_isAnimating = NO;
-		_timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
+		_hideTimer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
 	};
 
-	if (_shouldSlide || _shouldFade) {
+	if (_animations == HBTSStatusBarAnimationNone) {
+		foregroundView.hidden = YES;
+		self.hidden = NO;
+		completionBlock(YES);
+	} else {
 		CGRect frame = foregroundView.frame;
-		frame.origin.y = _shouldSlide ? -_statusBarHeight : 0;
+		frame.origin.y = _animations & HBTSStatusBarAnimationSlide ? -_statusBarHeight : 0;
 		self.frame = frame;
 
-		if (_shouldFade) {
+		if (_animations & HBTSStatusBarAnimationFade) {
 			self.alpha = 0;
 		}
 
 		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
-	} else {
-		foregroundView.hidden = YES;
-		self.hidden = NO;
-		completionBlock(YES);
 	}
 }
 
 - (void)hide {
-	if (!_timer || _isAnimating || !_isVisible) {
+	if (!_hideTimer || _isAnimating || !_isVisible) {
 		return;
 	}
 
 	_isAnimating = YES;
 
-	[_timer invalidate];
-	[_timer release];
-	_timer = nil;
+	[_hideTimer invalidate];
+	[_hideTimer release];
+	_hideTimer = nil;
 
-	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>([UIApplication sharedApplication].statusBar, "_foregroundView");
+	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>(self.superview, "_foregroundView");
 
 	void (^animationBlock)() = ^{
-		if (_shouldSlide) {
+		if (_animations & HBTSStatusBarAnimationSlide) {
 			CGRect frame = self.frame;
 			frame.origin.y = -_statusBarHeight;
 			self.frame = frame;
@@ -332,11 +369,11 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		}
 	};
 
-	if (_shouldSlide || _shouldFade) {
-		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
-	} else {
+	if (_animations == HBTSStatusBarAnimationNone) {
 		foregroundView.hidden = NO;
 		completionBlock(YES);
+	} else {
+		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
 	}
 }
 
@@ -347,7 +384,9 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 	[_typeLabel release];
 	[_contactLabel release];
 	[_iconImageView release];
-	[_timer release];
+	[_hideTimer release];
+
+	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 
 	[super dealloc];
 }

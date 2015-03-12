@@ -1,11 +1,11 @@
 #ifndef _TYPESTATUS_GLOBAL_H
 #define _TYPESTATUS_GLOBAL_H
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, HBTSStatusBarType) {
 	HBTSStatusBarTypeTyping,
 	HBTSStatusBarTypeTypingEnded,
 	HBTSStatusBarTypeRead
-} HBTSStatusBarType;
+};
 
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
