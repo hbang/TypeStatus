@@ -183,6 +183,10 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 #pragma mark - Show/hide
 
 - (void)receivedStatusNotification:(NSNotification *)notification {
+	if (!self.superview || ![self.superview isKindOfClass:UIStatusBar.class]) {
+		return;
+	}
+
 	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
 	BOOL typing = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 	BOOL typingTimeout = ((NSNumber *)notification.userInfo[kHBTSPreferencesTypingTimeoutKey]).boolValue;
@@ -218,7 +222,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 }
 
 - (void)showWithTimeout:(NSTimeInterval)timeout {
-	if ([UIApplication sharedApplication].statusBarHidden || !self.superview || ![self.superview isKindOfClass:UIStatusBar.class]) {
+	if ([UIApplication sharedApplication].statusBarHidden) {
 		return;
 	}
 
