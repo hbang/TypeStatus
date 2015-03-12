@@ -3,7 +3,6 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <UIKit/UIApplication+Private.h>
 #import <UIKit/UIImage+Private.h>
-#import <UIKit/UIKitModernUI.h>
 #import <UIKit/UIStatusBar.h>
 #import <UIKit/UIStatusBarForegroundView.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
@@ -219,7 +218,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 }
 
 - (void)showWithTimeout:(NSTimeInterval)timeout {
-	if ([UIApplication sharedApplication].statusBarHidden) {
+	if ([UIApplication sharedApplication].statusBarHidden || !self.superview || ![self.superview isKindOfClass:UIStatusBar.class]) {
 		return;
 	}
 
