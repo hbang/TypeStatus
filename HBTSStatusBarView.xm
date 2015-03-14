@@ -1,6 +1,10 @@
 #include <substrate.h>
 #import "HBTSStatusBarView.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
+#import <SpringBoard/SBChevronView.h>
+#import <SpringBoard/SBLockScreenManager.h>
+#import <SpringBoard/SBLockScreenViewController.h>
+#import <SpringBoard/SBLockScreenView.h>
 #import <UIKit/UIApplication+Private.h>
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBar.h>
@@ -31,6 +35,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 
 	CGFloat _foregroundViewAlpha;
 	CGFloat _statusBarHeight;
+	BOOL _topGrabberWasHidden;
 
 	NSTimer *_hideTimer;
 }
@@ -301,6 +306,8 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		if (_animations & HBTSStatusBarAnimationFade) {
 			foregroundView.alpha = 0;
 		}
+
+		[self _toggleLockScreenGrabber:NO];
 	};
 
 	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
@@ -352,6 +359,8 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 
 		self.alpha = 0;
 		foregroundView.alpha = _foregroundViewAlpha;
+
+		[self _toggleLockScreenGrabber:YES];
 	};
 
 	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
@@ -377,6 +386,28 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		completionBlock(YES);
 	} else {
 		[UIView animateWithDuration:kHBTSStatusBarAnimationDuration animations:animationBlock completion:completionBlock];
+	}
+}
+
+- (void)_toggleLockScreenGrabber:(BOOL)state {
+	if (!IS_IOS_OR_NEWER(iOS_7_0)) {
+		return;
+	}
+
+	SBLockScreenManager *lockScreenManager = [%c(SBLockScreenManager) sharedInstance];
+
+	if (!lockScreenManager.isUILocked) {
+		return;
+	}
+
+	SBLockScreenView *lockScreenView = (SBLockScreenView *)lockScreenManager.lockScreenViewController.view;
+	SBChevronView *topGrabberView = lockScreenView.topGrabberView;
+
+	if (state && !_topGrabberWasHidden) {
+		topGrabberView.alpha = 1;
+	} else if (!state) {
+		_topGrabberWasHidden = topGrabberView.alpha == 0;
+		topGrabberView.alpha = 0;
 	}
 }
 

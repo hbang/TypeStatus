@@ -12,7 +12,7 @@ TypeStatus_LDFLAGS = -fobjc-arc
 TypeStatusRelay_FILES = IMAgentRelay.x
 TypeStatusRelay_LDFLAGS = -fobjc-arc
 
-TypeStatusClient_FILES = Client.xm HBTSStatusBarView.mm
+TypeStatusClient_FILES = Client.xm HBTSStatusBarView.xm
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_LDFLAGS = -fobjc-arc
 
