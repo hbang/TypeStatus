@@ -41,6 +41,10 @@
 %end
 
 %ctor {
+	if ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"]) {
+		return;
+	}
+
 	if (IS_IOS_OR_NEWER(iOS_7_0)) {
 		%init(JonyCraig);
 	} else {
