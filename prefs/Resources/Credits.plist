@@ -78,6 +78,30 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>label</key>
+			<string>Czech: david19au</string>
+			<key>user</key>
+			<string>david19au</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>label</key>
+			<string>Dutch: Timon Olsthoorn</string>
+			<key>user</key>
+			<string>tmnlsthrn</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>label</key>
+			<string>Finnish: Niko Karranto</string>
+			<key>user</key>
+			<string>karranto</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>label</key>
 			<string>French: Adam McNight</string>
 			<key>user</key>
 			<string>AdaMcNight</string>
@@ -141,22 +165,6 @@
 			<string>Swedish: c0redev</string>
 			<key>user</key>
 			<string>c0redev</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>label</key>
-			<string>Czech: david19au</string>
-			<key>user</key>
-			<string>david19au</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>label</key>
-			<string>Finnish: Niko Karranto</string>
-			<key>user</key>
-			<string>karranto</string>
 		</dict>
 		<dict>
 			<key>cell</key>

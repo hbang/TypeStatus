@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Hide Inside Messages</key>
+	<string>Verberg in Berichten</string>
+	<key>Read Receipt</key>
+	<string>Gelezen</string>
+	<key>Status Bar Icon</key>
+	<string>Statusbalkpictogram</string>
+	<key>Status Bar Overlay</key>
+	<string>Statusbalk overlay</string>
+	<key>Test Read</key>
+	<string>Test Gelezen</string>
+</dict>
+</plist>
