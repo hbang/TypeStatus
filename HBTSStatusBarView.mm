@@ -87,7 +87,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 - (void)layoutSubviews {
 	[super layoutSubviews];
 
-	[_iconImageView sizeToFit];
+	_iconImageView.frame = (CGRect){ CGPointZero, _iconImageView.image.size };
 
 	CGRect typeFrame = _typeLabel.frame;
 	typeFrame.origin.x = _iconImageView.frame.size.width + 4.f;
