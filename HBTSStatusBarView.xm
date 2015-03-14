@@ -307,7 +307,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 			foregroundView.alpha = 0;
 		}
 
-		[self _toggleLockScreenGrabber:NO];
+		[self _toggleLockScreenGrabberVisible:NO];
 	};
 
 	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
@@ -360,7 +360,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		self.alpha = 0;
 		foregroundView.alpha = _foregroundViewAlpha;
 
-		[self _toggleLockScreenGrabber:YES];
+		[self _toggleLockScreenGrabberVisible:YES];
 	};
 
 	void (^completionBlock)(BOOL finished) = ^(BOOL finished) {
@@ -389,7 +389,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 	}
 }
 
-- (void)_toggleLockScreenGrabber:(BOOL)state {
+- (void)_toggleLockScreenGrabberVisible:(BOOL)state {
 	if (!IS_IOS_OR_NEWER(iOS_7_0)) {
 		return;
 	}
