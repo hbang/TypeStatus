@@ -38,6 +38,16 @@
 	[self addSubview:[[HBTSStatusBarView alloc] initWithFrame:self.bounds]];
 }
 
+- (void)dealloc {
+	for (UIView *view in self.subviews) {
+		if (view.class == HBTSStatusBarView.class) {
+			[view release];
+		}
+	}
+
+	%orig;
+}
+
 %end
 
 %ctor {
