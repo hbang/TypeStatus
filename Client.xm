@@ -17,7 +17,7 @@
 		return;
 	}
 
-	[self addSubview:[[[HBTSStatusBarView alloc] initWithFrame:self.bounds] autorelease]];
+	[self addSubview:[[HBTSStatusBarView alloc] initWithFrame:self.bounds]];
 }
 
 - (void)movedFromWindow:(UIWindow *)window {
@@ -36,4 +36,6 @@
 	if ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"]) {
 		return;
 	}
+
+	%init;
 }
