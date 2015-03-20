@@ -10,42 +10,24 @@
 
 %hook UIStatusBar
 
-%group SteveScott
-- (id)initWithFrame:(CGRect)frame showForegroundView:(BOOL)showForegroundView {
-	self = %orig;
+- (void)movedToWindow:(UIWindow *)window {
+	%orig;
 
-	if (self) {
-		[self _typeStatus_setup];
+	if ([self isKindOfClass:%c(SBFakeStatusBarView)] || [window isKindOfClass:%c(SBStarkStatusBarWindow)]) {
+		return;
 	}
 
-	return self;
-}
-%end
-
-%group JonyCraig
-- (id)initWithFrame:(CGRect)frame showForegroundView:(BOOL)showForegroundView inProcessStateProvider:(id)stateProvider {
-	self = %orig;
-
-	if (self) {
-		[self _typeStatus_setup];
-	}
-
-	return self;
-}
-%end
-
-%new - (void)_typeStatus_setup {
-	[self addSubview:[[HBTSStatusBarView alloc] initWithFrame:self.bounds]];
+	[self addSubview:[[[HBTSStatusBarView alloc] initWithFrame:self.bounds] autorelease]];
 }
 
-- (void)dealloc {
+- (void)movedFromWindow:(UIWindow *)window {
+	%orig;
+
 	for (UIView *view in self.subviews) {
-		if (view.class == HBTSStatusBarView.class) {
-			[view release];
+		if ([view isKindOfClass:HBTSStatusBarView.class]) {
+			[view removeFromSuperview];
 		}
 	}
-
-	%orig;
 }
 
 %end
@@ -54,12 +36,4 @@
 	if ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"]) {
 		return;
 	}
-
-	if (IS_IOS_OR_NEWER(iOS_7_0)) {
-		%init(JonyCraig);
-	} else {
-		%init(SteveScott);
-	}
-
-	%init;
 }

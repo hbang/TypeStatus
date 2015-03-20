@@ -20,7 +20,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 #pragma mark - Communication with clients
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			kHBTSMessageTypeKey: @(type),
 			kHBTSMessageSenderKey: name ?: @"",

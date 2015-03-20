@@ -185,10 +185,18 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 	}
 }
 
+- (BOOL)statusBarWentPoof {
+	if (!self.superview || ![self.superview isKindOfClass:UIStatusBar.class]) {
+		return YES;
+	}
+
+	return NO;
+}
+
 #pragma mark - Show/hide
 
 - (void)receivedStatusNotification:(NSNotification *)notification {
-	if (!self.superview || ![self.superview isKindOfClass:UIStatusBar.class]) {
+	if (self.statusBarWentPoof) {
 		return;
 	}
 
@@ -227,7 +235,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 }
 
 - (void)showWithTimeout:(NSTimeInterval)timeout {
-	if ([UIApplication sharedApplication].statusBarHidden) {
+	if (self.statusBarWentPoof || [UIApplication sharedApplication].statusBarHidden) {
 		return;
 	}
 
@@ -333,7 +341,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 }
 
 - (void)hide {
-	if (!_hideTimer || _isAnimating || !_isVisible) {
+	if (self.statusBarWentPoof || !_hideTimer || _isAnimating || !_isVisible) {
 		return;
 	}
 
