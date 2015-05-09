@@ -1,5 +1,6 @@
 #include <substrate.h>
 #import "HBTSStatusBarView.h"
+#import "HBTSPreferences.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <SpringBoard/SBChevronView.h>
 #import <SpringBoard/SBLockScreenManager.h>
@@ -12,12 +13,6 @@
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <version.h>
 #include <notify.h>
-
-typedef NS_ENUM(NSUInteger, HBTSStatusBarAnimation) {
-	HBTSStatusBarAnimationNone,
-	HBTSStatusBarAnimationSlide,
-	HBTSStatusBarAnimationFade
-};
 
 static CGFloat const kHBTSStatusBarFontSize = IS_IOS_OR_NEWER(iOS_7_0) ? 12.f : 14.f;
 static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
@@ -200,29 +195,23 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		return;
 	}
 
+	HBTSPreferences *preferences = [HBTSPreferences sharedInstance];
+
 	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
 	BOOL typing = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
-	BOOL typingTimeout = ((NSNumber *)notification.userInfo[kHBTSPreferencesTypingTimeoutKey]).boolValue;
+	BOOL typingTimeout = preferences.useTypingTimeout;
 
 	NSTimeInterval duration = kHBTSTypingTimeout;
 
 	if (!typing || typingTimeout) {
-		duration = ((NSNumber *)notification.userInfo[kHBTSPreferencesOverlayDurationKey]).doubleValue;
+		duration = preferences.overlayDisplayDuration;
 	}
 
 	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > duration) {
 		return;
 	}
 
-	_animations = HBTSStatusBarAnimationNone;
-
-	if (((NSNumber *)notification.userInfo[kHBTSPreferencesOverlayAnimationSlideKey]).boolValue) {
-		_animations |= HBTSStatusBarAnimationSlide;
-	}
-
-	if (((NSNumber *)notification.userInfo[kHBTSPreferencesOverlayAnimationFadeKey]).boolValue) {
-		_animations |= HBTSStatusBarAnimationFade;
-	}
+	_animations = preferences.overlayAnimation;
 
 	if (type == HBTSStatusBarTypeTypingEnded) {
 		[self hide];

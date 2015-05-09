@@ -6,14 +6,14 @@ TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
 
 TypeStatus_FILES = SpringBoard.xm
 TypeStatus_FRAMEWORKS = UIKit
-TypeStatus_LIBRARIES = cephei
 TypeStatus_LDFLAGS = -fobjc-arc
 
 TypeStatusRelay_FILES = IMAgentRelay.x
 TypeStatusRelay_LDFLAGS = -fobjc-arc
 
-TypeStatusClient_FILES = Client.xm HBTSStatusBarView.xm
+TypeStatusClient_FILES = Client.xm HBTSPreferences.m HBTSStatusBarView.xm
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
+TypeStatusClient_LIBRARIES = cephei
 TypeStatusClient_LDFLAGS = -fobjc-arc
 
 SUBPROJECTS = prefs

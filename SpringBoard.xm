@@ -1,5 +1,6 @@
 #include <substrate.h>
 #import "Global.h"
+#import "HBTSPreferences.h"
 #import <AddressBook/AddressBook.h>
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKEntity.h>
@@ -13,7 +14,7 @@
 #import <SpringBoard/SBUserAgent.h>
 #import <version.h>
 
-HBPreferences *preferences;
+HBTSPreferences *preferences;
 NSUInteger typingIndicators = 0;
 LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
@@ -25,12 +26,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 			kHBTSMessageTypeKey: @(type),
 			kHBTSMessageSenderKey: name ?: @"",
 			kHBTSMessageIsTypingKey: @(typing),
-			kHBTSMessageSendDateKey: [NSDate date],
-
-			kHBTSPreferencesOverlayAnimationSlideKey: @([preferences boolForKey:kHBTSPreferencesOverlayAnimationSlideKey]),
-			kHBTSPreferencesOverlayAnimationFadeKey: @([preferences boolForKey:kHBTSPreferencesOverlayAnimationFadeKey]),
-			kHBTSPreferencesTypingTimeoutKey: @([preferences boolForKey:kHBTSPreferencesTypingTimeoutKey]),
-			kHBTSPreferencesOverlayDurationKey: @([preferences doubleForKey:kHBTSPreferencesOverlayDurationKey])
+			kHBTSMessageSendDateKey: [NSDate date]
 		}]];
 	});
 }
@@ -44,7 +40,7 @@ BOOL HBTSShouldHide(BOOL typing) {
 		MessagesApps = [@[ @"com.apple.MobileSMS", @"com.bitesms" ] retain];
 	});
 
-	if ([preferences boolForKey:typing ? kHBTSPreferencesTypingHideInMessagesKey : kHBTSPreferencesReadHideInMessagesKey]) {
+	if (typing ? preferences.typingHideInMessages : preferences.readHideInMessages) {
 		return !((SpringBoard *)[UIApplication sharedApplication]).isLocked && [MessagesApps containsObject:((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID];
 	}
 
@@ -88,25 +84,13 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 %ctor {
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
+	dlopen("/Library/MobileSubstrate/DynamicLibraries/TypeStatusClient.dylib", RTLD_LAZY);
 
-	preferences = [[HBPreferences alloc] initWithIdentifier:kHBTSPreferencesDomain];
-	[preferences registerDefaults:@{
-		kHBTSPreferencesTypingStatusKey: @YES,
-		kHBTSPreferencesTypingIconKey: @NO,
-		kHBTSPreferencesTypingHideInMessagesKey: @YES,
-		kHBTSPreferencesTypingTimeoutKey: @NO,
-
-		kHBTSPreferencesReadStatusKey: @YES,
-		kHBTSPreferencesReadIconKey: @NO,
-		kHBTSPreferencesReadHideInMessagesKey: @YES,
-
-		kHBTSPreferencesOverlayAnimationSlideKey: @YES,
-		kHBTSPreferencesOverlayAnimationFadeKey: @YES,
-		kHBTSPreferencesOverlayDurationKey: @5.f
-	}];
+	preferences = [%c(HBTSPreferences) sharedInstance];
 
 	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		static void (^typingEnded)() = ^{
+			NSLog(@"typingEnded");
 			if (typingIndicators == 0) {
 				return;
 			}
@@ -129,7 +113,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue) {
 			case HBTSStatusBarTypeTyping:
 			{
-				BOOL isTesting = !((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
+				BOOL isTyping = !((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
 				typingIndicators++;
 
@@ -137,7 +121,9 @@ NSString *HBTSNameForHandle(NSString *handle) {
 					break;
 				}
 
-				if ([preferences boolForKey:kHBTSPreferencesTypingIconKey]) {
+				if (preferences.typingType == HBTSNotificationTypeOverlay) {
+					HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), !isTyping);
+				} else if (preferences.typingType == HBTSNotificationTypeIcon) {
 					static dispatch_once_t onceToken;
 					dispatch_once(&onceToken, ^{
 						typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
@@ -146,11 +132,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 					typingStatusBarItem.visible = YES;
 
-					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(([preferences boolForKey:kHBTSPreferencesTypingTimeoutKey] || isTesting ? [preferences doubleForKey:kHBTSPreferencesOverlayDurationKey] : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
-				}
-
-				if ([preferences boolForKey:kHBTSPreferencesTypingStatusKey]) {
-					HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), !isTesting);
+					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((preferences.useTypingTimeout || isTyping ? preferences.overlayDisplayDuration : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
 				}
 
 				break;
@@ -166,9 +148,9 @@ NSString *HBTSNameForHandle(NSString *handle) {
 					break;
 				}
 
-				if ([preferences boolForKey:kHBTSPreferencesReadStatusKey]) {
+				if (preferences.readType == HBTSNotificationTypeOverlay) {
 					HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), NO);
-				} else if ([preferences boolForKey:kHBTSPreferencesReadIconKey]) {
+				} else if (preferences.readType == HBTSNotificationTypeIcon) {
 					static dispatch_once_t onceToken;
 					dispatch_once(&onceToken, ^{
 						readStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
@@ -177,7 +159,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 					readStatusBarItem.visible = YES;
 
-					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([preferences doubleForKey:kHBTSPreferencesOverlayDurationKey] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(preferences.overlayDisplayDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 						readStatusBarItem.visible = NO;
 					});
 				}

@@ -21,6 +21,8 @@
 			<string>ReadStatus</string>
 			<key>label</key>
 			<string>Status Bar Overlay</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -35,6 +37,8 @@
 			<string>ReadIcon</string>
 			<key>label</key>
 			<string>Status Bar Icon</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -47,6 +51,8 @@
 			<string>ReadHideInMessages</string>
 			<key>label</key>
 			<string>Hide Inside Messages</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>

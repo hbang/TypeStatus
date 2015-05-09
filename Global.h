@@ -21,21 +21,4 @@ static NSString *const kHBTSMessageTypeKey = @"Type";
 static NSString *const kHBTSMessageSenderKey = @"Name";
 static NSString *const kHBTSMessageIsTypingKey = @"Typing";
 static NSString *const kHBTSMessageSendDateKey = @"Date";
-
-#pragma mark - Preferences
-
-static NSString *const kHBTSPreferencesDomain = @"ws.hbang.typestatus";
-
-static NSString *const kHBTSPreferencesTypingStatusKey = @"TypingStatus";
-static NSString *const kHBTSPreferencesTypingIconKey = @"TypingIcon";
-static NSString *const kHBTSPreferencesTypingHideInMessagesKey = @"HideInMessages";
-static NSString *const kHBTSPreferencesTypingTimeoutKey = @"TypingTimeout";
-
-static NSString *const kHBTSPreferencesReadStatusKey = @"ReadStatus";
-static NSString *const kHBTSPreferencesReadIconKey = @"ReadIcon";
-static NSString *const kHBTSPreferencesReadHideInMessagesKey = @"HideReadInMessages";
-
-static NSString *const kHBTSPreferencesOverlayAnimationSlideKey = @"OverlaySlide";
-static NSString *const kHBTSPreferencesOverlayAnimationFadeKey = @"OverlayFade";
-static NSString *const kHBTSPreferencesOverlayDurationKey = @"OverlayDuration";
 #endif
