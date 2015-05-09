@@ -90,7 +90,6 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		static void (^typingEnded)() = ^{
-			NSLog(@"typingEnded");
 			if (typingIndicators == 0) {
 				return;
 			}
