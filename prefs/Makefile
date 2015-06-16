@@ -1,6 +1,6 @@
 TARGET = :clang::5.0
 
-include theos/makefiles/common.mk
+include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = TypeStatus
 TypeStatus_FILES = $(wildcard *.m)
