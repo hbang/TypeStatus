@@ -1,18 +1,15 @@
-include theos/makefiles/common.mk
+include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
 
 TypeStatus_FILES = SpringBoard.xm
 TypeStatus_FRAMEWORKS = UIKit
-TypeStatus_LDFLAGS = -fobjc-arc
 
 TypeStatusRelay_FILES = IMAgentRelay.x
-TypeStatusRelay_LDFLAGS = -fobjc-arc
 
 TypeStatusClient_FILES = Client.xm HBTSPreferences.m HBTSStatusBarView.xm
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_LIBRARIES = cephei
-TypeStatusClient_LDFLAGS = -fobjc-arc
 
 SUBPROJECTS = prefs
 

@@ -12,7 +12,6 @@
 #import <libstatusbar/LSStatusBarItem.h>
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBUserAgent.h>
-#import <version.h>
 
 HBTSPreferences *preferences;
 NSUInteger typingIndicators = 0;
@@ -34,14 +33,8 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 #pragma mark - Hide while Messages is open
 
 BOOL HBTSShouldHide(BOOL typing) {
-	static NSArray *MessagesApps;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		MessagesApps = [@[ @"com.apple.MobileSMS", @"com.bitesms" ] retain];
-	});
-
 	if (typing ? preferences.typingHideInMessages : preferences.readHideInMessages) {
-		return !((SpringBoard *)[UIApplication sharedApplication]).isLocked && [MessagesApps containsObject:((SBUserAgent *)[%c(SBUserAgent) sharedUserAgent]).foregroundApplicationDisplayID];
+		return !((SpringBoard *)[UIApplication sharedApplication]).isLocked && [((SpringBoard *)[UIApplication sharedApplication])._accessibilityForegroundApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
 
 	return NO;
@@ -54,29 +47,13 @@ NSString *HBTSNameForHandle(NSString *handle) {
 		return @"John Appleseed";
 	} else {
 		NSString *name = handle;
-		CKEntity *entity = nil;
+		CKEntity *entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
 
-		if (%c(CKMadridService)) { // 5.x
-			CKMadridService *service = [[[%c(CKMadridService) alloc] init] autorelease];
-			entity = [[service copyEntityForAddressString:handle] autorelease];
-		} else if (%c(CKIMEntity)) { // 6.x
-			entity = [[%c(CKIMEntity) copyEntityForAddressString:handle] autorelease];
-		} else if (%c(CKEntity)) { // 7.x
-			entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
-		}
-
-		if ([entity.name isEqualToString:handle] // 5.x/6.x
-			|| ([entity respondsToSelector:@selector(handle)] && !entity.handle.person)) { // 7.x
+		if ([entity respondsToSelector:@selector(handle)] && !entity.handle.person) {
 			return handle;
 		}
 
-		if ([entity respondsToSelector:@selector(handle)]) { // 7.0+
-			name = entity.handle._displayNameWithAbbreviation ?: entity.name;
-		} else { // 6.x
-			name = entity.name;
-		}
-
-		return name;
+		return entity.handle._displayNameWithAbbreviation ?: entity.name;
 	}
 }
 
@@ -86,7 +63,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/TypeStatusClient.dylib", RTLD_LAZY);
 
-	preferences = [%c(HBTSPreferences) sharedInstance];
+	preferences = [HBTSPreferences sharedInstance];
 
 	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		static void (^typingEnded)() = ^{

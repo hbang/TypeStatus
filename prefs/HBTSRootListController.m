@@ -1,6 +1,5 @@
 #import "HBTSRootListController.h"
 #import <Preferences/PSSpecifier.h>
-#import <version.h>
 
 static NSString *const kHBTSOverlayDurationIdentifier = @"OverlayDuration";
 static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationLegacy";
@@ -18,33 +17,11 @@ static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationL
 }
 
 + (NSURL *)hb_shareURL {
-	return [NSURL URLWithString:@"https://typestatus.com"];
+	return [NSURL URLWithString:@"https://typestatus.com/"];
 }
 
 + (UIColor *)hb_tintColor {
 	return [UIColor colorWithRed:83.f / 255.f green:215.f / 255.f blue:106.f / 255.f alpha:1];
-}
-
-#pragma mark - PSListController
-
-- (NSArray *)specifiers {
-	if (!_specifiers) {
-		NSArray *oldSpecifiers = [super specifiers];
-		NSMutableArray *specifiers = [[NSMutableArray alloc] init];
-
-		for (PSSpecifier *specifier in oldSpecifiers) {
-			if (([specifier.identifier isEqualToString:kHBTSOverlayDurationIdentifier] && IS_IOS_OR_OLDER(iOS_5_1))
-				|| ([specifier.identifier isEqualToString:kHBTSOverlayDurationLegacyIdentifier] && IS_IOS_OR_NEWER(iOS_6_0))) {
-				continue;
-			}
-
-			[specifiers addObject:specifier];
-		}
-
-		_specifiers = specifiers;
-	}
-
-	return _specifiers;
 }
 
 @end
