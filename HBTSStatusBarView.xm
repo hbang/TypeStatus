@@ -11,10 +11,9 @@
 #import <UIKit/UIStatusBar.h>
 #import <UIKit/UIStatusBarForegroundView.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
-#import <version.h>
 #include <notify.h>
 
-static CGFloat const kHBTSStatusBarFontSize = IS_IOS_OR_NEWER(iOS_7_0) ? 12.f : 14.f;
+static CGFloat const kHBTSStatusBarFontSize = 12.f;
 static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 
 @implementation HBTSStatusBarView {
@@ -58,13 +57,7 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 		_iconImageView.center = CGPointMake(_iconImageView.center.x, self.frame.size.height / 2);
 		[_containerView addSubview:_iconImageView];
 
-		CGFloat top = 0;
-
-		if (!IS_IOS_OR_NEWER(iOS_7_0)) {
-			top = [UIScreen mainScreen].scale > 1 ? -0.5f : -1.f;
-		}
-
-		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, top, 0, self.frame.size.height)];
+		_typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
 		_typeLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		_typeLabel.font = [UIFont boldSystemFontOfSize:kHBTSStatusBarFontSize];
 		_typeLabel.backgroundColor = [UIColor clearColor];
@@ -118,65 +111,28 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 	dispatch_once(&onceToken, ^{
 		NSBundle *uikitBundle = [NSBundle bundleForClass:UIView.class];
 
-		if (IS_IOS_OR_NEWER(iOS_7_0)) {
-			TypingImage = [[[UIImage imageNamed:@"Black_TypeStatus" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
-			ReadImage = [[[UIImage imageNamed:@"Black_TypeStatusRead" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
-		} else {
-			TypingImage = [[UIImage imageNamed:@"WhiteOnBlackEtch_TypeStatus" inBundle:uikitBundle] retain];
-			ReadImage = [[UIImage imageNamed:@"WhiteOnBlackEtch_TypeStatusRead" inBundle:uikitBundle] retain];
-		}
-
-		if (IS_IOS_OR_OLDER(iOS_5_1) && !IS_IPAD) {
-			TypingImageWhite = [[UIImage imageNamed:@"ColorOnGrayShadow_TypeStatus" inBundle:uikitBundle] retain];
-			ReadImageWhite = [[UIImage imageNamed:@"ColorOnGrayShadow_TypeStatusRead" inBundle:uikitBundle] retain];
-		}
+		TypingImage = [[[UIImage imageNamed:@"Black_TypeStatus" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
+		ReadImage = [[[UIImage imageNamed:@"Black_TypeStatusRead" inBundle:uikitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] retain];
 	});
 
-	UIColor *textColor;
-	UIColor *shadowColor;
-	CGSize shadowOffset;
-	BOOL isWhite = NO;
+	UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>(self.superview, "_foregroundView");
+	UIColor *textColor = MSHookIvar<UIColor *>(foregroundView.foregroundStyle, "_tintColor");
 
-	if (IS_IOS_OR_NEWER(iOS_7_0)) {
-		UIStatusBarForegroundView *foregroundView = MSHookIvar<UIStatusBarForegroundView *>(self.superview, "_foregroundView");
-		textColor = MSHookIvar<UIColor *>(foregroundView.foregroundStyle, "_tintColor");
-	} else {
-		if (!IS_IOS_OR_NEWER(iOS_6_0) && !IS_IPAD && [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleDefault) {
-			textColor = [UIColor blackColor];
-			shadowColor = [UIColor whiteColor];
-			shadowOffset = CGSizeMake(0, 1.f);
-			isWhite = YES;
-		} else {
-			textColor = [UIColor whiteColor];
-			shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
-			shadowOffset = CGSizeMake(0, -1.f);
-		}
-	}
+	_typeLabel.textColor = textColor;
+	_contactLabel.textColor = textColor;
+	_iconImageView.tintColor = textColor;
 
 	switch (_type) {
 		case HBTSStatusBarTypeTyping:
-			_iconImageView.image = isWhite && TypingImageWhite ? TypingImageWhite : TypingImage;
+			_iconImageView.image = TypingImage;
 			break;
 
 		case HBTSStatusBarTypeRead:
-			_iconImageView.image = isWhite && ReadImageWhite ? ReadImageWhite : ReadImage;
+			_iconImageView.image = ReadImage;
 			break;
 
 		case HBTSStatusBarTypeTypingEnded:
 			break;
-	}
-
-	_typeLabel.textColor = textColor;
-	_contactLabel.textColor = textColor;
-
-	if (IS_IOS_OR_NEWER(iOS_7_0)) {
-		_iconImageView.tintColor = textColor;
-	} else {
-		_typeLabel.shadowColor = shadowColor;
-		_contactLabel.shadowColor = shadowColor;
-
-		_typeLabel.shadowOffset = shadowOffset;
-		_contactLabel.shadowOffset = shadowOffset;
 	}
 }
 
@@ -387,10 +343,6 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 }
 
 - (void)_toggleLockScreenGrabberVisible:(BOOL)state {
-	if (!IS_IOS_OR_NEWER(iOS_7_0)) {
-		return;
-	}
-
 	SBLockScreenManager *lockScreenManager = [%c(SBLockScreenManager) sharedInstance];
 
 	if (!lockScreenManager.isUILocked) {

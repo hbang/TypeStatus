@@ -1,6 +1,5 @@
 #import "HBTSStatusBarView.h"
 #import <UIKit/UIStatusBar.h>
-#import <version.h>
 
 @interface UIStatusBar (TypeStatus)
 

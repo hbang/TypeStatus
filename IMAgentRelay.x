@@ -2,7 +2,6 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMDaemonCore/IMDMessageStore.h>
 #import <IMFoundation/FZMessage.h>
-#import <version.h>
 
 #pragma mark - Communication with SpringBoard
 
@@ -30,23 +29,10 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	}
 }
 
-%group JonyIveIsCool
-
 - (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID date:(NSDate *)date completionBlock:(id)completion {
 	%orig;
 	HBTSPostMessage(HBTSStatusBarTypeRead, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
 }
-
-%end
-
-%group ForstallForTheWin
-
-- (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID {
-	%orig;
-	HBTSPostMessage(HBTSStatusBarTypeRead, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
-}
-
-%end
 
 %end
 
@@ -64,12 +50,6 @@ void HBTSTestRead() {
 
 %ctor {
 	%init;
-
-	if (IS_IOS_OR_NEWER(iOS_7_0)) {
-		%init(JonyIveIsCool);
-	} else {
-		%init(ForstallForTheWin);
-	}
 
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, 0);
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, 0);
