@@ -7,7 +7,7 @@ TypeStatus_FRAMEWORKS = UIKit
 
 TypeStatusRelay_FILES = IMAgentRelay.x
 
-TypeStatusClient_FILES = Client.xm HBTSPreferences.m HBTSStatusBarView.xm
+TypeStatusClient_FILES = Client.xm HBTSPreferences.m HBTSStatusBarForegroundView.xm
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_LIBRARIES = cephei
 
