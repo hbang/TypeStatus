@@ -1,9 +1,6 @@
 #import "HBTSRootListController.h"
 #import <Preferences/PSSpecifier.h>
 
-static NSString *const kHBTSOverlayDurationIdentifier = @"OverlayDuration";
-static NSString *const kHBTSOverlayDurationLegacyIdentifier = @"OverlayDurationLegacy";
-
 @implementation HBTSRootListController
 
 #pragma mark - Constants
