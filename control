@@ -9,7 +9,6 @@ Architecture: iphoneos-arm
 Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <support@hbang.ws>
 Author: HASHBANG Productions <support@hbang.ws>
-Support: https://www.hbang.ws/faq
 Section: Tweaks
 Icon: file:///Library/PreferenceBundles/TypeStatus.bundle/icon@2x.png
 Depiction: https://cydia.hbang.ws/depiction/ws.hbang.typestatus/
