@@ -11,3 +11,9 @@ Maintainer: HASHBANG Productions <support@hbang.ws>
 Author: HASHBANG Productions <support@hbang.ws>
 Support: https://www.hbang.ws/faq
 Section: Tweaks
+Icon: file:///Library/PreferenceBundles/TypeStatus.bundle/icon@2x.png
+Depiction: https://cydia.hbang.ws/depiction/ws.hbang.typestatus/
+Support: https://www.hbang.ws/faq/
+Sponsor: thebigboss.org <http://thebigboss.org>
+Tag: purpose::extension, compatible::ios7, compatible::ios8
+dev: hbang
