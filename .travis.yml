@@ -1,3 +1,3 @@
 language: objective-c
 install: git clone --recursive git://github.com/kirb/theos.git
-script: make
+script: make THEOS=$PWD/theos
