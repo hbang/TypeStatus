@@ -10,8 +10,8 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
 #import <libstatusbar/LSStatusBarItem.h>
+#import <SpringBoard/SBApplication.h>
 #import <SpringBoard/SpringBoard.h>
-#import <SpringBoard/SBUserAgent.h>
 
 HBTSPreferences *preferences;
 NSUInteger typingIndicators = 0;
@@ -34,7 +34,8 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 BOOL HBTSShouldHide(BOOL typing) {
 	if (typing ? preferences.typingHideInMessages : preferences.readHideInMessages) {
-		return !((SpringBoard *)[UIApplication sharedApplication]).isLocked && [((SpringBoard *)[UIApplication sharedApplication])._accessibilityForegroundApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
+		return !app.isLocked && [app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
 
 	return NO;
@@ -46,10 +47,9 @@ NSString *HBTSNameForHandle(NSString *handle) {
 	if ([handle isEqualToString:@"example@hbang.ws"]) {
 		return @"John Appleseed";
 	} else {
-		NSString *name = handle;
 		CKEntity *entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
 
-		if ([entity respondsToSelector:@selector(handle)] && !entity.handle.person) {
+		if (!entity || ([entity respondsToSelector:@selector(handle)] && !entity.handle.person)) {
 			return handle;
 		}
 
@@ -63,7 +63,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/TypeStatusClient.dylib", RTLD_LAZY);
 
-	preferences = [HBTSPreferences sharedInstance];
+	preferences = [%c(HBTSPreferences) sharedInstance];
 
 	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		static void (^typingEnded)() = ^{

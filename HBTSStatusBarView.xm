@@ -103,11 +103,8 @@ static NSTimeInterval const kHBTSStatusBarAnimationDuration = 0.25;
 
 - (void)_updateForCurrentStatusBarStyle {
 	static UIImage *TypingImage;
-	static UIImage *TypingImageWhite;
 	static UIImage *ReadImage;
-	static UIImage *ReadImageWhite;
 	static dispatch_once_t onceToken;
-
 	dispatch_once(&onceToken, ^{
 		NSBundle *uikitBundle = [NSBundle bundleForClass:UIView.class];
 
