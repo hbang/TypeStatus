@@ -162,10 +162,10 @@
 		statusBarView.alpha = direction ? 1 : 0;
 	}
 
-	UIStatusBarHideAnimationParameters *animationParameters = [[[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters];
+	UIStatusBarHideAnimationParameters *animationParameters = [[[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] autorelease];
 	// TODO: animationParameters.hideAnimation = 1 or 2
 
-	[%c(UIStatusBarAnimationParameters) animateWithParameters:animationParameters autorelease] animations:^{
+	[%c(UIStatusBarAnimationParameters) animateWithParameters:animationParameters animations:^{
 		if (animations & HBTSStatusBarAnimationSlide) {
 			CGRect typeStatusFrame = typeStatusView.frame;
 			typeStatusFrame.origin.y = direction ? 0 : typeStatusFrame.size.height;
