@@ -43,7 +43,7 @@
 
 #pragma mark - Initialization
 
-- (id)init {
+- (id)initWithFrame:(CGRect)frame showForegroundView:(BOOL)showForegroundView inProcessStateProvider:(id)stateProvider {
 	self = %orig;
 
 	if (self) {
