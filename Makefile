@@ -1,20 +1,7 @@
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = TypeStatus TypeStatusRelay TypeStatusClient
+SUBPROJECTS = springboard client relay messages prefs
 
-TypeStatus_FILES = SpringBoard.xm
-TypeStatus_FRAMEWORKS = UIKit
-
-TypeStatusRelay_FILES = IMAgentRelay.x HBTSConversationPreferences.m
-TypeStatusRelay_LIBRARIES = cephei
-
-TypeStatusClient_FILES = Client.xm HBTSPreferences.m HBTSStatusBarForegroundView.xm $(wildcard HBTSStatusBar*ItemView.x)
-TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
-TypeStatusClient_LIBRARIES = cephei
-
-SUBPROJECTS = prefs messages
-
-include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-stage::

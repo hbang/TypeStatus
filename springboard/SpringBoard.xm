@@ -1,6 +1,5 @@
 #include <substrate.h>
-#import "Global.h"
-#import "HBTSPreferences.h"
+#import "../client/HBTSPreferences.h"
 #import <AddressBook/AddressBook.h>
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKEntity.h>

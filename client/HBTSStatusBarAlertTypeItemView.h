@@ -1,7 +1,6 @@
-#import "Global.h"
 #import <UIKit/UIStatusBarItemView.h>
 
-@interface HBTSStatusBarIconItemView : UIStatusBarItemView
+@interface HBTSStatusBarAlertTypeItemView : UIStatusBarItemView
 
 @property (nonatomic, retain) NSNumber *type;
 

@@ -1,4 +1,3 @@
-#import "Global.h"
 #import <UIKit/UIStatusBarForegroundView.h>
 
 @interface HBTSStatusBarForegroundView : UIStatusBarForegroundView
