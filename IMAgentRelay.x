@@ -15,7 +15,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	});
 }
 
-#pragma mark - iMessage hooks
+#pragma mark - Typing/read notifications
 
 %hook IMDServiceSession
 
@@ -32,6 +32,22 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 - (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID date:(NSDate *)date completionBlock:(id)completion {
 	%orig;
 	HBTSPostMessage(HBTSStatusBarTypeRead, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
+}
+
+%end
+
+#pragma mark - Block outgoing typing/read
+
+%hook IMDServiceSession
+
+- (void)sendMessage:(FZMessage *)message toChat:(id)chat style:(unsigned char)style {
+	%log;
+	%orig;
+}
+
+- (void)sendReadReceiptForMessage:(FZMessage *)message toChatID:(id)chat identifier:(NSString *)identifier style:(unsigned char)style {
+	%log;
+	%orig;
 }
 
 %end
