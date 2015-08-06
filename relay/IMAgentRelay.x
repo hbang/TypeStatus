@@ -1,4 +1,3 @@
-#import "Global.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMDaemonCore/IMDMessageStore.h>
 #import <IMFoundation/FZMessage.h>

@@ -1,6 +1,3 @@
-#ifndef _TYPESTATUS_GLOBAL_H
-#define _TYPESTATUS_GLOBAL_H
-
 typedef NS_ENUM(NSUInteger, HBTSStatusBarType) {
 	HBTSStatusBarTypeTyping,
 	HBTSStatusBarTypeTypingEnded,
@@ -21,4 +18,3 @@ static NSString *const kHBTSMessageTypeKey = @"Type";
 static NSString *const kHBTSMessageSenderKey = @"Name";
 static NSString *const kHBTSMessageIsTypingKey = @"Typing";
 static NSString *const kHBTSMessageSendDateKey = @"Date";
-#endif
