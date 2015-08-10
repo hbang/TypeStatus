@@ -102,6 +102,7 @@
 		return;
 	}
 
+	[self._typeStatus_foregroundView setType:type contactName:notification.userInfo[kHBTSMessageSenderKey]];
 	[self _typeStatus_animateInDirection:type != HBTSStatusBarTypeTypingEnded timeout:duration];
 }
 
