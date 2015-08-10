@@ -1,10 +1,11 @@
 #import "HBTSStatusBarContactNameItemView.h"
+#import <UIKit/_UILegibilityImageSet.h>
 
 %subclass HBTSStatusBarContactNameItemView : UIStatusBarItemView
 
 %property (nonatomic, retain) NSString *contactName;
 
-- (UIImage *)contentsImage {
+- (_UILegibilityImageSet *)contentsImage {
 	return [self imageWithText:self.contactName];
 }
 

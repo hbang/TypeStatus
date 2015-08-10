@@ -1,10 +1,11 @@
 #import "HBTSStatusBarAlertTypeItemView.h"
+#import <UIKit/_UILegibilityImageSet.h>
 
 %subclass HBTSStatusBarAlertTypeItemView : UIStatusBarItemView
 
 %property (nonatomic, retain) NSNumber *type;
 
-- (UIImage *)contentsImage {
+- (_UILegibilityImageSet *)contentsImage {
 	static NSBundle *PrefsBundle;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{

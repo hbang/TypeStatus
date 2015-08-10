@@ -2,7 +2,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = TypeStatusClient
 
-TypeStatusClient_FILES = Client.xm HBTSPreferences.m HBTSStatusBarForegroundView.xm $(wildcard HBTSStatusBar*ItemView.x)
+TypeStatusClient_FILES = $(wildcard *.x) $(wildcard *.xm) $(wildcard *.m)
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_LIBRARIES = cephei
 TypeStatusClient_CFLAGS = -include ../Global.h
