@@ -3,6 +3,7 @@
 #import "HBTSStatusBarIconItemView.h"
 #import "HBTSStatusBarAlertTypeItemView.h"
 #import "HBTSStatusBarContactNameItemView.h"
+#import <UIKit/UIStatusBar.h>
 
 @interface HBTSStatusBarForegroundView ()
 
@@ -24,10 +25,6 @@
 %property (nonatomic, retain) HBTSStatusBarItem *alertTypeItem;
 %property (nonatomic, retain) HBTSStatusBarItem *contactNameItem;
 
-%property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
-%property (nonatomic, retain) HBTSStatusBarAlertTypeItemView *alertTypeItemView;
-%property (nonatomic, retain) HBTSStatusBarContactNameItemView *contactNameItemView;
-
 - (id)initWithFrame:(CGRect)frame foregroundStyle:(id)foregroundStyle usesVerticalLayout:(BOOL)usesVerticalLayout {
 	self = %orig;
 
@@ -43,6 +40,13 @@
 	}
 
 	return self;
+}
+
+- (NSDictionary *)_computeVisibleItemsPreservingHistory:(BOOL)preserveHistory {
+	HBLogDebug(@"_computeVisibleItemsPreservingHistory:%i", preserveHistory);
+	return @{
+		@(UIStatusBarPositionCenter): @[ self.iconItem, self.alertTypeItem, self.contactNameItem ]
+	};
 }
 
 %new - (void)setType:(HBTSStatusBarType)type contactName:(NSString *)contactName {
