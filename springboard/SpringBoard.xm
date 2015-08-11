@@ -55,6 +55,37 @@ NSString *HBTSNameForHandle(NSString *handle) {
 	}
 }
 
+#pragma mark - Show/hide
+
+void HBTSShowOverlay(HBTSStatusBarType type, NSString *handle, BOOL isTyping) {
+	static NSBundle *PrefsBundle;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
+	});
+
+	if (UIAccessibilityIsVoiceOverRunning()) {
+		NSString *typeString = @"";
+
+		switch (type) {
+			case HBTSStatusBarTypeTyping:
+				typeString = [PrefsBundle localizedStringForKey:@"Typing:" value:@"Typing:" table:@"Root"];
+				break;
+
+			case HBTSStatusBarTypeRead:
+				typeString = [PrefsBundle localizedStringForKey:@"Read:" value:@"Read:" table:@"Root"];
+				break;
+
+			case HBTSStatusBarTypeTypingEnded:
+				break;
+		}
+
+		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", typeString, handle]);
+	}
+
+	HBTSPostMessage(type, HBTSNameForHandle(handle), isTyping);
+}
+
 #pragma mark - Constructor
 
 %ctor {
@@ -64,33 +95,6 @@ NSString *HBTSNameForHandle(NSString *handle) {
 	preferences = [%c(HBTSPreferences) sharedInstance];
 
 	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-		static void (^showOverlay)(HBTSStatusBarType type, NSString *text, BOOL isTyping) = ^(HBTSStatusBarType type, NSString *text) {
-			static NSBundle *PrefsBundle;
-			static dispatch_once_t onceToken;
-			dispatch_once(&onceToken, ^{
-				PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
-			});
-
-			if (UIAccessibilityIsVoiceOverRunning()) {
-				NSString *typeString = @"";
-
-				switch (type) {
-					case HBTSStatusBarTypeTyping:
-						typeString = [PrefsBundle localizedStringForKey:@"Typing:" value:@"Typing:" table:@"Root"];
-						break;
-
-					case HBTSStatusBarTypeRead:
-						typeString = [PrefsBundle localizedStringForKey:@"Read:" value:@"Read:" table:@"Root"];
-						break;
-
-					case HBTSStatusBarTypeTypingEnded:
-						break;
-				}
-
-				UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", typeString, text]);
-			}
-		};
-
 		static void (^typingEnded)() = ^{
 			if (typingIndicators == 0) {
 				return;
@@ -123,7 +127,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 				}
 
 				if (preferences.typingType == HBTSNotificationTypeOverlay) {
-					HBTSPostMessage(HBTSStatusBarTypeTyping, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), !isTyping);
+					HBTSShowOverlay(HBTSStatusBarTypeTyping, notification.userInfo[kHBTSMessageSenderKey], !isTyping);
 				} else if (preferences.typingType == HBTSNotificationTypeIcon) {
 					static dispatch_once_t onceToken;
 					dispatch_once(&onceToken, ^{
@@ -150,7 +154,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 				}
 
 				if (preferences.readType == HBTSNotificationTypeOverlay) {
-					HBTSPostMessage(HBTSStatusBarTypeRead, HBTSNameForHandle(notification.userInfo[kHBTSMessageSenderKey]), NO);
+					HBTSShowOverlay(HBTSStatusBarTypeRead, notification.userInfo[kHBTSMessageSenderKey], NO);
 				} else if (preferences.readType == HBTSNotificationTypeIcon) {
 					static dispatch_once_t onceToken;
 					dispatch_once(&onceToken, ^{
