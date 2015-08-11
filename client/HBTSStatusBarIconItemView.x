@@ -5,7 +5,7 @@
 
 %subclass HBTSStatusBarIconItemView : UIStatusBarItemView
 
-%property (nonatomic, retain) NSNumber *type;
+%property (nonatomic, retain) NSNumber *alertType;
 
 - (_UILegibilityImageSet *)contentsImage {
 	static NSBundle *UIKitBundle;
@@ -14,7 +14,7 @@
 		UIKitBundle = [NSBundle bundleForClass:UIView.class];
 	});
 
-	HBTSStatusBarType type = (HBTSStatusBarType)self.type.unsignedIntegerValue;
+	HBTSStatusBarType type = (HBTSStatusBarType)self.alertType.unsignedIntegerValue;
 	NSString *name = nil;
 
 	switch (type) {
@@ -34,8 +34,12 @@
 	return [%c(_UILegibilityImageSet) imageFromImage:image withShadowImage:nil];
 }
 
+- (CGFloat)extraRightPadding {
+	return self.standardPadding;
+}
+
 - (void)dealloc {
-	[self.type release];
+	[self.alertType release];
 	%orig;
 }
 

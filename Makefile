@@ -1,6 +1,6 @@
 include $(THEOS)/makefiles/common.mk
 
-SUBPROJECTS = springboard client relay messages prefs
+SUBPROJECTS = springboard client relay prefs
 
 include $(THEOS_MAKE_PATH)/aggregate.mk
 

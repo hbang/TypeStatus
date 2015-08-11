@@ -1,15 +1,11 @@
 #import "HBTSStatusBarForegroundView.h"
-#import "HBTSStatusBarItem.h"
 #import "HBTSStatusBarIconItemView.h"
 #import "HBTSStatusBarAlertTypeItemView.h"
 #import "HBTSStatusBarContactNameItemView.h"
-#import <UIKit/UIStatusBar.h>
 
 @interface HBTSStatusBarForegroundView ()
 
-@property (nonatomic, retain) HBTSStatusBarItem *iconItem;
-@property (nonatomic, retain) HBTSStatusBarItem *alertTypeItem;
-@property (nonatomic, retain) HBTSStatusBarItem *contactNameItem;
+@property (nonatomic, retain) UIView *containerView;
 
 @property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
 @property (nonatomic, retain) HBTSStatusBarAlertTypeItemView *alertTypeItemView;
@@ -21,46 +17,71 @@
 
 %property (nonatomic, retain) UIStatusBarForegroundView *statusBarView;
 
-%property (nonatomic, retain) HBTSStatusBarItem *iconItem;
-%property (nonatomic, retain) HBTSStatusBarItem *alertTypeItem;
-%property (nonatomic, retain) HBTSStatusBarItem *contactNameItem;
+%property (nonatomic, retain) UIView *containerView;
+
+%property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
+%property (nonatomic, retain) HBTSStatusBarAlertTypeItemView *alertTypeItemView;
+%property (nonatomic, retain) HBTSStatusBarContactNameItemView *contactNameItemView;
 
 - (id)initWithFrame:(CGRect)frame foregroundStyle:(id)foregroundStyle usesVerticalLayout:(BOOL)usesVerticalLayout {
 	self = %orig;
 
 	if (self) {
-		self.iconItem = [[%c(HBTSStatusBarItem) alloc] init];
-		self.iconItem._typeStatus_viewClass = %c(HBTSStatusBarIconItemView);
+		UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width / 2, 0, 0, frame.size.height)];
+		containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+		[self addSubview:containerView];
 
-		self.alertTypeItem = [[%c(HBTSStatusBarItem) alloc] init];
-		self.alertTypeItem._typeStatus_viewClass = %c(HBTSStatusBarAlertTypeItemView);
+		self.containerView = containerView;
 
-		self.contactNameItem = [[%c(HBTSStatusBarItem) alloc] init];
-		self.contactNameItem._typeStatus_viewClass = %c(HBTSStatusBarContactNameItemView);
+		self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:foregroundStyle];
+		[containerView addSubview:self.iconItemView];
+
+		self.alertTypeItemView = [[%c(HBTSStatusBarAlertTypeItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:foregroundStyle];
+		[containerView addSubview:self.alertTypeItemView];
+
+		self.contactNameItemView = [[%c(HBTSStatusBarContactNameItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:foregroundStyle];
+		[containerView addSubview:self.contactNameItemView];
 	}
 
 	return self;
 }
 
-- (NSDictionary *)_computeVisibleItemsPreservingHistory:(BOOL)preserveHistory {
-	HBLogDebug(@"_computeVisibleItemsPreservingHistory:%i", preserveHistory);
-	return @{
-		@(UIStatusBarPositionCenter): @[ self.iconItem, self.alertTypeItem, self.contactNameItem ]
-	};
+- (void)layoutSubviews {
+	%orig;
+
+	CGRect iconFrame = self.iconItemView.frame;
+
+	CGRect alertTypeFrame = self.alertTypeItemView.frame;
+	alertTypeFrame.origin.x = iconFrame.size.width;
+	self.alertTypeItemView.frame = alertTypeFrame;
+
+	CGRect contactNameFrame = self.contactNameItemView.frame;
+	contactNameFrame.origin.x = alertTypeFrame.origin.x + alertTypeFrame.size.width;
+	self.contactNameItemView.frame = contactNameFrame;
+
+	CGRect containerFrame = self.containerView.frame;
+	containerFrame.size.width = iconFrame.size.width + alertTypeFrame.size.width + contactNameFrame.size.width;
+	containerFrame.origin.x = MAX(0, (self.frame.size.width - containerFrame.size.width) / 2);
+	self.containerView.frame = containerFrame;
 }
 
 %new - (void)setType:(HBTSStatusBarType)type contactName:(NSString *)contactName {
 	NSNumber *boxedType = @(type);
-	self.iconItemView.type = boxedType;
-	self.alertTypeItemView.type = boxedType;
 
-	self.contactNameItemView.contactName = contactName;
+	self.iconItemView.alertType = boxedType;
+	[self.iconItemView updateContentsAndWidth];
+
+	self.alertTypeItemView.alertType = boxedType;
+	[self.alertTypeItemView updateContentsAndWidth];
+
+	self.contactNameItemView.contactName = [contactName copy];
+	[self.contactNameItemView updateContentsAndWidth];
+
+	[self setNeedsLayout];
 }
 
 - (void)dealloc {
-	[self.iconItem release];
-	[self.alertTypeItem release];
-	[self.contactNameItem release];
+	[self.containerView release];
 	[self.iconItemView release];
 	[self.alertTypeItemView release];
 	[self.contactNameItemView release];

@@ -3,7 +3,7 @@
 
 %subclass HBTSStatusBarAlertTypeItemView : UIStatusBarItemView
 
-%property (nonatomic, retain) NSNumber *type;
+%property (nonatomic, retain) NSNumber *alertType;
 
 - (_UILegibilityImageSet *)contentsImage {
 	static NSBundle *PrefsBundle;
@@ -12,7 +12,7 @@
 		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
 	});
 
-	HBTSStatusBarType type = (HBTSStatusBarType)self.type.unsignedIntegerValue;
+	HBTSStatusBarType type = (HBTSStatusBarType)self.alertType.unsignedIntegerValue;
 	NSString *text = @"";
 
 	switch (type) {
@@ -39,8 +39,12 @@
 	return UIStatusBarItemViewTextStyleBold;
 }
 
+- (CGFloat)extraRightPadding {
+	return 4.f;
+}
+
 - (void)dealloc {
-	[self.type release];
+	[self.alertType release];
 	%orig;
 }
 
