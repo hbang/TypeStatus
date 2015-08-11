@@ -39,10 +39,6 @@
 	return UIStatusBarItemViewTextStyleBold;
 }
 
-- (CGFloat)extraRightPadding {
-	return 4.f;
-}
-
 - (void)dealloc {
 	[self.alertType release];
 	%orig;
