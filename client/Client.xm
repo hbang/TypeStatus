@@ -73,6 +73,7 @@
 
 		HBTSStatusBarForegroundView *typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle usesVerticalLayout:NO];
 		typeStatusView.statusBarView = statusBarView;
+		typeStatusView.hidden = YES;
 		[self insertSubview:typeStatusView aboveSubview:statusBarView];
 
 		self._typeStatus_foregroundView = typeStatusView;
@@ -127,6 +128,10 @@
 
 		self._typeStatus_isAnimating = YES;
 		self._typeStatus_isVisible = YES;
+
+		if (IN_SPRINGBOARD) {
+			notify_post("ws.hbang.typestatus/OverlayWillShow");
+		}
 	} else {
 		if (!self._typeStatus_isVisible || self._typeStatus_isAnimating) {
 			return;
@@ -155,6 +160,7 @@
 
 		CGRect statusBarFrame = statusBarView.frame;
 		statusBarFrame.origin.y = direction ? 0 : statusBarFrame.size.height;
+		statusBarFrame.size.height = direction ? typeStatusFrame.size.height : 0;
 		statusBarView.frame = statusBarFrame;
 	}
 
@@ -169,7 +175,7 @@
 	[%c(UIStatusBarAnimationParameters) animateWithParameters:(UIStatusBarAnimationParameters *)animationParameters animations:^{
 		if (animations & HBTSStatusBarAnimationSlide) {
 			CGRect typeStatusFrame = typeStatusView.frame;
-			typeStatusFrame.origin.y = direction ? 0 : typeStatusFrame.size.height;
+			typeStatusFrame.origin.y = direction ? 0 : -typeStatusFrame.size.height;
 			typeStatusView.frame = typeStatusFrame;
 
 			CGRect statusBarFrame = statusBarView.frame;
@@ -197,6 +203,10 @@
 
 		self.clipsToBounds = NO;
 		self._typeStatus_isAnimating = NO;
+
+		if (!direction && IN_SPRINGBOARD) {
+			notify_post("ws.hbang.typestatus/OverlayDidHide");
+		}
 	}];
 }
 

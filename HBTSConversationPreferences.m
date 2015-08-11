@@ -40,6 +40,8 @@
 
 #pragma mark - Setters
 
+// TODO: needs implementing
+
 - (void)setTypingNotificationsEnabled:(BOOL)enabled forConversation:(CKConversation *)conversation {
 
 }

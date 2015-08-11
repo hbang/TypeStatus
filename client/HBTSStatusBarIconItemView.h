@@ -2,6 +2,6 @@
 
 @interface HBTSStatusBarIconItemView : UIStatusBarItemView
 
-@property (nonatomic, retain) NSNumber *type;
+@property (nonatomic, retain) NSNumber *alertType;
 
 @end
