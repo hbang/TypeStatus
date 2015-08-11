@@ -23,7 +23,7 @@
 	<key>DTPlatformName</key>
 	<string>iphoneos</string>
 	<key>HBPackageIdentifier</key>
-	<string>ws.hbang.typestatus</string>
+	<string>ws.hbang.typestatus2</string>
 	<key>NSPrincipalClass</key>
 	<string>HBTSRootListController</string>
 </dict>
