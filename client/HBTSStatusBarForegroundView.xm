@@ -52,15 +52,15 @@
 	CGRect iconFrame = self.iconItemView.frame;
 
 	CGRect alertTypeFrame = self.alertTypeItemView.frame;
-	alertTypeFrame.origin.x = iconFrame.size.width;
+	alertTypeFrame.origin.x = iconFrame.size.width + 6.f;
 	self.alertTypeItemView.frame = alertTypeFrame;
 
 	CGRect contactNameFrame = self.contactNameItemView.frame;
-	contactNameFrame.origin.x = alertTypeFrame.origin.x + alertTypeFrame.size.width;
+	contactNameFrame.origin.x = alertTypeFrame.origin.x + alertTypeFrame.size.width + 4.f;
 	self.contactNameItemView.frame = contactNameFrame;
 
 	CGRect containerFrame = self.containerView.frame;
-	containerFrame.size.width = iconFrame.size.width + alertTypeFrame.size.width + contactNameFrame.size.width;
+	containerFrame.size.width = contactNameFrame.origin.x + contactNameFrame.size.width;
 	containerFrame.origin.x = MAX(0, (self.frame.size.width - containerFrame.size.width) / 2);
 	self.containerView.frame = containerFrame;
 }

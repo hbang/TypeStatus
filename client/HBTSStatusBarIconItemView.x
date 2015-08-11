@@ -34,10 +34,6 @@
 	return [%c(_UILegibilityImageSet) imageFromImage:image withShadowImage:nil];
 }
 
-- (CGFloat)extraRightPadding {
-	return self.standardPadding;
-}
-
 - (void)dealloc {
 	[self.alertType release];
 	%orig;
