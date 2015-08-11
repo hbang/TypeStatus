@@ -4,7 +4,7 @@ Depends: firmware (>= 7.0), firmware (<< 9.0), mobilesubstrate, libstatusbar8 (>
 Conflicts: ws.hbang.typestatus
 Replaces: ws.hbang.typestatus
 Provides: ws.hbang.typestatus
-Version: 2.0
+Version: 2.0~beta1
 Architecture: iphoneos-arm
 Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <support@hbang.ws>
