@@ -1,4 +1,4 @@
-# TypeStatus [![Build Status](https://travis-ci.org/hbang/TypeStatus.svg)](https://travis-ci.org/hbang/TypeStatus)
+# TypeStatus
 iMessage typing and read receipt indicators for the iOS status bar.
 
 ## License
