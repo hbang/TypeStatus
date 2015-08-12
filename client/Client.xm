@@ -71,7 +71,14 @@
 
 		UIStatusBarForegroundView *statusBarView = MSHookIvar<UIStatusBarForegroundView *>(self, "_foregroundView");
 
-		HBTSStatusBarForegroundView *typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle usesVerticalLayout:NO];
+		HBTSStatusBarForegroundView *typeStatusView;
+
+		if ([HBTSStatusBarForegroundView instancesRespondToSelector:@selector(initWithFrame:foregroundStyle:usesVerticalLayout:)]) {
+			typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle usesVerticalLayout:NO];
+		} else {
+			typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle];
+		}
+
 		typeStatusView.statusBarView = statusBarView;
 		typeStatusView.hidden = YES;
 		[self insertSubview:typeStatusView aboveSubview:statusBarView];
