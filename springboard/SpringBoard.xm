@@ -1,19 +1,13 @@
-#include <substrate.h>
+#import "HBTSStatusBarIconController.h"
 #import "../client/HBTSPreferences.h"
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKEntity.h>
-#import <ChatKit/CKIMEntity.h>
-#import <ChatKit/CKMadridEntity.h>
-#import <ChatKit/CKMadridService.h>
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
-#import <libstatusbar/LSStatusBarItem.h>
 #import <SpringBoard/SBApplication.h>
 #import <SpringBoard/SpringBoard.h>
 
 HBTSPreferences *preferences;
-NSUInteger typingIndicators = 0;
-LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
 #pragma mark - Communication with clients
 
@@ -30,8 +24,21 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 #pragma mark - Hide while Messages is open
 
-BOOL HBTSShouldHide(BOOL typing) {
-	if (typing ? preferences.typingHideInMessages : preferences.readHideInMessages) {
+BOOL HBTSShouldHide(HBTSStatusBarType type) {
+	BOOL hideInMessages;
+
+	switch (type) {
+		case HBTSStatusBarTypeTyping:
+		case HBTSStatusBarTypeTypingEnded:
+			hideInMessages = preferences.typingHideInMessages;
+			break;
+
+		case HBTSStatusBarTypeRead:
+			hideInMessages = preferences.readHideInMessages;
+			break;
+	}
+
+	if (hideInMessages) {
 		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
 		return !app.isLocked && [app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
@@ -64,6 +71,8 @@ void HBTSShowOverlay(HBTSStatusBarType type, NSString *handle, BOOL isTyping) {
 		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
 	});
 
+	NSString *name = HBTSNameForHandle(handle);
+
 	if (UIAccessibilityIsVoiceOverRunning()) {
 		NSString *typeString = @"";
 
@@ -80,10 +89,42 @@ void HBTSShowOverlay(HBTSStatusBarType type, NSString *handle, BOOL isTyping) {
 				break;
 		}
 
-		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", typeString, handle]);
+		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", typeString, name]);
 	}
 
-	HBTSPostMessage(type, HBTSNameForHandle(handle), isTyping);
+	HBTSPostMessage(type, name, isTyping);
+}
+
+void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
+	if (HBTSShouldHide(type)) {
+		return;
+	}
+
+	HBTSNotificationType notificationType;
+
+	switch (type) {
+		case HBTSStatusBarTypeTyping:
+		case HBTSStatusBarTypeTypingEnded:
+			notificationType = preferences.typingType;
+			break;
+
+		case HBTSStatusBarTypeRead:
+			notificationType = preferences.readType;
+			break;
+	}
+
+	switch (notificationType) {
+		case HBTSNotificationTypeOverlay:
+			HBTSShowOverlay(type, sender, isTyping);
+			break;
+
+		case HBTSNotificationTypeIcon:
+		{
+			NSTimeInterval timeout = preferences.useTypingTimeout || isTyping ? preferences.overlayDisplayDuration : kHBTSTypingTimeout;
+			[HBTSStatusBarIconController showIconType:type timeout:timeout];
+			break;
+		}
+	}
 }
 
 #pragma mark - Constructor
@@ -95,82 +136,10 @@ void HBTSShowOverlay(HBTSStatusBarType type, NSString *handle, BOOL isTyping) {
 	preferences = [%c(HBTSPreferences) sharedInstance];
 
 	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-		static void (^typingEnded)() = ^{
-			if (typingIndicators == 0) {
-				return;
-			}
+		HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
+		NSString *sender = notification.userInfo[kHBTSMessageSenderKey];
+		BOOL isTyping = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
-			typingIndicators--;
-
-			if (typingIndicators <= 0) {
-				typingIndicators = 0;
-			}
-
-			if (typingIndicators <= 0) {
-				if (typingStatusBarItem) {
-					typingStatusBarItem.visible = NO;
-				}
-
-				HBTSPostMessage(HBTSStatusBarTypeTypingEnded, nil, NO);
-			}
-		};
-
-		switch ((HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue) {
-			case HBTSStatusBarTypeTyping:
-			{
-				BOOL isTyping = !((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
-
-				typingIndicators++;
-
-				if (HBTSShouldHide(YES)) {
-					break;
-				}
-
-				if (preferences.typingType == HBTSNotificationTypeOverlay) {
-					HBTSShowOverlay(HBTSStatusBarTypeTyping, notification.userInfo[kHBTSMessageSenderKey], !isTyping);
-				} else if (preferences.typingType == HBTSNotificationTypeIcon) {
-					static dispatch_once_t onceToken;
-					dispatch_once(&onceToken, ^{
-						typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
-						typingStatusBarItem.imageName = @"TypeStatus";
-					});
-
-					typingStatusBarItem.visible = YES;
-
-					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((preferences.useTypingTimeout || isTyping ? preferences.overlayDisplayDuration : kHBTSTypingTimeout) * NSEC_PER_SEC)), dispatch_get_main_queue(), typingEnded);
-				}
-
-				break;
-			}
-
-			case HBTSStatusBarTypeTypingEnded:
-				typingEnded();
-				break;
-
-			case HBTSStatusBarTypeRead:
-			{
-				if (HBTSShouldHide(NO)) {
-					break;
-				}
-
-				if (preferences.readType == HBTSNotificationTypeOverlay) {
-					HBTSShowOverlay(HBTSStatusBarTypeRead, notification.userInfo[kHBTSMessageSenderKey], NO);
-				} else if (preferences.readType == HBTSNotificationTypeIcon) {
-					static dispatch_once_t onceToken;
-					dispatch_once(&onceToken, ^{
-						readStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
-						readStatusBarItem.imageName = @"TypeStatusRead";
-					});
-
-					readStatusBarItem.visible = YES;
-
-					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(preferences.overlayDisplayDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-						readStatusBarItem.visible = NO;
-					});
-				}
-
-				break;
-			}
-		}
+		HBTSShowAlert(type, sender, !isTyping);
 	}];
 }
