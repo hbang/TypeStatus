@@ -5,6 +5,8 @@
 
 @interface HBTSStatusBarForegroundView ()
 
+- (void)_typeStatus_init;
+
 @property (nonatomic, retain) UIView *containerView;
 
 @property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
@@ -23,27 +25,49 @@
 %property (nonatomic, retain) HBTSStatusBarAlertTypeItemView *alertTypeItemView;
 %property (nonatomic, retain) HBTSStatusBarContactNameItemView *contactNameItemView;
 
+%group Federighi
+
 - (id)initWithFrame:(CGRect)frame foregroundStyle:(id)foregroundStyle usesVerticalLayout:(BOOL)usesVerticalLayout {
 	self = %orig;
 
 	if (self) {
-		UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width / 2, 0, 0, frame.size.height)];
-		containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-		[self addSubview:containerView];
-
-		self.containerView = containerView;
-
-		self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:foregroundStyle];
-		[containerView addSubview:self.iconItemView];
-
-		self.alertTypeItemView = [[%c(HBTSStatusBarAlertTypeItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:foregroundStyle];
-		[containerView addSubview:self.alertTypeItemView];
-
-		self.contactNameItemView = [[%c(HBTSStatusBarContactNameItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:foregroundStyle];
-		[containerView addSubview:self.contactNameItemView];
+		[self _typeStatus_init];
 	}
 
 	return self;
+}
+
+%end
+
+%group Ive
+
+- (id)initWithFrame:(CGRect)frame foregroundStyle:(id)foregroundStyle {
+	self = %orig;
+
+	if (self) {
+		[self _typeStatus_init];
+	}
+
+	return self;
+}
+
+%end
+
+%new - (void)_typeStatus_init {
+	UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width / 2, 0, 0, frame.size.height)];
+	containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+	[self addSubview:containerView];
+
+	self.containerView = containerView;
+
+	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	[containerView addSubview:self.iconItemView];
+
+	self.alertTypeItemView = [[%c(HBTSStatusBarAlertTypeItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	[containerView addSubview:self.alertTypeItemView];
+
+	self.contactNameItemView = [[%c(HBTSStatusBarContactNameItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	[containerView addSubview:self.contactNameItemView];
 }
 
 - (void)layoutSubviews {
@@ -90,3 +114,15 @@
 }
 
 %end
+
+#pragma mark - Constructor
+
+%ctor {
+	%init;
+
+	if (IS_IOS_OR_NEWER(iOS_8_0)) {
+		%init(Federighi);
+	} else {
+		%init(Ive);
+	}
+}
