@@ -2,6 +2,7 @@
 #import "HBTSStatusBarIconItemView.h"
 #import "HBTSStatusBarAlertTypeItemView.h"
 #import "HBTSStatusBarContactNameItemView.h"
+#import <version.h>
 
 @interface HBTSStatusBarForegroundView ()
 
@@ -25,7 +26,7 @@
 %property (nonatomic, retain) HBTSStatusBarAlertTypeItemView *alertTypeItemView;
 %property (nonatomic, retain) HBTSStatusBarContactNameItemView *contactNameItemView;
 
-%group Federighi
+%group CarPlay
 
 - (id)initWithFrame:(CGRect)frame foregroundStyle:(id)foregroundStyle usesVerticalLayout:(BOOL)usesVerticalLayout {
 	self = %orig;
@@ -54,7 +55,7 @@
 %end
 
 %new - (void)_typeStatus_init {
-	UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width / 2, 0, 0, frame.size.height)];
+	UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width / 2, 0, 0, self.frame.size.height)];
 	containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self addSubview:containerView];
 
@@ -120,8 +121,8 @@
 %ctor {
 	%init;
 
-	if (IS_IOS_OR_NEWER(iOS_8_0)) {
-		%init(Federighi);
+	if (IS_IOS_OR_NEWER(iOS_7_1)) {
+		%init(CarPlay);
 	} else {
 		%init(Ive);
 	}
