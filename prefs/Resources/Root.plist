@@ -6,41 +6,19 @@
 	<array>
 		<dict>
 			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the “Overlay Display Duration” setting below.</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSLinkCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
+			<string>PSLinkListCell</string>
 			<key>detail</key>
-			<string>HBTSTypingListController</string>
+			<string>HBTSAlertTypesListController</string>
+			<key>get</key>
+			<string>alertTypeString</string>
 			<key>label</key>
-			<string>Typing</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSLinkCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>detail</key>
-			<string>HBTSReadListController</string>
-			<key>label</key>
-			<string>Read Receipt</string>
+			<string>ALERT_TYPES</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Overlay Display Duration</string>
+			<string>DISPLAY_DURATION</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -52,47 +30,13 @@ The delay can be set with the “Overlay Display Duration” setting below.</str
 			<key>key</key>
 			<string>OverlayDuration</string>
 			<key>label</key>
-			<string>%i Seconds</string>
+			<string>N_SECONDS</string>
 			<key>max</key>
 			<real>15</real>
 			<key>min</key>
 			<real>1</real>
 			<key>singularLabel</key>
-			<string>1 Second</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Overlay Animation</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>OverlaySlide</string>
-			<key>label</key>
-			<string>Slide</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>OverlayFade</string>
-			<key>label</key>
-			<string>Fade</string>
+			<string>ONE_SECOND</string>
 			<key>PostNotification</key>
 			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
@@ -108,7 +52,7 @@ The delay can be set with the “Overlay Display Duration” setting below.</str
 			<key>isController</key>
 			<true/>
 			<key>label</key>
-			<string>About</string>
+			<string>ABOUT</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -118,7 +62,7 @@ The delay can be set with the “Overlay Display Duration” setting below.</str
 			<key>isController</key>
 			<true/>
 			<key>label</key>
-			<string>Credits</string>
+			<string>CREDITS</string>
 		</dict>
 	</array>
 	<key>title</key>

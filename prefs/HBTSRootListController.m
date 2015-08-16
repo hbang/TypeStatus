@@ -10,7 +10,7 @@
 }
 
 + (NSString *)hb_shareText {
-	return [[NSBundle bundleForClass:self.class] localizedStringForKey:@"Check out #TypeStatus by HASHBANG Productions!" value:@"Check out #TypeStatus by HASHBANG Productions!" table:@"Root"];
+	return [[NSBundle bundleForClass:self.class] localizedStringForKey:@"SHARE_TEXT" value:nil table:@"Root"];
 }
 
 + (NSURL *)hb_shareURL {
@@ -19,6 +19,12 @@
 
 + (UIColor *)hb_tintColor {
 	return [UIColor colorWithRed:83.f / 255.f green:215.f / 255.f blue:106.f / 255.f alpha:1];
+}
+
+#pragma mark - Callbacks
+
+- (NSString *)alertTypeString {
+	return @"Unknown";
 }
 
 @end

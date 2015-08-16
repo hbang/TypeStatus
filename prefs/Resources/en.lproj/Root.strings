@@ -2,49 +2,34 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>About</key>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>I get typing and read receipt alerts in my %@ status bar thanks to TypeStatus! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERT_TYPES</key>
+	<string>Alert Types</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Display Duration</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 Second</string>
+	<key>N_SECONDS</key>
+	<string>%i Seconds</string>
+
+	<!-- ...
+	<key>SHOW_BIEFLY_EXPLANATION</key>
+	<string>Typing notifications will show for as long as the other person is typing.</string>
+	<key>SHOW_BIEFLY_EXPLANATION</key>
+	<string>Typing notifications will show for a moment and then hide.</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
 	<string>About</string>
-	<key>Check out #TypeStatus by HASHBANG Productions!</key>
-	<string>Check out #TypeStatus by HASHBANG Productions!</string>
-	<key>Dismiss</key>
-	<string>Dismiss</string>
-	<key>Double Tap</key>
-	<string>Double Tap</string>
-	<key>Fade</key>
-	<string>Fade</string>
-	<key>No Action</key>
-	<string>No Action</string>
-	<key>Open Messages</key>
-	<string>Open Messages</string>
-	<key>Open biteSMS</key>
-	<string>Open biteSMS</string>
-	<key>Overlay Animation</key>
-	<string>Overlay Animation</string>
-	<key>Overlay Display Duration</key>
-	<string>Overlay Display Duration</string>
-	<key>Overlay Gestures</key>
-	<string>Overlay Gestures</string>
-	<key>Read Receipt</key>
-	<string>Read</string>
-	<key>Read:</key>
-	<string>Read:</string>
-	<key>Single Tap</key>
-	<string>Single Tap</string>
-	<key>Slide</key>
-	<string>Slide</string>
-	<key>Swipe Left</key>
-	<string>Swipe Left</string>
-	<key>Swipe Right</key>
-	<string>Swipe Right</string>
-	<key>Typing</key>
-	<string>Typing</string>
-	<key>Typing:</key>
-	<string>Typing:</string>
-	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the “Overlay Display Duration” setting below.</key>
-	<string>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the “Overlay Display Duration” setting below.</string>
+	<key>CREDITS</key>
+	<string>Credits</string>
 </dict>
 </plist>
