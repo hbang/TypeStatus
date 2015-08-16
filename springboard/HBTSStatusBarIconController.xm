@@ -1,7 +1,7 @@
 #import "HBTSStatusBarIconController.h"
 #import <libstatusbar/LSStatusBarItem.h>
 
-static NSString *const kHBTSTimerKey = @"Timer";
+static NSString *const kHBTSTimerStatusBarItemKey = @"StatusBarItem";
 
 NSTimer *timer;
 
@@ -35,7 +35,7 @@ NSTimer *timer;
 }
 
 + (void)_timerFired:(NSTimer *)timer {
-	LSStatusBarItem *item = timer.userInfo[kHBTSTimerKey];
+	LSStatusBarItem *item = timer.userInfo[kHBTSTimerStatusBarItemKey];
 	item.visible = NO;
 }
 
@@ -54,7 +54,7 @@ NSTimer *timer;
 		{
 			item.visible = YES;
 
-			timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_timerFired:) userInfo:@{ kHBTSTimerKey: item } repeats:NO] retain];
+			timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_timerFired:) userInfo:@{ kHBTSTimerStatusBarItemKey: item } repeats:NO] retain];
 			break;
 		}
 
