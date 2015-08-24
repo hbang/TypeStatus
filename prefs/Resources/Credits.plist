@@ -9,6 +9,8 @@
 			<string>HBTwitterCell</string>
 			<key>big</key>
 			<true/>
+			<key>height</key>
+			<integer>64</integer>
 			<key>label</key>
 			<string>HASHBANG Productions</string>
 			<key>user</key>
@@ -18,7 +20,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Lead Developer</string>
+			<string>LEAD_DEVELOPER</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -32,13 +34,13 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>Thank you to the following people for contributing to TypeStatus.</string>
+			<string>THANKS_HEADER</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Original Idea</string>
+			<string>ORIGINAL_IDEA</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -52,7 +54,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Icons</string>
+			<string>ICONS</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -74,113 +76,135 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Translations</string>
+			<string>TRANSLATIONS</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>AR</string>
 			<key>label</key>
-			<string>Arabic: iD7me</string>
+			<string>iD7me</string>
 			<key>user</key>
 			<string>iD7me</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>CN</string>
 			<key>label</key>
-			<string>Chinese: zsm1703</string>
+			<string>zsm1703</string>
 			<key>user</key>
 			<string>zsm1703</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>CS</string>
 			<key>label</key>
-			<string>Czech: david19au</string>
+			<string>david19au</string>
 			<key>user</key>
 			<string>david19au</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>NL</string>
 			<key>label</key>
-			<string>Dutch: Timon Olsthoorn</string>
+			<string>Timon Olsthoorn</string>
 			<key>user</key>
 			<string>tmnlsthrn</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>FI</string>
 			<key>label</key>
-			<string>Finnish: Niko Karranto</string>
+			<string>Niko Karranto</string>
 			<key>user</key>
 			<string>karranto</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>FR</string>
 			<key>label</key>
-			<string>French: Adam McNight</string>
+			<string>Adam McNight</string>
 			<key>user</key>
 			<string>AdaMcNight</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>DE</string>
 			<key>label</key>
-			<string>German: Bensge</string>
+			<string>Bensge</string>
 			<key>user</key>
 			<string>bensge</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>EL</string>
 			<key>label</key>
-			<string>Greek: George Fasidis</string>
+			<string>George Fasidis</string>
 			<key>user</key>
 			<string>iFasMan7</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>IT</string>
 			<key>label</key>
-			<string>Italian: Gianvito</string>
+			<string>Gianvito</string>
 			<key>user</key>
 			<string>djanvito</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>NO</string>
 			<key>label</key>
-			<string>Norwegian: Thay</string>
+			<string>Thay</string>
 			<key>user</key>
 			<string>Thay__T</string>
 		</dict>
 		<dict>
-			<key>label</key>
-			<string>Polish: Unknown :(</string>
-		</dict>
-		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>RU</string>
 			<key>label</key>
-			<string>Russian: vladkorotnev</string>
+			<string>vladkorotnev</string>
 			<key>user</key>
 			<string>vladkorotnev</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>ES</string>
 			<key>label</key>
-			<string>Spanish: Gonzalo</string>
+			<string>Gonzalo</string>
 			<key>user</key>
 			<string>gadc333</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>SV</string>
 			<key>label</key>
-			<string>Swedish: c0redev</string>
+			<string>c0redev</string>
 			<key>user</key>
 			<string>c0redev</string>
 		</dict>
@@ -188,10 +212,10 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>…and our beta testers and users. You guys rock!</string>
+			<string>THANKS_FOOTER</string>
 		</dict>
 	</array>
 	<key>title</key>
-	<string>Credits</string>
+	<string>CREDITS</string>
 </dict>
 </plist>
