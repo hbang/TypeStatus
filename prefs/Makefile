@@ -3,11 +3,12 @@ TARGET = :clang::5.0
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = TypeStatus
-TypeStatus_FILES = $(wildcard *.m)
+TypeStatus_FILES = $(wildcard *.m) $(wildcard *.x)
 TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
 TypeStatus_LIBRARIES = cepheiprefs
+TypeStatus_CFLAGS = -include ../Global.h
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

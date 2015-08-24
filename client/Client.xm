@@ -149,7 +149,7 @@
 		self._typeStatus_hideTimer = nil;
 	}
 
-	HBTSStatusBarAnimation animations = [HBTSPreferences sharedInstance].overlayAnimation;
+	HBTSStatusBarAnimation animation = [HBTSPreferences sharedInstance].overlayAnimation;
 
 	HBTSStatusBarForegroundView *typeStatusView = self._typeStatus_foregroundView;
 	UIStatusBarForegroundView *statusBarView = MSHookIvar<UIStatusBarForegroundView *>(self, "_foregroundView");
@@ -160,7 +160,7 @@
 	typeStatusView.hidden = NO;
 	typeStatusView.frame = statusBarView.frame;
 
-	if (animations & HBTSStatusBarAnimationSlide) {
+	if (animation == HBTSStatusBarAnimationSlide) {
 		CGRect typeStatusFrame = typeStatusView.frame;
 		typeStatusFrame.origin.y = direction ? -typeStatusFrame.size.height : 0;
 		typeStatusView.frame = typeStatusFrame;
@@ -171,16 +171,13 @@
 		statusBarView.frame = statusBarFrame;
 	}
 
-	if (animations & HBTSStatusBarAnimationFade) {
-		typeStatusView.alpha = direction ? 0 : 1;
-		statusBarView.alpha = direction ? 1 : 0;
-	}
+	typeStatusView.alpha = direction ? 0 : 1;
+	statusBarView.alpha = direction ? 1 : 0;
 
 	UIStatusBarHideAnimationParameters *animationParameters = [[[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] autorelease];
-	// TODO: animationParameters.hideAnimation = 1 or 2
 
 	[%c(UIStatusBarAnimationParameters) animateWithParameters:(UIStatusBarAnimationParameters *)animationParameters animations:^{
-		if (animations & HBTSStatusBarAnimationSlide) {
+		if (animation == HBTSStatusBarAnimationSlide) {
 			CGRect typeStatusFrame = typeStatusView.frame;
 			typeStatusFrame.origin.y = direction ? 0 : -typeStatusFrame.size.height;
 			typeStatusView.frame = typeStatusFrame;
@@ -191,10 +188,8 @@
 			statusBarView.frame = statusBarFrame;
 		}
 
-		if (animations & HBTSStatusBarAnimationFade) {
-			typeStatusView.alpha = direction ? 1 : 0;
-			statusBarView.alpha = direction ? 0 : 1;
-		}
+		typeStatusView.alpha = direction ? 1 : 0;
+		statusBarView.alpha = direction ? 0 : 1;
 
 		[self _typeStatus_setLockScreenGrabberVisible:!direction];
 	} completion:^(BOOL finished) {

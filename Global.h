@@ -4,6 +4,17 @@ typedef NS_ENUM(NSUInteger, HBTSStatusBarType) {
 	HBTSStatusBarTypeRead
 };
 
+typedef NS_ENUM(NSUInteger, HBTSNotificationType) {
+	HBTSNotificationTypeNone,
+	HBTSNotificationTypeOverlay,
+	HBTSNotificationTypeIcon
+};
+
+typedef NS_ENUM(NSUInteger, HBTSStatusBarAnimation) {
+	HBTSStatusBarAnimationSlide,
+	HBTSStatusBarAnimationFade
+};
+
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
 /*

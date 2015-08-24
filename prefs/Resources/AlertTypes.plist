@@ -8,36 +8,6 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>ANIMATION_TYPE</string>
-			<key>footerText</key>
-			<string>ANIMATION_TYPE_EXPLANATION</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSegmentCell</string>
-			<key>default</key>
-			<integer>0</integer>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>get</key>
-			<string>animationType:</string>
-			<key>set</key>
-			<string>setAnimationType:specifier:</string>
-			<key>validTitles</key>
-			<array>
-				<string>ANIMATION_SLIDE</string>
-				<string>ANIMATION_FADE</string>
-			</array>
-			<key>validValues</key>
-			<array>
-				<integer>0</integer>
-				<integer>1</integer>
-			</array>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
 			<string>TYPING_HEADER</string>
 		</dict>
 		<dict>
@@ -48,7 +18,7 @@
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>get</key>
-			<string>typingType:</string>
+			<string>typingTypeWithSpecifier:</string>
 			<key>set</key>
 			<string>setTypingType:specifier:</string>
 			<key>validTitles</key>
@@ -60,8 +30,8 @@
 			<key>validValues</key>
 			<array>
 				<integer>0</integer>
-				<integer>1</integer>
 				<integer>2</integer>
+				<integer>1</integer>
 			</array>
 		</dict>
 		<dict>
@@ -70,7 +40,7 @@
 			<key>id</key>
 			<string>TypingPreview</string>
 			<key>get</key>
-			<string>typingType:</string>
+			<string>typingTypeWithSpecifier:</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -136,7 +106,7 @@
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>get</key>
-			<string>readReceiptType:</string>
+			<string>readReceiptTypeWithSpecifier:</string>
 			<key>set</key>
 			<string>setReadReceiptType:specifier:</string>
 			<key>validTitles</key>
@@ -148,8 +118,8 @@
 			<key>validValues</key>
 			<array>
 				<integer>0</integer>
-				<integer>1</integer>
 				<integer>2</integer>
+				<integer>1</integer>
 			</array>
 		</dict>
 		<dict>
@@ -158,7 +128,7 @@
 			<key>id</key>
 			<string>ReadPreview</string>
 			<key>get</key>
-			<string>readType:</string>
+			<string>readTypeWithSpecifier:</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -183,6 +153,36 @@
 			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>TEST_READ_RECEIPT</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>id</key>
+			<string>AnimationTypeGroupCell</string>
+			<key>label</key>
+			<string>ANIMATION_TYPE</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>AnimationTypeSegmentCell</string>
+			<key>key</key>
+			<string>OverlayAnimation</string>
+			<key>validTitles</key>
+			<array>
+				<string>ANIMATION_SLIDE</string>
+				<string>ANIMATION_FADE</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
 		</dict>
 	</array>
 	<key>title</key>
