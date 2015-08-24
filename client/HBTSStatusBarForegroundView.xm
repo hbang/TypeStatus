@@ -86,7 +86,7 @@
 
 	CGRect containerFrame = self.containerView.frame;
 	containerFrame.size.width = contactNameFrame.origin.x + contactNameFrame.size.width;
-	containerFrame.origin.x = MAX(0, (self.frame.size.width - containerFrame.size.width) / 2);
+	containerFrame.origin.x = MAX(0, ceil((self.frame.size.width - containerFrame.size.width) / 2));
 	self.containerView.frame = containerFrame;
 }
 
