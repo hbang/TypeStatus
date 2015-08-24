@@ -1,21 +1,9 @@
-typedef NS_ENUM(NSUInteger, HBTSNotificationType) {
-	HBTSNotificationTypeNone,
-	HBTSNotificationTypeOverlay,
-	HBTSNotificationTypeIcon
-};
-
-typedef NS_ENUM(NSUInteger, HBTSStatusBarAnimation) {
-	HBTSStatusBarAnimationNone,
-	HBTSStatusBarAnimationSlide,
-	HBTSStatusBarAnimationFade
-};
-
 @interface HBTSPreferences : NSObject
 
 + (instancetype)sharedInstance;
 
-@property (readonly) HBTSNotificationType typingType;
-@property (readonly) HBTSNotificationType readType;
+@property HBTSNotificationType typingType;
+@property HBTSNotificationType readType;
 
 @property (readonly) BOOL typingHideInMessages;
 @property (readonly) BOOL readHideInMessages;

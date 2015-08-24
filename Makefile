@@ -14,7 +14,7 @@ after-stage::
 
 after-install::
 ifeq ($(RESPRING),0)
-	install.exec "killall Preferences MobileSMS"
+	install.exec "killall Preferences MobileSMS" || true
 else
 	install.exec spring
 endif
