@@ -31,10 +31,18 @@
 	<key>SHOW_FOR_EXPLANATION</key>
 	<string>To show the alert for the duration specified on the main TypeStatus settings page, select “My Specified Duration”. To show the alert for as long as the sender is typing, select “Duration of the Typing”.</string>
 
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Hide in Messages</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Test Typing Alert</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Test Read Receipt Alert</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
-	<string>Animation</string>
-	<key>ANIMATION_TYPE_EXPLANATION</key>
 	<string>Animation</string>
 
 	<!-- Buttons shown in the segmented control for the animation type. -->
@@ -42,14 +50,5 @@
 	<string>Slide</string>
 	<key>ANIMATION_FADE</key>
 	<string>Fade</string>
-
-	<!-- Switch to allow or disallow alerts showing in Messages. -->
-	<key>HIDE_IN_MESSAGES</key>
-	<string>Hide in Messages</string>
-
-	<key>TEST_TYPING</key>
-	<string>Test Typing Alert</string>
-	<key>TEST_READ_RECEIPT</key>
-	<string>Test Read Receipt Alert</string>
 </dict>
 </plist>
