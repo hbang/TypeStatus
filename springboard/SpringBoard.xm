@@ -120,7 +120,7 @@ void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
 
 		case HBTSNotificationTypeIcon:
 		{
-			NSTimeInterval timeout = preferences.useTypingTimeout || isTyping ? preferences.overlayDisplayDuration : kHBTSTypingTimeout;
+			NSTimeInterval timeout = isTyping && preferences.useTypingTimeout ? kHBTSTypingTimeout : preferences.overlayDisplayDuration;
 			[HBTSStatusBarIconController showIconType:type timeout:timeout];
 			break;
 		}
