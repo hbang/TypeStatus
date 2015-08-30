@@ -10,7 +10,7 @@
 }
 
 + (NSString *)hb_shareText {
-	return [[NSBundle bundleForClass:self.class] localizedStringForKey:@"SHARE_TEXT" value:nil table:@"Root"];
+	return [NSString stringWithFormat:[[NSBundle bundleForClass:self.class] localizedStringForKey:@"SHARE_TEXT" value:nil table:@"Root"], [UIDevice currentDevice].localizedModel];
 }
 
 + (NSURL *)hb_shareURL {
