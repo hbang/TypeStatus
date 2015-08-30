@@ -2,6 +2,7 @@
 #import "HBTSStatusBarIconItemView.h"
 #import "HBTSStatusBarAlertTypeItemView.h"
 #import "HBTSStatusBarContactNameItemView.h"
+#import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <version.h>
 
 @interface HBTSStatusBarForegroundView ()
@@ -92,6 +93,8 @@
 
 %new - (void)setType:(HBTSStatusBarType)type contactName:(NSString *)contactName {
 	NSNumber *boxedType = @(type);
+
+	self.tintColor = self.foregroundStyle.tintColor;
 
 	self.iconItemView.alertType = boxedType;
 	[self.iconItemView updateContentsAndWidth];

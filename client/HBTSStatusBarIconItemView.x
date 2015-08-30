@@ -1,7 +1,7 @@
 #import "HBTSStatusBarIconItemView.h"
 #import <UIKit/_UILegibilityImageSet.h>
-#import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <UIKit/UIImage+Private.h>
+#import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 
 %subclass HBTSStatusBarIconItemView : UIStatusBarItemView
 
@@ -30,7 +30,7 @@
 			break;
 	}
 
-	UIImage *image = [UIImage imageNamed:[self.foregroundStyle expandedNameForImageName:name] inBundle:UIKitBundle];
+	UIImage *image = [[UIImage imageNamed:[self.foregroundStyle expandedNameForImageName:name] inBundle:UIKitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	return [%c(_UILegibilityImageSet) imageFromImage:image withShadowImage:nil];
 }
 
