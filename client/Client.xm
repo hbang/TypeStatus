@@ -97,13 +97,12 @@
 	HBTSPreferences *preferences = [HBTSPreferences sharedInstance];
 
 	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
-	BOOL typing = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
-	BOOL typingTimeout = preferences.useTypingTimeout;
+	BOOL isTyping = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
-	NSTimeInterval duration = kHBTSTypingTimeout;
+	NSTimeInterval duration = preferences.overlayDisplayDuration;
 
-	if (!typing || typingTimeout) {
-		duration = preferences.overlayDisplayDuration;
+	if (isTyping && preferences.useTypingTimeout) {
+		duration = kHBTSTypingTimeout;
 	}
 
 	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > duration) {
@@ -160,6 +159,8 @@
 	typeStatusView.hidden = NO;
 	typeStatusView.frame = statusBarView.frame;
 
+	statusBarView.hidden = NO;
+
 	if (animation == HBTSStatusBarAnimationSlide) {
 		CGRect typeStatusFrame = typeStatusView.frame;
 		typeStatusFrame.origin.y = direction ? -typeStatusFrame.size.height : 0;
@@ -193,6 +194,14 @@
 
 		[self _typeStatus_setLockScreenGrabberVisible:!direction];
 	} completion:^(BOOL finished) {
+		if (!statusBarView) {
+			HBLogWarn(@"statusBarView == nil?!");
+		}
+
+		if (!typeStatusView) {
+			HBLogWarn(@"typeStatusView == nil?!");
+		}
+
 		statusBarView.alpha = 1;
 		statusBarView.hidden = direction;
 
@@ -242,6 +251,7 @@
 
 - (void)dealloc {
 	[self._typeStatus_foregroundView release];
+	[self._typeStatus_hideTimer release];
 
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:HBTSClientSetStatusBarNotification object:nil];
 
