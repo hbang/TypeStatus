@@ -21,10 +21,4 @@
 	return [UIColor colorWithRed:83.f / 255.f green:215.f / 255.f blue:106.f / 255.f alpha:1];
 }
 
-#pragma mark - Callbacks
-
-- (NSString *)alertTypeString {
-	return @"Unknown";
-}
-
 @end
