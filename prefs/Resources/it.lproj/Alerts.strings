@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Alerts</key>
+	<string>Avvisi</string>
+	<key>Animation</key>
+	<string>Animazioni</string>
+	<key>Display Duration</key>
+	<string>Durata della notifica</string>
+	<key>Duration of the Typing</key>
+	<string>La durata della scrittura</string>
+	<key>Email Support</key>
+	<string>Supporto Email</string>
+	<key>Fade</key>
+	<string>Dissolvenza</string>
+	<key>Hide in Messages</key>
+	<string>Nascondi in Messaggi</string>
+	<key>Icon Only</key>
+	<string>Solo icona</string>
+	<key>My Specified Duration</key>
+	<string>La durata impostata</string>
+	<key>Off</key>
+	<string>Disattivato</string>
+	<key>Read Receipt</key>
+	<string>Notifica di lettura</string>
+	<key>Second</key>
+	<string>Secondo</string>
+	<key>Seconds</key>
+	<string>Secondi</string>
+	<key>Show For</key>
+	<string>Mostra per</string>
+	<key>Slide</key>
+	<string>A scorrimento</string>
+	<key>Status Bar</key>
+	<string>Barra di stato</string>
+	<key>Test Read Receipt Alert</key>
+	<string>Prova la notifica di avvenuta lettura</string>
+	<key>Test Typing Alert</key>
+	<string>Prova la notifica di scrittura</string>
+	<key>To show the alert for the duration specified on the previous page, select “My Specified Duration”. To show the alert for as long as the sender is typing, select “Duration of the Typing”.” = “Per mostrare la notifica per la durata impostata nella pagina precedente, seleziona “La durata impostata”. Per mostrare la notifica per tutta la durata di scrittura dell’emittente, seleziona “La durata della scrittura”.</key>
+	<string>To show the alert for the duration specified on the previous page, select “My Specified Duration”. To show the alert for as long as the sender is typing, select “Duration of the Typing”.” = “Per mostrare la notifica per la durata impostata nella pagina precedente, seleziona “La durata impostata”. Per mostrare la notifica per tutta la durata di scrittura dell’emittente, seleziona “La durata della scrittura”.</string>
+	<key>Typing</key>
+	<string>Scrivendo</string>
+</dict>
+</plist>

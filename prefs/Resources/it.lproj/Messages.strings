@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Allow or prevent the receiver from seeing when you read their messages.</key>
+	<string>Permette o previene il ricevente dal vedere quando hai letto il loro messaggio. </string>
+	<key>Allow or prevent the receiver from seeing when you’re typing.</key>
+	<string>Permette o previene il ricevente dal vedere quando stai scrivendo.</string>
+	<key>Send Read Receipts</key>
+	<string>Invia Ricevute di Avvenuta Lettura</string>
+	<key>Send Typing Notifications</key>
+	<string>Invia Notifiche di Scrittura</string>
+</dict>
+</plist>
