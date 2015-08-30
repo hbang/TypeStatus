@@ -7,24 +7,8 @@
 	<string>I get typing and read receipt alerts in my %@ status bar thanks to TypeStatus! 💬</string>
 
 	<!-- Alert types button. -->
-	<key>ALERT_TYPES</key>
-	<string>Alert Types</string>
-
-	<!-- Header for the display duration selection. -->
-	<key>DISPLAY_DURATION</key>
-	<string>Display Duration</string>
-
-	<!-- The label showing how many seconds the user has specified. -->
-	<key>1_SECOND</key>
-	<string>1 Second</string>
-	<key>N_SECONDS</key>
-	<string>%i Seconds</string>
-
-	<!-- ...
-	<key>SHOW_BIEFLY_EXPLANATION</key>
-	<string>Typing notifications will show for as long as the other person is typing.</string>
-	<key>SHOW_BIEFLY_EXPLANATION</key>
-	<string>Typing notifications will show for a moment and then hide.</string>
+	<key>ALERTS</key>
+	<string>Alerts</string>
 
 	<!-- Buttons to the about and credits pages. -->
 	<key>ABOUT</key>

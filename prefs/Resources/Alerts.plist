@@ -7,6 +7,62 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>id</key>
+			<string>AnimationTypeGroupCell</string>
+			<key>label</key>
+			<string>ANIMATION_TYPE</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>AnimationTypeSegmentCell</string>
+			<key>key</key>
+			<string>OverlayAnimation</string>
+			<key>validTitles</key>
+			<array>
+				<string>ANIMATION_SLIDE</string>
+				<string>ANIMATION_FADE</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>DISPLAY_DURATION</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBStepperTableCell</string>
+			<key>default</key>
+			<real>5</real>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>OverlayDuration</string>
+			<key>label</key>
+			<string>N_SECONDS</string>
+			<key>max</key>
+			<real>15</real>
+			<key>min</key>
+			<real>1</real>
+			<key>singularLabel</key>
+			<string>ONE_SECOND</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>TYPING_HEADER</string>
 		</dict>
@@ -138,38 +194,8 @@
 			<key>label</key>
 			<string>TEST_READ_RECEIPT</string>
 		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>id</key>
-			<string>AnimationTypeGroupCell</string>
-			<key>label</key>
-			<string>ANIMATION_TYPE</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSegmentCell</string>
-			<key>default</key>
-			<integer>0</integer>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>id</key>
-			<string>AnimationTypeSegmentCell</string>
-			<key>key</key>
-			<string>OverlayAnimation</string>
-			<key>validTitles</key>
-			<array>
-				<string>ANIMATION_SLIDE</string>
-				<string>ANIMATION_FADE</string>
-			</array>
-			<key>validValues</key>
-			<array>
-				<integer>0</integer>
-				<integer>1</integer>
-			</array>
-		</dict>
 	</array>
 	<key>title</key>
-	<string>ALERT_TYPES</string>
+	<string>ALERTS</string>
 </dict>
 </plist>

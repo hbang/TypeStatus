@@ -3,8 +3,28 @@
 <plist version="1.0">
 <dict>
 	<!-- Page title. -->
-	<key>ALERT_TYPES</key>
-	<string>Alert Types</string>
+	<key>ALERTS</key>
+	<string>Alerts</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animation</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Slide</string>
+	<key>ANIMATION_FADE</key>
+	<string>Fade</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Display Duration</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 Second</string>
+	<key>N_SECONDS</key>
+	<string>%i Seconds</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
@@ -20,16 +40,19 @@
 	<key>ALERT_TYPE_OVERLAY</key>
 	<string>Status Bar</string>
 
-	<!-- ... -->
-	<!-- TODO: this is *still* really unclear -->
+	<!-- Button for choosing how long the alert shows for. -->
 	<key>SHOW_FOR</key>
 	<string>Show For</string>
+
+	<!-- Options for "Show For". -->
 	<key>SHOW_FOR_SPECIFIED</key>
 	<string>My Specified Duration</string>
 	<key>SHOW_FOR_TYPING</key>
 	<string>Duration of the Typing</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>To show the alert for the duration specified on the main TypeStatus settings page, select “My Specified Duration”. To show the alert for as long as the sender is typing, select “Duration of the Typing”.</string>
+	<string>To show the alert for the duration specified on the previous page, select “My Specified Duration”. To show the alert for as long as the sender is typing, select “Duration of the Typing”.</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
@@ -40,15 +63,5 @@
 	<string>Test Typing Alert</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Test Read Receipt Alert</string>
-
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>Animation</string>
-
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>Slide</string>
-	<key>ANIMATION_FADE</key>
-	<string>Fade</string>
 </dict>
 </plist>

@@ -8,35 +8,11 @@
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>detail</key>
-			<string>HBTSAlertTypesListController</string>
+			<string>HBTSAlertsListController</string>
+			<key>isController</key>
+			<true/>
 			<key>label</key>
-			<string>ALERT_TYPES</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>DISPLAY_DURATION</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBStepperTableCell</string>
-			<key>default</key>
-			<real>5</real>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>OverlayDuration</string>
-			<key>label</key>
-			<string>N_SECONDS</string>
-			<key>max</key>
-			<real>15</real>
-			<key>min</key>
-			<real>1</real>
-			<key>singularLabel</key>
-			<string>ONE_SECOND</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
+			<string>ALERTS</string>
 		</dict>
 		<dict>
 			<key>cell</key>

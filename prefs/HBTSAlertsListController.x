@@ -1,14 +1,14 @@
-#import "HBTSAlertTypesListController.h"
+#import "HBTSAlertsListController.h"
 #import <Preferences/PSSpecifier.h>
 #import "../Client/HBTSPreferences.h"
 #include <notify.h>
 
-@implementation HBTSAlertTypesListController {
+@implementation HBTSAlertsListController {
 	HBTSPreferences *_preferences;
 }
 
 + (NSString *)hb_specifierPlist {
-	return @"AlertTypes";
+	return @"Alerts";
 }
 
 #pragma mark - UIViewController
