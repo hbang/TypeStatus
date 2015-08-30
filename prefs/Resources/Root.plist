@@ -6,11 +6,9 @@
 	<array>
 		<dict>
 			<key>cell</key>
-			<string>PSLinkListCell</string>
+			<string>PSLinkCell</string>
 			<key>detail</key>
 			<string>HBTSAlertTypesListController</string>
-			<key>get</key>
-			<string>alertTypeString</string>
 			<key>label</key>
 			<string>ALERT_TYPES</string>
 		</dict>
