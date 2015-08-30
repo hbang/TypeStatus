@@ -35,14 +35,6 @@
 			</array>
 		</dict>
 		<dict>
-			<key>cellClass</key>
-			<string>HBTSPreviewTableCell</string>
-			<key>id</key>
-			<string>TypingPreview</string>
-			<key>get</key>
-			<string>typingTypeWithSpecifier:</string>
-		</dict>
-		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
@@ -121,14 +113,6 @@
 				<integer>2</integer>
 				<integer>1</integer>
 			</array>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTSPreviewTableCell</string>
-			<key>id</key>
-			<string>ReadPreview</string>
-			<key>get</key>
-			<string>readTypeWithSpecifier:</string>
 		</dict>
 		<dict>
 			<key>cell</key>
