@@ -3,7 +3,7 @@
 
 @implementation HBTSPreferences {
 	HBPreferences *_preferences;
-	
+
 	BOOL _typingStatus;
 	BOOL _typingIcon;
 	BOOL _readStatus;
@@ -31,7 +31,10 @@
 			@"TypingIcon": @NO,
 
 			@"ReadStatus": @YES,
-			@"ReadIcon": @NO
+			@"ReadIcon": @NO,
+
+			@"OverlaySlide": @YES,
+			@"OverlayFade": @NO
 		}];
 
 		if (![_preferences objectForKey:@"OverlayAnimation"]) {
@@ -42,9 +45,6 @@
 			}
 
 			[_preferences setInteger:animation forKey:@"OverlayAnimation"];
-
-			[_preferences setObject:nil forKey:@"OverlaySlide"];
-			[_preferences setObject:nil forKey:@"OverlayFade"];
 		}
 
 		[_preferences registerBool:&_typingHideInMessages default:YES forKey:@"HideInMessages"];
