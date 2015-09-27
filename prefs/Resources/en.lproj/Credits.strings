@@ -16,7 +16,7 @@
 	<string>Original Idea</string>
 	<key>LEAD_DEVELOPER</key>
 	<string>Lead Developer</string>
-	<key>TRANSLATIONS</key>
-	<string>Translations</string>
+	<key>TRANSLATORS</key>
+	<string>Translators</string>
 </dict>
 </plist>
