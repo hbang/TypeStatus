@@ -8,6 +8,7 @@
 #import <UIKit/UIStatusBar.h>
 #import <UIKit/UIStatusBarAnimationParameters.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
+#import <version.h>
 #include <substrate.h>
 #include <notify.h>
 
@@ -56,10 +57,23 @@
 
 #pragma mark - Status bar state
 
+%group CraigFederighi
+
 - (void)_prepareToSetStyle:(UIStatusBarStyle)style animation:(UIStatusBarAnimation)animation {
 	self._typeStatus_needsNewForegroundView = YES;
 	%orig;
 }
+
+%end
+
+%group EddyCue
+
+- (void)_prepareToSetStyle:(UIStatusBarStyle)style animation:(UIStatusBarAnimation)animation forced:(BOOL)forced {
+	self._typeStatus_needsNewForegroundView = YES;
+	%orig;
+}
+
+%end
 
 - (void)_swapToNewForegroundView {
 	%orig;
@@ -269,4 +283,10 @@
 	}
 
 	%init;
+
+	if (IS_IOS_OR_NEWER(iOS_9_0)) {
+		%init(EddyCue);
+	} else {
+		%init(CraigFederighi);
+	}
 }
