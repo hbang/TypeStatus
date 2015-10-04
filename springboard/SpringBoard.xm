@@ -6,6 +6,7 @@
 #import <IMCore/IMHandle.h>
 #import <SpringBoard/SBApplication.h>
 #import <SpringBoard/SpringBoard.h>
+#include <dlfcn.h>
 
 HBTSPreferences *preferences;
 

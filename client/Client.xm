@@ -8,6 +8,7 @@
 #import <UIKit/UIStatusBar.h>
 #import <UIKit/UIStatusBarAnimationParameters.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
+#include <substrate.h>
 #include <notify.h>
 
 #pragma mark - UIStatusBar category

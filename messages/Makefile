@@ -5,6 +5,7 @@ TypeStatusMessages_FILES = $(wildcard *.xm) $(wildcard *.m) ../HBTSConversationP
 TypeStatusMessages_FRAMEWORKS = UIKit
 TypeStatusMessages_PRIVATE_FRAMEWORKS = ChatKit
 TypeStatusMessages_LIBRARIES = cephei
+TypeStatusMessages_USE_SUBSTRATE = 0
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
