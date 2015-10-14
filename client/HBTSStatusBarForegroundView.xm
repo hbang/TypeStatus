@@ -97,6 +97,7 @@
 	self.tintColor = self.foregroundStyle.tintColor;
 
 	self.iconItemView.alertType = boxedType;
+	self.iconItemView.tintColor = self.tintColor;
 	[self.iconItemView updateContentsAndWidth];
 
 	self.alertTypeItemView.alertType = boxedType;
