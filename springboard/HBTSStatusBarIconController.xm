@@ -4,18 +4,20 @@
 static NSString *const kHBTSTimerStatusBarItemKey = @"StatusBarItem";
 
 NSTimer *timer;
+LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
 @implementation HBTSStatusBarIconController
 
 + (LSStatusBarItem *)_itemForType:(HBTSStatusBarType)type {
-	static LSStatusBarItem *TypingStatusBarItem, *ReadStatusBarItem;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		TypingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
-		TypingStatusBarItem.imageName = @"TypeStatus";
+		typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
+		typingStatusBarItem.imageName = @"TypeStatus";
+		typingStatusBarItem.visible = NO;
 
-		ReadStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
-		ReadStatusBarItem.imageName = @"TypeStatusRead";
+		readStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
+		readStatusBarItem.imageName = @"TypeStatusRead";
+		readStatusBarItem.visible = NO;
 	});
 
 	LSStatusBarItem *item;
@@ -23,11 +25,11 @@ NSTimer *timer;
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
 		case HBTSStatusBarTypeTypingEnded:
-			item = TypingStatusBarItem;
+			item = typingStatusBarItem;
 			break;
 
 		case HBTSStatusBarTypeRead:
-			item = ReadStatusBarItem;
+			item = readStatusBarItem;
 			break;
 	}
 
@@ -35,8 +37,8 @@ NSTimer *timer;
 }
 
 + (void)_timerFired:(NSTimer *)timer {
-	LSStatusBarItem *item = timer.userInfo[kHBTSTimerStatusBarItemKey];
-	item.visible = NO;
+	typingStatusBarItem.visible = NO;
+	readStatusBarItem.visible = NO;
 }
 
 + (void)showIconType:(HBTSStatusBarType)type timeout:(NSTimeInterval)timeout {
