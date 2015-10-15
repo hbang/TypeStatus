@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Alertas</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animación</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Deslizar</string>
+	<key>ANIMATION_FADE</key>
+	<string>Desvanecer</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Duración</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 segundo</string>
+	<key>N_SECONDS</key>
+	<string>%i segundos</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Escribiendo</string>
+	<key>READ_HEADER</key>
+	<string>Leído</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Apagado</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Sólo ícono</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Barra de estado</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Mostrar para</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Duración especificada</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Duración de la escritura</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Para mostrar el alerta por la duración especificada en la página anterior, selecciona “Duración especificada”. Para mostrar el alerta durante el tiempo que el remitente esté escribiendo, selecciona “Duración de la escritura”.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Ocultar en Mensajes</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Probar alerta de escritura</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Probar alerta de mensaje leído</string>
+</dict>
+</plist>
