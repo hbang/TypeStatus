@@ -2,51 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>About</key>
-	<string>Über</string>
-	<key>Check out #TypeStatus by HASHBANG Productions!</key>
-	<string>Check out #TypeStatus by HASHBANG Productions!</string>
-	<key>Dismiss</key>
-	<string>Ausblenden</string>
-	<key>Double Tap</key>
-	<string>Doppel-tippen</string>
-	<key>Fade</key>
-	<string>Überblenden</string>
-	<key>No Action</key>
-	<string>Keine Aktion</string>
-	<key>Open Messages</key>
-	<string>Öffne Messages</string>
-	<key>Open biteSMS</key>
-	<string>Öffne biteSMS</string>
-	<key>Overlay Animation</key>
-	<string>Overlay Animation</string>
-	<key>Overlay Display Duration</key>
-	<string>Overlay Anzeigedauer</string>
-	<key>Overlay Gestures</key>
-	<string>Overlay Gesten</string>
-	<key>Read Receipt</key>
-	<string>Gelesen</string>
-	<key>Read:</key>
-	<string>Gelesen:</string>
-	<key>Single Tap</key>
-	<string>einfaches Tippen</string>
-	<key>Slide</key>
-	<string>Schieben</string>
-	<key>Swipe Left</key>
-	<string>Nach links wischen</string>
-	<key>Swipe Right</key>
-	<string>Nach rechts wischen</string>
-	<key>Tap Action</key>
-	<string>Tip Aktion</string>
-	<key>Typing</key>
-	<string>Tippen</string>
-	<key>Typing:</key>
-	<string>Tippt:</string>
-	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the “Overlay Display Duration” setting below.</key>
-	<string>“Statusleisten Overlay” überlagert die Statusleiste mit dem Name der Person, welche die Benachrichtigung verursacht hat.
-“Verstecke in Nachrichten” schaltet Typestatus aus, wenn Nachrichten oder biteSMS geöffnet ist.
-Die Verzögerung kann mit “Overlay Anzeigedauer” eingestellt werden.</string>
+        <!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+        <key>SHARE_TEXT</key>
+        <string>Ich bekomme tippen und Lesebestätigungen in meiner %@ Status Bar.  Danke TypeStatus! 💬</string>
+ 
+        <!-- Alert types button. -->
+        <key>ALERTS</key>
+        <string>Benachrichtigung</string>
+ 
+        <!-- Buttons to the about and credits pages. -->
+        <key>ABOUT</key>
+        <string>Über</string>
+        <key>CREDITS</key>
+        <string>Credits</string>
 </dict>
 </plist>
