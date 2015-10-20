@@ -113,7 +113,6 @@
 			<string>HBTwitterCell</string>
 			<key>initials</key>
 			<string>NL</string>
-			<key>label</key>
 			<string>Timon Olsthoorn</string>
 			<key>user</key>
 			<string>tmnlsthrn</string>
@@ -162,6 +161,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>ES</string>
+			<key>label</key>
+			<string>Nicolás Alvarez</string>
+			<key>user</key>
+			<string>nicolas09F9</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>IT</string>
 			<key>label</key>
 			<string>Gianvito</string>
@@ -187,16 +196,6 @@
 			<string>vladkorotnev</string>
 			<key>user</key>
 			<string>vladkorotnev</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>ES</string>
-			<key>label</key>
-			<string>Nicolás Alvarez</string>
-			<key>user</key>
-			<string>nicolas09F9</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
