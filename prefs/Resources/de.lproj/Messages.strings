@@ -5,11 +5,11 @@
         <key>SEND_TYPING_NOTIFICATIONS</key>
         <string>Sende Tippen Benachrichtigung</string>
         <key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
-        <string>Erlaubt oder Verhindert, dass der Empfanger sieht wann du gerade tippst.</string>
+        <string>Erlaubt oder verhindert, dass der Empfänger sieht, wann du tippst.</string>
  
         <key>SEND_READ_RECEIPTS</key>
         <string>Sende Lesebestätigung</string>
         <key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
-        <string>Erlaubt oder Verhindert, dass der Empfänger sieht wann du seine Nachricht gelesen hast.</string>
+        <string>Erlaubt oder verhindert, dass der Empfänger sieht, ob du eine Nachricht gelesen hast.</string>
 </dict>
 </plist>

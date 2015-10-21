@@ -8,14 +8,14 @@
         <key>THANKS_HEADER</key>
         <string>Vielen Dank an die folgenden Personen für ihren Beitrag zu TypeStatus.</string>
         <key>THANKS_FOOTER</key>
-        <string>... und unsere Beta Tester und Nutzer. Ihr Rockt!</string>
+        <string>... und unsere Beta Tester und Nutzer. Ihr rockt!</string>
  
         <key>ICONS</key>
         <string>Icons</string>
         <key>ORIGINAL_IDEA</key>
-        <string>Original Idee</string>
+        <string>Ursprüngliche Idee</string>
         <key>LEAD_DEVELOPER</key>
-    <string>leitender Entwickler</string>
+    <string>Leitender Entwickler</string>
         <key>TRANSLATORS</key>
         <string>Übersetzer</string>
 </dict>

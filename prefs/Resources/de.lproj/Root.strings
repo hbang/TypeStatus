@@ -4,7 +4,7 @@
 <dict>
         <!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
         <key>SHARE_TEXT</key>
-        <string>Ich bekomme tippen und Lesebestätigungen in meiner %@ Status Bar.  Danke TypeStatus! 💬</string>
+        <string>Ich bekomme Tippen- und Gelesen-Benachrichtigungen in meiner %@ Statusleiste dank TypeStatus! 💬</string>
  
         <!-- Alert types button. -->
         <key>ALERTS</key>
