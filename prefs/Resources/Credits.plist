@@ -92,6 +92,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>DA</string>
+			<key>label</key>
+			<string>Luis Falke Vinqvist</string>
+			<key>user</key>
+			<string>Rechain</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>DE</string>
 			<key>label</key>
 			<string>Pierre G.</string>
