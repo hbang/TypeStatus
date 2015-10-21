@@ -82,6 +82,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>AR</string>
+			<key>label</key>
+			<string>MiRO</string>
+			<key>user</key>
+			<string>MiRO92</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>DE</string>
 			<key>label</key>
 			<string>Pierre G.</string>
@@ -104,9 +114,9 @@
 			<key>initials</key>
 			<string>FR</string>
 			<key>label</key>
-			<string>Matthieu Vion</string>
+			<string>Overfl0w</string>
 			<key>user</key>
-			<string>Mistermatt007</string>
+			<string>SorenSzabo</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>

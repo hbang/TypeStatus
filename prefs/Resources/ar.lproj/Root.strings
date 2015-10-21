@@ -4,16 +4,16 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-	<string>Je reÃ§ois des alertes lorsque quelquâ€™un mâ€™Ã©crit ou reÃ§oit mes messages dans la barre de statuts de mon %@ grÃ¢ce Ã  TypeStatus! ğŸ’¬</string>
+	<string>ÃäÇ ÃÍÕá Úáì ÊäÈíåÇÊ ÚäÏ ÇáßÊÇÈÉ æÚäÏ ŞÑÇÁÉ ÇáÑÓÇáÉ İí ÌåÇÒí ÇáÜ %@, ÔßÑÇğ áöÜ TypeStatus! ğŸ’¬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
-	<string>Alertes</string>
+	<string>ÇáÊäÈíåÇÊ</string>
 
 	<!-- Buttons to the about and credits pages. -->
 	<key>ABOUT</key>
-	<string>Ã€ propos</string>
+	<string>Íæá</string>
 	<key>CREDITS</key>
-	<string>CrÃ©dits</string>
+	<string>ÇáÔõßÑ æÇáÊŞÏíÑ</string>
 </dict>
 </plist>

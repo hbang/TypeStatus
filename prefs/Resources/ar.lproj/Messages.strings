@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>SEND_TYPING_NOTIFICATIONS</key>
-	<string>Envoyer des notifications lorsque vous écrivez</string>
+	<string>إرسال إشعارات الكتابة</string>
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
-	<string>Permettre ou empêcher le destinataire de voir que vous êtes en train d’écrire.</string>
+	<string>سماح/منع المستلم من رؤيتك تكتب.</string>
 
 	<key>SEND_READ_RECEIPTS</key>
-	<string>Envoyer des confirmations de lecture</string>
+	<string>إرسال إيصالات القراءة</string>
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
-	<string>Permettre ou empêcher le destinataire de voir que vous avez lu son message.</string>
+	<string>سماح/منع المستلم من رؤيتك بأنك قرأت الرسالة.</string>
 </dict>
 </plist>

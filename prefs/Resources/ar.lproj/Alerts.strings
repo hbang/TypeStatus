@@ -4,64 +4,64 @@
 <dict>
 	<!-- Page title. -->
 	<key>ALERTS</key>
-	<string>Alertes</string>
+	<string>التنبيهات</string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
-	<string>Animations</string>
+	<string>تأثير الحركة</string>
 
 	<!-- Buttons shown in the segmented control for the animation type. -->
 	<key>ANIMATION_SLIDE</key>
-	<string>Glissement</string>
+	<string>تمرير</string>
 	<key>ANIMATION_FADE</key>
-	<string>Fondu</string>
+	<string>تلاشي</string>
 
 	<!-- Header for the display duration selection. -->
 	<key>DISPLAY_DURATION</key>
-	<string>Temps d'affichage</string>
+	<string>مدة العرض</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>1_SECOND</key>
-	<string>1 Seconde</string>
+	<string>1 ثانية</string>
 	<key>N_SECONDS</key>
-	<string>%i Secondes</string>
+	<string>%i ثانية</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
-	<string>Écrit</string>
+	<string>عند الكتابة</string>
 	<key>READ_HEADER</key>
-	<string>Lu</string>
+	<string>إيصالات القراءة</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
-	<string>Désactivé</string>
+	<string>تعطيل</string>
 	<key>ALERT_TYPE_ICON</key>
-	<string>Icône uniquement</string>
+	<string>الأيقونة فقط</string>
 	<key>ALERT_TYPE_OVERLAY</key>
-	<string>Barre de statut</string>
+	<string>شريط الحالة</string>
 
 	<!-- Button for choosing how long the alert shows for. -->
 	<key>SHOW_FOR</key>
-	<string>Afficher pendant</string>
+	<string>إظهار لـِ</string>
 
 	<!-- Options for "Show For". -->
 	<key>SHOW_FOR_SPECIFIED</key>
-	<string>Durée spécifiée</string>
+	<string>المدة التي حددتها أنا</string>
 	<key>SHOW_FOR_TYPING</key>
-	<string>Durée de l’écriture</string>
+	<string>المدة التي يجري فيها الكتابة</string>
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>Pour afficher l’alerte pendant la durée spécifiée précédemment, sélectionnez "Durée spécifiée". Pour afficher l’alerte jusqu’à ce que l’expéditeur ait fini d’écrire, sélectionnez "Durée de l’écriture".</string>
+	<string>لإظهار التنبيه في المدة التي تم تحديدها في الصفحة السابقة إختر "المدة التي حددتها أنا". لإظهار التنبيه طالما المرسل يستمر بالكتابة إختر "المدة التي يجري فيها الكتابة".</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
-	<string>Cacher dans Messages</string>
+	<string>إخفاء التنبيهات في تطبيق الرسائل</string>
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>Test "Écrit"</string>
+	<string>تجربة تنبيه الكتابة</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>Test "Lu"</string>
+	<string>إختبار إيصيالات الكتابة</string>
 </dict>
 </plist>
