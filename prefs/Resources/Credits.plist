@@ -209,6 +209,16 @@
 			<string>YorkFieldX</string>
 		</dict>
 		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>ZH</string>
+			<key>label</key>
+			<string>darkj2k</string>
+			<key>user</key>
+			<string>darkj2k</string>
+		</dict>
+		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
