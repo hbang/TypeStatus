@@ -144,9 +144,9 @@
 			<key>initials</key>
 			<string>DE</string>
 			<key>label</key>
-			<string>Bensge</string>
+			<string>Pierre G.</string>
 			<key>user</key>
-			<string>bensge</string>
+			<string>pierre2g</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -157,6 +157,16 @@
 			<string>George Fasidis</string>
 			<key>user</key>
 			<string>iFasMan7</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>ES</string>
+			<key>label</key>
+			<string>Nicolás Alvarez</string>
+			<key>user</key>
+			<string>nicolas09F9</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -187,16 +197,6 @@
 			<string>vladkorotnev</string>
 			<key>user</key>
 			<string>vladkorotnev</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>ES</string>
-			<key>label</key>
-			<string>Gonzalo</string>
-			<key>user</key>
-			<string>gadc333</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>

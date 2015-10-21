@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <!-- Page title. -->
+        <key>ALERTS</key>
+        <string>Benachrichtigungen</string>
+ 
+        <!-- Header for the animation type segmented control. -->
+        <key>ANIMATION_TYPE</key>
+        <string>Animation</string>
+ 
+        <!-- Buttons shown in the segmented control for the animation type. -->
+        <key>ANIMATION_SLIDE</key>
+        <string>streichen</string>
+        <key>ANIMATION_FADE</key>
+        <string>verschwinden</string>
+ 
+        <!-- Header for the display duration selection. -->
+        <key>DISPLAY_DURATION</key>
+        <string>Anzeigedauer</string>
+ 
+        <!-- The label showing how many seconds the user has specified. -->
+        <key>1_SECOND</key>
+        <string>1 Sekunde</string>
+        <key>N_SECONDS</key>
+        <string>%i Sekunde</string>
+ 
+        <!-- The Typing and Read Receipt headings. -->
+        <key>TYPING_HEADER</key>
+        <string>schreibt</string>
+        <key>READ_HEADER</key>
+        <string>Lesebestätigung</string>
+ 
+        <!-- Buttons shown in the segmented controls for the alert type. -->
+        <key>OFF</key>
+        <string>aus</string>
+        <key>ALERT_TYPE_ICON</key>
+        <string>nur Icon</string>
+        <key>ALERT_TYPE_OVERLAY</key>
+        <string>Status Bar</string>
+ 
+        <!-- Button for choosing how long the alert shows for. -->
+        <key>SHOW_FOR</key>
+        <string>Zeigen für</string>
+ 
+        <!-- Options for "Show For". -->
+        <key>SHOW_FOR_SPECIFIED</key>
+        <string>Meine angegebene Dauer</string>
+        <key>SHOW_FOR_TYPING</key>
+        <string>Dauer des Schreibens</string>
+ 
+        <!-- Explanation shown under the "Show For" list. -->
+        <key>SHOW_FOR_EXPLANATION</key>
+        <string>Zum Anzeigen der Banachrichtigung der angegebenen Dauer wähle auf der vorhigen Seite "Meine angegebene Dauer". Zum Anzeigen der Benachrichigung solange wie der Sender schreibt wähle "Dauer des Schreibens".</string>
+ 
+        <!-- Switch to allow or disallow alerts showing in Messages. -->
+        <key>HIDE_IN_MESSAGES</key>
+        <string>Ausblenden in Nachrichten</string>
+ 
+        <!-- Buttons to test the alerts. -->
+        <key>TEST_TYPING</key>
+        <string>Test Tippen Benachrichtigung</string>
+        <key>TEST_READ_RECEIPT</key>
+        <string>Test Lesebestätigung</string>
+</dict>
+</plist>
