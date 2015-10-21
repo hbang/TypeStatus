@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Уведомления</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Анимация</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Влет</string>
+	<key>ANIMATION_FADE</key>
+	<string>Выцветание</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Время отображения</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 Секунда</string>
+	<key>N_SECONDS</key>
+	<string>%i Секунды</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Набор сообщения</string>
+	<key>READ_HEADER</key>
+	<string>Отчет о доставке</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Выкл</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Только иконка</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Строка состояния</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Показывать</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Мое указанное время</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Продолжительность набора</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Чтобы показать уведомление о продолжительности указанной на предыдущей странице, выберите “Мое указанное время”. Чтобы показать уведомление, пока отправитель печатает, выберите “продолжительность набора”.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Скрыть в сообщениях</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Проверить уведомление печати</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Проверить отчет о доставке</string>
+</dict>
+</plist>

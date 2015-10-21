@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SEND_TYPING_NOTIFICATIONS</key>
+	<string>Envoyer les notifications de frappe</string>
+	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
+	<string>Autoriser ou empêcher le destinataire de voir que vous écrivez.</string>
+
+	<key>SEND_READ_RECEIPTS</key>
+	<string>Envoyer des accusés de réception</string>
+	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
+	<string>Permettre ou empêcher le destinataire de voir que vous avez lu son message..</string>
+</dict>
+</plist>

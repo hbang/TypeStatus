@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>J'ai des accusés de réception et je sais quand mon interlocuteur écrit dans la barre de statut de mon %@ grâce à TypeStatus ! 💬</string>
+	
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>Alertes</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>A propos</string>
+	<key>CREDITS</key>
+	<string>Crédits</string>
+</dict>
+</plist>

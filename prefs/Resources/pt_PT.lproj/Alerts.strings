@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Alertas</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animações</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Deslizar</string>
+	<key>ANIMATION_FADE</key>
+	<string>Desvanecer</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Duração do alerta</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 segundo</string>
+	<key>N_SECONDS</key>
+	<string>%i segundos</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Escrita</string>
+	<key>READ_HEADER</key>
+	<string>Recibo de Leitura</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Desligado</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Apenas ícone</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Barra de status</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Mostrar pela</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Minha duração especificada</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Duração da escrita</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Para mostrar o alerta durante a duração que você especificou na página anterior, seleccione "Minha duração especificada". Para mostrar o alerta durante todo o período que o remetente está escrevendo, escolha "Duração da escrita".</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Esconder alertas no aplicativo "Mensagens"</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Testar alerta de escrita</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Testar alerta de recibo de leitura</string>
+</dict>
+</plist>

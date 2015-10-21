@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CREDITS</key>
+	<string>Благодарности</string>
+
+	<key>THANKS_HEADER</key>
+	<string>Спасибо указанным людям за помощь и поддержку в развитии TypeStatus.</string>
+	<key>THANKS_FOOTER</key>
+	<string>…и нашим бета-тестерам и пользователям. Вы круты, ребят!</string>
+
+	<key>ICONS</key>
+	<string>Иконки</string>
+	<key>ORIGINAL_IDEA</key>
+	<string>Оригинальная идея</string>
+	<key>LEAD_DEVELOPER</key>
+	<string>Основной разработчик</string>
+	<key>TRANSLATORS</key>
+	<string>Переводчики</string>
+</dict>
+</plist>
