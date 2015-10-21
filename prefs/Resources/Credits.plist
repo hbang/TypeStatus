@@ -122,7 +122,7 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>ES_MX</string>
+			<string>ES</string>
 			<key>label</key>
 			<string>Tony Kraft</string>
 			<key>user</key>
