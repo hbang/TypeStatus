@@ -4,7 +4,7 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-<string>Я получаю уведомления, когда мне набирают сообщения на %@ : спасибо TypeStatus за это! 💬</string>
+	<string>Я получаю уведомления, когда мне набирают сообщения на %@ : спасибо TypeStatus за это! 💬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
