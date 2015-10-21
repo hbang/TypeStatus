@@ -142,6 +142,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>HE</string>
+			<key>label</key>
+			<string>Aran Shavit</string>
+			<key>user</key>
+			<string>Aranshavit</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>ID</string>
 			<key>label</key>
 			<string>syamersam</string>
@@ -217,6 +227,16 @@
 			<string>Yury</string>
 			<key>user</key>
 			<string>YorkFieldX</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>VI</string>
+			<key>label</key>
+			<string>PJ Duong</string>
+			<key>user</key>
+			<string>duong_pj</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>Tui có được đánh chữ và đọc thông báo trên %@ thanh trạng thái là nhờ TypeStatus! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>Thông Báo</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>Về</string>
+	<key>CREDITS</key>
+	<string>Đóng Góp</string>
+</dict>
+</plist>
