@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Statusser</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animation</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Slide</string>
+	<key>ANIMATION_FADE</key>
+	<string>Fade</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Varighed for visning</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 Sekund</string>
+	<key>N_SECONDS</key>
+	<string>%i Sekunder</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Skriver</string>
+	<key>READ_HEADER</key>
+	<string>Læst kvitteringer</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Slukket</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Kun ikon</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Statusbar</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Vis i</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Mit angivede tidsrum</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Varighed af statussen</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>For at vise statussen i det specifike tidsrum på sidste side, vælg "Mit angivede tidsrum". For at vise statussen i ligeså lang tid som personen skriver, vælg "Varighed af statussen".</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Skjul i besked appen</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Test skrive status</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Test læst kvittering status</string>
+</dict>
+</plist>
