@@ -112,6 +112,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>EL</string>
+			<key>label</key>
+			<string>Andrew Loizides</string>
+			<key>user</key>
+			<string>andreas16700</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>ES</string>
 			<key>label</key>
 			<string>Nicolás Alvarez</string>
