@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Alertas</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animaciones</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Diapositiva</string>
+	<key>ANIMATION_FADE</key>
+	<string>Disiparse</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>La Duración de Visualización</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>Un Segundo</string>
+	<key>N_SECONDS</key>
+	<string>%i segundos</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Mecanografía</string>
+	<key>READ_HEADER</key>
+	<string>Leí Recibo</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Apagado</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Sólo Icono</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Barra de Estado</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Mostrar Para</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Mi Especificado Duración</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Duración de la Mecanografía</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Para mostrar la alerta durante el tiempo especificado en la página anterior, seleccione "Mi Duración especificada". Para mostrar la alerta durante el tiempo que el remitente está escribiendo, seleccione "Duración de la Mecanografía”.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Escóndete en Mensajes</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Prueba Alerta Mecanografía</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Prueba de Lectura Alerta Recibo</string>
+</dict>
+</plist>
