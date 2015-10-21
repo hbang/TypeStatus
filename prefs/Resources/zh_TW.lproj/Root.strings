@@ -4,7 +4,7 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-	<string>感謝 TypeStatus 讓我的 %@ 狀態欄顯示發信人打字與讀取狀態！</string>
+	<string>感謝 TypeStatus 讓我的 %@ 狀態欄顯示發信人打字與讀取狀態！ 💬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
