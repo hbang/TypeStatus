@@ -192,7 +192,7 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>pt_PT</string>
+			<string>PT</string>
 			<key>label</key>
 			<string>Nino</string>
 			<key>user</key>
