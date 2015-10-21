@@ -82,36 +82,6 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>AR</string>
-			<key>label</key>
-			<string>iD7me</string>
-			<key>user</key>
-			<string>iD7me</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>CN</string>
-			<key>label</key>
-			<string>zsm1703</string>
-			<key>user</key>
-			<string>zsm1703</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>CS</string>
-			<key>label</key>
-			<string>david19au</string>
-			<key>user</key>
-			<string>david19au</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
 			<string>NL</string>
 			<key>label</key>
 			<string>Timon Olsthoorn</string>
@@ -122,41 +92,11 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>FI</string>
-			<key>label</key>
-			<string>Niko Karranto</string>
-			<key>user</key>
-			<string>karranto</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>FR</string>
-			<key>label</key>
-			<string>Adam McNight</string>
-			<key>user</key>
-			<string>AdaMcNight</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
 			<string>DE</string>
 			<key>label</key>
 			<string>Pierre G.</string>
 			<key>user</key>
 			<string>pierre2g</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>EL</string>
-			<key>label</key>
-			<string>George Fasidis</string>
-			<key>user</key>
-			<string>iFasMan7</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -177,36 +117,6 @@
 			<string>Gianvito</string>
 			<key>user</key>
 			<string>djanvito</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>NO</string>
-			<key>label</key>
-			<string>Thay</string>
-			<key>user</key>
-			<string>Thay__T</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>RU</string>
-			<key>label</key>
-			<string>vladkorotnev</string>
-			<key>user</key>
-			<string>vladkorotnev</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
-			<string>SV</string>
-			<key>label</key>
-			<string>c0redev</string>
-			<key>user</key>
-			<string>c0redev</string>
 		</dict>
 		<dict>
 			<key>cell</key>
