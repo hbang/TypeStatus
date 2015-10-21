@@ -2,9 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>About</key>
-	<string>Riguardo</string>
-	<key>I get typing and read receipt alerts in my %@ status bar thanks to TypeStatus!</key>
-	<string>Ricevo notifiche di scrittura ed avvenuta lettura sulla mia %@ barra di stato grazie a TypeStatus!</string>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>Ricevo notifiche di scrittura ed avvenuta lettura sulla mia %@ barra di stato grazie a TypeStatus! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>Avvisi</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>Chi siamo</string>
+	<key>CREDITS</key>
+	<string>Crediti</string>
 </dict>
 </plist>

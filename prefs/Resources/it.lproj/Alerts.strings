@@ -2,45 +2,66 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Alerts</key>
+	<!-- Page title. -->
+	<key>ALERTS</key>
 	<string>Avvisi</string>
-	<key>Animation</key>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
 	<string>Animazioni</string>
-	<key>Display Duration</key>
-	<string>Durata della notifica</string>
-	<key>Duration of the Typing</key>
-	<string>La durata della scrittura</string>
-	<key>Email Support</key>
-	<string>Supporto Email</string>
-	<key>Fade</key>
-	<string>Dissolvenza</string>
-	<key>Hide in Messages</key>
-	<string>Nascondi in Messaggi</string>
-	<key>Icon Only</key>
-	<string>Solo icona</string>
-	<key>My Specified Duration</key>
-	<string>La durata impostata</string>
-	<key>Off</key>
-	<string>Disattivato</string>
-	<key>Read Receipt</key>
-	<string>Notifica di lettura</string>
-	<key>Second</key>
-	<string>Secondo</string>
-	<key>Seconds</key>
-	<string>Secondi</string>
-	<key>Show For</key>
-	<string>Mostra per</string>
-	<key>Slide</key>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
 	<string>A scorrimento</string>
-	<key>Status Bar</key>
-	<string>Barra di stato</string>
-	<key>Test Read Receipt Alert</key>
-	<string>Prova la notifica di avvenuta lettura</string>
-	<key>Test Typing Alert</key>
-	<string>Prova la notifica di scrittura</string>
-	<key>To show the alert for the duration specified on the previous page, select “My Specified Duration”. To show the alert for as long as the sender is typing, select “Duration of the Typing”.” = “Per mostrare la notifica per la durata impostata nella pagina precedente, seleziona “La durata impostata”. Per mostrare la notifica per tutta la durata di scrittura dell’emittente, seleziona “La durata della scrittura”.</key>
-	<string>To show the alert for the duration specified on the previous page, select “My Specified Duration”. To show the alert for as long as the sender is typing, select “Duration of the Typing”.” = “Per mostrare la notifica per la durata impostata nella pagina precedente, seleziona “La durata impostata”. Per mostrare la notifica per tutta la durata di scrittura dell’emittente, seleziona “La durata della scrittura”.</string>
-	<key>Typing</key>
+	<key>ANIMATION_FADE</key>
+	<string>Dissolvenza</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Durata della notifica</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 secondo</string>
+	<key>N_SECONDS</key>
+	<string>%i secondi</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
 	<string>Scrivendo</string>
+	<key>READ_HEADER</key>
+	<string>Notifica di lettura</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Disattivato</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Solo icona</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Barra di stato</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Mostra per</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>La durata impostata</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>La durata della scrittura</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Per mostrare la notifica per la durata impostata nella pagina precedente, seleziona “La durata impostata”. Per mostrare la notifica per tutta la durata di scrittura dell’emittente, seleziona “La durata della scrittura”.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Nascondi in Messaggi</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Prova la notifica di scrittura</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Prova la notifica di avvenuta lettura</string>
 </dict>
 </plist>
