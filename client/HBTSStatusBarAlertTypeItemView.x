@@ -17,11 +17,11 @@
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
-			text = [PrefsBundle localizedStringForKey:@"Typing:" value:@"Typing:" table:@"Root"];
+			text = [PrefsBundle localizedStringForKey:@"TYPING" value:nil table:@"Localizable"];
 			break;
 
 		case HBTSStatusBarTypeRead:
-			text = [PrefsBundle localizedStringForKey:@"Read:" value:@"Read:" table:@"Root"];
+			text = [PrefsBundle localizedStringForKey:@"READ" value:nil table:@"Localizable"];
 			break;
 
 		case HBTSStatusBarTypeTypingEnded:
