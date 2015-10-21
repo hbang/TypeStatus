@@ -31,6 +31,7 @@
 
 - (void)setTypingType:(NSNumber *)typingType specifier:(PSSpecifier *)specifier {
 	_preferences.typingType = typingType.unsignedIntegerValue;
+	notify_post("ws.hbang.typestatus/ReloadPrefs");
 }
 
 - (NSNumber *)readReceiptTypeWithSpecifier:(PSSpecifier *)specifier {
@@ -39,6 +40,7 @@
 
 - (void)setReadReceiptType:(NSNumber *)readType specifier:(PSSpecifier *)specifier {
 	_preferences.readType = readType.unsignedIntegerValue;
+	notify_post("ws.hbang.typestatus/ReloadPrefs");
 }
 
 - (void)testTyping {
