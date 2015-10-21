@@ -122,6 +122,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>ID</string>
+			<key>label</key>
+			<string>syamersam</string>
+			<key>user</key>
+			<string>syamersam</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>IT</string>
 			<key>label</key>
 			<string>Gianvito</string>
@@ -132,11 +142,31 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>MS</string>
+			<key>label</key>
+			<string>syamersam</string>
+			<key>user</key>
+			<string>syamersam</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>NL</string>
 			<key>label</key>
 			<string>Timon Olsthoorn</string>
 			<key>user</key>
 			<string>tmnlsthrn</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>PL</string>
+			<key>label</key>
+			<string>krzysiek borek</string>
+			<key>user</key>
+			<string>krzysiek_borek</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>

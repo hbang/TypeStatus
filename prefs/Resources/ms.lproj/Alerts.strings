@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Isyarat</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animasi</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Slaid</string>
+	<key>ANIMATION_FADE</key>
+	<string>Pudar</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Tunjukan Tempoh Masa</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 Saat</string>
+	<key>N_SECONDS</key>
+	<string>%i Saat</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Menulis</string>
+	<key>READ_HEADER</key>
+	<string>Penerimaan Bacaan</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Tutup</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Ikon Sahaja</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Bar Status</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Pilihan menunjukkan kepada</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Tempoh Dinyatakan Saya</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Tempoh Masa Menulis</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Untuk menunjukkan isyarat selama tempoh yang dinyatakan pada halaman sebelumnya, pilih "Tempoh Dinyatakan Saya". Untuk menunjukkan isyarat selama mana penghantar sedang menaip, pilih "Tempoh Masa Menulis".</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Sumbunyikan Ketika Mesej</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Uji Isyarat Menulis</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Uji Isyarat Bacaan Penerimaan</string>
+
+</dict>
+</plist>
