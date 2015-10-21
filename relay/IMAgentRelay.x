@@ -18,9 +18,10 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 %hook IMDServiceSession
 
-- (void)didReceiveMessage:(FZMessage *)message forChat:(id)chat style:(unsigned char)style {
+- (void)didReceiveMessage:(FZMessage *)message forChat:(id)chat style:(unsigned char)style account:(id)account {
 	%orig;
 
+	// TODO: this check might need to be more specific. are the flags XOR'd?
 	if (message.flags == FZMessageFlagsTypingBegan) {
 		HBTSPostMessage(HBTSStatusBarTypeTyping, message.handle, YES);
 	} else {
@@ -37,6 +38,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 #pragma mark - Block outgoing typing/read
 
+/*
 %hook IMDServiceSession
 
 - (void)sendMessage:(FZMessage *)message toChat:(id)chat style:(unsigned char)style {
@@ -50,6 +52,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 }
 
 %end
+*/
 
 #pragma mark - Test functions
 
