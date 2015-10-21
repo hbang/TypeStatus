@@ -22,9 +22,9 @@
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>1_SECOND</key>
-	<string>1 Sekund</string>
+	<string>1 sekund</string>
 	<key>N_SECONDS</key>
-	<string>%i Sekunder</string>
+	<string>%i sekunder</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
