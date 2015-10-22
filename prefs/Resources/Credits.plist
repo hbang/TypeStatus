@@ -150,6 +150,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>FI</string>
+			<key>label</key>
+			<string>Arto Mikola</string>
+			<key>user</key>
+			<string>ard0u</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>FR</string>
 			<key>label</key>
 			<string>Overfl0w</string>
@@ -234,7 +244,7 @@
 			<key>label</key>
 			<string>Nino</string>
 			<key>user</key>
-			<string>carlyslayjepson</string>
+			<string>carlyslayjepsen</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -244,7 +254,7 @@
 			<key>label</key>
 			<string>Nino</string>
 			<key>user</key>
-			<string>carlyslayjepson</string>
+			<string>carlyslayjepsen</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>

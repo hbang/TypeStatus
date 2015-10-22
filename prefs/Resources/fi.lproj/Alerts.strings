@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Ilmoitukset</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animaatio</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Liukuva</string>
+	<key>ANIMATION_FADE</key>
+	<string>Ilmestyvä</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Näytä</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 sekunti</string>
+	<key>N_SECONDS</key>
+	<string>%i sekuntia</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Kirjoittaa</string>
+	<key>READ_HEADER</key>
+	<string>Lukukuittaus</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Pois</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Vain kuvake</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Tilapalkki</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Näytä</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Määrittämäni ajan</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Kirjoittamisen ajan</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>"Määrittämäni ajan" näyttää ilmoituksen edellisellä sivulla määritetyn ajan verran. "Kirjoittamisen ajan" näyttää ilmoituksen niin kauan kuin viestiä kirjoitetaan.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Piilota Viestit-sovelluksessa</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Testaa kirjoittaa-ilmoitusta</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Testaa lukukuittaus-ilmoitusta</string>
+</dict>
+</plist>
