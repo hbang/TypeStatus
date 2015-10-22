@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Meldingen</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animatie</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Vegend</string>
+	<key>ANIMATION_FADE</key>
+	<string>Vervagend</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Weergaveduur</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 seconde</string>
+	<key>N_SECONDS</key>
+	<string>%i seconden</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Typen</string>
+	<key>READ_HEADER</key>
+	<string>Leesbewijzen</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Uit</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Symbool</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Statusbalk</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Toon voor</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Mijn ingestelde duur</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Duur van het typen</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Om de melding te tonen voor de tijd ingesteld op de vorige pagina, selecteer “Mijn ingestelde duur”. Om de melding te tonen voor als lang als de verzender aan het typen is, selecteer “Duur van het typen”.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Verberg in Berichten</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Test typ-melding</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Test leesbewijs-melding</string>
+</dict>
+</plist>
