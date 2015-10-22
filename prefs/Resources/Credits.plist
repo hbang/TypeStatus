@@ -242,6 +242,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>RO</string>
+			<key>label</key>
+			<string>Raz</string>
+			<key>user</key>
+			<string>razvici</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>RU</string>
 			<key>label</key>
 			<string>Yury</string>
