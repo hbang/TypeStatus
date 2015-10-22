@@ -180,6 +180,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>HI</string>
+			<key>label</key>
+			<string>Nagarjun Vasavamba</string>
+			<key>user</key>
+			<string>nags9100</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>HR</string>
 			<key>label</key>
 			<string>PIPe</string>
