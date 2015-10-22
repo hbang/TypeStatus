@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Strings used in status bar notifications to describe the type of message. -->
+	<key>TYPING</key>
+	<string>입력중:</string>
+	<key>READ</key>
+	<string>읽음:</string>
+</dict>
+</plist>
