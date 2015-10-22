@@ -162,6 +162,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>HR</string>
+			<key>label</key>
+			<string>PIPe</string>
+			<key>user</key>
+			<string>PIPeJTV</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>ID</string>
 			<key>label</key>
 			<string>syamersam</string>
