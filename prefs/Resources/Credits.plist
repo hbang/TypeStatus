@@ -89,6 +89,14 @@
 			<string>MiRO92</string>
 		</dict>
 		<dict>
+			<key>label</key>
+			<string>Name</string>
+			<key>CA</key>
+			<string>Quan van der Knokke</string>
+			<key>url</key>
+			<string>https://www.reddit.com/user/Q-Quan</string>
+		</dict>
+		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
