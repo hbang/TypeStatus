@@ -220,6 +220,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>JA</string>
+			<key>label</key>
+			<string>koh_kun</string>
+			<key>user</key>
+			<string>koh_kun</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>KO</string>
 			<key>label</key>
 			<string>Jinhyeok Lee</string>

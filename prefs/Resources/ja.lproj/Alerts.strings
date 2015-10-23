@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>アラート</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>アニメーション</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>スライド</string>
+	<key>ANIMATION_FADE</key>
+	<string>フェード</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>表示時間</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1秒</string>
+	<key>N_SECONDS</key>
+	<string>%i秒</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>入力中</string>
+	<key>READ_HEADER</key>
+	<string>既読</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>切</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>アイコンのみ</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>ステータスバー</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>表示時間</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>表示時間の設定</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>入力中の間表示</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>アラートを特定の時間表示持する場合は「表示時間の設定」をタップし、相手が入力中の間表示する場合は「入力中の間表示」をタップしてください。</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>メッセージアプリで隠す</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>入力中アラートのテストt</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>既読アラートのテスト</string>
+</dict>
+</plist>
