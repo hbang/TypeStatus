@@ -304,16 +304,6 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>PT</string>
-			<key>label</key>
-			<string>Nino</string>
-			<key>user</key>
-			<string>carlyslayjepsen</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
 			<string>RO</string>
 			<key>label</key>
 			<string>Raz</string>
