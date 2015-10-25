@@ -132,10 +132,6 @@
 
 %new - (void)_typeStatus_animateInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	if (direction) {
-		if (self._typeStatus_isVisible) {
-			return;
-		}
-
 		if (self._typeStatus_hideTimer) {
 			[self._typeStatus_hideTimer invalidate];
 			[self._typeStatus_hideTimer release];
@@ -143,7 +139,7 @@
 
 		self._typeStatus_hideTimer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_typeStatus_timerFired) userInfo:nil repeats:NO] retain];
 
-		if (self._typeStatus_isAnimating) {
+		if (self._typeStatus_isVisible || self._typeStatus_isAnimating) {
 			return;
 		}
 
