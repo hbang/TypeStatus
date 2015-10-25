@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Alertes</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animacions</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Lliscar</string>
+	<key>ANIMATION_FADE</key>
+	<string>Difulminat</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Temps de mostra</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 segon</string>
+	<key>N_SECONDS</key>
+	<string>%i segons</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Escrivint</string>
+	<key>READ_HEADER</key>
+	<string>Llegit</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Apagat</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Només icona</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Barra d’estat</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Mostrar durant</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Duració especificada</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Mentres s’escrigui</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Per mostrar l’alerta durant el temps especificat a la pàgina anterior, selecciona “Duració especificada”. Per mostrar l’alerta mentres escrigui escrivint l’emissor, tria “Mentres s’escrigui”.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Amagar a Missatges</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Provar l’alerta d’escrivint</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Provar l’alerta de llegit</string>
+</dict>
+</plist>

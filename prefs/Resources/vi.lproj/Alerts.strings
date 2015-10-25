@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Báo động</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION</key>
+	<string>Hình Ảnh</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Trượt</string>
+	<key>ANIMATION_FADE</key>
+	<string>Phai từ từ</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Thời gian hiển thị trong vòng</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 Giây</string>
+	<key>N_SECONDS</key>
+	<string>%i Giây</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Đang viết</string>
+	<key>READ_HEADER</key>
+	<string>Đã đọc</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Tắt</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Chỉ riêng biểu tượng</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Thanh Trạng Thái</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Cảnh báo trong vòng</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Thời gian quy định</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Thời Gian Đánh Máy</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Đề hiển thị các thông báo trong thời gian quy định trước đó, chọn "Thời Gian Quy Định". Để hiển thị các thông báo cho mỗi khi người viết bắt đầu đánh, chọn "Thời Gian Đánh Máy".</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Không Cho Thấy Trong Ứng Dụng Tin Nhắn</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Xem Thử Thông Báo Đang Viết</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Xem Thử Thông Báo Đã Đọc</string>
+</dict>
+</plist>

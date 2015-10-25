@@ -1,52 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>About</key>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>感谢 TypeStatus 让我的 %@ 状态栏显示发信人打字与读取状态！ 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>警示</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
 	<string>关于</string>
-	<key>Check out #TypeStatus by HASHBANG Productions!</key>
-	<string>查看由HASHBANG Productions开发的#TypeStatus!</string>
-	<key>Credits</key>
-	<string>感谢</string>
-	<key>Dismiss</key>
-	<string>隐藏</string>
-	<key>Double Tap</key>
-	<string>双击</string>
-	<key>Fade</key>
-	<string>淡入淡出</string>
-	<key>No Action</key>
-	<string>无动作</string>
-	<key>Open Messages</key>
-	<string>打开信息</string>
-	<key>Open biteSMS</key>
-	<string>打开BiteSMS</string>
-	<key>Overlay Animation</key>
-	<string>横幅覆盖动画</string>
-	<key>Overlay Display Duration</key>
-	<string>横幅覆盖时间</string>
-	<key>Overlay Gestures</key>
-	<string>横幅覆盖手势</string>
-	<key>Read Receipt</key>
-	<string>已读</string>
-	<key>Read:</key>
-	<string>已读：</string>
-	<key>Single Tap</key>
-	<string>单击</string>
-	<key>Slide</key>
-	<string>滑动</string>
-	<key>Swipe Left</key>
-	<string>左划</string>
-	<key>Swipe Right</key>
-	<string>右划</string>
-	<key>Typing</key>
-	<string>正在输入</string>
-	<key>Typing:</key>
-	<string>正在输入：</string>
-	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the “Overlay Display Duration” setting below.</key>
-	<string>“状态栏覆盖” 用正在输入或已读横幅覆盖在状态栏内。
-“信息程序内隐藏” 当处于信息或BiteSMS界面时禁用输入状态横幅
-横幅停留时间可以在的“覆盖时间”处调整。</string>
+	<key>CREDITS</key>
+	<string>参予人员</string>
 </dict>
 </plist>

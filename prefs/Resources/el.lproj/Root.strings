@@ -2,31 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>About</key>
-	<string>Πληροφορίες</string>
-	<key>Disables all indicators while Messages or biteSMS is open.</key>
-	<string>Απενεργοποιείστε όλες τις ενδείξεις, ενώ η εφαρμογή μηνυμάτων ή η εφαρμογή BiteSMS ειναι ανοιχτή.</string>
-	<key>Fade</key>
-	<string>Ξεθώρισμα</string>
-	<key>Overlay Animation</key>
-	<string>Κάλυψη γραμμής κατάστασης</string>
-	<key>Overlay Display Duration</key>
-	<string>Διάρκεια κάλυψης γραμμής κατάστασης</string>
-	<key>Read Receipt</key>
-	<string>Διαβάστηκε</string>
-	<key>Read:</key>
-	<string>Διαβάστηκε:</string>
-	<key>Slide</key>
-	<string>Ολίσθηση</string>
-	<key>Typing</key>
-	<string>Πληκτρολογεί</string>
-	<key>Typing:</key>
-	<string>Πληκτρολογεί:</string>
-	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the Overlay Display Duration setting below.</key>
-	<string>Η επιλογή Κάλυψη γραμμής κατάστασης εμφανίζει στην γραμμή κατάστασης το όνομα της επαφής που στέλνει το μήνυμα.
- Η επιλογή Απόκρυψη μέσα στην εφαρμογή μηνυμάτων απενεργοποιεί όλες τις ενδείξεις οταν το Bite SMS ή η εφαρμογή μηνυμάτων είναι ανοιχτή
-Tο χρόνος μπορεί να ρυθμιστεί χρησιμοποιώντας την επιλογή "Διάρκεια κάλυψης γραμμής κατάστασης" του slider παρακάτω.</string>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>Λαμβάνω ειδοποιήσεις πληκτρολόγησης και αποδεικτικών ανάγνωσης στη %@ μπάρα κατάστασής μου χάρης το TypeStatus! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>Ειδοποιήσεις</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>Σχετικά</string>
+	<key>CREDITS</key>
+	<string>Ευχαριστίες</string>
 </dict>
 </plist>

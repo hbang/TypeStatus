@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>अलर्ट</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>एनीमेशन</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>स्लाइड</string>
+	<key>ANIMATION_FADE</key>
+	<string>मुरझाना</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>प्रदर्शन की अवधि</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 सेकंड</string>
+	<key>N_SECONDS</key>
+	<string>%i मैं सेकंड</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>टाइपिंग</string>
+	<key>READ_HEADER</key>
+	<string>रसीद पढ़ें</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>बंद</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>केवल आइकन</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>स्टेटस बार</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>के लिए दिखाने</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>मेरे निर्दिष्ट अवधि</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>टाइपिंग की अवधि का चयन करें</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>पिछले पृष्ठ पर निर्दिष्ट अवधि के लिए चेतावनी दिखाने के लिए, चयन "मेरे निर्दिष्ट अवधि”. लंबे समय के रूप में प्रेषक टाइपिंग है के रूप में के लिए चेतावनी दिखाने के लिए, "टाइपिंग की अवधि का चयन करें ".</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>संदेशों में छिपा</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>टेस्ट टंकण चेतावनी</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>टेस्ट पढ़ें रसीद चेतावनी</string>
+</dict>
+</plist>

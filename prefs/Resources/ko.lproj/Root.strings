@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>TypeStatus로 %@ 상태표시줄에 입력 표시를 받고 있어요! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>알림</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>정보</string>
+	<key>CREDITS</key>
+	<string>도와주신 분들</string>
+</dict>
+</plist>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>मैं टाइपिंग पाने के लिए और TypeStatus करने के लिए मेरे% @ स्थिति पट्टी धन्यवाद में रसीद अलर्ट पढ़ें! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>अलर्ट</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>के बारे में</string>
+	<key>CREDITS</key>
+	<string>क्रेडिट</string>
+</dict>
+</plist>

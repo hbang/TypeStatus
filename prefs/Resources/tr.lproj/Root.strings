@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>TypeStatus sayesinde %@ ile yazmakta olaný ve okundu bilgisini görebiliyorum! ðŸ’¬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>Uyarýlar</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>Hakkýnda</string>
+	<key>CREDITS</key>
+	<string>Katkýda Bulunanalar</string>
+</dict>
+</plist>

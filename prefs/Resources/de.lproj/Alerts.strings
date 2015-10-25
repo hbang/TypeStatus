@@ -12,9 +12,9 @@
  
         <!-- Buttons shown in the segmented control for the animation type. -->
         <key>ANIMATION_SLIDE</key>
-        <string>streichen</string>
+        <string>Gleiten</string>
         <key>ANIMATION_FADE</key>
-        <string>verschwinden</string>
+        <string>Ausblenden</string>
  
         <!-- Header for the display duration selection. -->
         <key>DISPLAY_DURATION</key>
@@ -24,21 +24,21 @@
         <key>1_SECOND</key>
         <string>1 Sekunde</string>
         <key>N_SECONDS</key>
-        <string>%i Sekunde</string>
+        <string>%i Sekunden</string>
  
         <!-- The Typing and Read Receipt headings. -->
         <key>TYPING_HEADER</key>
-        <string>schreibt</string>
+        <string>Tippt</string>
         <key>READ_HEADER</key>
-        <string>Lesebestätigung</string>
+        <string>Gelesen</string>
  
         <!-- Buttons shown in the segmented controls for the alert type. -->
         <key>OFF</key>
         <string>aus</string>
         <key>ALERT_TYPE_ICON</key>
-        <string>nur Icon</string>
+        <string>Nur Icon</string>
         <key>ALERT_TYPE_OVERLAY</key>
-        <string>Status Bar</string>
+        <string>Statusleiste</string>
  
         <!-- Button for choosing how long the alert shows for. -->
         <key>SHOW_FOR</key>
@@ -46,22 +46,22 @@
  
         <!-- Options for "Show For". -->
         <key>SHOW_FOR_SPECIFIED</key>
-        <string>Meine angegebene Dauer</string>
+        <string>Eigene Anzeigedauer</string>
         <key>SHOW_FOR_TYPING</key>
-        <string>Dauer des Schreibens</string>
+        <string>Schreibdauer</string>
  
         <!-- Explanation shown under the "Show For" list. -->
         <key>SHOW_FOR_EXPLANATION</key>
-        <string>Zum Anzeigen der Banachrichtigung der angegebenen Dauer wähle auf der vorhigen Seite "Meine angegebene Dauer". Zum Anzeigen der Benachrichigung solange wie der Sender schreibt wähle "Dauer des Schreibens".</string>
+        <string>Um die Benachrichtigung für eine gewählte Zeit anzuzeigen, aktiviere „Eigene Anzeigedauer“. „Schreibdauer“ blendet die Benachrichtigung ein, bis der Absender das Tippen beendet".</string>
  
         <!-- Switch to allow or disallow alerts showing in Messages. -->
         <key>HIDE_IN_MESSAGES</key>
-        <string>Ausblenden in Nachrichten</string>
+        <string>In Nachrichten-App ausblenden</string>
  
         <!-- Buttons to test the alerts. -->
         <key>TEST_TYPING</key>
-        <string>Test Tippen Benachrichtigung</string>
+        <string>Teste Tippen Benachrichtigung</string>
         <key>TEST_READ_RECEIPT</key>
-        <string>Test Lesebestätigung</string>
+        <string>Teste Lesebestätigung</string>
 </dict>
 </plist>

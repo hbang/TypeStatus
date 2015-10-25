@@ -2,49 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>About</key>
-	<string>حول</string>
-	<key>Check out #TypeStatus by HASHBANG Productions!</key>
-	<string>Check out #TypeStatus by HASHBANG Productions!</string>
-	<key>Dismiss</key>
-	<string>رفض</string>
-	<key>Double Tap</key>
-	<string>ضغطتين</string>
-	<key>Fade</key>
-	<string>Fade</string>
-	<key>No Action</key>
-	<string>بدون حركة</string>
-	<key>Open Messages</key>
-	<string>فتح من خلال الرسائل</string>
-	<key>Open biteSMS</key>
-	<string>فتح من خلال biteSMS</string>
-	<key>Overlay Animation</key>
-	<string>تأثيرات عند ظهور الغطاء</string>
-	<key>Overlay Display Duration</key>
-	<string>مدة عرض الغطاء</string>
-	<key>Overlay Gestures</key>
-	<string>إيماءات للغطاء</string>
-	<key>Read Receipt</key>
-	<string>عند القراءة</string>
-	<key>Read:</key>
-	<string>تمت القراءة:</string>
-	<key>Single Tap</key>
-	<string>ضغطة واحدة</string>
-	<key>Slide</key>
-	<string>Slide</string>
-	<key>Swipe Left</key>
-	<string>السحب لليسار</string>
-	<key>Swipe Right</key>
-	<string>السحب لليمين</string>
-	<key>Typing</key>
-	<string>عند الكتابة</string>
-	<key>Typing:</key>
-	<string>جاري الكتابة:</string>
-	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the “Overlay Display Duration” setting below.</key>
-	<string>"الغطاء في شريط الحالة العلوي" يظهر غطاء في شريط الحالة العلوي لفترة وجيزة مع اسم الشخص الذي تسبب في هذا الإشعار.
-"إخفاء محتوى الرسالة" يتم اخفاء جميع المؤشرات في حين برنامج الرسائل او biteSMS مفتوح.
-تستطيع تعيين التأخير مع "مدة عرض الغطاء" من خلال شريط التمرير أدناه.</string>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>��� ���� ��� ������� ��� ������� ���� ����� ������� �� ����� ��� %@, ����� ��� TypeStatus! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>���������</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>���</string>
+	<key>CREDITS</key>
+	<string>������ ��������</string>
 </dict>
 </plist>

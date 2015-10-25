@@ -2,47 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>About</key>
-	<string>О TypeStatus</string>
-	<key>Check out #TypeStatus by HASHBANG Productions!</key>
-	<string>Зацените #TypeStatus от HASHBANG Productions!</string>
-	<key>Dismiss</key>
-	<string>Закрыть</string>
-	<key>Double Tap</key>
-	<string>Двойное нажатие</string>
-	<key>Fade</key>
-	<string>Появление</string>
-	<key>No Action</key>
-	<string>Без действия</string>
-	<key>Open Messages</key>
-	<string>Открыть Сообщения</string>
-	<key>Open biteSMS</key>
-	<string>Открыть BiteSMS</string>
-	<key>Overlay Animation</key>
-	<string>Анимация оверлея</string>
-	<key>Overlay Display Duration</key>
-	<string>Длительность анимации оверлея</string>
-	<key>Overlay Gestures</key>
-	<string>Жесты оверлея</string>
-	<key>Read Receipt</key>
-	<string>Прочитано</string>
-	<key>Read:</key>
-	<string>Прочитано:</string>
-	<key>Single Tap</key>
-	<string>Одно нажатие</string>
-	<key>Slide</key>
-	<string>Провести пальцем</string>
-	<key>Tap Action</key>
-	<string>Действие по нажатию</string>
-	<key>Typing</key>
-	<string>Печатает</string>
-	<key>Typing:</key>
-	<string>Печатает:</string>
-	<key>“Status Bar Overlay” briefly overlays the status bar with the name of the person who caused the notification.
-“Hide Inside Messages” disables all indicators while Messages or biteSMS is open.
-The delay can be set with the “Overlay Display Duration” setting below.</key>
-	<string>“Оверлей статусбара” временно показывает в статусбаре, кто вызвал срабатывание уведомления.
-“Скрыть в сообщениях” отключает индикаторы пока открыты Сообщения или BiteSMS.
-Задержка выставляется регулятором ниже.</string>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>Я получаю уведомления, когда мне набирают сообщения на %@ : спасибо TypeStatus за это! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>Уведомления</string>
+
+	<!-- Buttons to the about and credits pages. -->
+	<key>ABOUT</key>
+	<string>Информация</string>
+	<key>CREDITS</key>
+	<string>Создатели</string>
 </dict>
 </plist>

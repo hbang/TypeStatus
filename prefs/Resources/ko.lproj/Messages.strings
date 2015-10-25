@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SEND_TYPING_NOTIFICATIONS</key>
+	<string>입력 알림 보냄</string>
+	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
+	<string>받는 사람이 당신이 입력중인지 여부를 받을 지 여부를 선택합니다.</string>
+
+	<key>SEND_READ_RECEIPTS</key>
+	<string>읽음 표시 보냄</string>
+	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
+	<string>받는 사람이 당신이 메시지를 읽었는지 여부를 알 수 있도록 할 지 여부를 선택합니다.</string>
+</dict>
+</plist>

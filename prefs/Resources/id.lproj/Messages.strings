@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SEND_TYPING_NOTIFICATIONS</key>
+	<string>Kirim Notifikasi Mengetik.</string>
+	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
+	<string>Membolehkan atau mencegah orang penerima agar tidak melihat bila kau mengetik.</string>
+
+	<key>SEND_READ_RECEIPTS</key>
+	<string>Kirim Tanda Terima Dibaca</string>
+	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
+	<string>Membolehkan atau mencegah orang penerima agar tidak melihat ketika anda membaca pesan mereka.</string>
+</dict>
+</plist>

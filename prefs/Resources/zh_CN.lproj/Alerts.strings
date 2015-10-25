@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>警示</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>动画</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>滑动</string>
+	<key>ANIMATION_FADE</key>
+	<string>淡化</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>显示时间</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 秒</string>
+	<key>N_SECONDS</key>
+	<string>%i 秒</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>打字中</string>
+	<key>READ_HEADER</key>
+	<string>已读回执</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>关闭</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>仅有图标</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>状态栏</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>显示</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>指定的时间</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>打字时</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>要显示前一页所指定的警示时间，请选择“指定的时间”，要显示发信人持续打字的状态警示，请选择“打字时”。</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>在“信息”中隐藏</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>测试打字警示</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>测试已读警示</string>
+</dict>
+</plist>

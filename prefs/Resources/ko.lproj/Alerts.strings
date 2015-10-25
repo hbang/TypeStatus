@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>알림</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>애니메이션</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>슬라이드</string>
+	<key>ANIMATION_FADE</key>
+	<string>페이드</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>노출 시간</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 초</string>
+	<key>N_SECONDS</key>
+	<string>%i 초</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>입력중</string>
+	<key>READ_HEADER</key>
+	<string>읽음 표시</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>꺼짐</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>아이콘만</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>상태표시줄</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>다음 시간동안 노출:</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>내 입력값</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>입력하는 동안</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>이전 화면에서 지정한 시간동안 알림을 보이려면 "내 입력값"을 선택하세요. 보내는 사람이 입력하는 동안에만 보이려면 "입력하는 동안"을 선택하세요.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>메시지에서 숨김</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>입력 알림 테스트</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>읽음 표시 알림 테스트</string>
+</dict>
+</plist>
