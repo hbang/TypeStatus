@@ -51,7 +51,7 @@ BOOL HBTSShouldHide(HBTSStatusBarType type) {
 
 NSString *HBTSNameForHandle(NSString *handle) {
 	if ([handle isEqualToString:@"example@hbang.ws"]) {
-		return @"John Appleseed";
+		return @"Johnny Appleseed";
 	} else {
 		CKEntity *entity = [[%c(CKEntity) copyEntityForAddressString:handle] autorelease];
 
