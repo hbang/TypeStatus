@@ -22,7 +22,7 @@
 
  <!-- The label showing how many seconds the user has specified. -->
  <key>1_SECOND</key>
- <string>Sekunda</string>
+ <string>1 sekunda</string>
  <key>N_SECONDS</key>
  <string>%i sekund</string>
 
