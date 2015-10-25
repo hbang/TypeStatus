@@ -6,6 +6,10 @@
 	<array>
 		<dict>
 			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>detail</key>
 			<string>HBTSAlertsListController</string>
@@ -17,6 +21,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>id</key>
+			<string>TypeStatusPlusGroup</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -25,6 +31,10 @@
 			<string>TypeStatusPlus</string>
 			<key>detail</key>
 			<string>HBTSPlusRootListController</string>
+			<key>icon</key>
+			<string>icon.png</string>
+			<key>id</key>
+			<string>TypeStatusPlus</string>
 			<key>isController</key>
 			<true/>
 			<key>label</key>
