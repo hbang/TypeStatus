@@ -89,9 +89,13 @@
 			<string>MiRO92</string>
 		</dict>
 		<dict>
+			<key>cellClass</key>
+			<string>HBInitialsLinkTableCell</string>
 			<key>label</key>
 			<string>Name</string>
-			<key>CA</key>
+			<key>initials</key>
+			<string>CA</string>
+			<key>label</key>
 			<string>Quan van der Knokke</string>
 			<key>url</key>
 			<string>https://www.reddit.com/user/Q-Quan</string>
