@@ -5,7 +5,7 @@
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>入力中通知を送信する</string>
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
-	<string>相手に入力中の通知を見せる・見せない。
+	<string>相手に入力中の通知を見せる・見せない。</string>
 	<key>SEND_READ_RECEIPTS</key>
 	<string>既読通知を送信する</string>
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>

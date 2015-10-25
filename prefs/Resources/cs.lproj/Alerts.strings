@@ -28,7 +28,8 @@
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
-	<string>Píše_HEADER</key>
+	<string>Píše</string>
+	<keY>READ_HEADER</key>
 	<string>Přečtení potvrzeno</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
