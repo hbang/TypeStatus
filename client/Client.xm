@@ -278,7 +278,9 @@
 #pragma mark - Constructor
 
 %ctor {
-	if ([[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"]) {
+	NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
+
+	if ([bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"] || [bundleIdentifier isEqualToString:@"com.apple.SafariViewService"]) {
 		return;
 	}
 
