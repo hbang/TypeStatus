@@ -260,21 +260,21 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>NL</string>
+			<string>NB</string>
 			<key>label</key>
-			<string>Timon Olsthoorn</string>
+			<string>Stein Åge Brækkan</string>
 			<key>user</key>
-			<string>tmnlsthrn</string>
+			<string>braekk</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>NO</string>
+			<string>NL</string>
 			<key>label</key>
-			<string>Stein Åge Brækkan</string>
+			<string>Timon Olsthoorn</string>
 			<key>user</key>
-			<string>braekk</string>
+			<string>tmnlsthrn</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
