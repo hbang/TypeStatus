@@ -135,6 +135,7 @@
 		if (self._typeStatus_hideTimer) {
 			[self._typeStatus_hideTimer invalidate];
 			[self._typeStatus_hideTimer release];
+			self._typeStatus_hideTimer = nil;
 		}
 
 		self._typeStatus_hideTimer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_typeStatus_timerFired) userInfo:nil repeats:NO] retain];
