@@ -2,66 +2,66 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
- <!-- Page title. -->
- <key>ALERTS</key>
- <string>Styl powiadomień</string>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Styl powiadomień</string>
 
- <!-- Header for the animation type segmented control. -->
- <key>ANIMATION_TYPE</key>
- <string>Animacje</string>
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animacje</string>
 
- <!-- Buttons shown in the segmented control for the animation type. -->
- <key>ANIMATION_SLIDE</key>
- <string>Slajd</string>
- <key>ANIMATION_FADE</key>
- <string>Przyciemnianie</string>
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Slajd</string>
+	<key>ANIMATION_FADE</key>
+	<string>Przyciemnianie</string>
 
- <!-- Header for the display duration selection. -->
- <key>DISPLAY_DURATION</key>
- <string>Długość wyświetlania</string>
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Długość wyświetlania</string>
 
- <!-- The label showing how many seconds the user has specified. -->
- <key>1_SECOND</key>
- <string>Sekunda</string>
- <key>N_SECONDS</key>
- <string>%i sekund</string>
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 sekunda</string>
+	<key>N_SECONDS</key>
+	<string>%i sekund</string>
 
- <!-- The Typing and Read Receipt headings. -->
- <key>TYPING_HEADER</key>
- <string>Pisanie</string>
- <key>READ_HEADER</key>
- <string>Odczytanie</string>
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Pisanie</string>
+	<key>READ_HEADER</key>
+	<string>Odczytanie</string>
 
- <!-- Buttons shown in the segmented controls for the alert type. -->
- <key>OFF</key>
- <string>Wyłącz</string>
- <key>ALERT_TYPE_ICON</key>
- <string>Tylko ikona</string>
- <key>ALERT_TYPE_OVERLAY</key>
- <string>Belka statusu</string>
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Wyłącz</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Tylko ikona</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Belka statusu</string>
 
- <!-- Button for choosing how long the alert shows for. -->
- <key>SHOW_FOR</key>
- <string>Pokaż dla</string>
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Pokaż dla</string>
 
- <!-- Options for "Show For". -->
- <key>SHOW_FOR_SPECIFIED</key>
- <string>Określ czas</string>
- <key>SHOW_FOR_TYPING</key>
- <string>Czas trwania</string>
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Określ czas</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Czas trwania</string>
 
- <!-- Explanation shown under the "Show For" list. -->
- <key>SHOW_FOR_EXPLANATION</key>
- <string>Aby podejrzeć czas wyświetlania ustanowiony wcześniej, wybierz „Mój określony czas”. Podobnie postępujemy podczas wyboru powiadomienia o pisaniu wiadomości, wybierając „Czas trwania”.</string>
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Aby podejrzeć czas wyświetlania ustanowiony wcześniej, wybierz „Mój określony czas”. Podobnie postępujemy podczas wyboru powiadomienia o pisaniu wiadomości, wybierając „Czas trwania”.</string>
 
- <!-- Switch to allow or disallow alerts showing in Messages. -->
- <key>HIDE_IN_MESSAGES</key>
- <string>Ukryj w wiadomościach</string>
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Ukryj w wiadomościach</string>
 
- <!-- Buttons to test the alerts. -->
- <key>TEST_TYPING</key>
- <string>Wypróbuj pisanie</string>
- <key>TEST_READ_RECEIPT</key>
- <string>Wypróbuj potwierdzenie odbioru</string>
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Wypróbuj pisanie</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Wypróbuj potwierdzenie odbioru</string>
 </dict>
 </plist>
