@@ -4,16 +4,16 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-	<string>TypeStatus sayesinde %@ ile yazmakta olanı ve okundu bilgisini görebiliyorum! ğŸ’¬</string>
+	<string>TypeStatus sayesinde %@ ile yazmakta olanÃ½ ve okundu bilgisini gÃ¶rebiliyorum! ğŸ’¬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
-	<string>Uyarılar</string>
+	<string>UyarÃ½lar</string>
 
 	<!-- Buttons to the about and credits pages. -->
 	<key>ABOUT</key>
-	<string>Hakkında</string>
+	<string>HakkÃ½nda</string>
 	<key>CREDITS</key>
-	<string>Katkıda Bulunanalar</string>
+	<string>KatkÃ½da Bulunanalar</string>
 </dict>
 </plist>
