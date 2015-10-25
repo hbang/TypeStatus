@@ -21,6 +21,22 @@
 		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
+			<key>bundle</key>
+			<string>TypeStatusPlus</string>
+			<key>detail</key>
+			<string>HBTSPlusRootListController</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>TYPESTATUS_PLUS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
 			<key>detail</key>
 			<string>HBTSAboutListController</string>
 			<key>isController</key>
