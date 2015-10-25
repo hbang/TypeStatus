@@ -100,6 +100,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>CS</string>
+			<key>label</key>
+			<string>Luu Trong Dat</string>
+			<key>user</key>
+			<string>david19au</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>DA</string>
 			<key>label</key>
 			<string>Luis Falke Vinqvist</string>
@@ -255,6 +265,16 @@
 			<string>Timon Olsthoorn</string>
 			<key>user</key>
 			<string>tmnlsthrn</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>NO</string>
+			<key>label</key>
+			<string>S Å B</string>
+			<key>user</key>
+			<string>braekk</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
