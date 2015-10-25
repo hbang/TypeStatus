@@ -26,7 +26,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 #pragma mark - Hide while Messages is open
 
 BOOL HBTSShouldHide(HBTSStatusBarType type) {
-	BOOL hideInMessages;
+	BOOL hideInMessages = NO;
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
@@ -101,7 +101,7 @@ void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
 		return;
 	}
 
-	HBTSNotificationType notificationType;
+	HBTSNotificationType notificationType = HBTSNotificationTypeNone;
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:

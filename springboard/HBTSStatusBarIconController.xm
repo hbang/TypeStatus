@@ -20,7 +20,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 		readStatusBarItem.visible = NO;
 	});
 
-	LSStatusBarItem *item;
+	LSStatusBarItem *item = nil;
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
