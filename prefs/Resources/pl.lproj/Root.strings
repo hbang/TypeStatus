@@ -4,15 +4,15 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-	<string>Odczytuję i odpisuję na wiadomości z  %@ belki statusu dzięki TypeStatus! 💬</string>
+	<string>Odczytuję i odpisuję na wiadomości z  %@ belki statusowej dzięki TypeStatus! 💬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
-	<string>Alerty</string>
+	<string>Styl powiadomień</string>
 
 	<!-- Buttons to the about and credits pages. -->
 	<key>ABOUT</key>
-	<string>O</string>
+	<string>Informacje ogólne</string>
 	<key>CREDITS</key>
 	<string>Podziękowania</string>
 </dict>
