@@ -28,4 +28,5 @@ static NSString *const HBTSSpringBoardReceivedMessageNotification = @"HBTSSpring
 static NSString *const kHBTSMessageTypeKey = @"Type";
 static NSString *const kHBTSMessageSenderKey = @"Name";
 static NSString *const kHBTSMessageIsTypingKey = @"Typing";
+static NSString *const kHBTSMessageDurationKey = @"Duration";
 static NSString *const kHBTSMessageSendDateKey = @"Date";

@@ -12,12 +12,12 @@ HBTSPreferences *preferences;
 
 #pragma mark - Communication with clients
 
-void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
+void HBTSPostMessage(HBTSStatusBarType type, NSString *name, NSTimeInterval timeout) {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			kHBTSMessageTypeKey: @(type),
 			kHBTSMessageSenderKey: name ?: @"",
-			kHBTSMessageIsTypingKey: @(typing),
+			kHBTSMessageDurationKey: @(timeout),
 			kHBTSMessageSendDateKey: [NSDate date]
 		}]];
 	});
@@ -65,7 +65,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 #pragma mark - Show/hide
 
-void HBTSShowOverlay(HBTSStatusBarType type, NSString *handle, BOOL isTyping) {
+void HBTSShowOverlay(HBTSStatusBarType type, NSString *handle, NSTimeInterval duration) {
 	static NSBundle *PrefsBundle;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -93,7 +93,7 @@ void HBTSShowOverlay(HBTSStatusBarType type, NSString *handle, BOOL isTyping) {
 		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", typeString, name]);
 	}
 
-	HBTSPostMessage(type, name, isTyping);
+	HBTSPostMessage(type, name, duration);
 }
 
 void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
@@ -114,17 +114,16 @@ void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
 			break;
 	}
 
+	NSTimeInterval duration = isTyping && preferences.useTypingTimeout ? kHBTSTypingTimeout : preferences.overlayDisplayDuration;
+
 	switch (notificationType) {
 		case HBTSNotificationTypeOverlay:
-			HBTSShowOverlay(type, sender, isTyping);
+			HBTSShowOverlay(type, sender, duration);
 			break;
 
 		case HBTSNotificationTypeIcon:
-		{
-			NSTimeInterval timeout = isTyping && preferences.useTypingTimeout ? kHBTSTypingTimeout : preferences.overlayDisplayDuration;
-			[HBTSStatusBarIconController showIconType:type timeout:timeout];
+			[HBTSStatusBarIconController showIconType:type timeout:duration];
 			break;
-		}
 	}
 }
 
@@ -141,6 +140,6 @@ void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
 		NSString *sender = notification.userInfo[kHBTSMessageSenderKey];
 		BOOL isTyping = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
-		HBTSShowAlert(type, sender, !isTyping);
+		HBTSShowAlert(type, sender, isTyping);
 	}];
 }

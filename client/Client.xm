@@ -109,22 +109,16 @@
 		return;
 	}
 
-	HBTSPreferences *preferences = [HBTSPreferences sharedInstance];
-
-	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
-	BOOL isTyping = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
-
-	NSTimeInterval duration = preferences.overlayDisplayDuration;
-
-	if (isTyping && preferences.useTypingTimeout) {
-		duration = kHBTSTypingTimeout;
-	}
+	NSTimeInterval duration = ((NSNumber *)notification.userInfo[kHBTSMessageDurationKey]).doubleValue;
 
 	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > duration) {
 		return;
 	}
 
-	[self._typeStatus_foregroundView setType:type contactName:notification.userInfo[kHBTSMessageSenderKey]];
+	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
+	NSString *sender = notification.userInfo[kHBTSMessageSenderKey];
+
+	[self._typeStatus_foregroundView setType:type contactName:sender];
 	[self _typeStatus_animateInDirection:type != HBTSStatusBarTypeTypingEnded timeout:duration];
 }
 
