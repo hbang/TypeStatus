@@ -3,20 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>CREDITS</key>
-	<string>Kiitokset</string>
+	<string>Medverkande</string>
 
 	<key>THANKS_HEADER</key>
-	<string>Kiitos seuraaville henkilöille TypeStatuksen avustamisessa.</string>
+	<string>Tack till följande som har hjälpt till med TypeStatus.</string>
 	<key>THANKS_FOOTER</key>
-	<string>…ja beta-testaajille ja käyttäjille. Te rokkaatte!</string>
+	<string>…och våra beta testare samt användare, ni rockar!</string>
 
 	<key>ICONS</key>
-	<string>Kuvakkeet</string>
+	<string>Ikoner</string>
 	<key>ORIGINAL_IDEA</key>
-	<string>Alkuperäinen idea</string>
+	<string>Originala Ideén</string>
 	<key>LEAD_DEVELOPER</key>
-	<string>Pääkehittäjä</string>
+	<string>Huvud utvecklaren</string>
 	<key>TRANSLATORS</key>
-	<string>Kääntäjät</string>
+	<string>Tolkar</string>
 </dict>
 </plist>

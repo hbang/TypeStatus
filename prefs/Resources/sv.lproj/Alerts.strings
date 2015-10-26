@@ -1,67 +1,67 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<!-- Page title. -->
 	<key>ALERTS</key>
-	<string>Styl powiadomień</string>
+	<string>Alerter</string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
-	<string>Animacje</string>
+	<string>Animation</string>
 
 	<!-- Buttons shown in the segmented control for the animation type. -->
 	<key>ANIMATION_SLIDE</key>
-	<string>Slajd</string>
+	<string>Skjut</string>
 	<key>ANIMATION_FADE</key>
-	<string>Przyciemnianie</string>
+	<string>Blekna</string>
 
 	<!-- Header for the display duration selection. -->
 	<key>DISPLAY_DURATION</key>
-	<string>Długość wyświetlania</string>
+	<string>Displayens varaktighet</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>1_SECOND</key>
-	<string>1 sekunda</string>
+	<string>1 Sekund</string>
 	<key>N_SECONDS</key>
-	<string>%i sekund</string>
+	<string>%i Sekunds</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
-	<string>Pisanie</string>
+	<string>Skriver</string>
 	<key>READ_HEADER</key>
-	<string>Odczytanie</string>
+	<string>Meddelande mottaget</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
-	<string>Wyłącz</string>
+	<string>Av</string>
 	<key>ALERT_TYPE_ICON</key>
-	<string>Tylko ikona</string>
+	<string>Endast ikon</string>
 	<key>ALERT_TYPE_OVERLAY</key>
-	<string>Belka statusu</string>
+	<string>Statusfältet</string>
 
 	<!-- Button for choosing how long the alert shows for. -->
 	<key>SHOW_FOR</key>
-	<string>Pokaż dla</string>
+	<string>Visa för</string>
 
 	<!-- Options for "Show For". -->
 	<key>SHOW_FOR_SPECIFIED</key>
-	<string>Określ czas</string>
+	<string>Min specifierade varaktighet</string>
 	<key>SHOW_FOR_TYPING</key>
-	<string>Czas trwania</string>
+	<string>Varaktighet för skrivandet</string>
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>Aby podejrzeć czas wyświetlania ustanowiony wcześniej, wybierz „Mój określony czas”. Podobnie postępujemy podczas wyboru powiadomienia o pisaniu wiadomości, wybierając „Czas trwania”.</string>
+	<string>För att visa varningen för den tid som anges på föregående sida väljer du "Min angivna tid". För att visa varningen så länge avsändaren skriver väljer du "Varaktighetaraktigheten av skrivandet”.</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
-	<string>Ukryj w wiadomościach</string>
+	<string>Göm i meddelanden</string>
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>Wypróbuj pisanie</string>
+	<string>Testa Skrivsalerten</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>Wypróbuj potwierdzenie odbioru</string>
+	<string>Testa Läsmottagande alert</string>
 </dict>
 </plist>

@@ -18,13 +18,13 @@
 
 	<!-- Header for the display duration selection. -->
 	<key>DISPLAY_DURATION</key>
-	<string>Visningstid</string>
+	<string>Varighet</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>1_SECOND</key>
-	<string>1 sekund</string>
+	<string>1 Sekund</string>
 	<key>N_SECONDS</key>
-	<string>%i sekunder</string>
+	<string>%i Sekunder</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
@@ -42,17 +42,17 @@
 
 	<!-- Button for choosing how long the alert shows for. -->
 	<key>SHOW_FOR</key>
-	<string>Vis i</string>
+	<string>Varighet</string>
 
 	<!-- Options for "Show For". -->
 	<key>SHOW_FOR_SPECIFIED</key>
-	<string>Min Egendefinerte Varighet</string>
+	<string>Egendefinert</string>
 	<key>SHOW_FOR_TYPING</key>
-	<string>Varigheten av Skrivingen</string>
+	<string>Så lenge senderen skriver</string>
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>For å vise varsel i varigheten angitt på forrige side, velg “Min Egendefinerte Varighet“. For å vise varselet så lenge senderen skriver, velg “Varigheten av Skrivingen“</string>
+	<string>For å vise varsel i varigheten angitt på forrige side, velg “Egendefinert“. For å vise varselet så lenge senderen skriver, velg “Så lenge senderen skriver“</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>

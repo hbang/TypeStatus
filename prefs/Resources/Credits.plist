@@ -184,6 +184,16 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
+			<string>FR</string>
+			<key>label</key>
+			<string>kurt1277</string>
+			<key>user</key>
+			<string>kurt1277</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
 			<string>HE</string>
 			<key>label</key>
 			<string>Aran Shavit</string>
@@ -304,16 +314,6 @@
 			<key>cellClass</key>
 			<string>HBTwitterCell</string>
 			<key>initials</key>
-			<string>PT</string>
-			<key>label</key>
-			<string>Nino</string>
-			<key>user</key>
-			<string>carlyslayjepsen</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>initials</key>
 			<string>RO</string>
 			<key>label</key>
 			<string>Raz</string>
@@ -329,6 +329,16 @@
 			<string>Yury</string>
 			<key>user</key>
 			<string>YorkFieldX</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>initials</key>
+			<string>SV</string>
+			<key>label</key>
+			<string>Nahom Tadesse</string>
+			<key>user</key>
+			<string>HabeshWithAnRPG</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
