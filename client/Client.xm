@@ -208,10 +208,12 @@
 	} completion:^(BOOL finished) {
 		if (!statusBarView) {
 			HBLogWarn(@"statusBarView == nil?!");
+			return;
 		}
 
 		if (!typeStatusView) {
 			HBLogWarn(@"typeStatusView == nil?!");
+			return;
 		}
 
 		statusBarView.alpha = 1;
