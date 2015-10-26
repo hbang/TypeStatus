@@ -65,6 +65,24 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>id</key>
+			<string>NoLibstatusbarGroup</string>
+			<key>label</key>
+			<string>LIBSTATUSBAR_NOT_INSTALLED</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>openLibstatusbarPackage</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>id</key>
+			<string>NoLibstatusbar</string>
+			<key>label</key>
+			<string>DOWNLOAD_LIBSTATUSBAR</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>TYPING_HEADER</string>
 		</dict>

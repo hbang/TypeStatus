@@ -50,6 +50,10 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
 	LSStatusBarItem *item = [self _itemForType:type];
 
+	if (!item) {
+		return;
+	}
+
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
 		case HBTSStatusBarTypeRead:

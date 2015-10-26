@@ -23,6 +23,15 @@
 	return self;
 }
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+
+	if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib"]) {
+		[self removeSpecifierID:@"NoLibstatusbar"];
+		[self removeSpecifierID:@"NoLibstatusbarGroup"];
+	}
+}
+
 #pragma mark - Callbacks
 
 - (NSNumber *)typingTypeWithSpecifier:(PSSpecifier *)specifier {
@@ -49,6 +58,10 @@
 
 - (void)testReadReceipt {
 	notify_post("ws.hbang.typestatus/TestRead");
+}
+
+- (void)openLibstatusbarPackage {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"cydia://package/libstatusbar"]];
 }
 
 @end

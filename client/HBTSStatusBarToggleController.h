@@ -1,0 +1,3 @@
+@interface HBTSStatusBarToggleController : NSObject
+
+@end
