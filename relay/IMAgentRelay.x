@@ -1,5 +1,6 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMDaemonCore/IMDMessageStore.h>
+#import <IMDaemonCore/IMDServiceSession.h>
 #import <IMFoundation/FZMessage.h>
 #import <version.h>
 
@@ -16,6 +17,12 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 }
 
 #pragma mark - Typing/read notifications
+
+@interface IMDServiceSession ()
+
+- (void)_typeStatus_didReceiveMessage:(FZMessage *)message;
+
+@end
 
 %hook IMDServiceSession
 
