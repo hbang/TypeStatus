@@ -1,7 +1,7 @@
 # TypeStatus
 iMessage typing and read receipt indicators for the iOS status bar.
 
-- [x] Icon redesign by <a href="http://twitter.com/krevony">Kyle</a>
+- [x] Redesigned icon by <a href="http://twitter.com/krevony">Kyle</a>
 - [x] TS for mac github [here](https://github.com/hbang/TypeStatus-Mac)
 - [x] Official Website of [TypeStatus](https://typestatus.com)
 
