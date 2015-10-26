@@ -2,18 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
-	<key>SHARE_TEXT</key>
-	<string>Jag f�r skrivs och l�st notiser i mitt %@ statusf�lt tack vare TypeStatus! 💬</string>
-
-	<!-- Alert types button. -->
-	<key>ALERTS</key>
-	<string>Alerter</string>
-
-	<!-- Buttons to the about and credits pages. -->
 	<key>ABOUT</key>
 	<string>Om</string>
+	<key>ALERTS</key>
+	<string>Alerter</string>
 	<key>CREDITS</key>
 	<string>Medverkanden</string>
+	<key>SHARE_TEXT</key>
+	<string>Jag får skrivs och läst notiser i mitt %@ statusfält tack vare TypeStatus! ðŸ’¬</string>
 </dict>
 </plist>
