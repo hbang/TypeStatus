@@ -129,6 +129,8 @@
 				<false/>
 				<true/>
 			</array>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>action</key>
