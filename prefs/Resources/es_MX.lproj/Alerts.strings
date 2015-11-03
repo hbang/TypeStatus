@@ -21,7 +21,7 @@
 	<string>La Duración de Visualización</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>1_SECOND</key>
+	<key>ONE_SECOND</key>
 	<string>Un Segundo</string>
 	<key>N_SECONDS</key>
 	<string>%i segundos</string>

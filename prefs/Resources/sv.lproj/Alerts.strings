@@ -21,7 +21,7 @@
 	<string>Displayens varaktighet</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>1_SECOND</key>
+	<key>ONE_SECOND</key>
 	<string>1 Sekund</string>
 	<key>N_SECONDS</key>
 	<string>%i Sekunds</string>

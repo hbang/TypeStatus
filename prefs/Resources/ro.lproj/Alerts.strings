@@ -21,7 +21,7 @@
 	<string>Durata Afisare</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>1_SECOND</key>
+	<key>ONE_SECOND</key>
 	<string>O Secunda</string>
 	<key>N_SECONDS</key>
 	<string>%i Secunde</string>
