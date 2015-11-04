@@ -13,11 +13,5 @@
 	<!-- TypeStatus Plus (Do not translate as it's a name)-->
 	<key>TYPESTATUS_PLUS</key>
 	<string>TypeStatus Plus</string>
-
-	<!-- Buttons to the about and credits pages. -->
-	<key>ABOUT</key>
-	<string>O Nama</string>
-	<key>CREDITS</key>
-	<string>Zasluge</string>
 </dict>
 </plist>

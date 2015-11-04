@@ -2,21 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CREDITS</key>
-	<string>Kiitokset</string>
-
 	<key>THANKS_HEADER</key>
 	<string>Kiitos seuraaville henkilöille TypeStatuksen avustamisessa.</string>
 	<key>THANKS_FOOTER</key>
 	<string>…ja beta-testaajille ja käyttäjille. Te rokkaatte!</string>
 
-	<key>ICONS</key>
-	<string>Kuvakkeet</string>
 	<key>ORIGINAL_IDEA</key>
 	<string>Alkuperäinen idea</string>
-	<key>LEAD_DEVELOPER</key>
-	<string>Pääkehittäjä</string>
-	<key>TRANSLATORS</key>
-	<string>Kääntäjät</string>
 </dict>
 </plist>

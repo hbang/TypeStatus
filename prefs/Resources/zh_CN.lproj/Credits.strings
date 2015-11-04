@@ -2,21 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CREDITS</key>
-	<string>参予人员</string>
-
 	<key>THANKS_HEADER</key>
 	<string>感谢下列对 TypeStatus 贡献的人员。</string>
 	<key>THANKS_FOOTER</key>
 	<string>…以及我们的测试人员与使用者，你们是最棒的！</string>
 
-	<key>ICONS</key>
-	<string>图标</string>
 	<key>ORIGINAL_IDEA</key>
 	<string>原始构想</string>
-	<key>LEAD_DEVELOPER</key>
-	<string>主要开发者</string>
-	<key>TRANSLATORS</key>
-	<string>本地化人员</string>
 </dict>
 </plist>
