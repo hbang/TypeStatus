@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>Upozornenia</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>Animácia</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>Potiahnutie</string>
+	<key>ANIMATION_FADE</key>
+	<string>Zoslabenie</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>Dľžka trvania</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>1_SECOND</key>
+	<string>1 sekúnd</string>
+	<key>N_SECONDS</key>
+	<string>%i sekunda</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>Písanie</string>
+	<key>READ_HEADER</key>
+	<string>Prečítanie</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>Vypnuté</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>Iba ikona</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>Stavový Riadok</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>Zobraziť Pre</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>Moja určitá Doba</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>Trvanie Písania</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>Ak chcete zobraziť upozornenie na uvedenú dobu, na predchádzajúcej stránke, vyberte “Moja určitá Doba”. Ak chcete zobraziť upozornenie na tak dlho, kým odosielateľ píše, vyberte “Trvanie Písania”.</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>Skryť v Správach</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>Testovať Upozornenie Písania</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>Testovať Upozornenie na prečítanie</string>
+</dict>
+</plist>
