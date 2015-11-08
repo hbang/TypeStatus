@@ -33,6 +33,8 @@
 				<integer>0</integer>
 				<integer>1</integer>
 			</array>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>
