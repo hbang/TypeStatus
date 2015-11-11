@@ -1,7 +1,7 @@
 #import "HBTSStatusBarForegroundView.h"
 #import "HBTSStatusBarIconItemView.h"
-#import "HBTSStatusBarAlertTypeItemView.h"
-#import "HBTSStatusBarContactNameItemView.h"
+#import "HBTSStatusBarTitleItemView.h"
+#import "HBTSStatusBarContentItemView.h"
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <version.h>
 
@@ -12,8 +12,8 @@
 @property (nonatomic, retain) UIView *containerView;
 
 @property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
-@property (nonatomic, retain) HBTSStatusBarAlertTypeItemView *alertTypeItemView;
-@property (nonatomic, retain) HBTSStatusBarContactNameItemView *contactNameItemView;
+@property (nonatomic, retain) HBTSStatusBarTitleItemView *titleItemView;
+@property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
 
 @end
 
@@ -24,8 +24,8 @@
 %property (nonatomic, retain) UIView *containerView;
 
 %property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
-%property (nonatomic, retain) HBTSStatusBarAlertTypeItemView *alertTypeItemView;
-%property (nonatomic, retain) HBTSStatusBarContactNameItemView *contactNameItemView;
+%property (nonatomic, retain) HBTSStatusBarTitleItemView *titleItemView;
+%property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
 
 %group CarPlay
 
@@ -65,46 +65,43 @@
 	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	[containerView addSubview:self.iconItemView];
 
-	self.alertTypeItemView = [[%c(HBTSStatusBarAlertTypeItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
-	[containerView addSubview:self.alertTypeItemView];
+	self.titleItemView = [[%c(HBTSStatusBarTitleItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	[containerView addSubview:self.titleItemView];
 
-	self.contactNameItemView = [[%c(HBTSStatusBarContactNameItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
-	[containerView addSubview:self.contactNameItemView];
+	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	[containerView addSubview:self.contentItemView];
 }
 
 - (void)layoutSubviews {
 	%orig;
 
+	[self.iconItemView updateContentsAndWidth];
+	[self.titleItemView updateContentsAndWidth];
+	[self.contentItemView updateContentsAndWidth];
+
 	CGRect iconFrame = self.iconItemView.frame;
 
-	CGRect alertTypeFrame = self.alertTypeItemView.frame;
-	alertTypeFrame.origin.x = iconFrame.size.width + 6.f;
-	self.alertTypeItemView.frame = alertTypeFrame;
+	CGRect titleFrame = self.titleItemView.frame;
+	titleFrame.origin.x = iconFrame.size.width + 6.f;
+	self.titleItemView.frame = titleFrame;
 
-	CGRect contactNameFrame = self.contactNameItemView.frame;
-	contactNameFrame.origin.x = alertTypeFrame.origin.x + alertTypeFrame.size.width + 4.f;
-	self.contactNameItemView.frame = contactNameFrame;
+	CGRect contentFrame = self.contentItemView.frame;
+	contentFrame.origin.x = titleFrame.origin.x + titleFrame.size.width + 4.f;
+	self.contentItemView.frame = contentFrame;
 
 	CGRect containerFrame = self.containerView.frame;
-	containerFrame.size.width = contactNameFrame.origin.x + contactNameFrame.size.width;
+	containerFrame.size.width = contentFrame.origin.x + contentFrame.size.width;
 	containerFrame.origin.x = MAX(0, ceil((self.frame.size.width - containerFrame.size.width) / 2));
 	self.containerView.frame = containerFrame;
 }
 
-%new - (void)setType:(HBTSStatusBarType)type contactName:(NSString *)contactName {
-	NSNumber *boxedType = @(type);
-
+%new - (void)setIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
 	self.tintColor = self.foregroundStyle.tintColor;
-
-	self.iconItemView.alertType = boxedType;
 	self.iconItemView.tintColor = self.tintColor;
-	[self.iconItemView updateContentsAndWidth];
 
-	self.alertTypeItemView.alertType = boxedType;
-	[self.alertTypeItemView updateContentsAndWidth];
-
-	self.contactNameItemView.contactName = [contactName copy];
-	[self.contactNameItemView updateContentsAndWidth];
+	self.iconItemView.iconName = [iconName copy];
+	self.titleItemView.text = [title copy];
+	self.contentItemView.text = [content copy];
 
 	[self setNeedsLayout];
 }
@@ -112,8 +109,8 @@
 - (void)dealloc {
 	[self.containerView release];
 	[self.iconItemView release];
-	[self.alertTypeItemView release];
-	[self.contactNameItemView release];
+	[self.titleItemView release];
+	[self.contentItemView release];
 
 	%orig;
 }

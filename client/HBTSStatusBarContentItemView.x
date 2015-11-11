@@ -1,12 +1,12 @@
-#import "HBTSStatusBarContactNameItemView.h"
+#import "HBTSStatusBarContentItemView.h"
 #import <UIKit/_UILegibilityImageSet.h>
 
-%subclass HBTSStatusBarContactNameItemView : UIStatusBarItemView
+%subclass HBTSStatusBarContentItemView : UIStatusBarItemView
 
-%property (nonatomic, retain) NSString *contactName;
+%property (nonatomic, retain) NSString *text;
 
 - (_UILegibilityImageSet *)contentsImage {
-	return [self imageWithText:self.contactName];
+	return [self imageWithText:self.text];
 }
 
 - (NSTextAlignment)textAlignment {
@@ -18,7 +18,7 @@
 }
 
 - (void)dealloc {
-	[self.contactName release];
+	[self.text release];
 	%orig;
 }
 

@@ -4,6 +4,6 @@
 
 @property (nonatomic, retain) UIStatusBarForegroundView *statusBarView;
 
-- (void)setType:(HBTSStatusBarType)type contactName:(NSString *)contactName;
+- (void)setIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content;
 
 @end

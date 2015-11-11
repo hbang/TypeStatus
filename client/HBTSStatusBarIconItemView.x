@@ -5,7 +5,7 @@
 
 %subclass HBTSStatusBarIconItemView : UIStatusBarItemView
 
-%property (nonatomic, retain) NSNumber *alertType;
+%property (nonatomic, retain) NSString *iconName;
 
 - (_UILegibilityImageSet *)contentsImage {
 	static NSBundle *UIKitBundle;
@@ -14,28 +14,12 @@
 		UIKitBundle = [NSBundle bundleForClass:UIView.class];
 	});
 
-	HBTSStatusBarType type = (HBTSStatusBarType)self.alertType.unsignedIntegerValue;
-	NSString *name = nil;
-
-	switch (type) {
-		case HBTSStatusBarTypeTyping:
-			name = @"TypeStatus";
-			break;
-
-		case HBTSStatusBarTypeRead:
-			name = @"TypeStatusRead";
-			break;
-
-		case HBTSStatusBarTypeTypingEnded:
-			break;
-	}
-
-	UIImage *image = [[UIImage imageNamed:[self.foregroundStyle expandedNameForImageName:name] inBundle:UIKitBundle] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+	UIImage *image = [UIImage imageNamed:[self.foregroundStyle expandedNameForImageName:self.iconName] inBundle:UIKitBundle];
 	return [%c(_UILegibilityImageSet) imageFromImage:image withShadowImage:nil];
 }
 
 - (void)dealloc {
-	[self.alertType release];
+	[self.iconName release];
 	%orig;
 }
 

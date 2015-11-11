@@ -1,15 +1,9 @@
 #import "HBTSStatusBarForegroundView.h"
+#import "HBTSStatusBarAlertController.h"
 #import "HBTSPreferences.h"
-#import <Foundation/NSDistributedNotificationCenter.h>
-#import <SpringBoard/SBChevronView.h>
-#import <SpringBoard/SBLockScreenManager.h>
-#import <SpringBoard/SBLockScreenViewController.h>
-#import <SpringBoard/SBLockScreenView.h>
 #import <UIKit/UIStatusBar.h>
 #import <UIKit/UIStatusBarAnimationParameters.h>
-#import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <version.h>
-#include <substrate.h>
 #include <notify.h>
 
 #pragma mark - UIStatusBar category
@@ -21,12 +15,8 @@
 
 @property BOOL _typeStatus_isAnimating;
 @property BOOL _typeStatus_isVisible;
-@property BOOL _typeStatus_topGrabberWasHidden;
 
-@property (nonatomic, retain) NSTimer *_typeStatus_hideTimer;
-
-- (void)_typeStatus_animateInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout;
-- (void)_typeStatus_setLockScreenGrabberVisible:(BOOL)state;
+- (void)_typeStatus_animateInDirection:(BOOL)direction;
 
 @end
 
@@ -39,9 +29,6 @@
 
 %property (assign) BOOL _typeStatus_isAnimating;
 %property (assign) BOOL _typeStatus_isVisible;
-%property (assign) BOOL _typeStatus_topGrabberWasHidden;
-
-%property (nonatomic, retain) NSTimer *_typeStatus_hideTimer;
 
 #pragma mark - Initialization
 
@@ -49,7 +36,7 @@
 	self = %orig;
 
 	if (self) {
-		[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(_typeStatus_receivedStatusNotification:) name:HBTSClientSetStatusBarNotification object:nil];
+		[[HBTSStatusBarAlertController sharedInstance] addStatusBar:self];
 	}
 
 	return self;
@@ -102,38 +89,10 @@
 	}
 }
 
-#pragma mark - Notification
-
-%new - (void)_typeStatus_receivedStatusNotification:(NSNotification *)notification {
-	if (!self._typeStatus_foregroundView) {
-		return;
-	}
-
-	NSTimeInterval duration = ((NSNumber *)notification.userInfo[kHBTSMessageDurationKey]).doubleValue;
-
-	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > duration) {
-		return;
-	}
-
-	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
-	NSString *sender = notification.userInfo[kHBTSMessageSenderKey];
-
-	[self._typeStatus_foregroundView setType:type contactName:sender];
-	[self _typeStatus_animateInDirection:type != HBTSStatusBarTypeTypingEnded timeout:duration];
-}
-
 #pragma mark - Show/Hide
 
-%new - (void)_typeStatus_animateInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+%new - (void)_typeStatus_animateInDirection:(BOOL)direction {
 	if (direction) {
-		if (self._typeStatus_hideTimer) {
-			[self._typeStatus_hideTimer invalidate];
-			[self._typeStatus_hideTimer release];
-			self._typeStatus_hideTimer = nil;
-		}
-
-		self._typeStatus_hideTimer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_typeStatus_timerFired) userInfo:nil repeats:NO] retain];
-
 		if (self._typeStatus_isVisible || self._typeStatus_isAnimating) {
 			return;
 		}
@@ -144,14 +103,8 @@
 		if (IN_SPRINGBOARD) {
 			notify_post("ws.hbang.typestatus/OverlayWillShow");
 		}
-	} else {
-		if (!self._typeStatus_isVisible || self._typeStatus_isAnimating) {
-			return;
-		}
-
-		[self._typeStatus_hideTimer invalidate];
-		[self._typeStatus_hideTimer release];
-		self._typeStatus_hideTimer = nil;
+	} else if (!self._typeStatus_isVisible || self._typeStatus_isAnimating) {
+		return;
 	}
 
 	HBTSStatusBarAnimation animation = [HBTSPreferences sharedInstance].overlayAnimation;
@@ -197,8 +150,6 @@
 
 		typeStatusView.alpha = direction ? 1 : 0;
 		statusBarView.alpha = direction ? 0 : 1;
-
-		[self _typeStatus_setLockScreenGrabberVisible:!direction];
 	} completion:^(BOOL finished) {
 		if (!statusBarView) {
 			HBLogWarn(@"statusBarView == nil?!");
@@ -229,39 +180,12 @@
 	}];
 }
 
-%new - (void)_typeStatus_timerFired {
-	[self _typeStatus_animateInDirection:NO timeout:0];
-}
-
-%new - (void)_typeStatus_setLockScreenGrabberVisible:(BOOL)state {
-	if (!IN_SPRINGBOARD) {
-		return;
-	}
-
-	SBLockScreenManager *lockScreenManager = [%c(SBLockScreenManager) sharedInstance];
-
-	if (!lockScreenManager.isUILocked) {
-		return;
-	}
-
-	SBLockScreenView *lockScreenView = (SBLockScreenView *)lockScreenManager.lockScreenViewController.view;
-	SBChevronView *topGrabberView = lockScreenView.topGrabberView;
-
-	if (state && !self._typeStatus_topGrabberWasHidden) {
-		topGrabberView.alpha = 1;
-	} else if (!state) {
-		self._typeStatus_topGrabberWasHidden = topGrabberView.alpha == 0;
-		topGrabberView.alpha = 0;
-	}
-}
-
 #pragma mark - Memory management
 
 - (void)dealloc {
-	[self._typeStatus_foregroundView release];
-	[self._typeStatus_hideTimer release];
+	[[HBTSStatusBarAlertController sharedInstance] removeStatusBar:self];
 
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:HBTSClientSetStatusBarNotification object:nil];
+	[self._typeStatus_foregroundView release];
 
 	%orig;
 }
