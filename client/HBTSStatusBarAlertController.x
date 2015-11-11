@@ -33,50 +33,6 @@
 	return sharedInstance;
 }
 
-+ (NSString *)iconNameForType:(HBTSStatusBarType)type {
-	NSString *name = nil;
-
-	switch (type) {
-		case HBTSStatusBarTypeTyping:
-			name = @"TypeStatus";
-			break;
-
-		case HBTSStatusBarTypeRead:
-			name = @"TypeStatusRead";
-			break;
-
-		case HBTSStatusBarTypeTypingEnded:
-			break;
-	}
-
-	return name;
-}
-
-+ (NSString *)titleForType:(HBTSStatusBarType)type {
-	static NSBundle *PrefsBundle;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
-	});
-
-	NSString *text = @"";
-
-	switch (type) {
-		case HBTSStatusBarTypeTyping:
-			text = [PrefsBundle localizedStringForKey:@"TYPING" value:nil table:@"Localizable"];
-			break;
-
-		case HBTSStatusBarTypeRead:
-			text = [PrefsBundle localizedStringForKey:@"READ" value:nil table:@"Localizable"];
-			break;
-
-		case HBTSStatusBarTypeTypingEnded:
-			break;
-	}
-
-	return text;
-}
-
 #pragma mark - Instance
 
 - (instancetype)init {
@@ -118,6 +74,7 @@
 
 - (void)_showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	[self _setLockScreenGrabberVisible:!direction];
+	[self _announceAlertWithTitle:title content:content];
 
 	for (UIStatusBar *statusBar in _statusBars) {
 		if (!statusBar._typeStatus_foregroundView) {
@@ -147,20 +104,23 @@
 #pragma mark - Notification
 
 - (void)_receivedStatusNotification:(NSNotification *)notification {
-	NSTimeInterval duration = ((NSNumber *)notification.userInfo[kHBTSMessageDurationKey]).doubleValue;
+	NSTimeInterval timeout = ((NSNumber *)notification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
 
-	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > duration) {
+	// when apps are paused in the background, notifications get queued up and
+	// delivered when they resume. to work around this, we determine if it’s
+	// been longer than the specified duration; if so, disregard the alert
+	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > timeout) {
 		return;
 	}
 
-	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
-	NSString *sender = notification.userInfo[kHBTSMessageSenderKey];
+	// grab all the data
+	NSString *iconName = notification.userInfo[kHBTSMessageIconNameKey];
+	NSString *title = notification.userInfo[kHBTSMessageTitleKey];
+	NSString *content = notification.userInfo[kHBTSMessageContentKey];
+	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
 
-	if (type == HBTSStatusBarTypeTypingEnded) {
-		[self hide];
-	} else {
-		[self _showWithIconName:[self.class iconNameForType:type] title:[self.class titleForType:type] content:sender animatingInDirection:YES timeout:duration];
-	}
+	// show it! (or hide it)
+	[self _showWithIconName:iconName title:title content:content animatingInDirection:direction timeout:timeout];
 }
 
 #pragma mark - Lock Screen Grabber
@@ -184,6 +144,17 @@
 	} else if (!state) {
 		_topGrabberWasHidden = topGrabberView.alpha == 0;
 		topGrabberView.alpha = 0;
+	}
+}
+
+#pragma mark - Accessibility
+
+- (void)_announceAlertWithTitle:(NSString *)title content:(NSString *)content {
+	// we must be in springboard, we must have voiceover enabled, and we must at
+	// least have a title
+	if (IN_SPRINGBOARD && UIAccessibilityIsVoiceOverRunning() && title) {
+		// post an announcement notification that voiceover will say
+		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", title, content ?: @""]);
 	}
 }
 

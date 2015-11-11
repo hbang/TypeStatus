@@ -17,16 +17,21 @@ typedef NS_ENUM(NSUInteger, HBTSStatusBarAnimation) {
 
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
-/*
- old notification name is used here for compatibility with
- tweaks that listen into typestatus' notifications
-*/
+
+// old values may be used here for compatibility with other tweaks that listen
+// for typestatus notifications
 
 static NSString *const HBTSClientSetStatusBarNotification = @"HBTSClientSetStatusBar";
 static NSString *const HBTSSpringBoardReceivedMessageNotification = @"HBTSSpringBoardReceivedMessageNotification";
 
 static NSString *const kHBTSMessageTypeKey = @"Type";
 static NSString *const kHBTSMessageSenderKey = @"Name";
-static NSString *const kHBTSMessageIsTypingKey = @"Typing";
-static NSString *const kHBTSMessageDurationKey = @"Duration";
+static NSString *const kHBTSMessageIsTypingKey = @"IsTyping";
+
+static NSString *const kHBTSMessageIconNameKey = @"IconName";
+static NSString *const kHBTSMessageTitleKey = @"Title";
+static NSString *const kHBTSMessageContentKey = @"Content";
+static NSString *const kHBTSMessageDirectionKey = @"Direction";
+
+static NSString *const kHBTSMessageTimeoutKey = @"Duration";
 static NSString *const kHBTSMessageSendDateKey = @"Date";
