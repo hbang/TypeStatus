@@ -25,7 +25,15 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[self _removeTypeStatusPlusIfNeeded];
+}
 
+- (void)reloadSpecifiers {
+	[super reloadSpecifiers];
+	[self _removeTypeStatusPlusIfNeeded];
+}
+
+- (void)_removeTypeStatusPlusIfNeeded {
 	NSBundle *plusBundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatusPlus.bundle"];
 
 	if (!plusBundle.executableURL) {
