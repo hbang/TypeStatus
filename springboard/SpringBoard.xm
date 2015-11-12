@@ -3,6 +3,7 @@
 #import "../client/HBTSPreferences.h"
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKEntity.h>
+#import <ChatKit/CKDNDList.h>
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMCore/IMHandle.h>
 #import <SpringBoard/SBApplication.h>
@@ -55,6 +56,10 @@ NSString *HBTSNameForHandle(NSString *handle) {
 
 void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
 	if (HBTSShouldHide(type)) {
+		return;
+	}
+
+	if (%c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:sender]) {
 		return;
 	}
 
