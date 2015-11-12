@@ -74,7 +74,7 @@
 			<key>action</key>
 			<string>openLibstatusbarPackage</string>
 			<key>cell</key>
-			<string>PSButtonCell</string>
+			<string>PSLinkCell</string>
 			<key>cellClass</key>
 			<string>HBTintedTableCell</string>
 			<key>id</key>
