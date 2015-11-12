@@ -61,6 +61,12 @@
 	[_statusBars removeObject:statusBar];
 }
 
+#pragma mark - Preferences
+
+- (BOOL)_currentAppIsBlacklisted {
+	return [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+}
+
 #pragma mark - Show/Hide
 
 - (void)showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
@@ -73,6 +79,10 @@
 }
 
 - (void)_showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+	if (self._currentAppIsBlacklisted) {
+		return;
+	}
+
 	[self _setLockScreenGrabberVisible:!direction];
 	[self _announceAlertWithTitle:title content:content];
 

@@ -12,30 +12,6 @@
 
 HBTSPreferences *preferences;
 
-#pragma mark - Hide while Messages is open
-
-BOOL HBTSShouldHide(HBTSStatusBarType type) {
-	BOOL hideInMessages = NO;
-
-	switch (type) {
-		case HBTSStatusBarTypeTyping:
-		case HBTSStatusBarTypeTypingEnded:
-			hideInMessages = preferences.typingHideInMessages;
-			break;
-
-		case HBTSStatusBarTypeRead:
-			hideInMessages = preferences.readHideInMessages;
-			break;
-	}
-
-	if (hideInMessages) {
-		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
-		return !app.isLocked && [app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
-	}
-
-	return NO;
-}
-
 #pragma mark - Get contact name
 
 NSString *HBTSNameForHandle(NSString *handle) {
@@ -52,13 +28,7 @@ NSString *HBTSNameForHandle(NSString *handle) {
 	}
 }
 
-#pragma mark - Show/hide
-
 void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
-	if (HBTSShouldHide(type)) {
-		return;
-	}
-
 	if (%c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:sender]) {
 		return;
 	}
