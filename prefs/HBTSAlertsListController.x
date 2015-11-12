@@ -25,7 +25,15 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[self _updateLibstatusbarState];
+}
 
+- (void)reloadSpecifiers {
+	[super viewDidLoad];
+	[self _updateLibstatusbarState];
+}
+
+- (void)_updateLibstatusbarState {
 	if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib"]) {
 		[self removeSpecifierID:@"NoLibstatusbar"];
 		[self removeSpecifierID:@"NoLibstatusbarGroup"];
