@@ -89,7 +89,7 @@
 	_currentTitle = [title copy];
 	_currentContent = [content copy];
 
-	_visible = title != nil;
+	_visible = direction;
 
 	for (UIStatusBar *statusBar in _statusBars) {
 		[self displayCurrentAlertInStatusBar:statusBar animated:YES];
@@ -111,8 +111,6 @@
 }
 
 - (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
-	HBLogDebug(@"displayCurrentAlertInStatusBar:%@ animated:%i", statusBar, animated);
-
 	if (!statusBar._typeStatus_foregroundView) {
 		HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
 		return;
