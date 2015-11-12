@@ -52,9 +52,9 @@
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
-			kHBTSMessageIconNameKey: iconName,
-			kHBTSMessageTitleKey: title,
-			kHBTSMessageContentKey: content,
+			kHBTSMessageIconNameKey: iconName ?: @"",
+			kHBTSMessageTitleKey: title ?: @"",
+			kHBTSMessageContentKey: content ?: @"",
 			kHBTSMessageDirectionKey: @(direction),
 
 			kHBTSMessageTimeoutKey: @(timeout),
