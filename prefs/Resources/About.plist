@@ -21,6 +21,22 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>big</key>
+			<true/>
+			<key>height</key>
+			<integer>64</integer>
+			<key>label</key>
+			<string>HASHBANG Productions</string>
+			<key>user</key>
+			<string>hbangws</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>DEVELOPER</string>
 		</dict>
