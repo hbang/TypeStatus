@@ -10,4 +10,6 @@
 - (void)showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content;
 - (void)hide;
 
+- (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated;
+
 @end

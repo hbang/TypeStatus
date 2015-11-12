@@ -16,7 +16,7 @@
 @property BOOL _typeStatus_isAnimating;
 @property BOOL _typeStatus_isVisible;
 
-- (void)_typeStatus_animateInDirection:(BOOL)direction;
+- (void)_typeStatus_changeToDirection:(BOOL)direction animated:(BOOL)animated;
 
 @end
 
@@ -86,12 +86,14 @@
 		[self insertSubview:typeStatusView aboveSubview:statusBarView];
 
 		self._typeStatus_foregroundView = typeStatusView;
+
+		[[HBTSStatusBarAlertController sharedInstance] displayCurrentAlertInStatusBar:self animated:NO];
 	}
 }
 
 #pragma mark - Show/Hide
 
-%new - (void)_typeStatus_animateInDirection:(BOOL)direction {
+%new - (void)_typeStatus_changeToDirection:(BOOL)direction animated:(BOOL)animated {
 	if (direction) {
 		if (self._typeStatus_isVisible || self._typeStatus_isAnimating) {
 			return;
@@ -134,7 +136,7 @@
 	typeStatusView.alpha = direction ? 0 : 1;
 	statusBarView.alpha = direction ? 1 : 0;
 
-	UIStatusBarHideAnimationParameters *animationParameters = [[[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] autorelease];
+	UIStatusBarHideAnimationParameters *animationParameters = animated ? [[[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] autorelease] : nil;
 
 	[%c(UIStatusBarAnimationParameters) animateWithParameters:(UIStatusBarAnimationParameters *)animationParameters animations:^{
 		if (animation == HBTSStatusBarAnimationSlide) {

@@ -12,12 +12,17 @@
 
 @property (nonatomic, retain) HBTSStatusBarForegroundView *_typeStatus_foregroundView;
 
-- (void)_typeStatus_animateInDirection:(BOOL)direction;
+- (void)_typeStatus_changeToDirection:(BOOL)direction animated:(BOOL)animated;
 
 @end
 
 @implementation HBTSStatusBarAlertController {
 	NSMutableArray *_statusBars;
+
+	BOOL _visible;
+	NSString *_currentIconName;
+	NSString *_currentTitle;
+	NSString *_currentContent;
 
 	BOOL _topGrabberWasHidden;
 	NSTimer *_timeoutTimer;
@@ -61,12 +66,6 @@
 	[_statusBars removeObject:statusBar];
 }
 
-#pragma mark - Preferences
-
-- (BOOL)_currentAppIsBlacklisted {
-	return [[NSBundle mainBundle].bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
-}
-
 #pragma mark - Show/Hide
 
 - (void)showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
@@ -79,21 +78,21 @@
 }
 
 - (void)_showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
-	if (self._currentAppIsBlacklisted) {
-		return;
-	}
-
 	[self _setLockScreenGrabberVisible:!direction];
 	[self _announceAlertWithTitle:title content:content];
 
-	for (UIStatusBar *statusBar in _statusBars) {
-		if (!statusBar._typeStatus_foregroundView) {
-			HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
-			continue;
-		}
+	[_currentIconName release];
+	[_currentTitle release];
+	[_currentContent release];
 
-		[statusBar _typeStatus_animateInDirection:direction];
-		[statusBar._typeStatus_foregroundView setIconName:iconName title:title content:content];
+	_currentIconName = [iconName copy];
+	_currentTitle = [title copy];
+	_currentContent = [content copy];
+
+	_visible = title != nil;
+
+	for (UIStatusBar *statusBar in _statusBars) {
+		[self displayCurrentAlertInStatusBar:statusBar animated:YES];
 	}
 
 	if (direction) {
@@ -109,6 +108,18 @@
 		[_timeoutTimer release];
 		_timeoutTimer = nil;
 	}
+}
+
+- (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
+	HBLogDebug(@"displayCurrentAlertInStatusBar:%@ animated:%i", statusBar, animated);
+
+	if (!statusBar._typeStatus_foregroundView) {
+		HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
+		return;
+	}
+
+	[statusBar _typeStatus_changeToDirection:_visible animated:animated];
+	[statusBar._typeStatus_foregroundView setIconName:_currentIconName title:_currentTitle content:_currentContent];
 }
 
 #pragma mark - Notification
