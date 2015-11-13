@@ -32,7 +32,7 @@
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->
 	<key>INSTALL_LIBSTATUSBAR</key>
-	<string>Libstatusbar स्थापित करें</string>
+	<string>libstatusbar स्थापित करें</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
