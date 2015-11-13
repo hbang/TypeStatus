@@ -67,7 +67,7 @@
 			<string>PSGroupCell</string>
 			<key>id</key>
 			<string>NoLibstatusbarGroup</string>
-			<key>label</key>
+			<key>footerText</key>
 			<string>LIBSTATUSBAR_NOT_INSTALLED</string>
 		</dict>
 		<dict>
