@@ -78,7 +78,7 @@
 			<key>id</key>
 			<string>NoLibstatusbar</string>
 			<key>label</key>
-			<string>DOWNLOAD_LIBSTATUSBAR</string>
+			<string>INSTALL_LIBSTATUSBAR</string>
 		</dict>
 		<dict>
 			<key>cell</key>
