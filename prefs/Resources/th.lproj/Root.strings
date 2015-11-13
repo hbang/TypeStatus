@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>ฉันได้รับการเตือนการพิมพ์และการแจ้งเตือนว่าอ่านแล้วจากแถบสถานะบน %@ ของฉัน ขอบคุณ TypeStatus! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>การเตือน</string>
+
+	<!-- TypeStatus Plus (Do not translate as it's a name)-->
+	<key>TYPESTATUS_PLUS</key>
+	<string>TypeStatus Plus</string>
+</dict>
+</plist>

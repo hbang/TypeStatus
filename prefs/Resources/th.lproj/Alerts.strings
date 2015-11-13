@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Page title. -->
+	<key>ALERTS</key>
+	<string>การเตือน</string>
+
+	<!-- Header for the animation type segmented control. -->
+	<key>ANIMATION_TYPE</key>
+	<string>การเคลื่อนไหว</string>
+
+	<!-- Buttons shown in the segmented control for the animation type. -->
+	<key>ANIMATION_SLIDE</key>
+	<string>เลื่อน</string>
+	<key>ANIMATION_FADE</key>
+	<string>ค่อย ๆ ปรากฏ</string>
+
+	<!-- Header for the display duration selection. -->
+	<key>DISPLAY_DURATION</key>
+	<string>เวลาในการแสดง</string>
+
+	<!-- The label showing how many seconds the user has specified. -->
+	<key>ONE_SECOND</key>
+	<string>1 วินาที</string>
+	<key>N_SECONDS</key>
+	<string>%i วินาที</string>
+
+	<!-- Header for the section shown when libstatusbar isn't installed. -->
+	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
+	<string>ต้องการ libstatusbar เพื่อแสดงไอคอนบนแถบสถานะ</string>
+
+	<!-- Button that opens Cydia to the libstatusbar package. -->
+	<key>INSTALL_LIBSTATUSBAR</key>
+	<string>ติดตั้ง libstatusbar</string>
+
+	<!-- The Typing and Read Receipt headings. -->
+	<key>TYPING_HEADER</key>
+	<string>กำลังพิมพ์</string>
+	<key>READ_HEADER</key>
+	<string>แจ้งว่าอ่านแล้ว</string>
+
+	<!-- Buttons shown in the segmented controls for the alert type. -->
+	<key>OFF</key>
+	<string>ปิด</string>
+	<key>ALERT_TYPE_ICON</key>
+	<string>ไอคอนอย่างเดียว</string>
+	<key>ALERT_TYPE_OVERLAY</key>
+	<string>แถบแสดงสถานะ</string>
+
+	<!-- Button for choosing how long the alert shows for. -->
+	<key>SHOW_FOR</key>
+	<string>แสดงนาน</string>
+
+	<!-- Options for "Show For". -->
+	<key>SHOW_FOR_SPECIFIED</key>
+	<string>ช่วงเวลาที่ระบุเอง</string>
+	<key>SHOW_FOR_TYPING</key>
+	<string>ช่วงเวลาการพิมพ์</string>
+
+	<!-- Explanation shown under the "Show For" list. -->
+	<key>SHOW_FOR_EXPLANATION</key>
+	<string>หากต้องการแสดงการเตือนเป็นช่วงตามที่ตั้งไว้ก่อนหน้านี้ โปรดเลือก "ช่วงเวลาที่ระบุเอง" หากต้องการแสดงการเตือนนานเท่าที่ผู้ส่งกำลังพิมพ์ โปรดเลือก "ช่วงเวลาการพิมพ์"</string>
+
+	<!-- Switch to allow or disallow alerts showing in Messages. -->
+	<key>HIDE_IN_MESSAGES</key>
+	<string>ซ่อนในข้อความ</string>
+
+	<!-- Buttons to test the alerts. -->
+	<key>TEST_TYPING</key>
+	<string>ทดสอบเตือนการพิมพ์</string>
+	<key>TEST_READ_RECEIPT</key>
+	<string>ทดสอบแจ้งเตือนว่าอ่านแล้ว</string>
+</dict>
+</plist>
