@@ -1,4 +1,5 @@
 #import "HBTSStatusBarAlertServer.h"
+#import "HBTSPreferences.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 
 @implementation HBTSStatusBarAlertServer
@@ -69,6 +70,10 @@
 	BOOL direction = type != HBTSStatusBarTypeTypingEnded;
 
 	[self sendAlertWithIconName:iconName title:title content:sender animatingInDirection:direction timeout:timeout];
+}
+
++ (void)hide {
+	[self sendAlertWithIconName:nil title:nil content:nil animatingInDirection:NO timeout:0];
 }
 
 @end
