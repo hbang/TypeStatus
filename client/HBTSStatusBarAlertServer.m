@@ -50,7 +50,15 @@
 
 #pragma mark - Send
 
++ (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
+	[self sendAlertWithIconName:iconName title:title content:content animatingInDirection:YES timeout:-1];
+}
+
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+	if (timeout == -1) {
+		timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
+	}
+
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			kHBTSMessageIconNameKey: iconName ?: @"",
