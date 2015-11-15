@@ -15,7 +15,8 @@
 	});
 
 	UIImage *image = [UIImage imageNamed:[self.foregroundStyle expandedNameForImageName:self.iconName] inBundle:UIKitBundle];
-	return [%c(_UILegibilityImageSet) imageFromImage:image withShadowImage:nil];
+	UIImage *tintedImage = [image _flatImageWithColor:self.foregroundStyle.tintColor];
+	return [%c(_UILegibilityImageSet) imageFromImage:tintedImage withShadowImage:nil];
 }
 
 - (void)dealloc {

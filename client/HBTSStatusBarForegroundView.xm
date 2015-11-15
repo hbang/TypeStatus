@@ -96,9 +96,6 @@
 }
 
 %new - (void)setIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
-	self.tintColor = self.foregroundStyle.tintColor;
-	self.iconItemView.tintColor = self.tintColor;
-
 	self.iconItemView.iconName = [iconName copy];
 	self.titleItemView.text = [title copy];
 	self.contentItemView.text = [content copy];
