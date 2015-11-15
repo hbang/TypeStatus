@@ -1,5 +1,5 @@
 #import "HBTSStatusBarAlertServer.h"
-#import "HBTSPreferences.h"
+#import "../client/HBTSPreferences.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 
 @implementation HBTSStatusBarAlertServer
@@ -56,7 +56,7 @@
 
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	if (timeout == -1) {
-		timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
+		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
 	}
 
 	dispatch_async(dispatch_get_main_queue(), ^{

@@ -1,7 +1,7 @@
 #import "HBTSStatusBarIconController.h"
+#import "HBTSStatusBarAlertServer.h"
+#import "HBTSStatusBarAlertServer+Private.h"
 #import "../client/HBTSPreferences.h"
-#import "../client/HBTSStatusBarAlertServer.h"
-#import "../client/HBTSStatusBarAlertServer+Private.h"
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKEntity.h>
 #import <ChatKit/CKDNDList.h>
@@ -51,7 +51,7 @@ void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
 
 	switch (notificationType) {
 		case HBTSNotificationTypeOverlay:
-			[%c(HBTSStatusBarAlertServer) sendAlertType:type sender:HBTSNameForHandle(sender) timeout:timeout];
+			[HBTSStatusBarAlertServer sendAlertType:type sender:HBTSNameForHandle(sender) timeout:timeout];
 			break;
 
 		case HBTSNotificationTypeIcon:
