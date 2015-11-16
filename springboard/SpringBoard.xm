@@ -13,7 +13,27 @@
 
 HBTSPreferences *preferences;
 
-#pragma mark - Get contact name
+BOOL HBTSShouldHide(HBTSStatusBarType type) {
+	BOOL hideInMessages = NO;
+
+	switch (type) {
+		case HBTSStatusBarTypeTyping:
+		case HBTSStatusBarTypeTypingEnded:
+			hideInMessages = preferences.typingHideInMessages;
+			break;
+
+		case HBTSStatusBarTypeRead:
+			hideInMessages = preferences.readHideInMessages;
+			break;
+	}
+
+	if (hideInMessages) {
+		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
+		return !app.isLocked && [app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+	}
+
+	return NO;
+}
 
 NSString *HBTSNameForHandle(NSString *handle) {
 	if ([handle isEqualToString:@"example@hbang.ws"]) {
@@ -30,6 +50,10 @@ NSString *HBTSNameForHandle(NSString *handle) {
 }
 
 void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
+	if (HBTSShouldHide(type)) {
+		return;
+	}
+
 	if (%c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:sender]) {
 		return;
 	}
