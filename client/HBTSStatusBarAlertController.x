@@ -2,6 +2,9 @@
 #import "HBTSStatusBarForegroundView.h"
 #import "HBTSPreferences.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
+#import <Foundation/NSXPCInterface.h>
+#import <Foundation/NSXPCConnection.h>
+#import <Foundation/NSXPCListener.h>
 #import <SpringBoard/SBChevronView.h>
 #import <SpringBoard/SBLockScreenManager.h>
 #import <SpringBoard/SBLockScreenViewController.h>
@@ -27,8 +30,8 @@
 	BOOL _topGrabberWasHidden;
 	NSTimer *_timeoutTimer;
 }
-
 + (instancetype)sharedInstance {
+
 	static HBTSStatusBarAlertController *sharedInstance;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -46,7 +49,9 @@
 	if (self) {
 		_statusBars = [[NSMutableArray alloc] init];
 
-		[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(_receivedStatusNotification:) name:HBTSClientSetStatusBarNotification object:nil];
+		NSXPCListener *listener = [NSXPCListener serviceListener];
+		listener.delegate = self;
+		[listener resume];
 	}
 
 	return self;
@@ -122,21 +127,13 @@
 
 #pragma mark - Notification
 
-- (void)_receivedStatusNotification:(NSNotification *)notification {
-	NSTimeInterval timeout = ((NSNumber *)notification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
-
+- (void)sendNotificationWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content direction:(BOOL)direction timeout:(NSTimeInterval)timeout sendDate:(NSDate *)sendDate {
 	// when apps are paused in the background, notifications get queued up and
 	// delivered when they resume. to work around this, we determine if it’s
 	// been longer than the specified duration; if so, disregard the alert
-	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > timeout) {
+	if ([[NSDate date] timeIntervalSinceDate:sendDate] > timeout) {
 		return;
 	}
-
-	// grab all the data
-	NSString *iconName = notification.userInfo[kHBTSMessageIconNameKey];
-	NSString *title = notification.userInfo[kHBTSMessageTitleKey];
-	NSString *content = notification.userInfo[kHBTSMessageContentKey];
-	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
 
 	// show it! (or hide it)
 	[self _showWithIconName:iconName title:title content:content animatingInDirection:direction timeout:timeout];
@@ -166,6 +163,15 @@
 	}
 }
 
+#pragma mark NSXPCListenerDelegate
+
+- (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
+	newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(HBTSStatusBarAlertProtocol)];
+	newConnection.exportedObject = self;
+	[newConnection resume];
+	return YES;
+}
+
 #pragma mark - Accessibility
 
 - (void)_announceAlertWithTitle:(NSString *)title content:(NSString *)content {
@@ -182,8 +188,6 @@
 - (void)dealloc {
 	[_statusBars release];
 	[_timeoutTimer release];
-
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:HBTSClientSetStatusBarNotification object:nil];
 
 	[super dealloc];
 }

@@ -3,6 +3,12 @@
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 
+@interface UIImage (GetToCompile)
+
+- (instancetype)_flatImageWithColor:(UIColor *)color;
+
+@end
+
 %subclass HBTSStatusBarIconItemView : UIStatusBarItemView
 
 %property (nonatomic, retain) NSString *iconName;
