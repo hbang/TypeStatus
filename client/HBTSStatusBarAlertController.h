@@ -1,6 +1,8 @@
+#import <Foundation/NSXPCListener.h>
+
 @class UIStatusBar;
 
-@interface HBTSStatusBarAlertController : NSObject
+@interface HBTSStatusBarAlertController : NSObject <NSXPCListenerDelegate, HBTSStatusBarAlertProtocol>
 
 + (instancetype)sharedInstance;
 
