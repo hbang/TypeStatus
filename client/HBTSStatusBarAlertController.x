@@ -122,7 +122,10 @@
 	}
 
 	[statusBar _typeStatus_changeToDirection:_visible animated:animated];
-	[statusBar._typeStatus_foregroundView setIconName:_currentIconName title:_currentTitle content:_currentContent];
+
+	if (_visible) {
+		[statusBar._typeStatus_foregroundView setIconName:_currentIconName title:_currentTitle content:_currentContent];
+	}
 }
 
 #pragma mark - Notification
