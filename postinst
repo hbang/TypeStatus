@@ -1,2 +1,3 @@
 #!/bin/bash
+launchctl load -w /Library/LaunchDaemons/ws.hbang.typestatusd.plist
 launchctl stop com.apple.imagent

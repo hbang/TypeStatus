@@ -3,16 +3,26 @@
 #import <IMDaemonCore/IMDServiceSession.h>
 #import <IMFoundation/FZMessage.h>
 #import <version.h>
+#import <Foundation/NSXPCConnection.h>
+#import <Foundation/NSXPCInterface.h>
+#import <../daemon/HBTSDaemonManager.h>
+#import "HBTSIMAgentRelayProtocol.h"
 
 #pragma mark - Communication with SpringBoard
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSSpringBoardReceivedMessageNotification object:nil userInfo:@{
-			kHBTSMessageTypeKey: @(type),
-			kHBTSMessageSenderKey: name ?: @"",
-			kHBTSMessageIsTypingKey: @(typing)
-		}]];
+		NSXPCConnection *connection = [[NSXPCConnection alloc] initWithMachServiceName:kHBTSIMAgentMachServiceName options:kNilOptions];
+		connection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(HBTSIMAgentRelayProtocol)];
+		[connection resume];
+
+		HBTSDaemonManager *daemonManager = [connection remoteObjectProxyWithErrorHandler:^(NSError *error){
+			if (error) {
+				HBLogError(@"Could not send notification via XPC: %@", error);
+				return;
+			}
+		}];
+		[daemonManager sendNotificationWithStatusBarType:type senderName:name ?: @"" isTyping:typing];
 	});
 }
 

@@ -1,13 +1,12 @@
 include $(THEOS)/makefiles/common.mk
 
-SUBPROJECTS = springboard client relay prefs
+SUBPROJECTS = daemon client relay prefs
 
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-stage::
 	mkdir -p $(THEOS_STAGING_DIR)/DEBIAN
-	cp postinst $(THEOS_STAGING_DIR)/DEBIAN
-	cp postinst $(THEOS_STAGING_DIR)/DEBIAN/postrm
+	cp postinst prerm postrm $(THEOS_STAGING_DIR)/DEBIAN
 
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 	cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework

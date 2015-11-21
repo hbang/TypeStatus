@@ -1,4 +1,5 @@
 #import <Foundation/NSXPCListener.h>
+#import "HBTSStatusBarAlertProtocol.h"
 
 @class UIStatusBar;
 
