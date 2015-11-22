@@ -24,8 +24,6 @@ SBFrontmostApplicationDisplayIdentifierType SBFrontmostApplicationDisplayIdentif
 
 - (instancetype)init {
 	if (self = [super init]) {
-		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
-
 		void *sbs = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);
 
 		SBSSpringBoardServerPort = (SBSSpringBoardServerPortType)dlsym(sbs, "SBSSpringBoardServerPort");
