@@ -37,8 +37,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 %hook IMDServiceSession
 
 %new - (void)_typeStatus_didReceiveMessage:(FZMessage *)message {
-	// TODO: this check might need to be more specific. are the flags XOR'd?
-	if (message.flags == FZMessageFlagsTypingBegan) {
+	if (message.isTypingMessage) {
 		HBTSPostMessage(HBTSStatusBarTypeTyping, message.handle, YES);
 	} else {
 		HBTSPostMessage(HBTSStatusBarTypeTypingEnded, message.handle, NO);
