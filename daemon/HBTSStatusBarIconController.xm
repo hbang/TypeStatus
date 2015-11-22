@@ -9,6 +9,17 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 @implementation HBTSStatusBarIconController
 
 + (LSStatusBarItem *)_itemForType:(HBTSStatusBarType)type {
+	// is libstatusbar loaded? if not, let's try dlopening it
+	if (!%c(LSStatusBarItem)) {
+		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
+	}
+
+	// still not loaded? probably not installed. just bail out
+	if (!%c(LSStatusBarItem)) {
+		HBLogWarn(@"attempting to display a status bar icon, but libstatusbar isn’t installed");
+		return nil;
+	}
+
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
