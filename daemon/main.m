@@ -1,6 +1,11 @@
-#import "HBTSDaemonManager.h"
+#import "HBTSDaemonServiceDelegate.h"
 
 int main(int argc, char *argv[]) {
-	[[HBTSDaemonManager alloc] init];
-	return 1;
+	HBTSDaemonServiceDelegate *delegate = [[HBTSDaemonServiceDelegate alloc] init];
+
+	NSXPCListener *listener = [NSXPCListener serviceListener];
+	listener.delegate = delegate;
+	[listener resume];
+
+	return EXIT_FAILURE;
 }
