@@ -2,6 +2,12 @@ include $(THEOS)/makefiles/common.mk
 
 SUBPROJECTS = springboard client relay prefs messages
 
+INSTALL_TARGET_PROCESSES = MobileSMS Preferences
+
+ifeq ($(RESPRING),1)
+INSTALL_TARGET_PROCESSES += SpringBoard
+endif
+
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-stage::
@@ -11,10 +17,3 @@ after-stage::
 
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 	cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
-
-after-install::
-ifeq ($(RESPRING),0)
-	install.exec "killall Preferences MobileSMS" || true
-else
-	install.exec spring
-endif
