@@ -1,4 +1,5 @@
 #import "HBTSSwitchTableViewCell.h"
+#import "HBTSConversationPreferences.h"
 #import <ChatKit/CKConversation.h>
 #import <ChatKit/CKTranscriptRecipientsController.h>
 #import <ChatKit/CKTranscriptRecipientsHeaderFooterView.h>
@@ -21,17 +22,26 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 - (void)_typeStatus_configureDisableReadReceiptsCell:(HBTSSwitchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @property NSInteger _typeStatus_sectionStartIndex;
+@property (nonatomic, retain) HBTSConversationPreferences *_typeStatus_preferences;
 
 @end
 
 %hook CKTranscriptRecipientsController
 
 %property (nonatomic, retain) NSInteger _typeStatus_sectionStartIndex;
+%property (nonatomic, retain) HBTSConversationPreferences *_typeStatus_preferences;
+
+#pragma mark - UIViewController
 
 - (void)loadView {
 	%orig;
+
+	self._typeStatus_preferences = [[HBTSConversationPreferences alloc] init];
+
 	[self.tableView registerClass:HBTSSwitchTableViewCell.class forCellReuseIdentifier:[HBTSSwitchTableViewCell identifier]];
 }
+
+#pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	NSInteger sections = %orig;
@@ -61,7 +71,8 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSInteger sectionStartIndex = self._typeStatus_sectionStartIndex;
 
-	if (sectionStartIndex == 0 || indexPath.section < sectionStartIndex || indexPath.section > sectionStartIndex + kHBTSNumberOfExtraSections) {		return %orig;
+	if (sectionStartIndex == 0 || indexPath.section < sectionStartIndex || indexPath.section > sectionStartIndex + kHBTSNumberOfExtraSections) {
+		return %orig;
 	}
 
 	HBTSSwitchTableViewCell *cell = [self _typeStatus_switchCellForIndexPath:indexPath];
@@ -88,10 +99,11 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	NSInteger sectionStartIndex = self._typeStatus_sectionStartIndex + 1;
 
-	if (sectionStartIndex == 0 || section < sectionStartIndex || section > sectionStartIndex + kHBTSNumberOfExtraSections) {
-		if (section == sectionStartIndex - 1) {
+	if (section < sectionStartIndex) {
+		if (section == sectionStartIndex - 1 || section == sectionStartIndex - 2) {
 			CKTranscriptRecipientsHeaderFooterView *view = (CKTranscriptRecipientsHeaderFooterView *)%orig;
 			view.bottomSeparator.hidden = NO;
+			return view;
 		}
 
 		return %orig;
@@ -126,42 +138,53 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 	CKTranscriptRecipientsHeaderFooterView *view = (CKTranscriptRecipientsHeaderFooterView *)[self tableView:tableView viewForHeaderInSection:section];
 	UILabel *label = view.preceedingSectionFooterLabel;
 
-	return floorf([label sizeThatFits:CGSizeMake(tableView.bounds.size.width - view.margin * 2, CGFLOAT_MAX)].height) + 36;
+	return ceilf([label sizeThatFits:CGSizeMake(tableView.bounds.size.width - view.margin * 2, CGFLOAT_MAX)].height) + 36;
 }
+
+#pragma mark - Callbacks
 
 %new - (HBTSSwitchTableViewCell *)_typeStatus_switchCellForIndexPath:(NSIndexPath *)indexPath {
 	HBTSSwitchTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[HBTSSwitchTableViewCell identifier] forIndexPath:indexPath];
 
 	if (!cell) {
 		cell = [[[HBTSSwitchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[HBTSSwitchTableViewCell identifier]] autorelease];
-		[cell.control addTarget:self action:@selector(_typeStatus_switchValueChanged:) forControlEvents:UIControlEventValueChanged];
 	}
+
+	[cell.control addTarget:self action:@selector(_typeStatus_switchValueChanged:) forControlEvents:UIControlEventValueChanged];
 
 	return cell;
 }
 
 %new - (void)_typeStatus_configureDisableTypingCell:(HBTSSwitchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	cell.control.tag = 0;
+	cell.control.on = [self._typeStatus_preferences typingNotificationsEnabledForConversation:self.conversation];
 	cell.textLabel.text = [bundle localizedStringForKey:@"SEND_TYPING_NOTIFICATIONS" value:nil table:@"Messages"];
 }
 
 %new - (void)_typeStatus_configureDisableReadReceiptsCell:(HBTSSwitchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	cell.control.tag = 1;
+	cell.control.on = [self._typeStatus_preferences readReceiptsEnabledForConversation:self.conversation];
 	cell.textLabel.text = [bundle localizedStringForKey:@"SEND_READ_RECEIPTS" value:nil table:@"Messages"];
 }
 
 %new - (void)_typeStatus_switchValueChanged:(UISwitch *)sender {
-	NSString *key = nil;
 
 	switch (sender.tag) {
 		case 0:
-			key = @"Typing";
+			[self._typeStatus_preferences setTypingNotificationsEnabled:sender.on forConversation:self.conversation];
 			break;
 
 		case 1:
-			key = @"Read";
+			[self._typeStatus_preferences setReadReceiptsEnabled:sender.on forConversation:self.conversation];
 			break;
 	}
+}
+
+#pragma mark - Memory management
+
+- (void)dealloc {
+	[self._typeStatus_preferences release];
+	%orig;
 }
 
 %end

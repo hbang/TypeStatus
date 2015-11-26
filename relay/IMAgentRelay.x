@@ -1,8 +1,11 @@
+#import "HBTSConversationPreferences.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMDaemonCore/IMDMessageStore.h>
 #import <IMDaemonCore/IMDServiceSession.h>
 #import <IMFoundation/FZMessage.h>
 #import <version.h>
+
+HBTSConversationPreferences *conversationPreferences;
 
 #pragma mark - Communication with SpringBoard
 
@@ -57,21 +60,17 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 #pragma mark - Block outgoing typing/read
 
-/*
 %hook IMDServiceSession
 
 - (void)sendMessage:(FZMessage *)message toChat:(id)chat style:(unsigned char)style {
-	%log;
-	%orig;
-}
+	if (message.isTypingMessage && ![conversationPreferences typingNotificationsEnabledForHandle:message.handle]) {
+		return;
+	}
 
-- (void)sendReadReceiptForMessage:(FZMessage *)message toChatID:(id)chat identifier:(NSString *)identifier style:(unsigned char)style {
-	%log;
 	%orig;
 }
 
 %end
-*/
 
 #pragma mark - Test functions
 
@@ -86,6 +85,8 @@ void HBTSTestRead() {
 #pragma mark - Constructor
 
 %ctor {
+	conversationPreferences = [[HBTSConversationPreferences alloc] init];
+
 	%init;
 
 	if (IS_IOS_OR_NEWER(iOS_9_0)) {

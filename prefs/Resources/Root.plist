@@ -20,6 +20,16 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>HBTSMessagesListController</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>MESSAGES</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>id</key>
 			<string>TypeStatusPlusGroup</string>
