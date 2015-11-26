@@ -1,5 +1,5 @@
-#import "HBTSSwitchTableViewCell.h"
 #import "HBTSConversationPreferences.h"
+#import "HBTSSwitchTableViewCell.h"
 #import <ChatKit/CKConversation.h>
 #import <ChatKit/CKTranscriptRecipientsController.h>
 #import <ChatKit/CKTranscriptRecipientsHeaderFooterView.h>

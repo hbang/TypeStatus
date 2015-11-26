@@ -1,5 +1,4 @@
 #import "HBTSStatusBarContentItemView.h"
-#import <UIKit/_UILegibilityImageSet.h>
 
 %subclass HBTSStatusBarContentItemView : UIStatusBarItemView
 

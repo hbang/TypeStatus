@@ -1,5 +1,6 @@
 #import "HBTSStatusBarAlertServer.h"
-#import "../client/HBTSPreferences.h"
+#import "HBTSPreferences.h"
+#import "HBTSStatusBarAlertController.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 
 @implementation HBTSStatusBarAlertServer

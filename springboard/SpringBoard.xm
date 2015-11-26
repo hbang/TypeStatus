@@ -1,7 +1,7 @@
-#import "HBTSStatusBarIconController.h"
+#import "HBTSPreferences.h"
 #import "HBTSStatusBarAlertServer.h"
 #import "HBTSStatusBarAlertServer+Private.h"
-#import "../client/HBTSPreferences.h"
+#import "HBTSStatusBarIconController.h"
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKEntity.h>
 #import <ChatKit/CKDNDList.h>
