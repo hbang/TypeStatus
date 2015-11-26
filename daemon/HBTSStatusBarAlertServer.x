@@ -82,9 +82,9 @@
 			return;
 		}
 	}];
-
+	HBLogDebug(@"Is this called? the thing is %@", statusBarAlertController);
 	[statusBarAlertController sendNotificationWithIconName:iconName title:title content:content direction:direction timeout:timeout sendDate:[NSDate date]];
-
+		
 }
 
 + (void)sendAlertType:(HBTSStatusBarType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {

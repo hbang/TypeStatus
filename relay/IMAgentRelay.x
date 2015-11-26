@@ -10,23 +10,20 @@
 
 #pragma mark - Communication with SpringBoard
 
-NSXPCConnection *connection = nil;
-
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
-	if (!connection) {
-		connection = [[NSXPCConnection alloc] initWithMachServiceName:kHBTSIMAgentMachServiceName options:kNilOptions];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		NSXPCConnection *connection = [[NSXPCConnection alloc] initWithMachServiceName:kHBTSIMAgentMachServiceName options:kNilOptions];
 		connection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(HBTSIMAgentRelayProtocol)];
 		[connection resume];
-	}
 
-	HBTSDaemonManager *daemonManager = [connection remoteObjectProxyWithErrorHandler:^(NSError *error) {
-		if (error) {
-			HBLogError(@"Could not send notification via XPC: %@", error);
-			return;
-		}
-	}];
-
-	[daemonManager sendNotificationWithStatusBarType:type senderName:name ?: @"" isTyping:typing];
+		HBTSDaemonManager *daemonManager = [connection remoteObjectProxyWithErrorHandler:^(NSError *error){
+			if (error) {
+				HBLogError(@"Could not send notification via XPC: %@", error);
+				return;
+			}
+		}];
+		[daemonManager sendNotificationWithStatusBarType:type senderName:name ?: @"" isTyping:typing];
+	});
 }
 
 #pragma mark - Typing/read notifications

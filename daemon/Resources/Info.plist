@@ -9,7 +9,7 @@
 	<key>XPCService</key>
 	<dict>
 		<key>ServiceType</key>
-		<string>System</string>
+		<string>User</string>
 	</dict>
 </dict>
 </plist>

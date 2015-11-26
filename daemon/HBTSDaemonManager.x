@@ -9,6 +9,8 @@
 #import <SpringBoard/SpringBoard.h>
 #include <dlfcn.h>
 #import "HBTSDaemonManager.h"
+#import <Foundation/NSXPCConnection.h>
+#import <Foundation/NSXPCInterface.h>
 
 typedef mach_port_t (*SBSSpringBoardServerPortType)();
 typedef void (*SBFrontmostApplicationDisplayIdentifierType)(mach_port_t port, char *identifier);
@@ -28,8 +30,21 @@ SBFrontmostApplicationDisplayIdentifierType SBFrontmostApplicationDisplayIdentif
 		SBFrontmostApplicationDisplayIdentifier = (SBFrontmostApplicationDisplayIdentifierType)dlsym(sbs, "SBFrontmostApplicationDisplayIdentifier");
 
 		_preferences = [HBTSPreferences sharedInstance];
+
+		NSXPCListener *listener = [NSXPCListener serviceListener];
+		listener.delegate = self;
+		[listener resume];
 	}
 	return self;
+}
+
+#pragma mark NSXPCListenerDelegate
+
+- (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
+	newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(HBTSIMAgentRelayProtocol)];
+	newConnection.exportedObject = self;
+	[newConnection resume];
+	return YES;
 }
 
 - (BOOL)shouldIgnoreNotification:(HBTSStatusBarType)type {
@@ -73,6 +88,7 @@ SBFrontmostApplicationDisplayIdentifierType SBFrontmostApplicationDisplayIdentif
 }
 
 - (void)sendNotificationWithStatusBarType:(HBTSStatusBarType)statusBarType senderName:(NSString *)senderName isTyping:(BOOL)typing {
+
 	if ([self shouldIgnoreNotification:statusBarType]) {
 		return;
 	}

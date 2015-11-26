@@ -1,5 +1,6 @@
+#import <Foundation/NSXPCListener.h>
 #import "HBTSIMAgentRelayProtocol.h"
 
-@interface HBTSDaemonManager : NSObject <HBTSIMAgentRelayProtocol>
+@interface HBTSDaemonManager : NSObject <NSXPCListenerDelegate, HBTSIMAgentRelayProtocol>
 
 @end
