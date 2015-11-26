@@ -1,18 +1,8 @@
 #import "HBTSStatusBarAlertServer.h"
 #import "../client/HBTSPreferences.h"
-#import "../client/HBTSStatusBarAlertController.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
-#import <Foundation/NSXPCConnection.h>
-#import <Foundation/NSXPCInterface.h>
 
 @implementation HBTSStatusBarAlertServer
-
-+ (NSXPCConnection *)statusBarXPCConnection {
-	NSXPCConnection *connection = [[NSXPCConnection alloc] initWithServiceName:@"ws.hbang.typestatus.statusbar-communication"];
-	connection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(HBTSStatusBarAlertProtocol)];
-	[connection resume];
-	return connection;
-}
 
 + (NSString *)iconNameForType:(HBTSStatusBarType)type {
 	NSString *name = nil;
@@ -69,20 +59,17 @@
 		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
 	}
 
-	NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
-	if ([bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"] || [bundleIdentifier isEqualToString:@"com.apple.SafariViewService"]) {
-		return;
-	}
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
+			kHBTSMessageIconNameKey: iconName ?: @"",
+			kHBTSMessageTitleKey: title ?: @"",
+			kHBTSMessageContentKey: content ?: @"",
+			kHBTSMessageDirectionKey: @(direction),
 
-	HBTSStatusBarAlertController *statusBarAlertController = [[self statusBarXPCConnection] remoteObjectProxyWithErrorHandler:^(NSError *error){
-		if (error) {
-			HBLogError(@"Could not send notification via XPC: %@", error);
-			return;
-		}
-	}];
-	HBLogDebug(@"Is this called? the thing is %@", statusBarAlertController);
-	[statusBarAlertController sendNotificationWithIconName:iconName title:title content:content direction:direction timeout:timeout sendDate:[NSDate date]];
-		
+			kHBTSMessageTimeoutKey: @(timeout),
+			kHBTSMessageSendDateKey: [NSDate date]
+		}]];
+	});
 }
 
 + (void)sendAlertType:(HBTSStatusBarType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {
