@@ -1,6 +1,6 @@
 #import "HBTSAlertsListController.h"
 #import <Preferences/PSSpecifier.h>
-#import "HBTSPreferences.h"
+#import "../Client/HBTSPreferences.h"
 #include <notify.h>
 
 @implementation HBTSAlertsListController {

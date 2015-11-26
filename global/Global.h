@@ -35,8 +35,3 @@ static NSString *const kHBTSMessageDirectionKey = @"Direction";
 
 static NSString *const kHBTSMessageTimeoutKey = @"Duration";
 static NSString *const kHBTSMessageSendDateKey = @"Date";
-
-// keys for xpc
-
-static NSString *const kHBTSStatusBarMachServiceName = @"ws.hbang.typestatus.statusbar-communication";
-static NSString *const kHBTSIMAgentMachServiceName = @"ws.hbang.typestatus.imagent-communication";

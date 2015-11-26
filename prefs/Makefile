@@ -8,7 +8,7 @@ TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
 TypeStatus_FRAMEWORKS = UIKit CoreGraphics
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
 TypeStatus_EXTRA_FRAMEWORKS = CepheiPrefs
-TypeStatus_CFLAGS = -include ../global/Global.h -I../global
+TypeStatus_CFLAGS = -include ../global/Global.h -include ../global/HBTSStatusBarAlertProtocol.h
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

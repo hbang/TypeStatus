@@ -1,25 +1,18 @@
 #import "HBTSStatusBarAlertServer.h"
-#import "HBTSPreferences.h"
+#import "../client/HBTSPreferences.h"
 #import "../client/HBTSStatusBarAlertController.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <Foundation/NSXPCConnection.h>
 #import <Foundation/NSXPCInterface.h>
-#import "HBTSStatusBarAlertProtocol.h"
 
 @implementation HBTSStatusBarAlertServer
 
-#pragma mark init
-
-#pragma mark NSXPCConnection
-
 + (NSXPCConnection *)statusBarXPCConnection {
-	NSXPCConnection *connection = [[NSXPCConnection alloc] initWithServiceName:kHBTSStatusBarMachServiceName];
+	NSXPCConnection *connection = [[NSXPCConnection alloc] initWithServiceName:@"ws.hbang.typestatus.statusbar-communication"];
 	connection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(HBTSStatusBarAlertProtocol)];
 	[connection resume];
 	return connection;
 }
-
-#pragma mark TypeStatus
 
 + (NSString *)iconNameForType:(HBTSStatusBarType)type {
 	NSString *name = nil;
@@ -74,6 +67,11 @@
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	if (timeout == -1) {
 		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
+	}
+
+	NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
+	if ([bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"] || [bundleIdentifier isEqualToString:@"com.apple.SafariViewService"]) {
+		return;
 	}
 
 	HBTSStatusBarAlertController *statusBarAlertController = [[self statusBarXPCConnection] remoteObjectProxyWithErrorHandler:^(NSError *error){

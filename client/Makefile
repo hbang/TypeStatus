@@ -2,9 +2,9 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = TypeStatusClient
 
-TypeStatusClient_FILES = $(wildcard *.x) $(wildcard *.xm) $(wildcard *.m) ../global/HBTSPreferences.m
+TypeStatusClient_FILES = $(wildcard *.x) $(wildcard *.xm) $(wildcard *.m)
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_EXTRA_FRAMEWORKS = Cephei
-TypeStatusClient_CFLAGS = -include ../global/Global.h -I../global
+TypeStatusClient_CFLAGS = -include ../global/Global.h -include ../global/HBTSStatusBarAlertProtocol.h
 
 include $(THEOS_MAKE_PATH)/tweak.mk
