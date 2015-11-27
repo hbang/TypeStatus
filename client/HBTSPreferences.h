@@ -13,4 +13,6 @@
 @property (readonly) HBTSStatusBarAnimation overlayAnimation;
 @property (readonly) NSTimeInterval overlayDisplayDuration;
 
+@property (readonly) BOOL ignoreDNDSenders;
+
 @end

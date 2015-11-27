@@ -218,6 +218,26 @@
 			<key>label</key>
 			<string>TEST_READ_RECEIPT</string>
 		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>IGNORE_DND_SENDERS_EXPLANATION</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>IgnoreDNDSenders</string>
+			<key>label</key>
+			<string>IGNORE_DND_SENDERS</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
 	</array>
 	<key>title</key>
 	<string>ALERTS</string>

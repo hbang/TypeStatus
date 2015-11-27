@@ -54,7 +54,7 @@ void HBTSShowAlert(HBTSStatusBarType type, NSString *sender, BOOL isTyping) {
 		return;
 	}
 
-	if (%c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:sender]) {
+	if (preferences.ignoreDNDSenders && %c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:sender]) {
 		return;
 	}
 

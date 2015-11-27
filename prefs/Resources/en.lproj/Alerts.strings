@@ -71,5 +71,13 @@
 	<string>Test Typing Alert</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Test Read Receipt Alert</string>
+
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Ignore Muted/Blocked Senders</string>
+
+	<!-- Explanation under the ignore muted/blocked senders switch. -->
+	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>If you mute or block someone, TypeStatus won’t show typing or read receipt alerts from them.</string>
 </dict>
 </plist>

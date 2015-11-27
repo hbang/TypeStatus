@@ -53,6 +53,8 @@
 		[_preferences registerBool:&_useTypingTimeout default:NO forKey:@"TypingTimeout"];
 		[_preferences registerDouble:&_overlayDisplayDuration default:5.0 forKey:@"OverlayDuration"];
 		[_preferences registerInteger:(NSInteger *)&_overlayAnimation default:HBTSStatusBarAnimationSlide forKey:@"OverlayAnimation"];
+
+		[_preferences registerBool:&_ignoreDNDSenders default:YES forKey:@"IgnoreDNDSenders"];
 	}
 
 	return self;
