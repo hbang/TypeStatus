@@ -2,17 +2,17 @@
 
 + (instancetype)sharedInstance;
 
-@property HBTSNotificationType typingType;
-@property HBTSNotificationType readType;
+@property (nonatomic) HBTSNotificationType typingType;
+@property (nonatomic) HBTSNotificationType readType;
 
-@property (readonly) BOOL typingHideInMessages;
-@property (readonly) BOOL readHideInMessages;
+@property (nonatomic, readonly) BOOL typingHideInMessages;
+@property (nonatomic, readonly) BOOL readHideInMessages;
 
-@property (readonly) BOOL useTypingTimeout;
+@property (nonatomic, readonly) BOOL useTypingTimeout;
 
-@property (readonly) HBTSStatusBarAnimation overlayAnimation;
-@property (readonly) NSTimeInterval overlayDisplayDuration;
+@property (nonatomic, readonly) HBTSStatusBarAnimation overlayAnimation;
+@property (nonatomic, readonly) NSTimeInterval overlayDisplayDuration;
 
-@property (readonly) BOOL ignoreDNDSenders;
+@property (nonatomic, readonly) BOOL ignoreDNDSenders;
 
 @end
