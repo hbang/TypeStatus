@@ -62,13 +62,13 @@
 
 	self.containerView = containerView;
 
-	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
 	[containerView addSubview:self.iconItemView];
 
-	self.titleItemView = [[%c(HBTSStatusBarTitleItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.titleItemView = [[%c(HBTSStatusBarTitleItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
 	[containerView addSubview:self.titleItemView];
 
-	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
 	[containerView addSubview:self.contentItemView];
 }
 
