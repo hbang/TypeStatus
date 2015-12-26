@@ -1,6 +1,6 @@
 include $(THEOS)/makefiles/common.mk
 
-SUBPROJECTS = springboard client relay prefs messages
+SUBPROJECTS = springboard client relay prefs
 
 INSTALL_TARGET_PROCESSES = MobileSMS Preferences
 
