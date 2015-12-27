@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
+	<key>SHARE_TEXT</key>
+	<string>Gépelési és Olvasási értesítést kapok az állapotsorban az %@ készülékemen a TypeStatus-nak köszönhetõen! 💬</string>
+
+	<!-- Alert types button. -->
+	<key>ALERTS</key>
+	<string>Riasztások</string>
+
+	<!-- Messages-related features button. -->
+	<key>MESSAGES</key>
+	<string>Üzenetek</string>
+
+	<!-- TypeStatus Plus (Do not translate as it's a name)-->
+	<key>TYPESTATUS_PLUS</key>
+	<string>TypeStatus Plus</string>
+</dict>
+</plist>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>THANKS_HEADER</key>
+	<string>Köszönjünk mindenkinek aki részt vett a TypeStatus fejlesztésében.</string>
+	<key>THANKS_FOOTER</key>
+	<string>Ezen felül köszönjük minden béta tesztelõnek is. Kemények vagytok srácok!</string>
+
+	<key>ORIGINAL_IDEA</key>
+	<string>Eredeti ötlet</string>
+</dict>
+</plist>
