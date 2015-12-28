@@ -42,7 +42,7 @@
 			<key>detail</key>
 			<string>HBTSPlusRootListController</string>
 			<key>icon</key>
-			<string>icon.png</string>
+			<string>../TypeStatusPlus.bundle/icon.png</string>
 			<key>id</key>
 			<string>TypeStatusPlus</string>
 			<key>isController</key>
