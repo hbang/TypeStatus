@@ -4,7 +4,7 @@
 <dict>
 	<!-- Page title. -->
 	<key>ALERTS</key>
-	<string>Notiser<string>
+	<string>Notiser</string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
