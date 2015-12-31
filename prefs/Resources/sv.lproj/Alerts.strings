@@ -4,7 +4,7 @@
 <dict>
 	<!-- Page title. -->
 	<key>ALERTS</key>
-	<string>Alerter</string>
+	<string>Notiser<string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
@@ -12,19 +12,19 @@
 
 	<!-- Buttons shown in the segmented control for the animation type. -->
 	<key>ANIMATION_SLIDE</key>
-	<string>Skjut</string>
+	<string>Glid in</string>
 	<key>ANIMATION_FADE</key>
 	<string>Blekna</string>
 
 	<!-- Header for the display duration selection. -->
 	<key>DISPLAY_DURATION</key>
-	<string>Displayens varaktighet</string>
+	<string>Tid för notisens synlighet</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>ONE_SECOND</key>
-	<string>1 Sekund</string>
+	<string>1 sekund</string>
 	<key>N_SECONDS</key>
-	<string>%i Sekunds</string>
+	<string>%i sekunder</string>
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
@@ -32,7 +32,7 @@
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->
 	<key>INSTALL_LIBSTATUSBAR</key>
-	<string>installera libstatusbar</string>
+	<string>Installera libstatusbar</string>
 	
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
@@ -56,20 +56,20 @@
 	<key>SHOW_FOR_SPECIFIED</key>
 	<string>Min specifierade varaktighet</string>
 	<key>SHOW_FOR_TYPING</key>
-	<string>Varaktighet för skrivandet</string>
+	<string>Varaktighet för skrivande</string>
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>För att visa varningen för den tid som anges på föregående sida väljer du "Min angivna tid". För att visa varningen så länge avsändaren skriver väljer du "Varaktighetaraktigheten av skrivandet”.</string>
+	<string>För att visa varningen för den tid som anges på föregående sida väljer du "Min angivna tid". För att visa varningen så länge avsändaren skriver väljer du "Varaktighet för skrivande”.</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
-	<string>Göm i meddelanden</string>
+	<string>Göm i Meddelanden</string>
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>Testa Skrivsalerten</string>
+	<string>Testa Skrivnotiser</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>Testa Läsmottagande alert</string>
+	<string>Testa Läsmottagande notiser</string>
 </dict>
 </plist>

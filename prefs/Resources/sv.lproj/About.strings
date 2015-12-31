@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>THANKS_HEADER</key>
-	<string>Tack till följande som har hjälpt till med TypeStatus.</string>
+	<string>Tack till följande personer som har hjälpt till med TypeStatus.</string>
 	<key>THANKS_FOOTER</key>
 	<string>…och våra beta testare samt användare, ni rockar!</string>
 
 	<key>ORIGINAL_IDEA</key>
-	<string>Originala Ideén</string>
+	<string>Original Ideén</string>
 </dict>
 </plist>

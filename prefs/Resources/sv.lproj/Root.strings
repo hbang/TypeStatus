@@ -8,7 +8,7 @@
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
-	<string>Alerter</string>
+	<string>Notiser</string>
 
 	<!-- Messages-related features button. -->
 	<key>MESSAGES</key>

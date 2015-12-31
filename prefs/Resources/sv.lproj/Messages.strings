@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>SEND_TYPING_NOTIFICATIONS</key>
-	<string>Sänd alert när du skriver</string>
+	<string>Sänd skrivnotis</string>
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Tillåt eller förhindra mottagaren från att se när du skriver.</string>
 
