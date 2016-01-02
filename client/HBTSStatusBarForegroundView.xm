@@ -122,10 +122,10 @@
 }
 
 - (void)layoutSubviews {
-
 	[self.iconItemView updateContentsAndWidth];
 	[self.titleItemView updateContentsAndWidth];
 	[self.contentItemView updateContentsAndWidth];
+
 	%orig;
 }
 
