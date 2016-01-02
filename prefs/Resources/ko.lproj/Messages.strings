@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Page title. -->
+	<key>MESSAGES</key>
+	<string>메시지</string>
+
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>입력 알림 보냄</string>
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
