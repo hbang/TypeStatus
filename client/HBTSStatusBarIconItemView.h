@@ -1,6 +1,6 @@
-#import <UIKit/UIStatusBarItemView.h>
+#import "HBTSStatusBarItemView.h"
 
-@interface HBTSStatusBarIconItemView : UIStatusBarItemView
+@interface HBTSStatusBarIconItemView : HBTSStatusBarItemView
 
 @property (nonatomic, retain) NSString *iconName;
 

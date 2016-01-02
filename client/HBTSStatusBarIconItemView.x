@@ -3,7 +3,7 @@
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 
-%subclass HBTSStatusBarIconItemView : UIStatusBarItemView
+%subclass HBTSStatusBarIconItemView : HBTSStatusBarItemView
 
 %property (nonatomic, retain) NSString *iconName;
 

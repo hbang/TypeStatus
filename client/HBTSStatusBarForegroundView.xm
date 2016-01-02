@@ -2,6 +2,7 @@
 #import "HBTSStatusBarIconItemView.h"
 #import "HBTSStatusBarTitleItemView.h"
 #import "HBTSStatusBarContentItemView.h"
+#import <Cephei/UIView+CompactConstraint.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 #import <version.h>
 
@@ -56,43 +57,76 @@
 %end
 
 %new - (void)_typeStatus_init {
-	UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width / 2, 0, 0, self.frame.size.height)];
-	containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+	self.translatesAutoresizingMaskIntoConstraints = NO;
+
+	UIView *containerView = [[UIView alloc] init];
+	containerView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:containerView];
 
 	self.containerView = containerView;
 
 	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.iconItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.iconItemView];
 
 	self.titleItemView = [[%c(HBTSStatusBarTitleItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.titleItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.titleItemView];
 
 	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.contentItemView];
+
+	static BOOL isRTL;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		isRTL = [NSLocale characterDirectionForLanguage:[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]] == NSLocaleLanguageDirectionRightToLeft;
+	});
+
+	NSDictionary <NSString *, UIView *> *views = @{
+		@"self": self,
+		@"containerView": containerView,
+		@"iconItemView": self.iconItemView,
+		@"titleItemView": self.titleItemView,
+		@"contentItemView": self.contentItemView
+	};
+
+	NSDictionary <NSString *, NSNumber *> *metrics = @{
+		@"outerMargin": @8.f,
+		@"textMargin": @4.f,
+		@"iconMargin": @6.f
+	};
+
+	[self hb_addCompactConstraints:@[
+		@"containerView.centerX = self.centerX",
+		@"containerView.top = self.top",
+		@"containerView.bottom = self.bottom"
+	] metrics:metrics views:views];
+
+	[containerView hb_addCompactConstraints:@[
+		@"iconItemView.top = containerView.top",
+		@"iconItemView.bottom = containerView.bottom",
+
+		@"titleItemView.top = containerView.top",
+		@"titleItemView.bottom = containerView.bottom",
+
+		@"contentItemView.top = containerView.top",
+		@"contentItemView.bottom = containerView.bottom"
+	] metrics:metrics views:views];
+
+	NSString *constraints = isRTL
+		? @"H:|-outerMargin-[contentItemView]-textMargin-[titleItemView]-iconMargin-[iconItemView]-outerMargin-|"
+		: @"H:|-outerMargin-[iconItemView]-iconMargin-[titleItemView]-textMargin-[contentItemView]-outerMargin-|";
+
+	[containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:constraints options:kNilOptions metrics:metrics views:views]];
 }
 
 - (void)layoutSubviews {
-	%orig;
 
 	[self.iconItemView updateContentsAndWidth];
 	[self.titleItemView updateContentsAndWidth];
 	[self.contentItemView updateContentsAndWidth];
-
-	CGRect iconFrame = self.iconItemView.frame;
-
-	CGRect titleFrame = self.titleItemView.frame;
-	titleFrame.origin.x = iconFrame.size.width + 6.f;
-	self.titleItemView.frame = titleFrame;
-
-	CGRect contentFrame = self.contentItemView.frame;
-	contentFrame.origin.x = titleFrame.origin.x + titleFrame.size.width + 4.f;
-	self.contentItemView.frame = contentFrame;
-
-	CGRect containerFrame = self.containerView.frame;
-	containerFrame.size.width = contentFrame.origin.x + contentFrame.size.width;
-	containerFrame.origin.x = MAX(0, ceil((self.frame.size.width - containerFrame.size.width) / 2));
-	self.containerView.frame = containerFrame;
+	%orig;
 }
 
 %new - (void)setIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
