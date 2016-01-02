@@ -68,8 +68,8 @@
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>Test typ-melding</string>
+	<string>Test typmelding</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>Test leesbewijs-melding</string>
+	<string>Test leesbewijsmelding</string>
 </dict>
 </plist>

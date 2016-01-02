@@ -7,7 +7,7 @@
 	<string>Berichten</string>
 
 	<key>SEND_TYPING_NOTIFICATIONS</key>
-	<string>Stuur typ-meldingen</string>
+	<string>Stuur typmeldingen</string>
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Sta wel of niet toe dat de ontvanger ziet dat u aan het typen bent.</string>
 
