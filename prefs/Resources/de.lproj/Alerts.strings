@@ -42,9 +42,9 @@
  
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
-	<string>aus</string>
+	<string>Aus</string>
 	<key>ALERT_TYPE_ICON</key>
-	<string>Nur Icon</string>
+	<string>Nur Symbol</string>
 	<key>ALERT_TYPE_OVERLAY</key>
 	<string>Statusleiste</string>
  
