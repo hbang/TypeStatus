@@ -57,8 +57,6 @@
 %end
 
 %new - (void)_typeStatus_init {
-	self.translatesAutoresizingMaskIntoConstraints = NO;
-
 	UIView *containerView = [[UIView alloc] init];
 	containerView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:containerView];
