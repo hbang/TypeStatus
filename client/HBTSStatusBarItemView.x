@@ -4,7 +4,6 @@
 %subclass HBTSStatusBarItemView : UIStatusBarItemView
 
 - (CGSize)intrinsicContentSize {
-	%log;
 	return self.contentsImage.image.size;
 }
 
