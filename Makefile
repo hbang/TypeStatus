@@ -8,12 +8,18 @@ ifeq ($(RESPRING),1)
 INSTALL_TARGET_PROCESSES += SpringBoard
 endif
 
+ifeq ($(IMAGENT),1)
+INSTALL_TARGET_PROCESSES += imagent
+endif
+
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-stage::
+ifneq ($(PACKAGE_BUILDNAME),debug)
 	mkdir -p $(THEOS_STAGING_DIR)/DEBIAN
 	cp postinst $(THEOS_STAGING_DIR)/DEBIAN
 	cp postinst $(THEOS_STAGING_DIR)/DEBIAN/postrm
+endif
 
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
 	cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
