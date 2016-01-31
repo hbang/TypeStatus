@@ -7,6 +7,44 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>detail</key>
+			<string>HBListItemsController</string>
+			<key>key</key>
+			<string>OverlayFormat</string>
+			<key>label</key>
+			<string>OVERLAY_FORMAT</string>
+			<key>validTitles</key>
+			<array>
+				<string>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</string>
+				<string>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</string>
+				<string>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</string>
+			</array>
+			<key>validTitlesShort</key>
+			<array>
+				<string>OVERLAY_FORMAT_NATURAL</string>
+				<string>OVERLAY_FORMAT_TRADITIONAL</string>
+				<string>OVERLAY_FORMAT_NAME_ONLY</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 			<key>id</key>
 			<string>AnimationTypeGroupCell</string>
 			<key>label</key>

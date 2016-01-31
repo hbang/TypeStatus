@@ -15,6 +15,12 @@ typedef NS_ENUM(NSUInteger, HBTSStatusBarAnimation) {
 	HBTSStatusBarAnimationFade
 };
 
+typedef NS_ENUM(NSUInteger, HBTSStatusBarFormat) {
+	HBTSStatusBarFormatNatural,
+	HBTSStatusBarFormatTraditional,
+	HBTSStatusBarFormatNameOnly
+};
+
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
 
@@ -29,8 +35,8 @@ static NSString *const kHBTSMessageSenderKey = @"Name";
 static NSString *const kHBTSMessageIsTypingKey = @"IsTyping";
 
 static NSString *const kHBTSMessageIconNameKey = @"IconName";
-static NSString *const kHBTSMessageTitleKey = @"Title";
 static NSString *const kHBTSMessageContentKey = @"Content";
+static NSString *const kHBTSMessageBoldRangeKey = @"BoldRange";
 static NSString *const kHBTSMessageDirectionKey = @"Direction";
 
 static NSString *const kHBTSMessageTimeoutKey = @"Duration";

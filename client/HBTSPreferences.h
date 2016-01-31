@@ -12,6 +12,7 @@
 
 @property (nonatomic, readonly) HBTSStatusBarAnimation overlayAnimation;
 @property (nonatomic, readonly) NSTimeInterval overlayDisplayDuration;
+@property (nonatomic, readonly) HBTSStatusBarFormat overlayFormat;
 
 @property (nonatomic, readonly) BOOL ignoreDNDSenders;
 

@@ -151,8 +151,12 @@
 	NSString *content = notification.userInfo[kHBTSMessageContentKey];
 	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
 
+	// deserialize the bold range array to NSRange
+	NSArray *boldRangeArray = notification.userInfo[kHBTSMessageBoldRangeKey];
+	NSRange boldRange = NSMakeRange(((NSNumber *)boldRangeArray[0]).unsignedIntegerValue, ((NSNumber *)boldRangeArray[1]).unsignedIntegerValue);
+
 	// show it! (or hide it)
-	[self _showWithIconName:iconName text:content boldRange:NSMakeRange(0, 3) animatingInDirection:direction timeout:timeout];
+	[self _showWithIconName:iconName text:content boldRange:boldRange animatingInDirection:direction timeout:timeout];
 }
 
 #pragma mark - Lock Screen Grabber

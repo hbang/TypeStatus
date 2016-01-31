@@ -24,29 +24,72 @@
 	return name;
 }
 
-+ (NSString *)titleForType:(HBTSStatusBarType)type {
++ (NSString *)textForType:(HBTSStatusBarType)type sender:(NSString *)sender boldRange:(out NSRange *)boldRange {
 	static NSBundle *PrefsBundle;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
 	});
 
-	NSString *text = @"";
+	HBTSPreferences *preferences = [%c(HBTSPreferences) sharedInstance];
 
-	switch (type) {
-		case HBTSStatusBarTypeTyping:
-			text = [PrefsBundle localizedStringForKey:@"TYPING" value:nil table:@"Localizable"];
-			break;
+	switch (preferences.overlayFormat) {
+		case HBTSStatusBarFormatNatural:
+		{
+			// natural string with name in bold
+			NSString *format = @"";
 
-		case HBTSStatusBarTypeRead:
-			text = [PrefsBundle localizedStringForKey:@"READ" value:nil table:@"Localizable"];
-			break;
+			switch (type) {
+				case HBTSStatusBarTypeTyping:
+					format = [PrefsBundle localizedStringForKey:@"TYPING_NATURAL" value:nil table:@"Localizable"];
+					break;
 
-		case HBTSStatusBarTypeTypingEnded:
+				case HBTSStatusBarTypeRead:
+					format = [PrefsBundle localizedStringForKey:@"READ_NATURAL" value:nil table:@"Localizable"];
+					break;
+
+				case HBTSStatusBarTypeTypingEnded:
+					break;
+			}
+
+			*boldRange = NSMakeRange([format rangeOfString:@"%@"].location, sender.length);
+
+			return [NSString stringWithFormat:format, sender];
 			break;
+		}
+
+		case HBTSStatusBarFormatTraditional:
+		{
+			// prefix Typing: or Read: in bold
+			NSString *prefix = @"";
+
+			switch (type) {
+				case HBTSStatusBarTypeTyping:
+					prefix = [PrefsBundle localizedStringForKey:@"TYPING" value:nil table:@"Localizable"];
+					break;
+
+				case HBTSStatusBarTypeRead:
+					prefix = [PrefsBundle localizedStringForKey:@"READ" value:nil table:@"Localizable"];
+					break;
+
+				case HBTSStatusBarTypeTypingEnded:
+					break;
+			}
+
+			*boldRange = NSMakeRange(0, prefix.length);
+
+			return [NSString stringWithFormat:@"%@ %@", prefix, sender];
+			break;
+		}
+
+		case HBTSStatusBarFormatNameOnly:
+		{
+			// just the sender name on its own
+			*boldRange = NSMakeRange(0, sender.length);
+			return sender;
+			break;
+		}
 	}
-
-	return text;
 }
 
 #pragma mark - Send
@@ -56,15 +99,31 @@
 }
 
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+	NSParameterAssert(title);
+
 	if (timeout == -1) {
 		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
 	}
 
+	NSString *text = nil;
+
+	if (content) {
+		text = [NSString stringWithFormat:@"%@ %@", title, content];
+	} else {
+		text = title;
+	}
+
+	[self sendAlertWithIconName:iconName text:text boldRange:NSMakeRange(0, title.length) animatingInDirection:direction timeout:timeout];
+}
+
++ (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+	NSParameterAssert(text);
+
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			kHBTSMessageIconNameKey: iconName ?: @"",
-			kHBTSMessageTitleKey: title ?: @"",
-			kHBTSMessageContentKey: content ?: @"",
+			kHBTSMessageContentKey: text,
+			kHBTSMessageBoldRangeKey: @[ @(boldRange.location), @(boldRange.length) ],
 			kHBTSMessageDirectionKey: @(direction),
 
 			kHBTSMessageTimeoutKey: @(timeout),
@@ -75,10 +134,13 @@
 
 + (void)sendAlertType:(HBTSStatusBarType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {
 	NSString *iconName = [self iconNameForType:type];
-	NSString *title = [self titleForType:type];
+
+	NSRange boldRange;
+	NSString *text = [self textForType:type sender:sender boldRange:&boldRange];
+
 	BOOL direction = type != HBTSStatusBarTypeTypingEnded;
 
-	[self sendAlertWithIconName:iconName title:title content:sender animatingInDirection:direction timeout:timeout];
+	[self sendAlertWithIconName:iconName text:text boldRange:boldRange animatingInDirection:direction timeout:timeout];
 }
 
 + (void)hide {
