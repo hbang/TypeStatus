@@ -63,15 +63,15 @@
 
 	self.containerView = containerView;
 
-	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:nil data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.iconItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.iconItemView];
 
-	self.titleItemView = [[%c(HBTSStatusBarTitleItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.titleItemView = [[%c(HBTSStatusBarTitleItemView) alloc] initWithItem:nil data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.titleItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.titleItemView];
 
-	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[[%c(UIStatusBarItem) alloc] init] autorelease] data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:nil data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.contentItemView];
 
