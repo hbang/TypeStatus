@@ -27,7 +27,7 @@
 				<string>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</string>
 				<string>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</string>
 			</array>
-			<key>validTitlesShort</key>
+			<key>shortTitles</key>
 			<array>
 				<string>OVERLAY_FORMAT_NATURAL</string>
 				<string>OVERLAY_FORMAT_TRADITIONAL</string>
