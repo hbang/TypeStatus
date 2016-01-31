@@ -2,6 +2,6 @@
 
 @interface HBTSStatusBarContentItemView : HBTSStatusBarItemView
 
-@property (nonatomic, retain) NSString *text;
+@property (nonatomic, retain) NSAttributedString *attributedString;
 
 @end

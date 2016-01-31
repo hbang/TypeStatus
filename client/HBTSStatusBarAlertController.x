@@ -21,8 +21,8 @@
 
 	BOOL _visible;
 	NSString *_currentIconName;
-	NSString *_currentTitle;
-	NSString *_currentContent;
+	NSString *_currentText;
+	NSRange _currentBoldRange;
 
 	BOOL _topGrabberWasHidden;
 	NSTimer *_timeoutTimer;
@@ -69,25 +69,32 @@
 #pragma mark - Show/Hide
 
 - (void)showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
+	if (content) {
+		[self showWithIconName:iconName text:[NSString stringWithFormat:@"%@ %@", title, content] boldRange:NSMakeRange(0, title.length)];
+	} else {
+		[self showWithIconName:iconName text:title boldRange:NSMakeRange(0, title.length)];
+	}
+}
+
+- (void)showWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
 	NSTimeInterval timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
-	[self _showWithIconName:iconName title:title content:content animatingInDirection:YES timeout:timeout];
+	[self _showWithIconName:iconName text:text boldRange:boldRange animatingInDirection:YES timeout:timeout];
 }
 
 - (void)hide {
-	[self _showWithIconName:nil title:nil content:nil animatingInDirection:NO timeout:5];
+	[self _showWithIconName:nil text:nil boldRange:NSMakeRange(0, 0) animatingInDirection:NO timeout:5];
 }
 
-- (void)_showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+- (void)_showWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	[self _setLockScreenGrabberVisible:!direction];
-	[self _announceAlertWithTitle:title content:content];
+	[self _announceAlertWithText:text];
 
 	[_currentIconName release];
-	[_currentTitle release];
-	[_currentContent release];
+	[_currentText release];
 
 	_currentIconName = [iconName copy];
-	_currentTitle = [title copy];
-	_currentContent = [content copy];
+	_currentText = [text copy];
+	_currentBoldRange = boldRange;
 
 	_visible = direction;
 
@@ -111,15 +118,19 @@
 }
 
 - (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
+	// if for some crazy reason we don’t have a foreground view, log that (it
+	// really shouldn’t happen…) and return
 	if (!statusBar._typeStatus_foregroundView) {
 		HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
 		return;
 	}
 
+	// animate that status bar!
 	[statusBar _typeStatus_changeToDirection:_visible animated:animated];
 
+	// if we’re animating to visible, set the new values
 	if (_visible) {
-		[statusBar._typeStatus_foregroundView setIconName:_currentIconName title:_currentTitle content:_currentContent];
+		[statusBar._typeStatus_foregroundView setIconName:_currentIconName text:_currentText boldRange:_currentBoldRange];
 	}
 }
 
@@ -137,33 +148,37 @@
 
 	// grab all the data
 	NSString *iconName = notification.userInfo[kHBTSMessageIconNameKey];
-	NSString *title = notification.userInfo[kHBTSMessageTitleKey];
 	NSString *content = notification.userInfo[kHBTSMessageContentKey];
 	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
 
 	// show it! (or hide it)
-	[self _showWithIconName:iconName title:title content:content animatingInDirection:direction timeout:timeout];
+	[self _showWithIconName:iconName text:content boldRange:NSMakeRange(0, 3) animatingInDirection:direction timeout:timeout];
 }
 
 #pragma mark - Lock Screen Grabber
 
 - (void)_setLockScreenGrabberVisible:(BOOL)state {
+	// we must be in springboard
 	if (!IN_SPRINGBOARD) {
 		return;
 	}
 
 	SBLockScreenManager *lockScreenManager = [%c(SBLockScreenManager) sharedInstance];
 
+	// if the device isn’t at the lock screen, do nothing
 	if (!lockScreenManager.isUILocked) {
 		return;
 	}
 
+	// grab the top grabber
 	SBLockScreenView *lockScreenView = (SBLockScreenView *)lockScreenManager.lockScreenViewController.view;
 	SBChevronView *topGrabberView = lockScreenView.topGrabberView;
 
 	if (state && !_topGrabberWasHidden) {
+		// if visible, and it wasn’t hidden before
 		topGrabberView.alpha = 1;
 	} else if (!state) {
+		// if hidden, store the state it was in before
 		_topGrabberWasHidden = topGrabberView.alpha == 0;
 		topGrabberView.alpha = 0;
 	}
@@ -171,12 +186,11 @@
 
 #pragma mark - Accessibility
 
-- (void)_announceAlertWithTitle:(NSString *)title content:(NSString *)content {
-	// we must be in springboard, we must have voiceover enabled, and we must at
-	// least have a title
-	if (IN_SPRINGBOARD && UIAccessibilityIsVoiceOverRunning() && title) {
+- (void)_announceAlertWithText:(NSString *)text {
+	// we must be in springboard, and we must have voiceover enabled
+	if (IN_SPRINGBOARD && UIAccessibilityIsVoiceOverRunning()) {
 		// post an announcement notification that voiceover will say
-		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:@"%@ %@", title, content ?: @""]);
+		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, text);
 	}
 }
 
@@ -184,6 +198,8 @@
 
 - (void)dealloc {
 	[_statusBars release];
+	[_currentIconName release];
+	[_currentText release];
 	[_timeoutTimer release];
 
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:HBTSClientSetStatusBarNotification object:nil];

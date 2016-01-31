@@ -1,6 +1,5 @@
 #import "HBTSStatusBarForegroundView.h"
 #import "HBTSStatusBarIconItemView.h"
-#import "HBTSStatusBarTitleItemView.h"
 #import "HBTSStatusBarContentItemView.h"
 #import <Cephei/UIView+CompactConstraint.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
@@ -13,7 +12,6 @@
 @property (nonatomic, retain) UIView *containerView;
 
 @property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
-@property (nonatomic, retain) HBTSStatusBarTitleItemView *titleItemView;
 @property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
 
 @end
@@ -25,7 +23,6 @@
 %property (nonatomic, retain) UIView *containerView;
 
 %property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
-%property (nonatomic, retain) HBTSStatusBarTitleItemView *titleItemView;
 %property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
 
 %group CarPlay
@@ -67,10 +64,6 @@
 	self.iconItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.iconItemView];
 
-	self.titleItemView = [[%c(HBTSStatusBarTitleItemView) alloc] initWithItem:nil data:nil actions:kNilOptions style:self.foregroundStyle];
-	self.titleItemView.translatesAutoresizingMaskIntoConstraints = NO;
-	[containerView addSubview:self.titleItemView];
-
 	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:nil data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.contentItemView];
@@ -85,13 +78,11 @@
 		@"self": self,
 		@"containerView": containerView,
 		@"iconItemView": self.iconItemView,
-		@"titleItemView": self.titleItemView,
 		@"contentItemView": self.contentItemView
 	};
 
 	NSDictionary <NSString *, NSNumber *> *metrics = @{
 		@"outerMargin": @8.f,
-		@"textMargin": @4.f,
 		@"iconMargin": @6.f
 	};
 
@@ -105,32 +96,41 @@
 		@"iconItemView.top = containerView.top",
 		@"iconItemView.bottom = containerView.bottom",
 
-		@"titleItemView.top = containerView.top",
-		@"titleItemView.bottom = containerView.bottom",
-
 		@"contentItemView.top = containerView.top",
 		@"contentItemView.bottom = containerView.bottom"
 	] metrics:metrics views:views];
 
 	NSString *constraints = isRTL
-		? @"H:|-outerMargin-[contentItemView]-textMargin-[titleItemView]-iconMargin-[iconItemView]-outerMargin-|"
-		: @"H:|-outerMargin-[iconItemView]-iconMargin-[titleItemView]-textMargin-[contentItemView]-outerMargin-|";
+		? @"H:|-outerMargin-[contentItemView]-iconMargin-[iconItemView]-outerMargin-|"
+		: @"H:|-outerMargin-[iconItemView]-iconMargin-[contentItemView]-outerMargin-|";
 
 	[containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:constraints options:kNilOptions metrics:metrics views:views]];
 }
 
 - (void)layoutSubviews {
 	[self.iconItemView updateContentsAndWidth];
-	[self.titleItemView updateContentsAndWidth];
 	[self.contentItemView updateContentsAndWidth];
 
 	%orig;
 }
 
-%new - (void)setIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
+%new - (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
 	self.iconItemView.iconName = [iconName copy];
-	self.titleItemView.text = [title copy];
-	self.contentItemView.text = [content copy];
+
+	// init an attributed string with the standard config
+	NSMutableAttributedString *attributedString = [[[NSMutableAttributedString alloc] initWithString:text attributes:@{
+		NSFontAttributeName: [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular],
+		NSForegroundColorAttributeName: self.foregroundStyle.tintColor
+	}] autorelease];
+
+	// as long as boldRange isn’t {0,0}, set the bold attributes
+	if (boldRange.location + boldRange.length != 0) {
+		[attributedString addAttributes:@{
+			NSFontAttributeName: [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleBold]
+		} range:boldRange];
+	}
+
+	self.contentItemView.attributedString = [attributedString copy];
 
 	[self setNeedsLayout];
 }
@@ -138,7 +138,6 @@
 - (void)dealloc {
 	[self.containerView release];
 	[self.iconItemView release];
-	[self.titleItemView release];
 	[self.contentItemView release];
 
 	%orig;

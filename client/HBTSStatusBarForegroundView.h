@@ -4,6 +4,6 @@
 
 @property (nonatomic, retain) UIStatusBarForegroundView *statusBarView;
 
-- (void)setIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content;
+- (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange;
 
 @end
