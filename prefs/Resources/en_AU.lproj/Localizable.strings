@@ -12,6 +12,6 @@
 	<key>TYPING_NATURAL</key>
 	<string>%@ is typing</string>
 	<key>READ_NATURAL</key>
-	<string>%@ read your message</string>
+	<string>Read by %@</string>
 </dict>
 </plist>
