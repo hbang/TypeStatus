@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Alerts</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>Alert Format</string>
+
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Natural</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Natural: Johnny Appleseed is typing</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Traditional</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Traditional: Typing: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>Name Only</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Name Only: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Animation</string>

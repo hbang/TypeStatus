@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Meldingen</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>Meldingsopmaak</string>
+
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Natuurlijk</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Natuurlijk: Johnny Appleseed is aan het typen</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Traditioneel</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Traditioneel: Aan het typen: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>Alleen naam</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Alleen naam: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Animatie</string>
