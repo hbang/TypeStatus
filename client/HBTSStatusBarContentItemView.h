@@ -1,6 +1,6 @@
-#import "HBTSStatusBarItemView.h"
+#import <UIKit/UIStatusBarItemView.h>
 
-@interface HBTSStatusBarContentItemView : HBTSStatusBarItemView
+@interface HBTSStatusBarContentItemView : UIStatusBarItemView
 
 @property (nonatomic, retain) NSAttributedString *attributedString;
 

@@ -3,7 +3,7 @@
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 
-%subclass HBTSStatusBarIconItemView : HBTSStatusBarItemView
+%subclass HBTSStatusBarIconItemView : UIStatusBarItemView
 
 %property (nonatomic, retain) NSString *iconName;
 
@@ -22,6 +22,15 @@
 - (void)dealloc {
 	[self.iconName release];
 	%orig;
+}
+
+- (CGSize)intrinsicContentSize {
+	return self.contentsImage.image.size;
+}
+
+- (void)updateContentsAndWidth {
+	%orig;
+	[self invalidateIntrinsicContentSize];
 }
 
 %end

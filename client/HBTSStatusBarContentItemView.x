@@ -3,7 +3,7 @@
 #import <UIKit/UIImage+Private.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 
-%subclass HBTSStatusBarContentItemView : HBTSStatusBarItemView
+%subclass HBTSStatusBarContentItemView : UIStatusBarItemView
 
 %property (nonatomic, retain) NSAttributedString *attributedString;
 
@@ -37,6 +37,16 @@
 - (void)dealloc {
 	[self.attributedString release];
 	%orig;
+}
+
+
+- (CGSize)intrinsicContentSize {
+	return self.contentsImage.image.size;
+}
+
+- (void)updateContentsAndWidth {
+	%orig;
+	[self invalidateIntrinsicContentSize];
 }
 
 %end
