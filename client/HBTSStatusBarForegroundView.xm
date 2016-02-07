@@ -115,6 +115,11 @@
 }
 
 %new - (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
+	if (![self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular] || ![self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleBold]) {
+		HBLogError(@"The fonts we are trying to use are not valid.");
+		return;
+	}
+
 	self.iconItemView.iconName = [iconName copy];
 
 	// init an attributed string with the standard config
