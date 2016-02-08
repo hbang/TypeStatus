@@ -7,12 +7,12 @@
 	<string>Meldinger</string>
 
 	<key>SEND_TYPING_NOTIFICATIONS</key>
-	<string>Send Skriver Beskjed</string>
+	<string>Send skriver beskjed</string>
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Tillat eller forhindre at mottaker kan se når du skriver.</string>
 
 	<key>SEND_READ_RECEIPTS</key>
-	<string>Send Lesebekreftelser</string>
+	<string>Send lesebekreftelser</string>
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Tillat eller forhindre at mottaker kan se når du har lest meldingen deres.</string>
 </dict>
