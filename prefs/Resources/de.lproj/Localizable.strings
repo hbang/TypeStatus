@@ -7,5 +7,11 @@
 	<string>Tippt:</string>
 	<key>READ</key>
 	<string>Gelesen:</string>
+
+	<!-- Strings used in status bar notifications to naturally describe the notification. -->
+	<key>TYPING_NATURAL</key>
+	<string>%@ schreibt</string>
+	<key>READ_NATURAL</key>
+	<string>Gelesen von %@</string>
 </dict>
 </plist>

@@ -5,6 +5,23 @@
 	<!-- Page title. -->
 	<key>ALERTS</key>
 	<string>Benachrichtigungen</string>
+
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>Benachrichtigungsformat</string>
+
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Natürlich</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Natürlich: Johnny Appleseed schreibt</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Traditionell</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Traditionell: Tippt: Johnny Appleseed</string>
+	<string>Nur Name</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Nur Name: Johnny Appleseed</string>
  
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>

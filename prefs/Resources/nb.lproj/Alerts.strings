@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Varslinger</string>
 
+	<!-- Button for choosing the alert format. -->
+    <key>OVERLAY_FORMAT</key>
+    <string>Varsel Format</string>
+
+    <!-- Options for the alert format. -->
+    <key>OVERLAY_FORMAT_NATURAL</key>
+    <string>Naturlig</string>
+    <key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+    <string>Naturlig: Johnny Appleseed skriver</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL</key>
+    <string>Tradisjonell</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+    <string>Tradisjonell: Skriver: Johnny Appleseed</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY</key>
+    <string>Kun navn</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+    <string>Kun navn: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Animasjon</string>

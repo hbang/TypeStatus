@@ -6,6 +6,20 @@
 	<key>ALERTS</key>
 	<string>התרעות</string>
 
+	<!-- Options for the alert format. -->
+    <key>OVERLAY_FORMAT_NATURAL</key>
+    <string>טבעי</string>
+    <key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+    <string>טבעי: פלוני אלמוני מקליד/ה</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL</key>
+    <string>מסורתי</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+    <string>מסורתי: מקליד/ה: פלוני אלמוני</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY</key>
+    <string>שם בלבד</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+    <string>שם בלבד: פלוני אלמוני</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>אנימציה</string>

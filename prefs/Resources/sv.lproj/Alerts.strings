@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Notiser</string>
 
+	<!-- Knapp för notifikations val. -->
+    <key>OVERLAY_FORMAT</key>
+    <string>Notifikationsformat</string>
+
+    <!-- Val för olika notifikationsformat. -->
+    <key>OVERLAY_FORMAT_NATURAL</key>
+    <string>Naturlig</string>
+    <key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+    <string>Naturlig: Johnny Appleseed skriver</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL</key>
+    <string>Traditionell</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+    <string>Traditionell: Skriver: Johnny Appleseed</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY</key>
+    <string>Enbart namn</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+    <string>Enbart namn: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Animation</string>
