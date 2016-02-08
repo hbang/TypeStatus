@@ -68,8 +68,8 @@
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>Testa Skrivnotiser</string>
+	<string>Testa skrivnotiser</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>Testa Läsmottagande notiser</string>
+	<string>Testa läst notiser</string>
 </dict>
 </plist>
