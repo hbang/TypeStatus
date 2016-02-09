@@ -1,6 +1,3 @@
 #!/bin/bash
 # relaunch imagent so we get injected into it
 launchctl stop com.apple.imagent
-
-# on iOS 9, duetexpertd freaks out when imagent restarts. restart it also
-launchctl stop com.apple.duetexpertd
