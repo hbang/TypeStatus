@@ -69,5 +69,4 @@
 	[_preferences setBool:enabled forKey:[self _keyForConversation:conversation type:@"Read"]];
 }
 
-
 @end
