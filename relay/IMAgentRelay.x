@@ -58,20 +58,6 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 %end
 
-#pragma mark - Block outgoing typing/read
-
-%hook IMDServiceSession
-
-- (void)sendMessage:(FZMessage *)message toChat:(id)chat style:(unsigned char)style {
-	if (message.isTypingMessage && ![conversationPreferences typingNotificationsEnabledForHandle:message.handle]) {
-		return;
-	}
-
-	%orig;
-}
-
-%end
-
 #pragma mark - Test functions
 
 void HBTSTestTyping() {
