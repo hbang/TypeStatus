@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Ειδοποιήσεις</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>Μορφή ειδοποίησης</string>
+
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Φυσικό</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Φυσικό: Ο χρήστης Johnny Appleseed γράφει</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Παραδοσιακό</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Παραδοσιακό: Πληκτρολόγηση: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>Μόνο Όνομα</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Μόνο Όνομα: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Ζωτικότητα</string>

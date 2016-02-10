@@ -7,5 +7,11 @@
 	<string>Đánh Chữ:</string>
 	<key>READ</key>
 	<string>Đã Đọc:</string>
+
+	<!-- Strings used in status bar notifications to naturally describe the notification. -->
+	<key>TYPING_NATURAL</key>
+	<string>%@ đang viết</string>
+	<key>READ_NATURAL</key>
+	<string>Đã Đọc Bởi %@</string>
 </dict>
 </plist>

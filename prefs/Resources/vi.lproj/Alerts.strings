@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Báo động</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>Các Kiểu Cảnh Báo</string>
+
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Tự Nhiên</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Tự Nhiên: Johnny Appleseed đang viết</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Truyền Thống</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Truyền Thống: Đánh Chữ: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>Chỉ hiện tên</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Chỉ hiện tên: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION</key>
 	<string>Hình Ảnh</string>

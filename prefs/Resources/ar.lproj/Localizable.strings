@@ -7,5 +7,11 @@
 	<string>يكتب:</string>
 	<key>READ</key>
 	<string>قرأ:</string>
+
+	<!-- Strings used in status bar notifications to naturally describe the notification. -->
+	<key>TYPING_NATURAL</key>
+	<string>%@ يكتب رسالة</string>
+	<key>READ_NATURAL</key>
+	<string>قرأ %@ رسالتك</string>
 </dict>
 </plist>
