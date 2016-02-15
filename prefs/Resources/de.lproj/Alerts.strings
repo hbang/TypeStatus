@@ -19,6 +19,7 @@
 	<string>Traditionell</string>
 	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
 	<string>Traditionell: Tippt: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME</key>
 	<string>Nur Name</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
 	<string>Nur Name: Johnny Appleseed</string>
