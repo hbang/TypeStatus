@@ -52,7 +52,17 @@
 					break;
 			}
 
-			*boldRange = NSMakeRange([format rangeOfString:@"%@"].location, sender.length);
+			NSUInteger location = [format rangeOfString:@"%@"].location;
+
+			// if the %@ wasn’t found, the string probably isn’t translated… this is
+			// pretty bad so we should probably just return what we have so the error
+			// is obvious
+			if (location == NSNotFound) {
+				*boldRange = NSMakeRange(0, 0);
+				return format;
+			}
+
+			*boldRange = NSMakeRange(location, sender.length);
 
 			return [NSString stringWithFormat:format, sender];
 			break;
