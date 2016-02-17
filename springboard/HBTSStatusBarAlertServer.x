@@ -6,6 +6,7 @@
 @implementation HBTSStatusBarAlertServer
 
 + (NSString *)iconNameForType:(HBTSStatusBarType)type {
+	// return the appropriate icon name
 	NSString *name = nil;
 
 	switch (type) {
@@ -105,16 +106,22 @@
 #pragma mark - Send
 
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
+	// for backwards compat: pass through to the new method
 	[self sendAlertWithIconName:iconName title:title content:content animatingInDirection:YES timeout:-1];
-}
+zz}
 
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
-	NSParameterAssert(title);
+	// if this is a show command, ensure no arguments are missing
+	if (direction) {
+		NSParameterAssert(title);
+	}
 
+	// if the timeout is -1, replace it with the user's specified duration
 	if (timeout == -1) {
 		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
 	}
 
+	// create a singular string with an NSRange for the title/bold part
 	NSString *text = nil;
 
 	if (content) {
@@ -123,12 +130,17 @@
 		text = title;
 	}
 
+	// pass through to the main sending method
 	[self sendAlertWithIconName:iconName text:text boldRange:NSMakeRange(0, title.length) animatingInDirection:direction timeout:timeout];
 }
 
 + (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
-	NSParameterAssert(text);
+	// if this is a show command, ensure no arguments are missing
+	if (direction) {
+		NSParameterAssert(text);
+	}
 
+	// send the notification
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			kHBTSMessageIconNameKey: iconName ?: @"",
@@ -143,6 +155,8 @@
 }
 
 + (void)sendAlertType:(HBTSStatusBarType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {
+	// grab all data needed to turn a typestatus specific alert into a generic
+	// alert, and then pass it through
 	NSString *iconName = [self iconNameForType:type];
 
 	NSRange boldRange;
@@ -154,6 +168,7 @@
 }
 
 + (void)hide {
+	// a hide message is just sending nil values with the direction set to NO (hide)
 	[self sendAlertWithIconName:nil title:nil content:nil animatingInDirection:NO timeout:0];
 }
 
