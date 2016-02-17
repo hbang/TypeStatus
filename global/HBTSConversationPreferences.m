@@ -41,22 +41,22 @@
 
 - (BOOL)typingNotificationsEnabledForConversation:(CKConversation *)conversation {
 	NSString *key = [self _keyForConversation:conversation type:@"Typing"];
-	return [_preferences boolForKey:key default:YES];
+	return key ? [_preferences boolForKey:key default:YES] : YES;
 }
 
 - (BOOL)readReceiptsEnabledForConversation:(CKConversation *)conversation {
 	NSString *key = [self _keyForConversation:conversation type:@"Read"];
-	return [_preferences boolForKey:key default:self._readReceiptsEnabled];
+	return key ? [_preferences boolForKey:key default:self._readReceiptsEnabled] : self._readReceiptsEnabled;
 }
 
 - (BOOL)typingNotificationsEnabledForHandle:(NSString *)handle {
 	NSString *key = [self _keyForHandle:handle type:@"Typing"];
-	return [_preferences boolForKey:key default:YES];
+	return key ? [_preferences boolForKey:key default:YES] : YES;
 }
 
 - (BOOL)readReceiptsEnabledForHandle:(NSString *)handle {
 	NSString *key = [self _keyForHandle:handle type:@"Read"];
-	return [_preferences boolForKey:key default:self._readReceiptsEnabled];
+	return key ? [_preferences boolForKey:key default:self._readReceiptsEnabled] : self._readReceiptsEnabled;
 }
 
 #pragma mark - Setters
