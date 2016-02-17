@@ -25,7 +25,6 @@ HBTSConversationPreferences *preferences = [[HBTSConversationPreferences alloc] 
 %hook IMChatRegistry
 
 - (void)_chat_sendReadReceiptForAllMessages:(IMChat *)chat {
-	%log([preferences readReceiptsEnabledForHandle:chat.recipient.ID]?@"1":@"0");
 	// if read receipts are enabled, we can call through to the original method
 	if ([preferences readReceiptsEnabledForHandle:chat.recipient.ID]) {
 		%orig;
