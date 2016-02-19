@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Isyarat</string>
 
+	<!-- Button for choosing the alert format. -->
+    <key>OVERLAY_FORMAT</key>
+    <string>Format Untuk Isyarat</string>
+
+    <!-- Options for the alert format. -->
+    <key>OVERLAY_FORMAT_NATURAL</key>
+    <string>Normal</string>
+    <key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+    <string>Normal: Johnny Appleseed sedang menulis</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL</key>
+    <string>Biasa</string>
+    <key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+    <string>Biasa: Menaip: Johnny Appleseed</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY</key>
+    <string>Nama Sahaja</string>
+    <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+    <string>Nama Sahaja: Johnny Appleseed</string
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Animasi</string>
