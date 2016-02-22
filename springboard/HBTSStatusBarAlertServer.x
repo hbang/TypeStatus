@@ -108,17 +108,12 @@
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
 	// for backwards compat: pass through to the new method
 	[self sendAlertWithIconName:iconName title:title content:content animatingInDirection:YES timeout:-1];
-zz}
+}
 
 + (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	// if this is a show command, ensure no arguments are missing
 	if (direction) {
 		NSParameterAssert(title);
-	}
-
-	// if the timeout is -1, replace it with the user's specified duration
-	if (timeout == -1) {
-		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
 	}
 
 	// create a singular string with an NSRange for the title/bold part
@@ -138,6 +133,11 @@ zz}
 	// if this is a show command, ensure no arguments are missing
 	if (direction) {
 		NSParameterAssert(text);
+	}
+
+	// if the timeout is -1, replace it with the user's specified duration
+	if (timeout == -1) {
+		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
 	}
 
 	// send the notification
