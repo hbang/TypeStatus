@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>getter</key>
+			<string></string>
+			<key>setter</key>
+			<string></string>
+			<key>label</key>
+			<string>SEND_TYPING_NOTIFICATIONS</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus.conversationprefs/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>DISABLE_READ_RECEIPTS_EXPLANATION</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>getter</key>
+			<string></string>
+			<key>setter</key>
+			<string></string>
+			<key>label</key>
+			<string>SEND_READ_RECEIPTS</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus.conversationprefs/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>removePerson</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>isDestructive</key>
+			<true/>
+			<key>label</key>
+			<string>REMOVE</string>
+		</dict>
+	</array>
+</dict>
+</plist>
