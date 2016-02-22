@@ -188,3 +188,10 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 }
 
 %end
+
+%ctor {
+	// only initialise these hooks if we’re allowed to
+	if ([HBTSConversationPreferences shouldEnable]) {
+		%init;
+	}
+}

@@ -6,6 +6,14 @@
 	HBPreferences *_preferences;
 }
 
+#pragma mark - Should be enabled
+
++ (BOOL)shouldEnable {
+	return ![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"];
+}
+
+#pragma mark - NSObject
+
 - (instancetype)init {
 	self = [super init];
 

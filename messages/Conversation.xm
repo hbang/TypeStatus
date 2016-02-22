@@ -32,3 +32,10 @@ HBTSConversationPreferences *preferences = [[HBTSConversationPreferences alloc] 
 }
 
 %end
+
+%ctor {
+	// only initialise these hooks if we’re allowed to
+	if ([HBTSConversationPreferences shouldEnable]) {
+		%init;
+	}
+}
