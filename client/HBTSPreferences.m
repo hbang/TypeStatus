@@ -34,7 +34,9 @@
 			@"ReadIcon": @NO,
 
 			@"OverlaySlide": @YES,
-			@"OverlayFade": @NO
+			@"OverlayFade": @NO,
+
+			@"MessagesEnabled": @YES
 		}];
 
 		if (![_preferences objectForKey:@"OverlayAnimation"]) {
@@ -56,6 +58,8 @@
 		[_preferences registerInteger:(NSInteger *)&_overlayFormat default:HBTSStatusBarFormatNatural forKey:@"OverlayFormat"];
 
 		[_preferences registerBool:&_ignoreDNDSenders default:YES forKey:@"IgnoreDNDSenders"];
+
+		[_preferences registerBool:&_messagesEnabled default:YES forKey:@"MessagesEnabled"];
 	}
 
 	return self;

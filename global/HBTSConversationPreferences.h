@@ -2,6 +2,7 @@
 
 @interface HBTSConversationPreferences : NSObject
 
++ (BOOL)isAvailable;
 + (BOOL)shouldEnable;
 
 - (BOOL)typingNotificationsEnabledForConversation:(CKConversation *)conversation;

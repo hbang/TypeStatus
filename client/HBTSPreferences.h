@@ -16,4 +16,6 @@
 
 @property (nonatomic, readonly) BOOL ignoreDNDSenders;
 
+@property (nonatomic, readonly) BOOL messagesEnabled;
+
 @end

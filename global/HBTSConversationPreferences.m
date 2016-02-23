@@ -1,4 +1,5 @@
 #import "HBTSConversationPreferences.h"
+#import "HBTSPreferences.h"
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKConversation.h>
 
@@ -8,8 +9,20 @@
 
 #pragma mark - Should be enabled
 
++ (BOOL)isAvailable {
+	static BOOL hasConflict = NO;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		// we don't really want to do anything if someone else is already doing it
+		hasConflict = [[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"];
+	});
+
+	return !hasConflict;
+}
+
 + (BOOL)shouldEnable {
-	return ![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"];
+	// if there's a conflict, return NO. otherwise, return whether the setting is enabled
+	return [self isAvailable] && [%c(HBTSPreferences) sharedInstance].messagesEnabled;
 }
 
 #pragma mark - NSObject
