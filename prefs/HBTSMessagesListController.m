@@ -10,23 +10,41 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[self _disableIfNeeded];
 	[self _insertPeople];
 }
 
 - (void)reloadSpecifiers {
 	[super reloadSpecifiers];
+	[self _disableIfNeeded];
 	[self _insertPeople];
 }
 
-- (void)_insertPeople {
-	[self insertSpecifiers:specifiers ]
+#pragma mark - Setup
+
+- (void)_disableIfNeeded {
+	// if conversation prefs are available
+	if ([HBTSConversationPreferences isAvailable]) {
+		// remove the not available text
+		[self removeSpecifierID:@"NotAvailable"];
+	} else {
+		// loop over all specifiers
+		for (PSSpecifier *specifier in self.specifiers) {
+			// disable them all
+			specifier.properties[PSEnabledKey] = @NO;
+		}
+	}
 }
 
-ConversationPrefsList
+- (void)_insertPeople {
+	// [self insertSpecifiers:specifiers ] ...
+	// ConversationPrefsList
+}
 
 #pragma mark - Callbacks
 
 - (void)addPerson {
+	// TODO: can this be autoreleased?
 	ABPeoplePickerNavigationController *pickerController = [[ABPeoplePickerNavigationController alloc] init];
 	pickerController.peoplePickerDelegate = self;
 	pickerController.modalPresentationStyle = UIModalPresentationFormSheet;
