@@ -22,7 +22,7 @@
 
 + (BOOL)shouldEnable {
 	// if there's a conflict, return NO. otherwise, return whether the setting is enabled
-	return [self isAvailable] && [%c(HBTSPreferences) sharedInstance].messagesEnabled;
+	return [self isAvailable] && ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).messagesEnabled;
 }
 
 #pragma mark - NSObject

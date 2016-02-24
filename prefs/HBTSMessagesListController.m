@@ -1,4 +1,6 @@
 #import "HBTSMessagesListController.h"
+#import "../global/HBTSConversationPreferences.h"
+#import <Preferences/PSSpecifier.h>
 
 @implementation HBTSMessagesListController
 
