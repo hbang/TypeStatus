@@ -6,6 +6,23 @@
 	<key>ALERTS</key>
 	<string>Upozornenia</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>Formát upozornenia</string>
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Naturálny</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Naturálny : Johnny Appleseed píše</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Tradičný</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Tradičný  : Píše : Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>Iba meno</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Iba meno : Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Animácia</string>

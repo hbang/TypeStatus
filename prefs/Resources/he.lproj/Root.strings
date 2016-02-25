@@ -14,6 +14,10 @@
 	<key>MESSAGES</key>
 	<string>הודעות</string>
 
+	<!-- Messages-related features button. -->
+	<key>MESSAGES</key>
+	<string>הודעות</string>
+
 	<!-- TypeStatus Plus (Do not translate as it's a name)-->
 	<key>TYPESTATUS_PLUS</key>
 	<string>TypeStatus Plus</string>

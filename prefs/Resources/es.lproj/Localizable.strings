@@ -7,5 +7,11 @@
 	<string>Escribiendo:</string>
 	<key>READ</key>
 	<string>Leído:</string>
+
+	<!-- Strings used in status bar notifications to naturally describe the notification. -->
+	<key>TYPING_NATURAL</key>
+	<string>%@ está escribiendo</string>
+	<key>READ_NATURAL</key>
+	<string>%@ leyó tu mensaje</string>
 </dict>
 </plist>
