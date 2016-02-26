@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Alerte</string>
 
+    <!-- Button for choosing the alert format. -->
+ 	<key>OVERLAY_FORMAT</key>
+ 	<string>Formatul alertei</string>
+ 	
+ 	<!-- Options for the alert format. -->
+ 	<key>OVERLAY_FORMAT_NATURAL</key>
+ 	<string>Natural</string>
+ 	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+ 	<string>Natural: Johnny Appleseed scrie</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+ 	<string>Traditional</string>
+ 	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+ 	<string>Traditional: Scrie: Johnny Appleseed</string>
+ 	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+ 	<string>Numai Numele</string>
+ 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+ 	<string>Numai Numele: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Animatie</string>
