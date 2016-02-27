@@ -6,14 +6,28 @@
 	<key>MESSAGES</key>
 	<string>信息</string>
 
-	<key>SEND_TYPING_NOTIFICATIONS</key>
-	<string>传送打字中通知</string>
-	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
-	<string>允许或拒绝发信人看到您正在打字。</string>
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>在信息程序中, 在会话中点击“详情” 按钮来访问这些设置.</string>
 
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>这个功能因为于SelectiveReading冲突所以不可用.</string>
+
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
+	<key>SEND_TYPING_NOTIFICATIONS</key>
+	<string>发送输入通知</string>
+
+	<!-- Explanation of the typing switch. -->
+	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
+	<string>同意或者禁止接受者看到你的输入状态.</string>
+
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
-	<string>传送已读回执</string>
+	<string>发送已读回执</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
-	<string>允许或拒绝发信人看到您正在检视他的讯息。</string>
+	<string>同意或禁止接受者看你的信息回执状态</string>
 </dict>
 </plist>

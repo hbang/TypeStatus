@@ -4,9 +4,27 @@
 <dict>
 	<!-- Page title. -->
 	<key>ALERTS</key>
-	<string>警示</string>
+	<string>提示</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>提示格式</string>
+	
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>正常</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>自然: Johnny Appleseed 正在输入</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>传统</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>传统: 输入中: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>仅显示姓名</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>仅姓名: Johnny Appleseed</string>
 	<!-- Header for the animation type segmented control. -->
+	
 	<key>ANIMATION_TYPE</key>
 	<string>动画</string>
 
@@ -71,5 +89,13 @@
 	<string>测试打字警示</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>测试已读警示</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>忽略静音/被屏蔽的发送者</string>
+
+	<!-- Explanation under the ignore muted/blocked senders switch. -->
+	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>如果你静音或者屏蔽了某个人, TypeStatus 将不会显示来自他们的输入或阅读状态.</string>
 </dict>
 </plist>

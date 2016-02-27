@@ -4,11 +4,11 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-	<string>感谢 TypeStatus 让我的 %@ 状态栏显示发信人打字与读取状态！ 💬</string>
+	<string>感谢 TypeStatus 让我的 %@ 状态栏显示发信人打字与接收状态！ 💬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
-	<string>警示</string>
+	<string>提示</string>
 
 	<!-- Messages-related features button. -->
 	<key>MESSAGES</key>
