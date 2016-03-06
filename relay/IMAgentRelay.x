@@ -1,11 +1,8 @@
-#import "HBTSConversationPreferences.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMDaemonCore/IMDMessageStore.h>
 #import <IMDaemonCore/IMDServiceSession.h>
 #import <IMFoundation/FZMessage.h>
 #import <version.h>
-
-HBTSConversationPreferences *conversationPreferences;
 
 #pragma mark - Communication with SpringBoard
 
@@ -71,8 +68,6 @@ void HBTSTestRead() {
 #pragma mark - Constructor
 
 %ctor {
-	conversationPreferences = [[HBTSConversationPreferences alloc] init];
-
 	%init;
 
 	if (IS_IOS_OR_NEWER(iOS_9_0)) {
