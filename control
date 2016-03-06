@@ -1,10 +1,10 @@
 Package: ws.hbang.typestatus2
 Name: TypeStatus 2 (iOS 7 – 9)
-Depends: firmware (>= 7.0), firmware (<< 9.2), mobilesubstrate, preferenceloader, ws.hbang.common (>= 1.7)
+Depends: firmware (>= 7.0), firmware (<< 9.2), mobilesubstrate, preferenceloader, ws.hbang.common (>= 1.10)
 Recommends: libstatusbar (>= 1:0.9.9.0-1) | libstatusbar8 (>= 1337-99)
 Conflicts: ws.hbang.typestatus
 Replaces: ws.hbang.typestatus
-Version: 2.1~beta4
+Version: 2.1~beta5
 Architecture: iphoneos-arm
 Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <support@hbang.ws>
