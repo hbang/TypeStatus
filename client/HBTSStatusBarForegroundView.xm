@@ -68,12 +68,6 @@
 	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.contentItemView];
 
-	static BOOL isRTL;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		isRTL = [NSLocale characterDirectionForLanguage:[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]] == NSLocaleLanguageDirectionRightToLeft;
-	});
-
 	NSDictionary <NSString *, UIView *> *views = @{
 		@"self": self,
 		@"containerView": containerView,
@@ -100,11 +94,7 @@
 		@"contentItemView.bottom = containerView.bottom"
 	] metrics:metrics views:views];
 
-	NSString *constraints = isRTL
-		? @"H:|-outerMargin-[contentItemView]-iconMargin-[iconItemView]-outerMargin-|"
-		: @"H:|-outerMargin-[iconItemView]-iconMargin-[contentItemView]-outerMargin-|";
-
-	[containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:constraints options:kNilOptions metrics:metrics views:views]];
+	[containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-outerMargin-[iconItemView]-iconMargin-[contentItemView]-outerMargin-|" options:kNilOptions metrics:metrics views:views]];
 }
 
 - (void)layoutSubviews {
