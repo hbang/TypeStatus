@@ -3,6 +3,7 @@
 #import "HBTSStatusBarContentItemView.h"
 #import <Cephei/UIView+CompactConstraint.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
+#import <UIKit/UIStatusBarItem.h>
 #import <version.h>
 
 @interface HBTSStatusBarForegroundView ()
@@ -60,11 +61,12 @@
 
 	self.containerView = containerView;
 
-	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:nil data:nil actions:kNilOptions style:self.foregroundStyle];
+	// these UIStatusBarItems leak, but there’s not much we can do about that
+	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.iconItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.iconItemView];
 
-	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:nil data:nil actions:kNilOptions style:self.foregroundStyle];
+	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[containerView addSubview:self.contentItemView];
 
