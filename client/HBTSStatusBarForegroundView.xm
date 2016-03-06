@@ -10,8 +10,6 @@
 
 - (void)_typeStatus_init;
 
-@property (nonatomic, retain) UIView *containerView;
-
 @property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
 @property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
 
@@ -20,8 +18,6 @@
 %subclass HBTSStatusBarForegroundView : UIStatusBarForegroundView
 
 %property (nonatomic, retain) UIStatusBarForegroundView *statusBarView;
-
-%property (nonatomic, retain) UIView *containerView;
 
 %property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
 %property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
@@ -55,11 +51,9 @@
 %end
 
 %new - (void)_typeStatus_init {
-	UIView *containerView = [[UIView alloc] init];
+	UIView *containerView = [[[UIView alloc] init] autorelease];
 	containerView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:containerView];
-
-	self.containerView = containerView;
 
 	// these UIStatusBarItems leak, but there’s not much we can do about that
 	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
@@ -133,7 +127,6 @@
 }
 
 - (void)dealloc {
-	[self.containerView release];
 	[self.iconItemView release];
 	[self.contentItemView release];
 
