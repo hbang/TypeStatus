@@ -8,6 +8,10 @@
 		<array>
 			<string>com.apple.chatkit</string>
 		</array>
+		<key>CoreFoundationVersion</key>
+		<array>
+			<real>1240</real>
+		</array>
 	</dict>
 </dict>
 </plist>

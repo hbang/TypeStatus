@@ -27,6 +27,13 @@
 			<true/>
 			<key>label</key>
 			<string>MESSAGES</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>1240</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>cell</key>

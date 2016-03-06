@@ -2,6 +2,7 @@
 #import "HBTSPreferences.h"
 #import <Cephei/HBPreferences.h>
 #import <ChatKit/CKConversation.h>
+#import <version.h>
 
 @implementation HBTSConversationPreferences {
 	HBPreferences *_preferences;
@@ -17,7 +18,8 @@
 		hasConflict = [[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"];
 	});
 
-	return !hasConflict;
+	// we also need iOS 9.0+
+	return !hasConflict && IS_IOS_OR_NEWER(iOS_9_0);
 }
 
 + (BOOL)shouldEnable {
