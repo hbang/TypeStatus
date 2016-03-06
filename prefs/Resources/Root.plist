@@ -18,7 +18,7 @@
 			<key>label</key>
 			<string>ALERTS</string>
 		</dict>
-		<!--dict>
+		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>detail</key>
@@ -27,7 +27,7 @@
 			<true/>
 			<key>label</key>
 			<string>MESSAGES</string>
-		</dict-->
+		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -35,10 +35,10 @@
 			<string>TypeStatusPlusGroup</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSLinkCell</string>
 			<key>bundle</key>
 			<string>TypeStatusPlus</string>
+			<key>cell</key>
+			<string>PSLinkCell</string>
 			<key>detail</key>
 			<string>HBTSPlusRootListController</string>
 			<key>icon</key>
