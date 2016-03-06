@@ -29,5 +29,9 @@
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Allow or prevent the receiver from seeing when you read their messages.</string>
+
+	<!-- Button that allows another person to be added to the list. -->
+	<key>ADD_PERSON</key>
+	<string>Add New…</string>
 </dict>
 </plist>

@@ -6,14 +6,32 @@
 	<key>MESSAGES</key>
 	<string>Messages</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>In the Messages app, tap the “Details” button in a conversation to access these settings.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>This feature is unavailable because it conflicts with SelectiveReading.</string>
+
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Send Typing Notifications</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Allow or prevent the receiver from seeing when you’re typing.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Send Read Receipts</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Allow or prevent the receiver from seeing when you read their messages.</string>
+
+	<!-- Button that allows another person to be added to the list. -->
+	<key>ADD_PERSON</key>
+	<string>Add New…</string>
 </dict>
 </plist>
