@@ -39,6 +39,10 @@
 			<string>ConversationPrefsList</string>
 		</dict>
 		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
 			<key>action</key>
 			<string>addPerson</string>
 			<key>cell</key>
