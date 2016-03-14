@@ -47,16 +47,25 @@
 
 - (void)addPerson {
 	// TODO: can this be autoreleased?
-	ABPeoplePickerNavigationController *pickerController = [[ABPeoplePickerNavigationController alloc] init];
-	pickerController.peoplePickerDelegate = self;
+	CNContactPickerViewController *pickerController = [[[CNContactPickerViewController alloc] init] autorelease];
+	pickerController.delegate = self;
+	pickerController.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"phoneNumbers.@count > 0 OR emailAddresses.@count > 0"];
 	pickerController.modalPresentationStyle = UIModalPresentationFormSheet;
 	[self.navigationController presentViewController:pickerController animated:YES completion:nil];
 }
 
-#pragma mark - ABPeoplePickerNavigationControllerDelegate
+#pragma mark - CNContactPickerDelegate
 
-- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person {
-	HBLogDebug(@"peoplePickerNavigationController:%@ didSelectPerson:%@",peoplePicker,person);
+- (void)contactPicker:(CNContactPickerViewController *)contactPicker didSelectContact:(CNContact *)contact {
+	NSMutableArray *values = [NSMutableArray array];
+
+	for (CNLabeledValue<CNPhoneNumber *> *value in contact.phoneNumbers) {
+		[values addObject:value.value.stringValue];
+	}
+
+	for (CNLabeledValue<NSString *> *value in contact.emailAddresses) {
+		[values addObject:value.value];
+	}
 }
 
 @end

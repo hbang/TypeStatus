@@ -1,6 +1,7 @@
-@import AddressBookUI;
+@import Contacts;
+@import ContactsUI;
 #import <CepheiPrefs/HBListController.h>
 
-@interface HBTSMessagesListController : HBListController <ABPeoplePickerNavigationControllerDelegate>
+@interface HBTSMessagesListController : HBListController <CNContactPickerDelegate>
 
 @end
