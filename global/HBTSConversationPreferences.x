@@ -62,6 +62,10 @@
 
 #pragma mark - Getters
 
+- (NSDictionary *)dictionaryRepresentation {
+	return _preferences.dictionaryRepresentation;
+}
+
 - (BOOL)typingNotificationsEnabledForConversation:(CKConversation *)conversation {
 	NSString *key = [self _keyForConversation:conversation type:@"Typing"];
 	return key ? [_preferences boolForKey:key default:YES] : YES;

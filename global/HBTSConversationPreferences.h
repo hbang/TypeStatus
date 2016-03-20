@@ -5,6 +5,8 @@
 + (BOOL)isAvailable;
 + (BOOL)shouldEnable;
 
+- (NSDictionary *)dictionaryRepresentation;
+
 - (BOOL)typingNotificationsEnabledForConversation:(CKConversation *)conversation;
 - (BOOL)readReceiptsEnabledForConversation:(CKConversation *)conversation;
 
