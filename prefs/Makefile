@@ -9,7 +9,7 @@ TypeStatus_FRAMEWORKS = CoreGraphics UIKit
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
 TypeStatus_EXTRA_FRAMEWORKS = Cephei CepheiPrefs
 TypeStatus_WEAK_FRAMEWORKS = Contacts ContactsUI
-TypeStatus_CFLAGS = -I../global -include ../global/Global.h
+TypeStatus_CFLAGS = -I../global -include ../global/Global.h -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

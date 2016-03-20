@@ -97,13 +97,4 @@
 	HBLogDebug(@"commitEditingStyle %@", indexPath);
 }
 
-#pragma mark - Memory management
-
-- (void)dealloc {
-	[_editBarButtonItem release];
-	[_doneBarButtonItem release];
-
-	[super dealloc];
-}
-
 @end

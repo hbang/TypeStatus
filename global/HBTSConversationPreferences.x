@@ -92,4 +92,15 @@
 	[_preferences setBool:enabled forKey:[self _keyForConversation:conversation type:@"Read"]];
 }
 
+#pragma mark - Memory management
+
+// some of TypeStatus uses ARC. only implement dealloc when ARC is off
+#if !__has_feature(objc_arc)
+- (void)dealloc {
+	[_preferences release];
+
+	[super dealloc];
+}
+#endif
+
 @end
