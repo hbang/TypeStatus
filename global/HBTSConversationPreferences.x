@@ -96,6 +96,26 @@
 	[_preferences setBool:enabled forKey:[self _keyForConversation:conversation type:@"Read"]];
 }
 
+- (void)setTypingNotificationsEnabled:(BOOL)enabled forHandle:(NSString *)handle {
+	[_preferences setBool:enabled forKey:[self _keyForHandle:handle type:@"Typing"]];
+}
+
+- (void)setReadReceiptsEnabled:(BOOL)enabled forHandle:(NSString *)handle {
+	[_preferences setBool:enabled forKey:[self _keyForHandle:handle type:@"Read"]];
+}
+
+#pragma mark - Add/Remove
+
+- (void)addHandle:(NSString *)handle {
+	[self setTypingNotificationsEnabled:YES forHandle:handle];
+	[self setReadReceiptsEnabled:self._readReceiptsEnabled forHandle:handle];
+}
+
+- (void)removeHandle:(NSString *)handle {
+	[_preferences removeObjectForKey:[self _keyForHandle:handle type:@"Typing"]];
+	[_preferences removeObjectForKey:[self _keyForHandle:handle type:@"Read"]];
+}
+
 #pragma mark - Memory management
 
 // some of TypeStatus uses ARC. only implement dealloc when ARC is off

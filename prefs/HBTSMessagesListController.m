@@ -1,6 +1,9 @@
 #import "HBTSMessagesListController.h"
+#import "HBTSContactHelper.h"
+#import "HBTSConversationPreferences.h"
 #import "HBTSMessagesPersonListController.h"
-#import "../global/HBTSConversationPreferences.h"
+#import "HBTSPersonTableCell.h"
+#import <Contacts/CNPhoneNumber+Private.h>
 #import <Preferences/PSSpecifier.h>
 
 @implementation HBTSMessagesListController {
@@ -71,8 +74,13 @@
 
 	// loop over the handles we got
 	for (NSString *handle in items) {
+		// get the corresponding name
+		NSString *name = [HBTSContactHelper nameForHandle:handle];
+
 		// create a specifier for it
-		PSSpecifier *specifier = [PSSpecifier preferenceSpecifierNamed:handle target:self set:nil get:nil detail:HBTSMessagesPersonListController.class cell:PSLinkCell edit:Nil];
+		PSSpecifier *specifier = [PSSpecifier preferenceSpecifierNamed:name target:self set:nil get:nil detail:HBTSMessagesPersonListController.class cell:PSLinkCell edit:Nil];
+		specifier.properties[PSCellClassKey] = HBTSPersonTableCell.class;
+		specifier.properties[kHBTSHandleKey] = handle;
 
 		// add it to the array
 		[newSpecifiers addObject:specifier];
@@ -82,7 +90,7 @@
 	_items = [items copy];
 
 	// add the specifiers
-	[self insertContiguousSpecifiers:newSpecifiers afterSpecifierID:@"PeopleGroupCell" animated:YES];
+	[self insertContiguousSpecifiers:newSpecifiers afterSpecifierID:@"PeopleGroupCell" animated:NO];
 }
 
 #pragma mark - Callbacks
@@ -110,15 +118,25 @@
 
 - (void)contactPicker:(CNContactPickerViewController *)contactPicker didSelectContact:(CNContact *)contact {
 	// merge everything we need into a single array
-	NSMutableArray *values = [NSMutableArray array];
+	NSMutableArray *handles = [NSMutableArray array];
 
 	for (CNLabeledValue<CNPhoneNumber *> *value in contact.phoneNumbers) {
-		[values addObject:value.value.stringValue];
+		[handles addObject:value.value.unformattedInternationalStringValue];
 	}
 
 	for (CNLabeledValue<NSString *> *value in contact.emailAddresses) {
-		[values addObject:value.value];
+		[handles addObject:value.value];
 	}
+
+	// now loop over each of those
+	for (NSString *handle in handles) {
+		if (![_items containsObject:handle]) {
+			[_preferences addHandle:handle];
+		}
+	}
+
+	// now reload all specifiers
+	[self reloadSpecifiers];
 }
 
 #pragma mark - Table View

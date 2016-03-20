@@ -16,4 +16,10 @@
 - (void)setTypingNotificationsEnabled:(BOOL)enabled forConversation:(CKConversation *)conversation;
 - (void)setReadReceiptsEnabled:(BOOL)enabled forConversation:(CKConversation *)conversation;
 
+- (void)setTypingNotificationsEnabled:(BOOL)enabled forHandle:(NSString *)handle;
+- (void)setReadReceiptsEnabled:(BOOL)enabled forHandle:(NSString *)handle;
+
+- (void)addHandle:(NSString *)handle;
+- (void)removeHandle:(NSString *)handle;
+
 @end

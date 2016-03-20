@@ -1,3 +1,15 @@
+#pragma mark - ARC macros
+
+#if __has_feature(objc_arc)
+	#define RETAIN(thing) thing
+	#define AUTORELEASE(thing) thing
+#else
+	#define RETAIN(thing) [thing retain]
+	#define AUTORELEASE(thing) [thing autorelease]
+#endif
+
+#pragma mark - Types
+
 typedef NS_ENUM(NSUInteger, HBTSStatusBarType) {
 	HBTSStatusBarTypeTyping,
 	HBTSStatusBarTypeTypingEnded,
@@ -21,8 +33,9 @@ typedef NS_ENUM(NSUInteger, HBTSStatusBarFormat) {
 	HBTSStatusBarFormatNameOnly
 };
 
-static NSTimeInterval const kHBTSTypingTimeout = 60.0;
+#pragma mark - Constants
 
+static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
 // old values may be used here for compatibility with other tweaks that listen
 // for typestatus notifications
