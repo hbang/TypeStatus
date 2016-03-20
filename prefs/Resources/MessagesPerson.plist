@@ -41,10 +41,16 @@
 			<string>ws.hbang.typestatus.conversationprefs/ReloadPrefs</string>
 		</dict>
 		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
 			<key>action</key>
 			<string>removePerson</string>
 			<key>cell</key>
 			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>HBTintedTableCell</string>
 			<key>isDestructive</key>
 			<true/>
 			<key>label</key>
