@@ -76,11 +76,17 @@
 	for (NSString *handle in items) {
 		// get the corresponding name
 		NSString *name = [HBTSContactHelper nameForHandle:handle useShortName:NO];
+		NSString *displayedHandle = handle;
+
+		// if a phone number, get the formatted phone number
+		if ([handle hasPrefix:@"+"]) {
+			displayedHandle = [CNPhoneNumber phoneNumberWithStringValue:handle].formattedStringValue;
+		}
 
 		// create a specifier for it
 		PSSpecifier *specifier = [PSSpecifier preferenceSpecifierNamed:name target:self set:nil get:nil detail:HBTSMessagesPersonListController.class cell:PSLinkCell edit:Nil];
 		specifier.properties[PSCellClassKey] = HBTSPersonTableCell.class;
-		specifier.properties[kHBTSHandleKey] = handle;
+		specifier.properties[kHBTSHandleKey] = displayedHandle;
 
 		// add it to the array
 		[newSpecifiers addObject:specifier];
