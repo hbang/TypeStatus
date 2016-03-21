@@ -75,7 +75,7 @@
 	// loop over the handles we got
 	for (NSString *handle in items) {
 		// get the corresponding name
-		NSString *name = [HBTSContactHelper nameForHandle:handle];
+		NSString *name = [HBTSContactHelper nameForHandle:handle useShortName:NO];
 
 		// create a specifier for it
 		PSSpecifier *specifier = [PSSpecifier preferenceSpecifierNamed:name target:self set:nil get:nil detail:HBTSMessagesPersonListController.class cell:PSLinkCell edit:Nil];

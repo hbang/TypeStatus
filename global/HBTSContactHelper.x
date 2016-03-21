@@ -3,6 +3,12 @@
 #import "HBTSPreferences.h"
 #import <ChatKit/CKEntity.h>
 #import <ChatKit/CKDNDList.h>
+#import <Contacts/CN.h>
+#import <Contacts/CNContact+Private.h>
+#import <Contacts/CNContactFormatter+Private.h>
+#import <Contacts/CNEmailAddressContactPredicate.h>
+#import <Contacts/CNPhoneNumberContactPredicate.h>
+#import <Contacts/CNPropertyDescription.h>
 #import <IMCore/IMHandle.h>
 #import <SpringBoard/SBApplication.h>
 #import <SpringBoard/SpringBoard.h>
@@ -49,7 +55,7 @@ HBTSPreferences *preferences;
 		contactStore = [[CNContactStore alloc] init];
 
 		// yeah, it’s a real class. way to lazy out
-		NSArray *descriptions = [CN allNameComponentRelatedProperties];
+		NSArray *descriptions = [%c(CN) allNameComponentRelatedProperties];
 		NSMutableArray *keys = [NSMutableArray array];
 
 		for (CNPropertyDescription *description in descriptions) {
@@ -60,11 +66,12 @@ HBTSPreferences *preferences;
 	});
 
 	// search for contacts with that email address
+	NSError *error = nil;
 	NSArray <CNContact *> *contacts = [contactStore unifiedContactsMatchingPredicate:[CNContact predicateForContactMatchingEmailAddress:handle] keysToFetch:keysToFetch error:&error];
 
 	if (error || contacts.count == 0) {
 		// try with the phone number
-		contacts = [contactStore unifiedContactsMatchingPredicate:[CNContact predicateForContactMatchingPhoneNumber:handle] keysToFetch:keysToFetch error:&error];
+		contacts = [contactStore unifiedContactsMatchingPredicate:[CNContact predicateForContactMatchingPhoneNumber:[CNPhoneNumber phoneNumberWithStringValue:handle]] keysToFetch:keysToFetch error:&error];
 
 		if (error || contacts.count == 0) {
 			// nothing found. just return nil
@@ -80,7 +87,7 @@ HBTSPreferences *preferences;
 + (NSString *)nameForHandle:(NSString *)handle useShortName:(BOOL)shortName {
 	if ([handle isEqualToString:@"example@hbang.ws"]) {
 		return @"Johnny Appleseed";
-	} else if (%c(CKContact)) {
+	} else if (%c(CNContact)) {
 		// ios 9+: use Contacts.framework because Contacts.framework is awesome
 		CNContact *contact = [self _contactForHandle:handle];
 

@@ -40,7 +40,7 @@
 
 		switch (notificationType) {
 			case HBTSNotificationTypeOverlay:
-				[HBTSStatusBarAlertServer sendAlertType:type sender:[HBTSContactHelper nameForHandle:sender] timeout:timeout];
+				[HBTSStatusBarAlertServer sendAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
 				break;
 
 			case HBTSNotificationTypeIcon:
