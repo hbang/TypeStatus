@@ -44,6 +44,10 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if (![HBTSConversationPreferences shouldEnable]) {
+		return %orig;
+	}
+
 	NSInteger sections = %orig;
 
 	if (self.conversation._chatSupportsTypingIndicators && !self.conversation.isGroupConversation) {
@@ -55,6 +59,10 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (![HBTSConversationPreferences shouldEnable]) {
+		return %orig;
+	}
+
 	NSInteger sectionStartIndex = self._typeStatus_sectionStartIndex;
 
 	if (sectionStartIndex == 0 || section < sectionStartIndex || section > sectionStartIndex + kHBTSNumberOfExtraSections) {
@@ -69,6 +77,10 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (![HBTSConversationPreferences shouldEnable]) {
+		return %orig;
+	}
+
 	NSInteger sectionStartIndex = self._typeStatus_sectionStartIndex;
 
 	if (sectionStartIndex == 0 || indexPath.section < sectionStartIndex || indexPath.section > sectionStartIndex + kHBTSNumberOfExtraSections) {
@@ -87,6 +99,10 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (![HBTSConversationPreferences shouldEnable]) {
+		return %orig;
+	}
+
 	NSInteger sectionStartIndex = self._typeStatus_sectionStartIndex;
 
 	if (sectionStartIndex == 0 || indexPath.section < sectionStartIndex || indexPath.section > sectionStartIndex + kHBTSNumberOfExtraSections) {
@@ -97,6 +113,10 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	if (![HBTSConversationPreferences shouldEnable]) {
+		return %orig;
+	}
+
 	NSInteger sectionStartIndex = self._typeStatus_sectionStartIndex + 1;
 
 	if (section < sectionStartIndex) {
@@ -129,6 +149,10 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	if (![HBTSConversationPreferences shouldEnable]) {
+		return %orig;
+	}
+
 	NSInteger sectionStartIndex = self._typeStatus_sectionStartIndex + 1;
 
 	if (sectionStartIndex == 0 || section < sectionStartIndex || section > sectionStartIndex + kHBTSNumberOfExtraSections) {
@@ -168,7 +192,6 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 }
 
 %new - (void)_typeStatus_switchValueChanged:(UISwitch *)sender {
-
 	switch (sender.tag) {
 		case 0:
 			[self._typeStatus_preferences setTypingNotificationsEnabled:sender.on forConversation:self.conversation];
@@ -191,7 +214,7 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 
 %ctor {
 	// only initialise these hooks if we’re allowed to
-	if ([HBTSConversationPreferences shouldEnable]) {
+	if ([HBTSConversationPreferences isAvailable]) {
 		%init;
 	}
 }
