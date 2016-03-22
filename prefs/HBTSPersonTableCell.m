@@ -7,7 +7,7 @@
 	self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier specifier:specifier];
 
 	if (self) {
-		self.detailTextLabel.text = specifier.properties[kHBTSHandleKey];
+		self.detailTextLabel.text = specifier.properties[kHBTSDisplayedHandleKey];
 	}
 
 	return self;
