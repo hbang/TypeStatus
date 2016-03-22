@@ -13,10 +13,10 @@
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
-			<key>getter</key>
-			<string></string>
-			<key>setter</key>
-			<string></string>
+			<key>get</key>
+			<string>typingNotificationsEnabledForSpecifier:</string>
+			<key>set</key>
+			<string>setTypingNotificationsEnabled:forSpecifier:</string>
 			<key>label</key>
 			<string>SEND_TYPING_NOTIFICATIONS</string>
 			<key>PostNotification</key>
@@ -31,10 +31,10 @@
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
-			<key>getter</key>
-			<string></string>
-			<key>setter</key>
-			<string></string>
+			<key>get</key>
+			<string>readReceiptsEnabledForSpecifier:</string>
+			<key>set</key>
+			<string>setReadReceiptsEnabled:forSpecifier:</string>
 			<key>label</key>
 			<string>SEND_READ_RECEIPTS</string>
 			<key>PostNotification</key>
@@ -46,7 +46,7 @@
 		</dict>
 		<dict>
 			<key>action</key>
-			<string>removePerson</string>
+			<string>removePerson:</string>
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>cellClass</key>

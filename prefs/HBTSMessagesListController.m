@@ -43,6 +43,12 @@
 	[self _insertPeople];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+
+	[self reloadSpecifiers];
+}
+
 #pragma mark - Setup
 
 - (void)_disableIfNeeded {
