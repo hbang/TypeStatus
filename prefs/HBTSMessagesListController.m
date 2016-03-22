@@ -73,7 +73,7 @@
 	// loop over all the preference keys
 	for (NSString *key in _preferences.dictionaryRepresentation.allKeys) {
 		// get the handle from the key name
-		NSString *handle = [key substringToIndex:[key rangeOfString:@"-"].location];
+		NSString *handle = [key substringToIndex:[key rangeOfString:@"-" options:NSBackwardsSearch].location];
 
 		// if we haven’t yet seen this handle, add it
 		if (!_items[handle]) {
@@ -93,8 +93,8 @@
 		NSString *displayedHandle = handle;
 
 		// if a phone number, get the formatted phone number – hopefully just
-		// checking for a “+” prefix is good enough?
-		if ([handle hasPrefix:@"+"]) {
+		// checking for an “@” is good enough?
+		if ([handle rangeOfString:@"@"].location == NSNotFound) {
 			displayedHandle = [CNPhoneNumber phoneNumberWithStringValue:handle].formattedStringValue;
 		}
 
