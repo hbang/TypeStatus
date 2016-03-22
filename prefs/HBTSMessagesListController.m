@@ -135,7 +135,7 @@
 	NSMutableArray *handles = [NSMutableArray array];
 
 	for (CNLabeledValue<CNPhoneNumber *> *value in contact.phoneNumbers) {
-		[handles addObject:value.value.unformattedInternationalStringValue];
+		[handles addObject:value.value.digits];
 	}
 
 	for (CNLabeledValue<NSString *> *value in contact.emailAddresses) {
