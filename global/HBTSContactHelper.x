@@ -87,7 +87,7 @@ HBTSPreferences *preferences;
 + (NSString *)nameForHandle:(NSString *)handle useShortName:(BOOL)shortName {
 	if ([handle isEqualToString:@"example@hbang.ws"]) {
 		return @"Johnny Appleseed";
-	} else if (%c(CNContact)) {
+	} else if (%c(CNContact) && !shortName) {
 		// ios 9+: use Contacts.framework because Contacts.framework is awesome
 		CNContact *contact = [self _contactForHandle:handle];
 
@@ -96,21 +96,21 @@ HBTSPreferences *preferences;
 			return handle;
 		}
 
-		// get a contact formatter and use it to return the appropriate type of name
+		// get a contact formatter and use it to return the name
 		CNContactFormatter *contactFormatter = AUTORELEASE([[CNContactFormatter alloc] init]);
-		return shortName ? [contactFormatter shortNameForContact:contact attributes:nil] : [contactFormatter stringFromContact:contact];
+		return [contactFormatter stringFromContact:contact];
 	} else {
-		// for ios 7/8
 		CKEntity *entity = AUTORELEASE([%c(CKEntity) copyEntityForAddressString:handle]);
 
-		if (!entity || ([entity respondsToSelector:@selector(handle)] && !entity.handle.person)) {
+		// if the entity doesn't exist, use the handle
+		if (!entity) {
 			return handle;
 		}
 
-		// if the entity is nil, or the person is nil
-		if (!entity || ([entity respondsToSelector:@selector(handle)] && !entity.handle.person)) {
-			// it might be a business, or we might be on iOS 7. return the entity
-			// name if it exists, the handle if not
+		// if the person is nil
+		if ([entity respondsToSelector:@selector(handle)] && !entity.handle.person) {
+			// it might be a business contact, or we might be on iOS 7. return the
+			// entity name if it exists, the handle if not
 			return entity.name ?: handle;
 		}
 
