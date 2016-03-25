@@ -107,6 +107,13 @@ HBTSPreferences *preferences;
 			return handle;
 		}
 
+		// if the entity is nil, or the person is nil
+		if (!entity || ([entity respondsToSelector:@selector(handle)] && !entity.handle.person)) {
+			// it might be a business, or we might be on iOS 7. return the entity
+			// name if it exists, the handle if not
+			return entity.name ?: handle;
+		}
+
 		return entity.handle._displayNameWithAbbreviation ?: entity.name;
 	}
 }
