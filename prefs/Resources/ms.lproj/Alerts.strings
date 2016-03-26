@@ -22,7 +22,7 @@
     <key>OVERLAY_FORMAT_NAME_ONLY</key>
     <string>Nama Sahaja</string>
     <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
-    <string>Nama Sahaja: Johnny Appleseed</string
+    <string>Nama Sahaja: Johnny Appleseed</string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
