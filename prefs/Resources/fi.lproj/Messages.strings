@@ -8,12 +8,12 @@
 
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Lähetä kirjoittaa-ilmoitukset</string>
-    <key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
+	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Salli tai estä vastaanottajan nähdä milloin kirjoitat.</string>
 
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Lähetä lukukuittaukset</string>
-    <key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
+	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Salli tai estä vastaanottajan nähdä milloin luit hänen viestinsä.</string>
 </dict>
 </plist>

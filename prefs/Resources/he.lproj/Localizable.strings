@@ -9,9 +9,9 @@
 	<string>נקרא:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
-    <key>TYPING_NATURAL</key>
-    <string>%@ מקליד/ה</string>
-    <key>READ_NATURAL</key>
-    <string>נקרא על ידי %@</string>
+	<key>TYPING_NATURAL</key>
+	<string>%@ מקליד/ה</string>
+	<key>READ_NATURAL</key>
+	<string>נקרא על ידי %@</string>
 </dict>
 </plist>

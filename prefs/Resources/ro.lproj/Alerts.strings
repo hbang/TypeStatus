@@ -6,7 +6,7 @@
 	<key>ALERTS</key>
 	<string>Alerte</string>
 
-    <!-- Button for choosing the alert format. -->
+	<!-- Button for choosing the alert format. -->
  	<key>OVERLAY_FORMAT</key>
  	<string>Formatul alertei</string>
  	

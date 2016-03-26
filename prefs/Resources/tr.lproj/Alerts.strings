@@ -7,22 +7,22 @@
 	<string>Uyarılar</string>
 
 	<!-- Button for choosing the alert format. -->
-    <key>OVERLAY_FORMAT</key>
-    <string>Uyarı Biçimi</string>
+	<key>OVERLAY_FORMAT</key>
+	<string>Uyarı Biçimi</string>
 
-    <!-- Options for the alert format. -->
-    <key>OVERLAY_FORMAT_NATURAL</key>
-    <string>Varsayılan</string>
-    <key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
-    <string>Varsayılan: Johnny Appleseed yazıyor</string>
-    <key>OVERLAY_FORMAT_TRADITIONAL</key>
-    <string>Geleneksel</string>
-    <key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
-    <string>Geleneksel: Yazıyor: Johnny Appleseed</string>
-    <key>OVERLAY_FORMAT_NAME_ONLY</key>
-    <string>Sadece İsim</string>
-    <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
-    <string>Sadece İsim: Johnny Appleseed</string>
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Varsayılan</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Varsayılan: Johnny Appleseed yazıyor</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Geleneksel</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Geleneksel: Yazıyor: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>Sadece İsim</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Sadece İsim: Johnny Appleseed</string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>

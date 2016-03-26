@@ -9,6 +9,7 @@
 	<!-- Button for choosing the alert format. -->
 	<key>OVERLAY_FORMAT</key>
 	<string>Formát upozornenia</string>
+
 	<!-- Options for the alert format. -->
 	<key>OVERLAY_FORMAT_NATURAL</key>
 	<string>Naturálny</string>
