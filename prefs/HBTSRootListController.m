@@ -1,4 +1,5 @@
 #import "HBTSRootListController.h"
+#import <CepheiPrefs/HBAppearanceSettings.h>
 #import <Preferences/PSSpecifier.h>
 
 @implementation HBTSRootListController
@@ -17,11 +18,19 @@
 	return [NSURL URLWithString:@"https://typestatus.com/"];
 }
 
-+ (UIColor *)hb_tintColor {
-	return [UIColor colorWithRed:83.f / 255.f green:215.f / 255.f blue:106.f / 255.f alpha:1];
-}
-
 #pragma mark - UIViewController
+
+- (instancetype)init {
+	self = [super init];
+
+	if (self) {
+		HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+		appearanceSettings.tintColor = [UIColor colorWithRed:83.f / 255.f green:215.f / 255.f blue:106.f / 255.f alpha:1];
+		self.hb_appearanceSettings = appearanceSettings;
+	}
+
+	return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
