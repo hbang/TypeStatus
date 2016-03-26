@@ -77,6 +77,8 @@
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>ICONS</string>
+			<key>footerText</key>
+			<string>THANKS_FOOTER</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -97,8 +99,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>THANKS_FOOTER</string>
 		</dict>
 		<dict>
 			<key>action</key>
