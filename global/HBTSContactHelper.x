@@ -33,7 +33,7 @@ HBTSPreferences *preferences;
 
 	if (hideInMessages && IN_SPRINGBOARD) {
 		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
-		return !app.isLocked && [app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+		return app.isLocked || ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
 
 	return NO;
@@ -41,10 +41,10 @@ HBTSPreferences *preferences;
 
 + (BOOL)isHandleMuted:(NSString *)handle {
 	if (preferences.ignoreDNDSenders && %c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:handle]) {
-		return NO;
+		return YES;
 	}
 
-	return YES;
+	return NO;
 }
 
 + (CNContact *)_contactForHandle:(NSString *)handle {
