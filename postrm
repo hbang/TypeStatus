@@ -2,5 +2,5 @@
 # relaunch imagent so we get injected into it
 launchctl stop com.apple.imagent
 
-# load typestatusd
-launchctl load -w /Library/LaunchDaemons/ws.hbang.typestatusd.plist
+# unload typestatusd
+launchctl unload -w /Library/LaunchDaemons/ws.hbang.typestatusd.plist

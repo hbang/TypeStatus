@@ -20,7 +20,7 @@
 			[[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"] &&
 			// Remote Messages also likes to be annoying by calling its daemon
 			// com.apple.MobileSMS. make sure we don’t touch it
-			[[NSBundle mainBundle].executablePath isEqualToString:@"/Library/Application Support/RemoteMessages/RemoteMessages"]
+			[[NSBundle mainBundle].executablePath isEqualToString:@"/Library/Application Support/RemoteMessages/RemoteMessages"];
 	});
 
 	return !hasConflict;
