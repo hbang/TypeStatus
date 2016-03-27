@@ -144,7 +144,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			kHBTSMessageIconNameKey: iconName ?: @"",
-			kHBTSMessageContentKey: text,
+			kHBTSMessageContentKey: text ?: @"",
 			kHBTSMessageBoldRangeKey: @[ @(boldRange.location), @(boldRange.length) ],
 			kHBTSMessageDirectionKey: @(direction),
 
