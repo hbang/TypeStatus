@@ -2,7 +2,7 @@ include $(THEOS)/makefiles/common.mk
 
 TOOL_NAME = typestatusd
 
-typestatusd_FILES = $(wildcard *.x) $(wildcard *.m) ../global/HBTSContactHelper.x ../global/HBTSPreferences.m
+typestatusd_FILES = $(wildcard *.x) $(wildcard *.m) ../global/HBTSContactHelper.x
 typestatusd_INSTALL_PATH = /usr/libexec
 typestatusd_WEAK_FRAMEWORKS = Contacts
 typestatusd_EXTRA_FRAMEWORKS = Cephei

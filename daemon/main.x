@@ -58,6 +58,9 @@ int main() {
 		// load libstatusbar manually because it’s stupidly designed
 		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 
+		// load TypeStatusClient so we get HBTSPreferences
+		dlopen("/Library/MobileSubstrate/DynamicLibraries/TypeStatusClient.dylib", RTLD_LAZY);
+
 		// get the relevant SpringBoardServices functions
 		void *sbs = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);
 		SBSSpringBoardServerPort = (SBSSpringBoardServerPortType)dlsym(sbs, "SBSSpringBoardServerPort");
@@ -65,7 +68,7 @@ int main() {
 		SBGetScreenLockStatus = (SBGetScreenLockStatusType)dlsym(sbs, "SBGetScreenLockStatus");
 
 		// grab our preferences class
-		preferences = [HBTSPreferences sharedInstance];
+		preferences = [%c(HBTSPreferences) sharedInstance];
 
 		// listen for the notification and call the block when it happens
 		[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
