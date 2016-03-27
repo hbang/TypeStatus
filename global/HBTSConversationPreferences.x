@@ -14,12 +14,16 @@
 	static BOOL hasConflict = NO;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		// we don't really want to do anything if someone else is already doing it
-		hasConflict = [[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"];
+		// we need to be on iOS 9.0+
+		hasConflict = !IS_IOS_OR_NEWER(iOS_9_0) &&
+			// we don't really want to do anything if someone else is already doing it
+			[[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"] &&
+			// Remote Messages also likes to be annoying by calling its daemon
+			// com.apple.MobileSMS. make sure we don’t touch it
+			[[NSBundle mainBundle].executablePath isEqualToString:@"/Library/Application Support/RemoteMessages/RemoteMessages"]
 	});
 
-	// we also need iOS 9.0+
-	return !hasConflict && IS_IOS_OR_NEWER(iOS_9_0);
+	return !hasConflict;
 }
 
 + (BOOL)shouldEnable {
