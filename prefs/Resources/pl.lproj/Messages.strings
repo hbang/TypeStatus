@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Wiadomości</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Wyślij powiadomienie o pisaniu</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Pozwól lub nie odbiorcy na podgląd tego, co piszesz.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Wyślij potwierdzenie odczytania</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Pozwól lub nie na podgląd odbiorcy podczas odczytania wiadomości.</string>
 </dict>

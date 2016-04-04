@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Pesan</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Kirim Notifikasi Mengetik.</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Membolehkan atau mencegah orang penerima agar tidak melihat bila kau mengetik.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Kirim Tanda Terima Dibaca</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Membolehkan atau mencegah orang penerima agar tidak melihat ketika anda membaca pesan mereka.</string>
 </dict>

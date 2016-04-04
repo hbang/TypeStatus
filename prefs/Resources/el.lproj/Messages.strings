@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Μηνύματα</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Αποστολή ειδοποιήσεων πληκτρολόγισης</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Επιτροπή ή απαγόρευση αποστολέα από το να δει αν γράφετε.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Αποστολή αποδεικτικών ανάγνωσης</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Επιτροπή ή απαγόρευση αποστολέα από το να δει αν έχετε διαβάσει το μήνυμά του.</string>
 </dict>

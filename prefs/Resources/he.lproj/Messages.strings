@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>הודעות</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>שלח התראת הקלדה</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>אפשר/י או מנע/י מהמקבל/ת לראות כאשר את/ה מקלידה.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>שלח אישורי קריאה</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>אפשר/י או מנע/י מהמקבל/ת לראות כאשר קראת את ההודעה שלהם.</string>
 </dict>

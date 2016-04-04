@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Mesaje</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Trimite Notificari De Tastare</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Permite sau restrictioneaza notificarea de tastare (trimisa persoanei care primeste mesajul).</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Trimite Confirmari Citire</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Permite sau restrictioneaza notificarea de mesaj citit (trimisa persoanei care primeste mesajul).</string>
 </dict>

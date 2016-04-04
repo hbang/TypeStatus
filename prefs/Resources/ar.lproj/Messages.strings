@@ -5,14 +5,20 @@
 	<!-- Page title. -->
 	<key>MESSAGES</key>
 	<string>الرسائل</string>
-	
+
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>إرسال إشعارات الكتابة</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>سماح/منع المستلم من رؤيتك تكتب.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>إرسال إيصالات القراءة</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>سماح/منع المستلم من رؤيتك بأنك قرأت الرسالة.</string>
 </dict>

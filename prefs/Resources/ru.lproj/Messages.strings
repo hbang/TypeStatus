@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Сообщения</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Отправлять уведомления о наборе</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Показать или скрыть от собеседника, когда вы набираете сообщение</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Отправлять отчеты о доставке</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Показать или скрыть от собеседника, когда вы прочитали его сообщение</string>
 </dict>

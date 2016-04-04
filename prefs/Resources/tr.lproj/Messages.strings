@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Mesajlar</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Yazma Bilgisini Gönder</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Alıcının Yazıyor bildirimi almasına izin verebilirsin veya önleyebilirsin.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Okundu Bilgisini Gönder</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Gelen mesajı okuduğunda Okundu Bilgisinin gönderilmesine izin verebilirsin veya önleyebilirsin.</string>
 </dict>

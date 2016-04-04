@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Meldinger</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Send skriver beskjed</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Tillat eller forhindre at mottaker kan se når du skriver.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Send lesebekreftelser</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Tillat eller forhindre at mottaker kan se når du har lest meldingen deres.</string>
 </dict>

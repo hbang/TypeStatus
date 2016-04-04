@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Tin nhắn</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Gửi Thông Báo Khi Đánh Chữ</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Cho phép hoặc ngăn chặn người nhận khi bạn đọc tin nhắn của họ.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Gửi biên nhận đã được đọc</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Cho phép hoặc ngăn chặn người nhận nhìn khi bạn đang đánh chữ.</string>
 </dict>

@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>Poruke</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Pošalji Obavijesti o Pisanju</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>Dopusti ili zabrani primatelju da vidi kada pišete.</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>Pošalji Potvrdu Čitanja</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Dopusti ili zabrani primatelju da vidi kada ste pročitali njihovu poruku.</string>
 </dict>

@@ -6,13 +6,19 @@
 	<key>MESSAGES</key>
 	<string>ข้อความ</string>
 
+	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>ส่งแจ้งเตือนการพิมพ์</string>
+
+	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
 	<string>อนุญาตหรือป้องกันไม่ให้ผู้รับเห็นว่าคุณกำลังพิมพ์อยู่</string>
 
+	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
 	<string>ส่งแจ้งเตือนว่าอ่านแล้ว</string>
+
+	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>อนุญาตหรือป้องกันไม่ให้ผู้รับเห็นว่าคุณอ่านข้อความของเขาแล้ว</string>
 </dict>
