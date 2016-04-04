@@ -7,22 +7,22 @@
 	<string>Уведомления</string>
 
 	<!-- Button for choosing the alert format. -->
-    <key>OVERLAY_FORMAT</key>
-    <string>Тип уведомления</string>
+	<key>OVERLAY_FORMAT</key>
+	<string>Тип уведомления</string>
 
-    <!-- Options for the alert format. -->
-    <key>OVERLAY_FORMAT_NATURAL</key>
-    <string>Естественный</string>
-    <key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
-    <string>Естественный: Альбатрос Иванович пишет...</string>
-    <key>OVERLAY_FORMAT_TRADITIONAL</key>
-    <string>Обычный</string>
-    <key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
-    <string>Обычный: Печатает: Альбатрос Иванович</string>
-    <key>OVERLAY_FORMAT_NAME_ONLY</key>
-    <string>Только имя</string>
-    <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
-    <string>Только имя: Альбатрос Иванович</string>
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>Естественный</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>Естественный: Альбатрос Иванович пишет...</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>Обычный</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>Обычный: Печатает: Альбатрос Иванович</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>Только имя</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>Только имя: Альбатрос Иванович</string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
