@@ -2,7 +2,7 @@
 #import <IMCore/IMChat.h>
 #import <IMCore/IMHandle.h>
 
-HBTSConversationPreferences *preferences = [[HBTSConversationPreferences alloc] init];
+HBTSConversationPreferences *preferences;
 
 %hook CKConversation
 
@@ -28,23 +28,10 @@ HBTSConversationPreferences *preferences = [[HBTSConversationPreferences alloc] 
 
 %end
 
-// IMChatRegistry, we meet again
-
-%hook IMChatRegistry
-
-- (void)_chat_sendReadReceiptForAllMessages:(IMChat *)chat {
-	// if read receipts are enabled, or we are disabled, we can call through to
-	// the original method
-	if ([preferences readReceiptsEnabledForHandle:chat.recipient.ID] || ![preferences.class shouldEnable]) {
-		%orig;
-	}
-}
-
-%end
-
 %ctor {
 	// only initialise these hooks if we’re allowed to
 	if ([HBTSConversationPreferences shouldEnable]) {
+		preferences = [[HBTSConversationPreferences alloc] init];
 		%init;
 	}
 }
