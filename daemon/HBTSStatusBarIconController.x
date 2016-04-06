@@ -55,7 +55,6 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 + (void)showIconType:(HBTSStatusBarType)type timeout:(NSTimeInterval)timeout {
 	if (timer) {
 		[timer invalidate];
-		[timer release];
 		timer = nil;
 	}
 
@@ -71,7 +70,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 		{
 			item.visible = YES;
 
-			timer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_timerFired:) userInfo:@{ kHBTSTimerStatusBarItemKey: item } repeats:NO] retain];
+			timer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_timerFired:) userInfo:@{ kHBTSTimerStatusBarItemKey: item } repeats:NO];
 			break;
 		}
 

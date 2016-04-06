@@ -29,7 +29,7 @@
 	static NSBundle *PrefsBundle;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		PrefsBundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
+		PrefsBundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
 	});
 
 	HBTSPreferences *preferences = [%c(HBTSPreferences) sharedInstance];

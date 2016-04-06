@@ -7,7 +7,7 @@ typestatusd_INSTALL_PATH = /usr/libexec
 typestatusd_WEAK_FRAMEWORKS = Contacts
 typestatusd_PRIVATE_FRAMEWORKS = ChatKit
 typestatusd_EXTRA_FRAMEWORKS = Cephei CydiaSubstrate
-typestatusd_CFLAGS = -I../global -include ../global/Global.h
+typestatusd_CFLAGS = -I../global -include ../global/Global.h -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/tool.mk
 
