@@ -5,6 +5,7 @@ TOOL_NAME = typestatusd
 typestatusd_FILES = $(wildcard *.x) $(wildcard *.m) ../global/HBTSContactHelper.x
 typestatusd_INSTALL_PATH = /usr/libexec
 typestatusd_WEAK_FRAMEWORKS = Contacts
+typestatusd_PRIVATE_FRAMEWORKS = ChatKit
 typestatusd_EXTRA_FRAMEWORKS = Cephei
 typestatusd_CFLAGS = -I../global -include ../global/Global.h
 
