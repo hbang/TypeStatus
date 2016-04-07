@@ -6,6 +6,6 @@ TypeStatus_FILES = $(wildcard *.xm) $(wildcard *.x) $(wildcard *.m) ../global/HB
 TypeStatus_FRAMEWORKS = UIKit
 TypeStatus_WEAK_FRAMEWORKS = Contacts
 TypeStatus_EXTRA_FRAMEWORKS = Cephei
-TypeStatus_CFLAGS = -I../global -include ../global/Global.h
+TypeStatus_CFLAGS = -I../global -include ../global/Global.h -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/tweak.mk
