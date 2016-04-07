@@ -4,7 +4,35 @@
 #import "HBTSStatusBarAlertServer+Private.h"
 #import "HBTSStatusBarIconController.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
+#import <SpringBoard/SpringBoard.h>
+#import <SpringBoard/SBApplication.h>
 #include <dlfcn.h>
+
+HBTSPreferences *preferences;
+
+#pragma mark - Should show alert
+
+BOOL ShouldShowAlertOfType(HBTSStatusBarType type) {
+	BOOL hideInMessages = NO;
+
+	switch (type) {
+		case HBTSStatusBarTypeTyping:
+		case HBTSStatusBarTypeTypingEnded:
+			hideInMessages = preferences.typingHideInMessages;
+			break;
+
+		case HBTSStatusBarTypeRead:
+			hideInMessages = preferences.readHideInMessages;
+			break;
+	}
+
+	if (hideInMessages) {
+		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
+		return app.isLocked || ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+	}
+
+	return NO;
+}
 
 #pragma mark - Constructor
 
@@ -12,14 +40,14 @@
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/TypeStatusClient.dylib", RTLD_LAZY);
 
-	HBTSPreferences *preferences = [%c(HBTSPreferences) sharedInstance];
+	preferences = [%c(HBTSPreferences) sharedInstance];
 
 	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 		HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
 		NSString *sender = notification.userInfo[kHBTSMessageSenderKey];
 		BOOL isTyping = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
-		if ([HBTSContactHelper shouldShowAlertOfType:type] || [HBTSContactHelper isHandleMuted:sender]) {
+		if (!ShouldShowAlertOfType(type) || [HBTSContactHelper isHandleMuted:sender]) {
 			return;
 		}
 

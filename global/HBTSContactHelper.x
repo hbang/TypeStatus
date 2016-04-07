@@ -10,34 +10,10 @@
 #import <Contacts/CNPhoneNumberContactPredicate.h>
 #import <Contacts/CNPropertyDescription.h>
 #import <IMCore/IMHandle.h>
-#import <SpringBoard/SBApplication.h>
-#import <SpringBoard/SpringBoard.h>
 
 HBTSPreferences *preferences;
 
 @implementation HBTSContactHelper
-
-+ (BOOL)shouldShowAlertOfType:(HBTSStatusBarType)type {
-	BOOL hideInMessages = NO;
-
-	switch (type) {
-		case HBTSStatusBarTypeTyping:
-		case HBTSStatusBarTypeTypingEnded:
-			hideInMessages = preferences.typingHideInMessages;
-			break;
-
-		case HBTSStatusBarTypeRead:
-			hideInMessages = preferences.readHideInMessages;
-			break;
-	}
-
-	if (hideInMessages && IN_SPRINGBOARD) {
-		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
-		return app.isLocked || ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
-	}
-
-	return NO;
-}
 
 + (BOOL)isHandleMuted:(NSString *)handle {
 	if (preferences.ignoreDNDSenders && %c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:handle]) {
