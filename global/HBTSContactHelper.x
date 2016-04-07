@@ -17,19 +17,33 @@ HBTSPreferences *preferences;
 
 @implementation HBTSContactHelper
 
-+ (BOOL)isHandleMuted:(NSString *)handle {
-	// never allow the example handle to be muted
-	if ([handle isEqualToString:@"example@hbang.ws"]) {
-		return NO;
++ (BOOL)shouldShowAlertOfType:(HBTSStatusBarType)type {
+	BOOL hideInMessages = NO;
+
+	switch (type) {
+		case HBTSStatusBarTypeTyping:
+		case HBTSStatusBarTypeTypingEnded:
+			hideInMessages = preferences.typingHideInMessages;
+			break;
+
+		case HBTSStatusBarTypeRead:
+			hideInMessages = preferences.readHideInMessages;
+			break;
 	}
 
-	// if ignoring DND senders is on, and DND is supported (iOS 8.0+), and the
-	// handle is on the DND list, we can return YES
+	if (hideInMessages && IN_SPRINGBOARD) {
+		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
+		return app.isLocked || ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+	}
+
+	return NO;
+}
+
++ (BOOL)isHandleMuted:(NSString *)handle {
 	if (preferences.ignoreDNDSenders && %c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:handle]) {
 		return YES;
 	}
 
-	// otherwise, it’s not muted
 	return NO;
 }
 
