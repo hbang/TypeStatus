@@ -9,6 +9,7 @@ NSString *handle;
 %hook MessageServiceSession
 
 - (void)sendReadReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
+	// copy the handle so we can use it in the hook below, then call orig
 	handle = [identifier copy];
 	%orig;
 	[handle release];
@@ -16,6 +17,7 @@ NSString *handle;
 }
 
 - (void)sendPlayedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
+	// copy the handle so we can use it in the hook below, then call orig
 	handle = [identifier copy];
 	%orig;
 	[handle release];
@@ -23,6 +25,7 @@ NSString *handle;
 }
 
 - (void)sendSavedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
+	// copy the handle so we can use it in the hook below, then call orig
 	handle = [identifier copy];
 	%orig;
 	[handle release];
@@ -35,6 +38,9 @@ NSString *handle;
 %hook IMDaemon
 
 - (void)_loadServices {
+	// /System/Library/Messages/PlugIns/iMessage.imservice is lazy loaded by this
+	// method, and that’s the bundle MessageServiceSession lives in. wait for it
+	// to be loaded and then allow the hooks to be initialised
 	%orig;
 	%init(Stuff);
 }
@@ -45,7 +51,7 @@ NSString *handle;
 
 - (id)valueOfPersistentProperty:(NSString *)property {
 	// if the property being accessed is the read receipts enabled property, and
-	// we're enabled, and we have the identifier, then return the value for that
+	// we’re enabled, and we have the identifier, then return the value for that
 	// particular person (or the fallback)
 	if ([property isEqualToString:kFZDaemonPropertyEnableReadReceipts] && [preferences.class shouldEnable] && handle) {
 		return @([preferences readReceiptsEnabledForHandle:handle]);
