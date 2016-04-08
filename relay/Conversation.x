@@ -1,49 +1,32 @@
 #import "HBTSConversationPreferences.h"
-#import <IMCore/IMChat.h>
-#import <IMCore/IMHandle.h>
-#import <IMDaemonCore/IMDServiceSession.h>
+
+extern NSString *kFZDaemonPropertyEnableReadReceipts;
 
 HBTSConversationPreferences *preferences;
-
-@interface IMDAppleServiceSession : IMDServiceSession
-
-@end
-
-@interface MessageServiceSession : IMDAppleServiceSession
-
-@end
-
-@interface MessageServiceSession ()
-
-- (BOOL)_typeStatus_readReceiptsEnabledForHandle:(NSString *)handle;
-
-@end
+NSString *handle;
 
 %group Stuff
 %hook MessageServiceSession
 
-%new - (BOOL)_typeStatus_readReceiptsEnabledForHandle:(NSString *)handle {
-	// if read receipts are enabled for this person, or we are completely
-	// disabled, then read receipts should be sent
-	return [preferences readReceiptsEnabledForHandle:handle] || ![preferences.class shouldEnable];
-}
-
 - (void)sendReadReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	if ([self _typeStatus_readReceiptsEnabledForHandle:identifier]) {
-		%orig;
-	}
+	handle = [identifier copy];
+	%orig;
+	[handle release];
+	handle = nil;
 }
 
 - (void)sendPlayedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	if ([self _typeStatus_readReceiptsEnabledForHandle:identifier]) {
-		%orig;
-	}
+	handle = [identifier copy];
+	%orig;
+	[handle release];
+	handle = nil;
 }
 
 - (void)sendSavedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	if ([self _typeStatus_readReceiptsEnabledForHandle:identifier]) {
-		%orig;
-	}
+	handle = [identifier copy];
+	%orig;
+	[handle release];
+	handle = nil;
 }
 
 %end
@@ -54,6 +37,21 @@ HBTSConversationPreferences *preferences;
 - (void)_loadServices {
 	%orig;
 	%init(Stuff);
+}
+
+%end
+
+%hook IMDaemonListener
+
+- (id)valueOfPersistentProperty:(NSString *)property {
+	// if the property being accessed is the read receipts enabled property, and
+	// we're enabled, and we have the identifier, then return the value for that
+	// particular person (or the fallback)
+	if ([property isEqualToString:kFZDaemonPropertyEnableReadReceipts] && [preferences.class shouldEnable] && handle) {
+		return @([preferences readReceiptsEnabledForHandle:handle]);
+	}
+
+	return %orig;
 }
 
 %end
