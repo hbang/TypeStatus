@@ -17,8 +17,7 @@ include $(THEOS_MAKE_PATH)/aggregate.mk
 after-stage::
 ifneq ($(PACKAGE_BUILDNAME),debug)
 	mkdir -p $(THEOS_STAGING_DIR)/DEBIAN
-	cp postinst $(THEOS_STAGING_DIR)/DEBIAN
-	cp postinst $(THEOS_STAGING_DIR)/DEBIAN/postrm
+	cp postinst postrm $(THEOS_STAGING_DIR)/DEBIAN
 endif
 
 	mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework
