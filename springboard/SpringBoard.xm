@@ -28,10 +28,14 @@ BOOL ShouldShowAlertOfType(HBTSStatusBarType type) {
 
 	if (hideInMessages) {
 		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
-		return app.isLocked || ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+
+		// if the device is locked, or there is no frontmost app, or the frontmost
+		// app is not messages, we can show it
+		return app.isLocked || !app._accessibilityFrontMostApplication
+			|| ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
 
-	return NO;
+	return YES;
 }
 
 #pragma mark - Constructor
