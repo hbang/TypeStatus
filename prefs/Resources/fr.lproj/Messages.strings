@@ -22,6 +22,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Permettre ou empêcher le destinataire de voir que vous avez lu son message.</string>
 
+	<!-- Button that allows another person to be added to the list. -->
+	<key>ADD_PERSON</key>
+	<string>Ajouter…</string>
+
 	<!-- Button that allows a person to be removed. -->
 	<key>REMOVE</key>
 	<string>Retirer</string>
