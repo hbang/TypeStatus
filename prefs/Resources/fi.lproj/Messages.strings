@@ -21,5 +21,9 @@
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Salli tai estä vastaanottajan nähdä milloin luit hänen viestinsä.</string>
+
+	<!-- Button that allows a person to be removed. -->
+	<key>REMOVE</key>
+	<string>Poista</string>
 </dict>
 </plist>

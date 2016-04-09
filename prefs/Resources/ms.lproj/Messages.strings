@@ -21,5 +21,9 @@
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Membenarkan atau menghalang penerima itu daripada melihat ketika anda membaca mesej mereka.</string>
+
+	<!-- Button that allows a person to be removed. -->
+	<key>REMOVE</key>
+	<string>Alih Keluar</string>
 </dict>
 </plist>

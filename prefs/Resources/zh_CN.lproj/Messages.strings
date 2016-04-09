@@ -29,5 +29,9 @@
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>同意或禁止接受者看你的信息回执状态</string>
+
+	<!-- Button that allows a person to be removed. -->
+	<key>REMOVE</key>
+	<string>移除</string>
 </dict>
 </plist>

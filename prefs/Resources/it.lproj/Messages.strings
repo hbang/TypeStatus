@@ -21,5 +21,9 @@
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Permette o previene il ricevente dal vedere quando hai letto il loro messaggio.</string>
+
+	<!-- Button that allows a person to be removed. -->
+	<key>REMOVE</key>
+	<string>Rimuovi</string>
 </dict>
 </plist>

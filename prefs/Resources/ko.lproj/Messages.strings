@@ -21,5 +21,9 @@
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>받는 사람이 당신이 메시지를 읽었는지 여부를 알 수 있도록 할 지 여부를 선택합니다.</string>
+
+	<!-- Button that allows a person to be removed. -->
+	<key>REMOVE</key>
+	<string>제거</string>
 </dict>
 </plist>

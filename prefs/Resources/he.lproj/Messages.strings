@@ -21,5 +21,9 @@
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>אפשר/י או מנע/י מהמקבל/ת לראות כאשר קראת את ההודעה שלהם.</string>
+
+	<!-- Button that allows a person to be removed. -->
+	<key>REMOVE</key>
+	<string>הסרה</string>
 </dict>
 </plist>
