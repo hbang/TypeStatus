@@ -22,6 +22,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Membenarkan atau menghalang penerima itu daripada melihat ketika anda membaca mesej mereka.</string>
 
+	<!-- Heading for the list of people. -->
+	<key>PEOPLE</key>
+	<string>Orang</string>
+
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
 	<string>Tambah Baru…</string>

@@ -22,6 +22,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Cho phép hoặc ngăn chặn người nhận nhìn khi bạn đang đánh chữ.</string>
 
+	<!-- Heading for the list of people. -->
+	<key>PEOPLE</key>
+	<string>Người</string>
+
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
 	<string>Thêm Mới…</string>

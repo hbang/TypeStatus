@@ -22,6 +22,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>相手に既読通知を送る・送らない。</string>
 
+	<!-- Heading for the list of people. -->
+	<key>PEOPLE</key>
+	<string>ユーザー</string>
+
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
 	<string>新規追加…</string>

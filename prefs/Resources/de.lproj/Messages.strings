@@ -22,6 +22,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Erlaubt oder verhindert, dass der Empfänger sieht, ob du eine Nachricht gelesen hast.</string>
 
+	<!-- Heading for the list of people. -->
+	<key>PEOPLE</key>
+	<string>Leute</string>
+
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
 	<string>Kontakt hinzufügen…</string>

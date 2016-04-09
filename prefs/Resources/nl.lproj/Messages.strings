@@ -22,6 +22,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>Sta wel of niet toe dat de ontvanger ziet dat u zijn/haar bericht heeft gezien.</string>
 
+	<!-- Heading for the list of people. -->
+	<key>PEOPLE</key>
+	<string>Personen</string>
+
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
 	<string>Voeg toe…</string>

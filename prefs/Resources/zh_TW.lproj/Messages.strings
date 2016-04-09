@@ -22,6 +22,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>允許或拒絕發信人看到您正在檢視他的訊息。</string>
 
+	<!-- Heading for the list of people. -->
+	<key>PEOPLE</key>
+	<string>人們</string>
+
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
 	<string>新增…</string>

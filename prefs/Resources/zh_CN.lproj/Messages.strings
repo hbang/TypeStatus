@@ -30,6 +30,10 @@
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
 	<string>同意或禁止接受者看你的信息回执状态</string>
 
+	<!-- Heading for the list of people. -->
+	<key>PEOPLE</key>
+	<string>用户</string>
+
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
 	<string>新增…</string>
