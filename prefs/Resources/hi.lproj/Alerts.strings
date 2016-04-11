@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>अलर्ट</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>चेतावनी प्रारूप</string>
+
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>प्राकृतिक</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>प्राकृतिक: Johnny Appleseed टाइप कर रहा है</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string> परंपरागत </string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>परंपरागत:टाइप कर रहा है : Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string> केवल नाम</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>केवल नाम : Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>एनीमेशन</string>
