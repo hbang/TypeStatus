@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>การเตือน</string>
 
+    <!-- Button for choosing the alert format. -->
+    <key>OVERLAY_FORMAT</key>
+ 	<string>รูปแบบตัวแจ้งเตือน</string>
+ 
+ 	<!-- Options for the alert format. -->
+ 	<key>OVERLAY_FORMAT_NATURAL</key>
+ 	<string>ปกติ</string>
+ 	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+ 	<string>ปกติ: Johnny Appleseed กำลังพิมพ์</string>
+ 	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+ 	<string>ดั้งเดิม</string>
+ 	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+ 	<string>ดั้งเดิม: กำลังพิมพ์: Johnny Appleseed</string>
+ 	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+ 	<string>เฉพาะชื่อ</string>
+ 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+ 	<string>เฉพาะชื่อ: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>การเคลื่อนไหว</string>
