@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>알림</string>
 
+	<!-- Button for choosing the alert format. -->
+	<key>OVERLAY_FORMAT</key>
+	<string>알림 형식</string>
+
+	<!-- Options for the alert format. -->
+	<key>OVERLAY_FORMAT_NATURAL</key>
+	<string>자연스럽게</string>
+	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+	<string>자연스럽게: Johnny Appleseed 님이 입력중입니다</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+	<string>형식적으로</string>
+	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+	<string>형식적으로: 입력중: Johnny Appleseed</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+	<string>이름만</string>
+	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+	<string>이름만: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>애니메이션</string>
