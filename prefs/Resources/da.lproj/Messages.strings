@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Beskeder</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>I programmet Beskeder, tryk på "Detalje" knappen i en samtale for at tilgå disse indstillinger.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>Denne funktion er utilgængelig da den er i konflikt med SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Send Status Meddelelser</string>

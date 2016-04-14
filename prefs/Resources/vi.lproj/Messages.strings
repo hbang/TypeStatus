@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Tin nhắn</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>Trong ứng dụng Tin nhắn, chạm vào nút "Chi tiết" trong một hội thoại để truy cập vào các thiết lập.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>Tính năng này không có sẵn bởi vì nó bị xung đột với SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Gửi Thông Báo Khi Đánh Chữ</string>

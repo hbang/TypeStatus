@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Berichten</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>Tik in de Berichten-app op 'Details' om in een gesprek toegang te krijgen tot deze instellingen.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>Deze functie is niet beschikbaar, omdat het niet samenwerkt met SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Stuur typmeldingen</string>

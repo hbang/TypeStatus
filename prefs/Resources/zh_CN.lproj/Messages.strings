@@ -8,11 +8,11 @@
 
 	<!-- Explanation displayed under the Enable switch. -->
 	<key>MESSAGES_EXPLANATION</key>
-	<string>在信息程序中, 在会话中点击“详情” 按钮来访问这些设置.</string>
+	<string>在信息程序中，在会话中点击“详情” 按钮来访问这些设置。</string>
 
 	<!-- Message displayed when a conflicting tweak is installed. -->
 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
-	<string>这个功能因为于SelectiveReading冲突所以不可用.</string>
+	<string>此功能和 SelectiveReading 冲突，无法使用。</string>
 
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
@@ -20,7 +20,7 @@
 
 	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
-	<string>同意或者禁止接受者看到你的输入状态.</string>
+	<string>同意或者禁止接受者看到你的输入状态</string>
 
 	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>

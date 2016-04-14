@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>הודעות</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>באפליקציית ההודעות, לחץ על כפתור ה״פרטים״ בשיחה כדי לגשת להגדרות אלו.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>תכונה זו לא זמינה כי היא מתנגשת עם SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>שלח התראת הקלדה</string>

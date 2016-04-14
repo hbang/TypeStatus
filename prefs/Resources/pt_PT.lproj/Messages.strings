@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Mensagens</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>Na aplicação de mensagens, toca no botão “Detalhes” numa conversa para aceder às defenições.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>Esta função está desactivada porque entra em conflito com o SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Enviar Notificações de Escrita</string>

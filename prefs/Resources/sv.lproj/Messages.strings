@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Meddelanden</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>I meddelande-appen, tryck på "Detaljer" i en konversation för att komma åt dessa inställningar.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>Denna funktion är inte tillgänglig eftersom den har en konflikt med SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Sänd skrivnotis</string>

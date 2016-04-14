@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>訊息</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>在 “訊息” 應用程式中點擊 “詳細資訊” 按鈕來查看這些設定。</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>此功能和 SelectiveReading 衝突，無法使用。</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>傳送打字中通知</string>

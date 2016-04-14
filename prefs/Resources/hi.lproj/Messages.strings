@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>संदेश</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>मेसेजस ऐप में जा कर, कोई भी चैट में "Details" को दबायें, जहां से आप सेटिंग्स को देख पाएंगे.</string>
+
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>यह सुविधा उपलब्ध नहीं हैं क्योंकि यह SelectiveReading के साथ नहीं चल सकती.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>टंकण सूचनाएं भेजें</string>
