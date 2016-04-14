@@ -96,6 +96,6 @@
 
 	<!-- Explanation under the ignore muted/blocked senders switch. -->
 	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
-	<string>如果你静音或者屏蔽了某个人, TypeStatus 将不会显示来自他们的输入或阅读状态.</string>
+	<string>如果你静音或者屏蔽了某个人，TypeStatus 将不会显示来自他们的输入或阅读状态。</string>
 </dict>
 </plist>

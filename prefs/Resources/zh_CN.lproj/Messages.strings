@@ -20,7 +20,7 @@
 
 	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
-	<string>同意或者禁止接受者看到你的输入状态</string>
+	<string>同意或者禁止接受者看到你的输入状态。</string>
 
 	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
@@ -28,7 +28,7 @@
 
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
-	<string>同意或禁止接受者看你的信息回执状态</string>
+	<string>同意或禁止接受者看你的信息回执状态。</string>
 
 	<!-- Heading for the list of people. -->
 	<key>PEOPLE</key>
