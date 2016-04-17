@@ -72,7 +72,7 @@ BOOL ShouldShowAlertOfType(HBTSStatusBarType type) {
 
 		switch (notificationType) {
 			case HBTSNotificationTypeOverlay:
-				[HBTSStatusBarAlertServer sendAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
+				[%c(HBTSStatusBarAlertServer) sendAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
 				break;
 
 			case HBTSNotificationTypeIcon:
