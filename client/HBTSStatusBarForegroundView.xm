@@ -51,7 +51,7 @@
 %end
 
 %new - (void)_typeStatus_init {
-	UIView *containerView = [[[UIView alloc] init] autorelease];
+	UIView *containerView = [[UIView alloc] init];
 	containerView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:containerView];
 
@@ -109,10 +109,10 @@
 	self.iconItemView.iconName = [iconName copy];
 
 	// init an attributed string with the standard config
-	NSMutableAttributedString *attributedString = [[[NSMutableAttributedString alloc] initWithString:text attributes:@{
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{
 		NSFontAttributeName: [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular],
 		NSForegroundColorAttributeName: self.foregroundStyle.tintColor
-	}] autorelease];
+	}];
 
 	// as long as boldRange isn’t {0,0}, set the bold attributes
 	if (boldRange.location + boldRange.length != 0) {
@@ -121,16 +121,9 @@
 		} range:boldRange];
 	}
 
-	self.contentItemView.attributedString = [attributedString copy];
+	self.contentItemView.attributedString = attributedString;
 
 	[self setNeedsLayout];
-}
-
-- (void)dealloc {
-	[self.iconItemView release];
-	[self.contentItemView release];
-
-	%orig;
 }
 
 %end

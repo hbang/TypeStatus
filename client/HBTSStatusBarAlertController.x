@@ -89,11 +89,8 @@
 	[self _setLockScreenGrabberVisible:!direction];
 	[self _announceAlertWithText:text];
 
-	[_currentIconName release];
-	[_currentText release];
-
-	_currentIconName = [iconName copy];
-	_currentText = [text copy];
+	_currentIconName = iconName;
+	_currentText = text;
 	_currentBoldRange = boldRange;
 
 	_visible = direction;
@@ -105,14 +102,12 @@
 	if (direction) {
 		if (_timeoutTimer) {
 			[_timeoutTimer invalidate];
-			[_timeoutTimer release];
 			_timeoutTimer = nil;
 		}
 
-		_timeoutTimer = [[NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO] retain];
+		_timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO];
 	} else {
 		[_timeoutTimer invalidate];
-		[_timeoutTimer release];
 		_timeoutTimer = nil;
 	}
 }
@@ -196,19 +191,6 @@
 		// post an announcement notification that voiceover will say
 		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, text);
 	}
-}
-
-#pragma mark - Memory management
-
-- (void)dealloc {
-	[_statusBars release];
-	[_currentIconName release];
-	[_currentText release];
-	[_timeoutTimer release];
-
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:HBTSClientSetStatusBarNotification object:nil];
-
-	[super dealloc];
 }
 
 @end

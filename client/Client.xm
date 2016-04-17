@@ -69,7 +69,6 @@
 		self._typeStatus_needsNewForegroundView = NO;
 
 		[self._typeStatus_foregroundView removeFromSuperview];
-		[self._typeStatus_foregroundView release];
 
 		UIStatusBarForegroundView *statusBarView = MSHookIvar<UIStatusBarForegroundView *>(self, "_foregroundView");
 
@@ -136,7 +135,7 @@
 	typeStatusView.alpha = direction ? 0 : 1;
 	statusBarView.alpha = direction ? 1 : 0;
 
-	UIStatusBarHideAnimationParameters *animationParameters = animated ? [[[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] autorelease] : nil;
+	UIStatusBarHideAnimationParameters *animationParameters = animated ? [[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] : nil;
 
 	[%c(UIStatusBarAnimationParameters) animateWithParameters:(UIStatusBarAnimationParameters *)animationParameters animations:^{
 		if (animation == HBTSStatusBarAnimationSlide) {
@@ -180,16 +179,6 @@
 			notify_post("ws.hbang.typestatus/OverlayDidHide");
 		}
 	}];
-}
-
-#pragma mark - Memory management
-
-- (void)dealloc {
-	[[HBTSStatusBarAlertController sharedInstance] removeStatusBar:self];
-
-	[self._typeStatus_foregroundView release];
-
-	%orig;
 }
 
 %end

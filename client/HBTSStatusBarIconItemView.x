@@ -19,11 +19,6 @@
 	return [%c(_UILegibilityImageSet) imageFromImage:tintedImage withShadowImage:nil];
 }
 
-- (void)dealloc {
-	[self.iconName release];
-	%orig;
-}
-
 - (CGSize)intrinsicContentSize {
 	return self.contentsImage.image.size;
 }

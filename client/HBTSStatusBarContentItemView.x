@@ -34,12 +34,6 @@
 	return NSTextAlignmentCenter;
 }
 
-- (void)dealloc {
-	[self.attributedString release];
-	%orig;
-}
-
-
 - (CGSize)intrinsicContentSize {
 	return self.contentsImage.image.size;
 }
