@@ -24,7 +24,7 @@
 
 	<!-- Heading for the list of people. -->
 	<key>PEOPLE</key>
-	<string>Gent</string>
+	<string>Persones</string>
 
 	<!-- Button that allows another person to be added to the list. -->
 	<key>ADD_PERSON</key>
