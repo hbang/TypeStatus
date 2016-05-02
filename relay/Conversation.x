@@ -12,7 +12,6 @@ NSString *handle;
 	// copy the handle so we can use it in the hook below, then call orig
 	handle = [identifier copy];
 	%orig;
-	[handle release];
 	handle = nil;
 }
 
@@ -20,7 +19,6 @@ NSString *handle;
 	// copy the handle so we can use it in the hook below, then call orig
 	handle = [identifier copy];
 	%orig;
-	[handle release];
 	handle = nil;
 }
 
@@ -28,7 +26,6 @@ NSString *handle;
 	// copy the handle so we can use it in the hook below, then call orig
 	handle = [identifier copy];
 	%orig;
-	[handle release];
 	handle = nil;
 }
 
