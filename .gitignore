@@ -1,9 +1,3 @@
-*.deb
-_
-obj
-*.o
-theos
-*~
-*.save
 .DS_Store
 .theos
+debs
