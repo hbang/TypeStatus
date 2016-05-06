@@ -9,7 +9,9 @@
 @interface HBTSStatusBarForegroundView ()
 
 - (void)_typeStatus_init;
+- (void)_typeStatus_setUpLayout;
 
+@property (nonatomic, retain) UIView *containerView;
 @property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
 @property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
 
@@ -19,6 +21,7 @@
 
 %property (nonatomic, retain) UIStatusBarForegroundView *statusBarView;
 
+%property (nonatomic, retain) UIView *containerView;
 %property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
 %property (nonatomic, retain) HBTSStatusBarContentItemView *contentItemView;
 
@@ -51,22 +54,29 @@
 %end
 
 %new - (void)_typeStatus_init {
-	UIView *containerView = [[UIView alloc] init];
-	containerView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self addSubview:containerView];
+	self.containerView = [[UIView alloc] init];
+	self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self addSubview:self.containerView];
 
 	// these UIStatusBarItems leak, but there’s not much we can do about that
 	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.iconItemView.translatesAutoresizingMaskIntoConstraints = NO;
-	[containerView addSubview:self.iconItemView];
+	[self.containerView addSubview:self.iconItemView];
 
 	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
-	[containerView addSubview:self.contentItemView];
+	[self.containerView addSubview:self.contentItemView];
+}
+
+%new - (void)_typeStatus_setUpLayout {
+	// if constraints are already set up, no need to do anything
+	if (self.containerView.constraints.count != 0) {
+		return;
+	}
 
 	NSDictionary <NSString *, UIView *> *views = @{
 		@"self": self,
-		@"containerView": containerView,
+		@"containerView": self.containerView,
 		@"iconItemView": self.iconItemView,
 		@"contentItemView": self.contentItemView
 	};
@@ -82,7 +92,7 @@
 		@"containerView.bottom = self.bottom"
 	] metrics:metrics views:views];
 
-	[containerView hb_addCompactConstraints:@[
+	[self.containerView hb_addCompactConstraints:@[
 		@"iconItemView.top = containerView.top",
 		@"iconItemView.bottom = containerView.bottom",
 
@@ -90,7 +100,7 @@
 		@"contentItemView.bottom = containerView.bottom"
 	] metrics:metrics views:views];
 
-	[containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-outerMargin-[iconItemView]-iconMargin-[contentItemView]-outerMargin-|" options:kNilOptions metrics:metrics views:views]];
+	[self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-outerMargin-[iconItemView]-iconMargin-[contentItemView]-outerMargin-|" options:kNilOptions metrics:metrics views:views]];
 }
 
 - (void)layoutSubviews {
@@ -123,6 +133,7 @@
 
 	self.contentItemView.attributedString = attributedString;
 
+	[self _typeStatus_setUpLayout];
 	[self setNeedsLayout];
 }
 
