@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Сообщения</string>
 
+    <!-- Explanation displayed under the Enable switch. -->
+    <key>MESSAGES_EXPLANATION</key>
+    <string>В приложении Сообщения откройте переписку и нажмите "Подробнее", чтобы открыть эти настройки.</string>
+
+    <!-- Message displayed when a conflicting tweak is installed. -->
+    <key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+    <string>Эта функция недоступна, так как она не совместима с выборочным чтением.</string>
+    
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Отправлять уведомления о наборе</string>
