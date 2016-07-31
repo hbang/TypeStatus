@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Mesaje</string>
 
+    <!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+ 	<string>In pentru Mesaje, apasa pe “Detalii” intr-o conversatie pentru a avea acces la setari.</string>
+ 
+ 	<!-- Message displayed when a conflicting tweak is installed. -->
+ 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+ 	<string>Aceasta functie nu e disponibila pentru ca intra in conflict SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Trimite Notificari De Tastare</string>
