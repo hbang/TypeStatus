@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>メッセージ</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+	<string>メッセージアプリでは、これらの設定にアクセスするには、会話の中で「詳細」ボタンをタップ.</string>
+ 
+	<!-- Message displayed when a conflicting tweak is installed. -->
+	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+	<string>それはSelectiveReadingと競合するため、この機能は利用できません.</string>
+	
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>入力中通知を送信する</string>
