@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Správy</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+    <key>MESSAGES_EXPLANATION</key>
+    <string>V aplikácií Správy, otvorte konverzáciu a klepnite na "Detaily" pre prístup do týchto nastavení.</string>
+
+    <!-- Message displayed when a conflicting tweak is installed. -->
+    <key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+    <string>Táto funkcia nie je dostupná, pretože je v konflikte so SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Poslať notifikáciu o písaní</string>
