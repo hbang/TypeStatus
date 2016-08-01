@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Poruke</string>
 
+    <!-- Explanation displayed under the Enable switch. -->
+    <key>MESSAGES_EXPLANATION</key>
+    <string>U aplikaciji Poruke, za pristup ovim opcijama pritisni “Details” dok si u razgovoru.</string>
+ 
+    <!-- Message displayed when a conflicting tweak is installed. -->
+    <key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+    <string>Ova opcija je nedostupna zato što se sukobi sa SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Pošalji Obavijesti o Pisanju</string>
