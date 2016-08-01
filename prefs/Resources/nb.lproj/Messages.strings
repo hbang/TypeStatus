@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Meldinger</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+    <key>MESSAGES_EXPLANATION</key>
+    <string>I meldingsprogrammet , trykker du på "Detaljer " -knappen i en samtale for å få tilgang til disse innstillingene.</string>
+
+    <!-- Message displayed when a conflicting tweak is installed. -->
+    <key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+    <string>Denne funksjonen er ikke tilgjengelig fordi den strider mot Selektiv lesing.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Send skriver beskjed</string>
