@@ -7,5 +7,11 @@
 	<string>打字:</string>
 	<key>READ</key>
 	<string>已讀:</string>
+
+   <!-- Strings used in status bar notifications to naturally describe the notification. -->
+ 	<key>TYPING_NATURAL</key>
+ 	<string>%@打字中</string>
+ 	<key>READ_NATURAL</key>
+ 	<string>%@ 已讀取您的訊息</string>
 </dict>
 </plist>
