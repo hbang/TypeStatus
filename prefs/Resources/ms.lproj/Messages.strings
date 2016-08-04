@@ -6,12 +6,12 @@
 	<key>MESSAGES</key>
 	<string>Mesej</string>
 
-   <!-- Explanation displayed under the Enable switch. -->
-   <key>MESSAGES_EXPLANATION</key>
+        <!-- Explanation displayed under the Enable switch. -->
+        <key>MESSAGES_EXPLANATION</key>
  	<string>Dalam aplikasi Mesej, tekan butang "Butiran/Details" dalam perbualan untuk mengakses tetapan ini.</string>
 
  	<!-- Message displayed when a conflicting tweak is installed. -->
-<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+        <key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
  	<string>Ciri ini tidak boleh diakses kerana ia bercanggah dengan "SelectiveReading".</string>
 
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
