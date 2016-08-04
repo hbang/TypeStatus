@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>警示</string>
 
+   <!-- Button for choosing the alert format. -->
+ 	<key>OVERLAY_FORMAT</key>
+ 	<string>通知格式</string>
+ 
+ 	<!-- Options for the alert format. -->
+ 	<key>OVERLAY_FORMAT_NATURAL</key>
+ 	<string>自然方式</string>
+ 	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+ 	<string>自然方式：Johnny Appleseed 正在打字中</string>
+ 	<key>OVERLAY_FORMAT_TRADITIONAL</key>
+ 	<string>傳統方式</string>
+ 	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+ 	<string>傳統方式：打字中：Johnny Appleseed</string>
+ 	<key>OVERLAY_FORMAT_NAME_ONLY</key>
+ 	<string>僅顯示名字</string>
+ 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+ 	<string>僅顯示名字：Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>動畫</string>
