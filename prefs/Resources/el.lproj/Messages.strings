@@ -5,6 +5,14 @@
 	<!-- Page title. -->
 	<key>MESSAGES</key>
 	<string>Μηνύματα</string>
+ 
+   <!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+ 	<string>Στην εφαρμογή Μυνήματα, πατήστε το κουμπί "Λεπτομέρειες" μέσα σε μια συζήτηση για να αποκτήσετε πρόσβαση σε αυτές τις ρυθμήσεις</string>
+ 
+ 	<!-- Message displayed when a conflicting tweak is installed. -->
+ 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+ 	<string>Αυτή η λειτουργία δεν είναι διαθέσιμη διότι συγκρούεται με το SelectiveReading.</string>
 
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
