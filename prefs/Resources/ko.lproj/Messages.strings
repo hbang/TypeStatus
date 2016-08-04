@@ -6,12 +6,13 @@
 	<key>MESSAGES</key>
 	<string>메시지</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
 	<key>MESSAGES_EXPLANATION</key>
-	<string>메세지 앱에서 "세부사항"을 눌러 해당 설정을 변경하세요</string>
-
-	<!-- Message displayed when a conflicting tweak is installed. -->
-	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
-	<string>해당 기능은 SelectiveReading과 충돌하기에 사용 할 수 없습니다.</string>
+ 	<string>메세지 앱에서 "세부사항"을 눌러 해당 설정을 변경하세요</string>
+ 
+ 	<!-- Message displayed when a conflicting tweak is installed. -->
+ 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+ 	<string>해당 기능은 SelectiveReading과 충돌하기에 사용 할 수 없습니다.</string>
 
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
