@@ -6,6 +6,24 @@
 	<key>ALERTS</key>
 	<string>Сповіщення</string>
 
+        <!-- Button for choosing the alert format. -->
+        <key>OVERLAY_FORMAT</key>
+        <string>Формат оповіщення</string>
+ 
+        <!-- Options for the alert format. -->
+        <key>OVERLAY_FORMAT_NATURAL</key>
+        <string>Звичайний</string>
+        <key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
+        <string>Звичайний: Johnny Appleseed друкує</string>
+        <key>OVERLAY_FORMAT_TRADITIONAL</key>
+        <string>Традиційний</string>
+        <key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
+        <string>Традиційний: Друкує: Johnny Appleseed</string>
+        <key>OVERLAY_FORMAT_NAME_ONLY</key>
+        <string>Тільки Ім'я</string>
+        <key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
+        <string>Тільки Ім'я: Johnny Appleseed</string>
+
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
 	<string>Анімація</string>
