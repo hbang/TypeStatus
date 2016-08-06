@@ -6,7 +6,6 @@
 	<key>MESSAGES</key>
 	<string>ข้อความ</string>
 
-
 	<!-- Explanation displayed under the Enable switch. -->
 	<key>MESSAGES_EXPLANATION</key>
  	<string>ในแอพ Messages ให้แตะที่ปุ่มรายละเอียดในบทสนทนาเพื่อเข้าสู่การตั้งค่า</string>
