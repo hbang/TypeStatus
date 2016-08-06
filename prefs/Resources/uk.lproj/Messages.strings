@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Повідомлення</string>
 
+        <!-- Explanation displayed under the Enable switch. -->
+        <key>MESSAGES_EXPLANATION</key>
+        <string>У програмі Повідомлення, натисніть кнопку “Докладніше” у вікні діалогу, щоб відкрити ці налаштування.</string>
+ 
+        <!-- Message displayed when a conflicting tweak is installed. -->
+        <key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+        <string>Ця функція недоступна через конфлікт з SelectiveReading.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Надсилати сповіщення про друк</string>
