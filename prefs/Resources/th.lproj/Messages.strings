@@ -6,6 +6,15 @@
 	<key>MESSAGES</key>
 	<string>ข้อความ</string>
 
+
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+ 	<string>ในแอพ Messages ให้แตะที่ปุ่มรายละเอียดในบทสนทนาเพื่อเข้าสู่การตั้งค่า</string>
+ 
+ 	<!-- Message displayed when a conflicting tweak is installed. -->
+ 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+ 	<string>คุณสมบัตินี้ไม่พร้อมใช้งานเนื่องจากมีข้อขัดแย้งกับทวีค SelectiveReading</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>ส่งแจ้งเตือนการพิมพ์</string>
