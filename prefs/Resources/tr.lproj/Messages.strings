@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Mesajlar</string>
 
+        <!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+ 	<string>Bu ayarları düzenlemek için Mesajlar uygulaması içerisindeki bir konuşmayı girip "Ayrıntılar"a tıklayın.</string>
+ 
+ 	<!-- Message displayed when a conflicting tweak is installed. -->
+ 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+ 	<string>SelectiveReading ile çakıştığı için bu özellik kullanılamaz durumda.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Yazma Bilgisini Gönder</string>
