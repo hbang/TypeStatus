@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Missatges</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+ 	<string>En l'aplicació de Missatges, prem el botó "Detalls" en la pantalla de converses per accedir a la configuració.</string>
+ 
+ 	<!-- Message displayed when a conflicting tweak is installed. -->
+ 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+ 	<string>Aquesta funcionalitat no està disponible perquè entra en conflicte amb SelectiveReader.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Enviar notificacions d’escrivint</string>
