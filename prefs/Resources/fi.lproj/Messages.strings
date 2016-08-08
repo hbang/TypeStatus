@@ -6,6 +6,14 @@
 	<key>MESSAGES</key>
 	<string>Viestit</string>
 
+	<!-- Explanation displayed under the Enable switch. -->
+	<key>MESSAGES_EXPLANATION</key>
+ 	<string>Viestit sovelluksessa, napauta "Tietoja" painiketta keskustelussa, päästäksesi näihin asetuksiin.</string>
+ 
+ 	<!-- Message displayed when a conflicting tweak is installed. -->
+ 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
+ 	<string>Tämä ominaisuus ei ole saatavilla, sillä se on ristiriidassa SelectiveReading kanssa.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Lähetä kirjoittaa-ilmoitukset</string>
