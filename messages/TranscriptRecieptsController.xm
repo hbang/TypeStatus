@@ -11,7 +11,7 @@ static NSInteger const kHBTSNumberOfExtraSections = 3;
 
 #pragma mark - Variables
 
-NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"] retain];
+NSBundle *bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
 
 #pragma mark - View controller hook
 
@@ -132,7 +132,7 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 	CKTranscriptRecipientsHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[CKTranscriptRecipientsHeaderFooterView identifier]];
 
 	if (!view) {
-		view = [[[CKTranscriptRecipientsHeaderFooterView alloc] initWithReuseIdentifier:[CKTranscriptRecipientsHeaderFooterView identifier]] autorelease];
+		view = [[CKTranscriptRecipientsHeaderFooterView alloc] initWithReuseIdentifier:[CKTranscriptRecipientsHeaderFooterView identifier]];
 	}
 
 	view.margin = tableView._marginWidth;
@@ -171,7 +171,7 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 	HBTSSwitchTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[HBTSSwitchTableViewCell identifier] forIndexPath:indexPath];
 
 	if (!cell) {
-		cell = [[[HBTSSwitchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[HBTSSwitchTableViewCell identifier]] autorelease];
+		cell = [[HBTSSwitchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[HBTSSwitchTableViewCell identifier]];
 	}
 
 	[cell.control addTarget:self action:@selector(_typeStatus_switchValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -201,13 +201,6 @@ NSBundle *bundle = [[NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSt
 			[self._typeStatus_preferences setReadReceiptsEnabled:sender.on forConversation:self.conversation];
 			break;
 	}
-}
-
-#pragma mark - Memory management
-
-- (void)dealloc {
-	[self._typeStatus_preferences release];
-	%orig;
 }
 
 %end
