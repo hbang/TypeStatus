@@ -99,6 +99,22 @@ NSBundle *bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSta
 	return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	if (![HBTSConversationPreferences shouldEnable]) {
+		return %orig;
+	}
+
+	NSInteger sectionIndex = self._typeStatus_sectionIndex;
+
+	if (sectionIndex == 0 || section != sectionIndex + 1) {
+		return %orig;
+	}
+
+	CKTranscriptRecipientsHeaderFooterView *view = (CKTranscriptRecipientsHeaderFooterView *)%orig;
+	view.preceedingSectionFooterLabel.text = nil;
+	return view;
+}
+
 #pragma mark - Callbacks
 
 %new - (HBTSSwitchTableViewCell *)_typeStatus_switchCellForIndexPath:(NSIndexPath *)indexPath {
