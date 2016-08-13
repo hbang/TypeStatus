@@ -77,7 +77,7 @@
 
 		// if we haven’t yet seen this handle, add it
 		if (!_items[handle]) {
-			_items[handle] = [HBTSContactHelper nameForHandle:handle useShortName:NO];
+			_items[handle] = [%c(HBTSContactHelper) nameForHandle:handle useShortName:NO];
 		}
 	}
 
