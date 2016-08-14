@@ -8,11 +8,13 @@
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSSpringBoardReceivedMessageNotification object:nil userInfo:@{
+		NSDictionary <NSString *, id> *data = @{
 			kHBTSMessageTypeKey: @(type),
 			kHBTSMessageSenderKey: name ?: @"",
 			kHBTSMessageIsTypingKey: @(typing)
-		}]];
+		};
+
+		LMConnectionSendOneWayData(&springboardService, 0, (__bridge CFDataRef)LMDataForPropertyList(data));
 	});
 }
 

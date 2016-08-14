@@ -38,6 +38,57 @@ BOOL ShouldShowAlertOfType(HBTSStatusBarType type) {
 	return YES;
 }
 
+#pragma mark - IPC
+
+void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex size, void *info) {
+	// check that we aren’t being given a message that’s too short
+	if (size < sizeof(LMMessage)) {
+		HBLogError(@"received a bad message? size = %li", size);
+		return;
+	}
+
+	// get the raw data sent
+	const void *rawData = LMMessageGetData(request);
+	size_t length = LMMessageGetDataLength(request);
+
+	// translate to NSData, then NSDictionary
+	CFDataRef data = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)rawData, length, kCFAllocatorNull);
+	NSDictionary <NSString *, id> *userInfo = LMPropertyListForData((__bridge NSData *)data);
+
+	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
+	NSString *sender = userInfo[kHBTSMessageSenderKey];
+	BOOL isTyping = ((NSNumber *)userInfo[kHBTSMessageIsTypingKey]).boolValue;
+
+	if (!ShouldShowAlertOfType(type) || [HBTSContactHelper isHandleMuted:sender]) {
+		return;
+	}
+
+	HBTSNotificationType notificationType = HBTSNotificationTypeNone;
+
+	switch (type) {
+		case HBTSStatusBarTypeTyping:
+		case HBTSStatusBarTypeTypingEnded:
+			notificationType = preferences.typingType;
+			break;
+
+		case HBTSStatusBarTypeRead:
+			notificationType = preferences.readType;
+			break;
+	}
+
+	NSTimeInterval timeout = isTyping && preferences.useTypingTimeout ? kHBTSTypingTimeout : preferences.overlayDisplayDuration;
+
+	switch (notificationType) {
+		case HBTSNotificationTypeOverlay:
+			[%c(HBTSStatusBarAlertServer) sendAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
+			break;
+
+		case HBTSNotificationTypeIcon:
+			[HBTSStatusBarIconController showIconType:type timeout:timeout];
+			break;
+	}
+}
+
 #pragma mark - Constructor
 
 %ctor {
@@ -46,38 +97,9 @@ BOOL ShouldShowAlertOfType(HBTSStatusBarType type) {
 
 	preferences = [%c(HBTSPreferences) sharedInstance];
 
-	[[NSDistributedNotificationCenter defaultCenter] addObserverForName:HBTSSpringBoardReceivedMessageNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-		HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)notification.userInfo[kHBTSMessageTypeKey]).intValue;
-		NSString *sender = notification.userInfo[kHBTSMessageSenderKey];
-		BOOL isTyping = ((NSNumber *)notification.userInfo[kHBTSMessageIsTypingKey]).boolValue;
+	kern_return_t result = LMStartService((char *)"ws.hbang.typestatus.springboardserver", CFRunLoopGetCurrent(), (CFMachPortCallBack)ReceivedRelayedNotification);
 
-		if (!ShouldShowAlertOfType(type) || [HBTSContactHelper isHandleMuted:sender]) {
-			return;
-		}
-
-		HBTSNotificationType notificationType = HBTSNotificationTypeNone;
-
-		switch (type) {
-			case HBTSStatusBarTypeTyping:
-			case HBTSStatusBarTypeTypingEnded:
-				notificationType = preferences.typingType;
-				break;
-
-			case HBTSStatusBarTypeRead:
-				notificationType = preferences.readType;
-				break;
-		}
-
-		NSTimeInterval timeout = isTyping && preferences.useTypingTimeout ? kHBTSTypingTimeout : preferences.overlayDisplayDuration;
-
-		switch (notificationType) {
-			case HBTSNotificationTypeOverlay:
-				[%c(HBTSStatusBarAlertServer) sendAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
-				break;
-
-			case HBTSNotificationTypeIcon:
-				[HBTSStatusBarIconController showIconType:type timeout:timeout];
-				break;
-		}
-	}];
+	if (result) {
+		HBLogError(@"failed to start service! result = %i", result);
+	}
 }

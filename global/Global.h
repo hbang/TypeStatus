@@ -1,3 +1,5 @@
+#import <LightMessaging/LightMessaging.h>
+
 #pragma mark - Types
 
 typedef NS_ENUM(NSUInteger, HBTSStatusBarType) {
@@ -24,6 +26,11 @@ typedef NS_ENUM(NSUInteger, HBTSStatusBarFormat) {
 };
 
 #pragma mark - Constants
+
+static LMConnection springboardService = {
+	MACH_PORT_NULL,
+	"ws.hbang.typestatus.springboardserver"
+};
 
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
