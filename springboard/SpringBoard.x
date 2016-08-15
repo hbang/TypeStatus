@@ -1,7 +1,7 @@
 #import "HBTSRelayServer.h"
 #include <dlfcn.h>
 
-HBTSRelayServer *relayServer;
+HBTSSpringBoardServer *server;
 
 #pragma mark - IPC
 
@@ -21,7 +21,7 @@ void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex
 	NSDictionary <NSString *, id> *userInfo = LMPropertyListForData((__bridge NSData *)data);
 
 	// forward to the main controller
-	[relayServer receivedRelayedNotification:userInfo];
+	[server receivedRelayedNotification:userInfo];
 }
 
 #pragma mark - Constructor
@@ -30,7 +30,7 @@ void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 	dlopen("/Library/MobileSubstrate/DynamicLibraries/TypeStatusClient.dylib", RTLD_LAZY);
 
-	relayServer = [[HBTSRelayServer alloc] init];
+	server = [[HBTSSpringBoardServer alloc] init];
 
 	kern_return_t result = LMStartService((char *)"ws.hbang.typestatus.springboardserver", CFRunLoopGetCurrent(), (CFMachPortCallBack)ReceivedRelayedNotification);
 
