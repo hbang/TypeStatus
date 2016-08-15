@@ -4,6 +4,10 @@
 #import <IMFoundation/FZMessage.h>
 #import <version.h>
 
+// TODO: this is very incorrect (are the flags XOR’d?), however it seems to
+// always be this value
+#define IMMessageItemFlagsTypingBegan (IMMessageItemFlags)4096
+
 #pragma mark - Communication with SpringBoard
 
 void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
@@ -29,7 +33,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 %hook IMDServiceSession
 
 %new - (void)_typeStatus_didReceiveMessage:(FZMessage *)message {
-	if (message.isTypingMessage) {
+	if (message.isTypingMessage && message.flags == IMMessageItemFlagsTypingBegan) {
 		HBTSPostMessage(HBTSStatusBarTypeTyping, message.handle, YES);
 	} else {
 		HBTSPostMessage(HBTSStatusBarTypeTypingEnded, message.handle, NO);
