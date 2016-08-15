@@ -1,4 +1,4 @@
-#import "HBTSRelayServer.h"
+#import "HBTSSpringBoardServer.h"
 #include <dlfcn.h>
 
 HBTSSpringBoardServer *server;
