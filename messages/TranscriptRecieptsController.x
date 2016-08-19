@@ -11,7 +11,7 @@ static NSInteger const kHBTSNumberOfExtraRows = 2;
 
 #pragma mark - Variables
 
-NSBundle *bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
+NSBundle *bundle;
 
 #pragma mark - View controller hook
 
@@ -158,6 +158,8 @@ NSBundle *bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeSta
 %ctor {
 	// only initialise these hooks if we’re allowed to
 	if ([HBTSConversationPreferences isAvailable]) {
+		bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
+		
 		%init;
 	}
 }
