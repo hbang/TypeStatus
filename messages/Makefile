@@ -1,7 +1,7 @@
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = TypeStatusMessages
-TypeStatusMessages_FILES = $(wildcard *.m) ../global/HBTSConversationPreferences.x
+TypeStatusMessages_FILES = $(wildcard *.x) $(wildcard *.m) ../global/HBTSConversationPreferences.x
 TypeStatusMessages_FRAMEWORKS = UIKit
 TypeStatusMessages_PRIVATE_FRAMEWORKS = ChatKit
 TypeStatusMessages_EXTRA_FRAMEWORKS = Cephei
