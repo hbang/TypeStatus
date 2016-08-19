@@ -36,7 +36,9 @@
 	self = %orig;
 
 	if (self) {
-		[[HBTSStatusBarAlertController sharedInstance] addStatusBar:self];
+		if (![self isKindOfClass:%c(SBFakeStatusBarView)]) {
+			[[HBTSStatusBarAlertController sharedInstance] addStatusBar:self];
+		}
 	}
 
 	return self;
@@ -65,12 +67,11 @@
 - (void)_swapToNewForegroundView {
 	%orig;
 
-	if (self._typeStatus_needsNewForegroundView) {
+	if (self._typeStatus_needsNewForegroundView && ![self isKindOfClass:%c(SBFakeStatusBarView)]) {
 		self._typeStatus_needsNewForegroundView = NO;
+		self._typeStatus_foregroundView = nil;
 
-		[self._typeStatus_foregroundView removeFromSuperview];
-
-		UIStatusBarForegroundView *statusBarView = MSHookIvar<UIStatusBarForegroundView *>(self, "_foregroundView");
+		UIStatusBarForegroundView *statusBarView = [self valueForKey:@"_foregroundView"];
 
 		HBTSStatusBarForegroundView *typeStatusView;
 
@@ -111,7 +112,7 @@
 	HBTSStatusBarAnimation animation = [HBTSPreferences sharedInstance].overlayAnimation;
 
 	HBTSStatusBarForegroundView *typeStatusView = self._typeStatus_foregroundView;
-	UIStatusBarForegroundView *statusBarView = MSHookIvar<UIStatusBarForegroundView *>(self, "_foregroundView");
+	UIStatusBarForegroundView *statusBarView = [self valueForKey:@"_foregroundView"];
 
 	self.clipsToBounds = YES;
 	self._typeStatus_isVisible = direction;
@@ -179,6 +180,12 @@
 			notify_post("ws.hbang.typestatus/OverlayDidHide");
 		}
 	}];
+}
+
+- (void)dealloc {
+	[[HBTSStatusBarAlertController sharedInstance] removeStatusBar:self];
+
+	%orig;
 }
 
 %end
