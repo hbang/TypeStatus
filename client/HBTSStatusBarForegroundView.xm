@@ -129,7 +129,7 @@
 
 	// init an attributed string with the standard config
 	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{
-		NSFontAttributeName: font
+		NSFontAttributeName: font,
 		NSForegroundColorAttributeName: self.foregroundStyle.tintColor
 	}];
 
