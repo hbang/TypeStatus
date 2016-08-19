@@ -111,7 +111,10 @@
 }
 
 %new - (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
-	if (![self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular] || ![self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleBold]) {
+	UIFont *font = [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular];
+	UIFont *boldFont = [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleBold];
+
+	if (!font || !boldFont) {
 		HBLogError(@"The fonts we are trying to use are not valid.");
 		return;
 	}
@@ -120,14 +123,14 @@
 
 	// init an attributed string with the standard config
 	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{
-		NSFontAttributeName: [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular],
+		NSFontAttributeName: font
 		NSForegroundColorAttributeName: self.foregroundStyle.tintColor
 	}];
 
 	// as long as boldRange isn’t {0,0}, set the bold attributes
 	if (boldRange.location + boldRange.length != 0) {
 		[attributedString addAttributes:@{
-			NSFontAttributeName: [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleBold]
+			NSFontAttributeName: boldFont
 		} range:boldRange];
 	}
 
