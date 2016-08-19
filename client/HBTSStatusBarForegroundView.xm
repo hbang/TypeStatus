@@ -31,7 +31,9 @@
 	self = %orig;
 
 	if (self) {
-		[self _typeStatus_init];
+		if (!usesVerticalLayout) {
+			[self _typeStatus_init];
+		}
 	}
 
 	return self;
@@ -111,6 +113,10 @@
 }
 
 %new - (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
+	if (!self.containerView) {
+		return;
+	}
+
 	UIFont *font = [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular];
 	UIFont *boldFont = [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleBold];
 
