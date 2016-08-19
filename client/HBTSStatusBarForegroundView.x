@@ -56,18 +56,22 @@
 %end
 
 %new - (void)_typeStatus_init {
+HBLogDebug(@"a");
 	self.containerView = [[UIView alloc] init];
 	self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:self.containerView];
+	HBLogDebug(@"a");
 
 	// these UIStatusBarItems leak, but there’s not much we can do about that
 	self.iconItemView = [[%c(HBTSStatusBarIconItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.iconItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.containerView addSubview:self.iconItemView];
+	HBLogDebug(@"a");
 
 	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.containerView addSubview:self.contentItemView];
+	HBLogDebug(@"a");
 }
 
 %new - (void)_typeStatus_setUpLayout {
