@@ -77,7 +77,7 @@
 
 		// if we haven’t yet seen this handle, add it
 		if (!_items[handle]) {
-			_items[handle] = [%c(HBTSContactHelper) nameForHandle:handle useShortName:NO];
+			_items[handle] = [HBTSContactHelper nameForHandle:handle useShortName:NO];
 		}
 	}
 
@@ -136,6 +136,7 @@
 #pragma mark - CNContactPickerDelegate
 
 - (void)contactPicker:(CNContactPickerViewController *)contactPicker didSelectContact:(CNContact *)contact {
+	HBLogDebug(@"selected %@", contact);
 	// TODO: *maybe* should be on its own class? or same as the model controller?
 	// merge everything we need into a single array
 	NSMutableArray *handles = [NSMutableArray array];
@@ -152,6 +153,7 @@
 	for (NSString *handle in handles) {
 		// if we don’t already have it, add it
 		if (!_items[handle]) {
+			HBLogDebug(@"adding %@",handle);
 			[_preferences addHandle:handle];
 		}
 	}
