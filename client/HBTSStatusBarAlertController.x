@@ -17,7 +17,7 @@
 @end
 
 @implementation HBTSStatusBarAlertController {
-	NSMutableArray *_statusBars;
+	NSMutableSet *_statusBars;
 
 	BOOL _visible;
 	NSString *_currentIconName;
@@ -44,7 +44,7 @@
 	self = [super init];
 
 	if (self) {
-		_statusBars = [[NSMutableArray alloc] init];
+		_statusBars = [[NSMutableSet alloc] init];
 
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(_receivedStatusNotification:) name:HBTSClientSetStatusBarNotification object:nil];
 	}
