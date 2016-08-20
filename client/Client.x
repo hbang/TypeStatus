@@ -69,10 +69,10 @@
 
 	if (self._typeStatus_needsNewForegroundView && ![self isKindOfClass:%c(SBFakeStatusBarView)]) {
 		self._typeStatus_needsNewForegroundView = NO;
-		self._typeStatus_foregroundView = nil;
+
+		[self._typeStatus_foregroundView removeFromSuperview];
 
 		UIStatusBarForegroundView *statusBarView = [self valueForKey:@"_foregroundView"];
-
 		HBTSStatusBarForegroundView *typeStatusView;
 
 		if ([%c(HBTSStatusBarForegroundView) instancesRespondToSelector:@selector(initWithFrame:foregroundStyle:usesVerticalLayout:)]) {
