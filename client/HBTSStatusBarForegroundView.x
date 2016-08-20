@@ -146,6 +146,14 @@
 	[self setNeedsLayout];
 }
 
+- (void)dealloc {
+	[self.containerView release];
+	[self.iconItemView release];
+	[self.contentItemView release];
+
+	%orig;
+}
+
 %end
 
 #pragma mark - Constructor
