@@ -3,30 +3,28 @@
 extern NSString *kFZDaemonPropertyEnableReadReceipts;
 
 HBTSConversationPreferences *preferences;
-NSString *handle;
 
 %group Stuff
 %hook MessageServiceSession
 
 - (void)sendReadReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	// copy the handle so we can use it in the hook below, then call orig
-	handle = [identifier copy];
-	%orig;
-	handle = nil;
+	// if we are disabled, don’t do anything special. otherwise, %orig only if we
+	// have been set to enabled
+	if (![preferences.class shouldEnable] || [preferences readReceiptsEnabledForHandle:identifier]) {
+		%orig;
+	}
 }
 
 - (void)sendPlayedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	// copy the handle so we can use it in the hook below, then call orig
-	handle = [identifier copy];
-	%orig;
-	handle = nil;
+	if (![preferences.class shouldEnable] || [preferences readReceiptsEnabledForHandle:identifier]) {
+		%orig;
+	}
 }
 
 - (void)sendSavedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	// copy the handle so we can use it in the hook below, then call orig
-	handle = [identifier copy];
-	%orig;
-	handle = nil;
+	if (![preferences.class shouldEnable] || [preferences readReceiptsEnabledForHandle:identifier]) {
+		%orig;
+	}
 }
 
 %end
@@ -40,21 +38,6 @@ NSString *handle;
 	// to be loaded and then allow the hooks to be initialised
 	%orig;
 	%init(Stuff);
-}
-
-%end
-
-%hook IMDaemonListener
-
-- (id)valueOfPersistentProperty:(NSString *)property {
-	// if the property being accessed is the read receipts enabled property, and
-	// we’re enabled, and we have the identifier, then return the value for that
-	// particular person (or the fallback)
-	if ([property isEqualToString:kFZDaemonPropertyEnableReadReceipts] && [preferences.class shouldEnable] && handle) {
-		return @([preferences readReceiptsEnabledForHandle:handle]);
-	}
-
-	return %orig;
 }
 
 %end
