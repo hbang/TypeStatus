@@ -58,6 +58,24 @@
 			<string>TYPESTATUS_PLUS</string>
 		</dict>
 		<dict>
+			<key>big</key>
+			<true/>
+			<key>cellClass</key>
+			<string>HBLinkTableCell</string>
+			<key>height</key>
+			<integer>64</integer>
+			<key>icon</key>
+			<string>typestatusplus.png</string>
+			<key>id</key>
+			<string>TypeStatusPlusPromo</string>
+			<key>label</key>
+			<string>TYPESTATUS_PLUS</string>
+			<key>subtitle</key>
+			<string>TYPESTATUS_PLUS_SUBTITLE</string>
+			<key>url</key>
+			<string>https://typestatus.com/plus/</string>
+		</dict>
+		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 		</dict>

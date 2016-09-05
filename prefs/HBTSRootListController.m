@@ -34,20 +34,21 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[self _removeTypeStatusPlusIfNeeded];
+	[self _configureTypeStatusPlusSpecifier];
 }
 
 - (void)reloadSpecifiers {
 	[super reloadSpecifiers];
-	[self _removeTypeStatusPlusIfNeeded];
+	[self _configureTypeStatusPlusSpecifier];
 }
 
-- (void)_removeTypeStatusPlusIfNeeded {
+- (void)_configureTypeStatusPlusSpecifier {
 	NSBundle *plusBundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatusPlus.bundle"];
 
-	if (!plusBundle.executableURL) {
+	if (plusBundle.executableURL) {
+		[self removeSpecifierID:@"TypeStatusPlusPromo"];
+	} else {
 		[self removeSpecifierID:@"TypeStatusPlus"];
-		[self removeSpecifierID:@"TypeStatusPlusGroup"];
 	}
 }
 
