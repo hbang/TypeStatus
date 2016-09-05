@@ -67,7 +67,9 @@
 - (void)_swapToNewForegroundView {
 	%orig;
 
-	if (self._typeStatus_needsNewForegroundView && ![self isKindOfClass:%c(SBFakeStatusBarView)]) {
+	// if we need a new foreground view, and we’re not a fake status bar, and
+	// we’re not in a carplay (stark) status bar
+	if (self._typeStatus_needsNewForegroundView && ![self isKindOfClass:%c(SBFakeStatusBarView)] && ![self.window isKindOfClass:%c(SBStarkStatusBarWindow)]) {
 		self._typeStatus_needsNewForegroundView = NO;
 
 		[self._typeStatus_foregroundView removeFromSuperview];
