@@ -64,8 +64,11 @@
 
 	switch (type) {
 		case HBTSStatusBarTypeTyping:
-		case HBTSStatusBarTypeTypingEnded:
 			hideInMessages = _preferences.typingHideInMessages;
+			break;
+
+		case HBTSStatusBarTypeTypingEnded:
+			return YES;
 			break;
 
 		case HBTSStatusBarTypeRead:
