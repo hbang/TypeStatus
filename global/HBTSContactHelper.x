@@ -78,19 +78,18 @@ HBTSPreferences *preferences;
 	} else {
 		CKEntity *entity = [%c(CKEntity) copyEntityForAddressString:handle];
 
-		// if the entity doesn't exist, use the handle
+		// if we didn’t get anything, just fall back to the handle. if it’s a
+		// person, return their display name. if it’s a business, return the entity
+		// name. if none of these are available, fall back to the handle
 		if (!entity) {
 			return handle;
+		} else if (entity.handle.person && entity.handle._displayNameWithAbbreviation) {
+			return entity.handle._displayNameWithAbbreviation;
+		} else if (entity.name) {
+			return entity.name;
+		} else {
+			return handle;
 		}
-
-		// if the person is nil
-		if ([entity respondsToSelector:@selector(handle)] && !entity.handle.person) {
-			// it might be a business contact, or we might be on iOS 7. return the
-			// entity name if it exists, the handle if not
-			return entity.name ?: handle;
-		}
-
-		return entity.handle._displayNameWithAbbreviation ?: entity.name;
 	}
 }
 
