@@ -5,27 +5,27 @@
 
 @implementation HBTSStatusBarAlertServer
 
-+ (NSString *)iconNameForType:(HBTSStatusBarType)type {
++ (NSString *)iconNameForType:(HBTSMessageType)type {
 	// return the appropriate icon name
 	NSString *name = nil;
 
 	switch (type) {
-		case HBTSStatusBarTypeTyping:
+		case HBTSMessageTypeTyping:
 			name = @"TypeStatus";
 			break;
 
-		case HBTSStatusBarTypeRead:
+		case HBTSMessageTypeRead:
 			name = @"TypeStatusRead";
 			break;
 
-		case HBTSStatusBarTypeTypingEnded:
+		case HBTSMessageTypeTypingEnded:
 			break;
 	}
 
 	return name;
 }
 
-+ (NSString *)textForType:(HBTSStatusBarType)type sender:(NSString *)sender boldRange:(out NSRange *)boldRange {
++ (NSString *)textForType:(HBTSMessageType)type sender:(NSString *)sender boldRange:(out NSRange *)boldRange {
 	static NSBundle *PrefsBundle;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -41,15 +41,15 @@
 			NSString *format = @"";
 
 			switch (type) {
-				case HBTSStatusBarTypeTyping:
+				case HBTSMessageTypeTyping:
 					format = [PrefsBundle localizedStringForKey:@"TYPING_NATURAL" value:nil table:@"Localizable"];
 					break;
 
-				case HBTSStatusBarTypeRead:
+				case HBTSMessageTypeRead:
 					format = [PrefsBundle localizedStringForKey:@"READ_NATURAL" value:nil table:@"Localizable"];
 					break;
 
-				case HBTSStatusBarTypeTypingEnded:
+				case HBTSMessageTypeTypingEnded:
 					break;
 			}
 
@@ -75,15 +75,15 @@
 			NSString *prefix = @"";
 
 			switch (type) {
-				case HBTSStatusBarTypeTyping:
+				case HBTSMessageTypeTyping:
 					prefix = [PrefsBundle localizedStringForKey:@"TYPING" value:nil table:@"Localizable"];
 					break;
 
-				case HBTSStatusBarTypeRead:
+				case HBTSMessageTypeRead:
 					prefix = [PrefsBundle localizedStringForKey:@"READ" value:nil table:@"Localizable"];
 					break;
 
-				case HBTSStatusBarTypeTypingEnded:
+				case HBTSMessageTypeTypingEnded:
 					break;
 			}
 
@@ -154,7 +154,7 @@
 	});
 }
 
-+ (void)sendAlertType:(HBTSStatusBarType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {
++ (void)sendAlertType:(HBTSMessageType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {
 	// grab all data needed to turn a typestatus specific alert into a generic
 	// alert, and then pass it through
 	NSString *iconName = [self iconNameForType:type];
@@ -162,7 +162,7 @@
 	NSRange boldRange;
 	NSString *text = [self textForType:type sender:sender boldRange:&boldRange];
 
-	BOOL direction = type != HBTSStatusBarTypeTypingEnded;
+	BOOL direction = type != HBTSMessageTypeTypingEnded;
 
 	[self sendAlertWithIconName:iconName text:text boldRange:boldRange animatingInDirection:direction timeout:timeout];
 }

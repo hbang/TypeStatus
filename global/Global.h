@@ -2,10 +2,10 @@
 
 #pragma mark - Types
 
-typedef NS_ENUM(NSUInteger, HBTSStatusBarType) {
-	HBTSStatusBarTypeTyping,
-	HBTSStatusBarTypeTypingEnded,
-	HBTSStatusBarTypeRead
+typedef NS_ENUM(NSUInteger, HBTSMessageType) {
+	HBTSMessageTypeTyping,
+	HBTSMessageTypeTypingEnded,
+	HBTSMessageTypeReadReceipt
 };
 
 typedef NS_ENUM(NSUInteger, HBTSNotificationType) {

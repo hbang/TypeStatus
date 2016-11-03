@@ -1,6 +1,6 @@
 @interface HBTSStatusBarAlertServer : NSObject
 
-+ (NSString *)textForType:(HBTSStatusBarType)type sender:(NSString *)sender boldRange:(out NSRange *)boldRange;
++ (NSString *)textForType:(HBTSMessageType)type sender:(NSString *)sender boldRange:(out NSRange *)boldRange;
 
 + (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout;
 
@@ -10,4 +10,3 @@
 + (void)hide;
 
 @end
-

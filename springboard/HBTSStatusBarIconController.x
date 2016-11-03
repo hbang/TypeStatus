@@ -8,7 +8,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
 @implementation HBTSStatusBarIconController
 
-+ (LSStatusBarItem *)_itemForType:(HBTSStatusBarType)type {
++ (LSStatusBarItem *)_itemForType:(HBTSMessageType)type {
 	// is libstatusbar loaded? if not, let's try dlopening it
 	if (!%c(LSStatusBarItem)) {
 		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
@@ -34,12 +34,12 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 	LSStatusBarItem *item = nil;
 
 	switch (type) {
-		case HBTSStatusBarTypeTyping:
-		case HBTSStatusBarTypeTypingEnded:
+		case HBTSMessageTypeTyping:
+		case HBTSMessageTypeTypingEnded:
 			item = typingStatusBarItem;
 			break;
 
-		case HBTSStatusBarTypeRead:
+		case HBTSMessageTypeRead:
 			item = readStatusBarItem;
 			break;
 	}
@@ -52,7 +52,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 	readStatusBarItem.visible = NO;
 }
 
-+ (void)showIconType:(HBTSStatusBarType)type timeout:(NSTimeInterval)timeout {
++ (void)showIconType:(HBTSMessageType)type timeout:(NSTimeInterval)timeout {
 	if (timer) {
 		[timer invalidate];
 		timer = nil;
@@ -65,8 +65,8 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 	}
 
 	switch (type) {
-		case HBTSStatusBarTypeTyping:
-		case HBTSStatusBarTypeRead:
+		case HBTSMessageTypeTyping:
+		case HBTSMessageTypeRead:
 		{
 			item.visible = YES;
 
@@ -74,7 +74,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 			break;
 		}
 
-		case HBTSStatusBarTypeTypingEnded:
+		case HBTSMessageTypeTypingEnded:
 		{
 			item.visible = NO;
 			break;

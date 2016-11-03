@@ -10,7 +10,7 @@
 
 #pragma mark - Communication with SpringBoard
 
-void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
+void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL typing) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSDictionary <NSString *, id> *data = @{
 			kHBTSMessageTypeKey: @(type),
@@ -34,9 +34,9 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 %new - (void)_typeStatus_didReceiveMessage:(FZMessage *)message {
 	if (message.isTypingMessage && message.flags == IMMessageItemFlagsTypingBegan) {
-		HBTSPostMessage(HBTSStatusBarTypeTyping, message.handle, YES);
+		HBTSPostMessage(HBTSMessageTypeTyping, message.handle, YES);
 	} else {
-		HBTSPostMessage(HBTSStatusBarTypeTypingEnded, message.handle, NO);
+		HBTSPostMessage(HBTSMessageTypeTypingEnded, message.handle, NO);
 	}
 }
 
@@ -56,7 +56,7 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 
 - (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID date:(NSDate *)date completionBlock:(id)completion {
 	%orig;
-	HBTSPostMessage(HBTSStatusBarTypeRead, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
+	HBTSPostMessage(HBTSMessageTypeReadReceipt, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
 }
 
 %end
@@ -64,11 +64,11 @@ void HBTSPostMessage(HBTSStatusBarType type, NSString *name, BOOL typing) {
 #pragma mark - Test functions
 
 void HBTSTestTyping() {
-	HBTSPostMessage(HBTSStatusBarTypeTyping, @"example@hbang.ws", NO);
+	HBTSPostMessage(HBTSMessageTypeTyping, @"example@hbang.ws", NO);
 }
 
 void HBTSTestRead() {
-	HBTSPostMessage(HBTSStatusBarTypeRead, @"example@hbang.ws", NO);
+	HBTSPostMessage(HBTSMessageTypeReadReceipt, @"example@hbang.ws", NO);
 }
 
 #pragma mark - Constructor

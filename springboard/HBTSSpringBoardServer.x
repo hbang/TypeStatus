@@ -22,7 +22,7 @@
 }
 
 - (void)receivedRelayedNotification:(NSDictionary *)userInfo {
-	HBTSStatusBarType type = (HBTSStatusBarType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
+	HBTSMessageType type = (HBTSMessageType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
 	NSString *sender = userInfo[kHBTSMessageSenderKey];
 	BOOL isTyping = ((NSNumber *)userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
@@ -33,12 +33,12 @@
 	HBTSNotificationType notificationType = HBTSNotificationTypeNone;
 
 	switch (type) {
-		case HBTSStatusBarTypeTyping:
-		case HBTSStatusBarTypeTypingEnded:
+		case HBTSMessageTypeTyping:
+		case HBTSMessageTypeTypingEnded:
 			notificationType = _preferences.typingType;
 			break;
 
-		case HBTSStatusBarTypeRead:
+		case HBTSMessageTypeRead:
 			notificationType = _preferences.readType;
 			break;
 	}
@@ -59,19 +59,19 @@
 	}
 }
 
-- (BOOL)shouldShowAlertOfType:(HBTSStatusBarType)type {
+- (BOOL)shouldShowAlertOfType:(HBTSMessageType)type {
 	BOOL hideInMessages = NO;
 
 	switch (type) {
-		case HBTSStatusBarTypeTyping:
+		case HBTSMessageTypeTyping:
 			hideInMessages = _preferences.typingHideInMessages;
 			break;
 
-		case HBTSStatusBarTypeTypingEnded:
+		case HBTSMessageTypeTypingEnded:
 			return YES;
 			break;
 
-		case HBTSStatusBarTypeRead:
+		case HBTSMessageTypeRead:
 			hideInMessages = _preferences.readHideInMessages;
 			break;
 	}
