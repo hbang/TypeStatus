@@ -10,12 +10,12 @@
 
 #pragma mark - Communication with SpringBoard
 
-void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL typing) {
+void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSDictionary <NSString *, id> *data = @{
 			kHBTSMessageTypeKey: @(type),
 			kHBTSMessageSenderKey: name ?: @"",
-			kHBTSMessageIsTypingKey: @(typing)
+			kHBTSMessageIsTypingKey: @(isTyping)
 		};
 
 		LMConnectionSendOneWayData(&springboardService, 0, (__bridge CFDataRef)LMDataForPropertyList(data));
@@ -82,6 +82,6 @@ void HBTSTestRead() {
 		%init(CraigFederighi);
 	}
 
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, 0);
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, 0);
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, kNilOptions);
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, kNilOptions);
 }
