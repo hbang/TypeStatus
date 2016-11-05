@@ -105,30 +105,6 @@
 
 #pragma mark - Send
 
-+ (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
-	// for backwards compat: pass through to the new method
-	[self sendAlertWithIconName:iconName title:title content:content animatingInDirection:YES timeout:-1];
-}
-
-+ (void)sendAlertWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
-	// if this is a show command, ensure no arguments are missing
-	if (direction) {
-		NSParameterAssert(title);
-	}
-
-	// create a singular string with an NSRange for the title/bold part
-	NSString *text = nil;
-
-	if (content) {
-		text = [NSString stringWithFormat:@"%@ %@", title, content];
-	} else {
-		text = title;
-	}
-
-	// pass through to the main sending method
-	[self sendAlertWithIconName:iconName text:text boldRange:NSMakeRange(0, title.length) animatingInDirection:direction timeout:timeout];
-}
-
 + (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	// if this is a show command, ensure no arguments are missing
 	if (direction) {
