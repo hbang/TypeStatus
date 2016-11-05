@@ -38,7 +38,7 @@
 			notificationType = _preferences.typingType;
 			break;
 
-		case HBTSMessageTypeRead:
+		case HBTSMessageTypeReadReceipt:
 			notificationType = _preferences.readType;
 			break;
 	}
@@ -71,7 +71,7 @@
 			return YES;
 			break;
 
-		case HBTSMessageTypeRead:
+		case HBTSMessageTypeReadReceipt:
 			hideInMessages = _preferences.readHideInMessages;
 			break;
 	}

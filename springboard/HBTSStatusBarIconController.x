@@ -39,7 +39,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 			item = typingStatusBarItem;
 			break;
 
-		case HBTSMessageTypeRead:
+		case HBTSMessageTypeReadReceipt:
 			item = readStatusBarItem;
 			break;
 	}
@@ -66,7 +66,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 
 	switch (type) {
 		case HBTSMessageTypeTyping:
-		case HBTSMessageTypeRead:
+		case HBTSMessageTypeReadReceipt:
 		{
 			item.visible = YES;
 

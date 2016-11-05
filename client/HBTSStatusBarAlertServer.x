@@ -14,7 +14,7 @@
 			name = @"TypeStatus";
 			break;
 
-		case HBTSMessageTypeRead:
+		case HBTSMessageTypeReadReceipt:
 			name = @"TypeStatusRead";
 			break;
 
