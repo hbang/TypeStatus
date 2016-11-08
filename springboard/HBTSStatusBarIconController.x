@@ -1,14 +1,26 @@
 #import "HBTSStatusBarIconController.h"
+#import "HBTSPreferences.h"
 #import <libstatusbar/LSStatusBarItem.h>
 
-static NSString *const kHBTSTimerStatusBarItemKey = @"StatusBarItem";
-
 NSTimer *timer;
-LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
+NSMutableDictionary <NSString *, LSStatusBarItem *> *statusBarItems;
 
 @implementation HBTSStatusBarIconController
 
-+ (LSStatusBarItem *)_itemForType:(HBTSMessageType)type {
++ (NSString *)_iconNameForType:(HBTSMessageType)type {
+	switch (type) {
+		case HBTSMessageTypeTyping:
+		case HBTSMessageTypeTypingEnded:
+			return @"TypeStatus";
+			break;
+
+		case HBTSMessageTypeReadReceipt:
+			return @"TypeStatusRead";
+			break;
+	}
+}
+
++ (BOOL)_hasLibstatusbar {
 	// is libstatusbar loaded? if not, let's try dlopening it
 	if (!%c(LSStatusBarItem)) {
 		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
@@ -17,69 +29,69 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 	// still not loaded? probably not installed. just bail out
 	if (!%c(LSStatusBarItem)) {
 		HBLogWarn(@"attempting to display a status bar icon, but libstatusbar isn’t installed");
-		return nil;
+		return NO;
 	}
 
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		typingStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.icon" alignment:StatusBarAlignmentRight];
-		typingStatusBarItem.imageName = @"TypeStatus";
-		typingStatusBarItem.visible = NO;
+	return YES;
+}
 
-		readStatusBarItem = [[%c(LSStatusBarItem) alloc] initWithIdentifier:@"ws.hbang.typestatus.readicon" alignment:StatusBarAlignmentRight];
-		readStatusBarItem.imageName = @"TypeStatusRead";
-		readStatusBarItem.visible = NO;
-	});
-
-	LSStatusBarItem *item = nil;
-
-	switch (type) {
-		case HBTSMessageTypeTyping:
-		case HBTSMessageTypeTypingEnded:
-			item = typingStatusBarItem;
-			break;
-
-		case HBTSMessageTypeReadReceipt:
-			item = readStatusBarItem;
-			break;
++ (void)showIcon:(NSString *)iconName timeout:(NSTimeInterval)timeout {
+	// if we don’t have libstatusbar, do nothing
+	if (!self._hasLibstatusbar) {
+		return;
 	}
 
-	return item;
-}
-
-+ (void)_timerFired:(NSTimer *)timer {
-	typingStatusBarItem.visible = NO;
-	readStatusBarItem.visible = NO;
-}
-
-+ (void)showIconType:(HBTSMessageType)type timeout:(NSTimeInterval)timeout {
+	// if we already have a timer, kill it
 	if (timer) {
 		[timer invalidate];
 		timer = nil;
 	}
 
-	LSStatusBarItem *item = [self _itemForType:type];
+	// get the item
+	LSStatusBarItem *item = statusBarItems[iconName];
 
+	// does it not exist yet? create it
 	if (!item) {
-		return;
+		item = [[%c(LSStatusBarItem) alloc] initWithIdentifier:[NSString stringWithFormat:@"ws.hbang.typestatus.icon-%@", iconName] alignment:StatusBarAlignmentRight];
+		item.imageName = iconName;
+		statusBarItems[iconName] = item;
 	}
 
+	// show the icon
+	item.visible = YES;
+
+	// if the timeout isn’t provided, grab it from the prefs
+	if (timeout == -1) {
+		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
+	}
+
+	// set up the hide timer
+	timer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO];
+}
+
++ (void)showIconType:(HBTSMessageType)type timeout:(NSTimeInterval)timeout {
 	switch (type) {
 		case HBTSMessageTypeTyping:
 		case HBTSMessageTypeReadReceipt:
-		{
-			item.visible = YES;
-
-			timer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_timerFired:) userInfo:nil repeats:NO];
+			[self showIcon:[self _iconNameForType:type] timeout:timeout];
 			break;
-		}
 
 		case HBTSMessageTypeTypingEnded:
-		{
-			item.visible = NO;
+			[self hide];
 			break;
-		}
+	}
+}
+
++ (void)hide {
+	// loop over all known items
+	for (LSStatusBarItem *item in statusBarItems.allValues) {
+		// hide it
+		item.visible = NO;
 	}
 }
 
 @end
+
+%ctor {
+	statusBarItems = [NSMutableDictionary dictionary];
+}
