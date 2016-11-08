@@ -2,6 +2,6 @@
 
 @interface HBTSStatusBarAlertServer (Private)
 
-+ (void)sendAlertType:(HBTSMessageType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout;
++ (void)sendMessagesAlertType:(HBTSMessageType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout;
 
 @end

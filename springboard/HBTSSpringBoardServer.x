@@ -50,7 +50,7 @@
 			break;
 
 		case HBTSNotificationTypeOverlay:
-			[%c(HBTSStatusBarAlertServer) sendAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
+			[%c(HBTSStatusBarAlertServer) sendMessagesAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
 			break;
 
 		case HBTSNotificationTypeIcon:
