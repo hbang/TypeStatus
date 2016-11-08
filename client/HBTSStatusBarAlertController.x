@@ -95,6 +95,10 @@
 	}
 }
 
+- (void)hide {
+	[self _showWithIconName:nil text:nil boldRange:NSMakeRange(0, 0) animatingInDirection:NO timeout:0];
+}
+
 - (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
 	// if for some crazy reason we don’t have a foreground view, log that (it
 	// really shouldn’t happen…) and return
