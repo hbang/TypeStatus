@@ -105,7 +105,7 @@
 
 #pragma mark - Send
 
-+ (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange timeout:(NSTimeInterval)timeout source:(NSString *)source {
++ (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange source:(NSString *)source timeout:(NSTimeInterval)timeout {
 	// ensure no required arguments are missing
 	NSParameterAssert(text);
 	NSParameterAssert(source);
@@ -143,7 +143,7 @@
 		NSRange boldRange;
 		NSString *text = [self textForType:type sender:sender boldRange:&boldRange];
 
-		[self sendAlertWithIconName:iconName text:text boldRange:boldRange timeout:timeout source:@"com.apple.MobileSMS"];
+		[self sendAlertWithIconName:iconName text:text boldRange:boldRange source:@"com.apple.MobileSMS" timeout:timeout];
 	}
 }
 
