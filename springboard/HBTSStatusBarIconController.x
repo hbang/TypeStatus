@@ -70,7 +70,7 @@ LSStatusBarItem *typingStatusBarItem, *readStatusBarItem;
 		{
 			item.visible = YES;
 
-			timer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_timerFired:) userInfo:@{ kHBTSTimerStatusBarItemKey: item } repeats:NO];
+			timer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(_timerFired:) userInfo:nil repeats:NO];
 			break;
 		}
 
