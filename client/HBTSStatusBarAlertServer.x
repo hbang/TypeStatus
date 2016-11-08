@@ -105,12 +105,10 @@
 
 #pragma mark - Send
 
-+ (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout source:(NSString *)source {
-	// if this is a show command, ensure no arguments are missing
-	if (direction) {
-		NSParameterAssert(text);
-		NSParameterAssert(source);
-	}
++ (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange timeout:(NSTimeInterval)timeout source:(NSString *)source {
+	// ensure no required arguments are missing
+	NSParameterAssert(text);
+	NSParameterAssert(source);
 
 	// if the timeout is -1, replace it with the user's specified duration
 	if (timeout == -1) {
@@ -123,9 +121,9 @@
 			kHBTSMessageIconNameKey: iconName ?: @"",
 			kHBTSMessageContentKey: text ?: @"",
 			kHBTSMessageBoldRangeKey: @[ @(boldRange.location), @(boldRange.length) ],
-			kHBTSMessageDirectionKey: @(direction),
-			kHBTSMessageSourceKey: source,
+			kHBTSMessageSourceKey: source ?: @"",
 
+			kHBTSMessageDirectionKey: @YES,
 			kHBTSMessageTimeoutKey: @(timeout),
 			kHBTSMessageSendDateKey: [NSDate date]
 		}]];
@@ -133,21 +131,30 @@
 }
 
 + (void)sendMessagesAlertType:(HBTSMessageType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {
-	// grab all data needed to turn a typestatus specific alert into a generic
-	// alert, and then pass it through
-	NSString *iconName = [self iconNameForType:type];
+	// if this is a typing ended message
+	if (type == HBTSMessageTypeTypingEnded) {
+		// we just need to call hide
+		[self hide];
+	} else {
+		// grab all data needed to turn a typestatus specific alert into a generic
+		// alert, and then pass it through
+		NSString *iconName = [self iconNameForType:type];
 
-	NSRange boldRange;
-	NSString *text = [self textForType:type sender:sender boldRange:&boldRange];
+		NSRange boldRange;
+		NSString *text = [self textForType:type sender:sender boldRange:&boldRange];
 
-	BOOL direction = type != HBTSMessageTypeTypingEnded;
-
-	[self sendAlertWithIconName:iconName text:text boldRange:boldRange animatingInDirection:direction timeout:timeout source:@"com.apple.MobileSMS"];
+		[self sendAlertWithIconName:iconName text:text boldRange:boldRange timeout:timeout source:@"com.apple.MobileSMS"];
+	}
 }
 
 + (void)hide {
 	// a hide message is just sending nil values with the direction set to NO (hide)
-	[self sendAlertWithIconName:nil text:nil boldRange:NSMakeRange(0, 0) animatingInDirection:NO timeout:0 source:nil];
+	// send the notification
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
+			kHBTSMessageDirectionKey: @NO
+		}]];
+	});
 }
 
 @end
