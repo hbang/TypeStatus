@@ -68,23 +68,6 @@
 
 #pragma mark - Show/Hide
 
-- (void)showWithIconName:(NSString *)iconName title:(NSString *)title content:(NSString *)content {
-	if (content) {
-		[self showWithIconName:iconName text:[NSString stringWithFormat:@"%@ %@", title, content] boldRange:NSMakeRange(0, title.length)];
-	} else {
-		[self showWithIconName:iconName text:title boldRange:NSMakeRange(0, title.length)];
-	}
-}
-
-- (void)showWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
-	NSTimeInterval timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
-	[self _showWithIconName:iconName text:text boldRange:boldRange animatingInDirection:YES timeout:timeout];
-}
-
-- (void)hide {
-	[self _showWithIconName:nil text:nil boldRange:NSMakeRange(0, 0) animatingInDirection:NO timeout:5];
-}
-
 - (void)_showWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	[self _setLockScreenGrabberVisible:!direction];
 	[self _announceAlertWithText:text];
