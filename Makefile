@@ -10,6 +10,8 @@ ifeq ($(IMAGENT),1)
 INSTALL_TARGET_PROCESSES += imagent
 endif
 
+export ADDITIONAL_CFLAGS = -Wextra -Wno-unused-parameter
+
 include $(THEOS)/makefiles/common.mk
 
 SUBPROJECTS = springboard client relay prefs messages

@@ -7,7 +7,7 @@ HBTSSpringBoardServer *server;
 
 void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex size, void *info) {
 	// check that we aren’t being given a message that’s too short
-	if (size < sizeof(LMMessage)) {
+	if (size < (long)sizeof(LMMessage)) {
 		HBLogError(@"received a bad message? size = %li", size);
 		return;
 	}
