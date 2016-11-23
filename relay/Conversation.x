@@ -56,7 +56,7 @@ BOOL sendReceipt = NO;
 
 %ctor {
 	// only initialise these hooks if we’re allowed to
-	if ([HBTSConversationPreferences shouldEnable]) {
+	if ([HBTSConversationPreferences isAvailable]) {
 		preferences = [[HBTSConversationPreferences alloc] init];
 		%init;
 	}
