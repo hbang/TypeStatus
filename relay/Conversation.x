@@ -3,50 +3,40 @@
 extern NSString *kFZDaemonPropertyEnableReadReceipts;
 
 HBTSConversationPreferences *preferences;
-BOOL blockReceipt;
+BOOL sendReceipt = NO;
 
 %group Stuff
 %hook MessageServiceSession
 
 - (void)sendReadReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	// if we are enabled, and receipts are disabled for this person, indicate to
-	// the hook below that we’re blocking the receipt
-	if ([preferences.class shouldEnable] && ![preferences readReceiptsEnabledForHandle:identifier]) {
-		blockReceipt = YES;
-	}
-
+	// indicate to the hook below if receipts are blocked or not
+	sendReceipt = [preferences readReceiptsEnabledForHandle:identifier];
 	%orig;
-	blockReceipt = NO;
 }
 
 - (void)sendPlayedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	if ([preferences.class shouldEnable] && ![preferences readReceiptsEnabledForHandle:identifier]) {
-		blockReceipt = YES;
-	}
-
+	sendReceipt = [preferences readReceiptsEnabledForHandle:identifier];
 	%orig;
-	blockReceipt = NO;
 }
 
 - (void)sendSavedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
-	if ([preferences.class shouldEnable] && ![preferences readReceiptsEnabledForHandle:identifier]) {
-		blockReceipt = YES;
-	}
-
+	sendReceipt = [preferences readReceiptsEnabledForHandle:identifier];
 	%orig;
-	blockReceipt = NO;
 }
 
 %end
 %end
 
 %hookf(Boolean, CFPreferencesGetAppBooleanValue, CFStringRef key, CFStringRef applicationID, Boolean *keyExistsAndHasValidFormat) {
-	// if we are meant to be blocking a receipt here, and com.apple.madrid’s
+	// if we are enabled, and com.apple.madrid’s
 	// ReadReceiptsEnabled key is being queried, override it. otherwise, return
 	// the original value as per usual
-	if (blockReceipt && [(__bridge NSString *)applicationID isEqualToString:@"com.apple.madrid"] && [(__bridge NSString *)key isEqualToString:@"ReadReceiptsEnabled"]) {
+	if ([preferences.class shouldEnable] && [(__bridge NSString *)applicationID isEqualToString:@"com.apple.madrid"] && [(__bridge NSString *)key isEqualToString:@"ReadReceiptsEnabled"]) {
 		*keyExistsAndHasValidFormat = YES;
-		return NO;
+		// save value and set back to NO for safety
+		BOOL temp = sendReceipt;
+		sendReceipt = NO;
+		return temp;
 	}
 
 	return %orig;
