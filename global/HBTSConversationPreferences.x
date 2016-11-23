@@ -11,19 +11,19 @@
 #pragma mark - Should be enabled
 
 + (BOOL)isAvailable {
-	static BOOL hasConflict = NO;
+	static BOOL isAvailable = NO;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		// we need to be on iOS 9.0+
-		hasConflict = !IS_IOS_OR_NEWER(iOS_9_0) &&
+		isAvailable = IS_IOS_OR_NEWER(iOS_9_0) &&
 			// we don't really want to do anything if someone else is already doing it
-			[[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"] &&
+			![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"] &&
 			// Remote Messages also likes to be annoying by calling its daemon
 			// com.apple.MobileSMS. make sure we don’t touch it
-			[[NSBundle mainBundle].executablePath isEqualToString:@"/Library/Application Support/RemoteMessages/RemoteMessages"];
+			![[NSBundle mainBundle].executablePath isEqualToString:@"/Library/Application Support/RemoteMessages/RemoteMessages"];
 	});
 
-	return !hasConflict;
+	return isAvailable;
 }
 
 + (BOOL)shouldEnable {
