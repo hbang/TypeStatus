@@ -46,8 +46,12 @@
 #pragma mark - External
 
 - (BOOL)_readReceiptsEnabled {
+	// use a special™ key when in imagent so we don’t override it
+	NSString *bundle = [NSBundle mainBundle].bundleURL.lastPathComponent;
+	CFStringRef key = [bundle isEqualToString:@"imagent.app"] ? CFSTR("ReadReceiptsEnabled-nohaxplz") : CFSTR("ReadReceiptsEnabled");
+
 	// the prefs bundle falls back to NO, so probably we should follow suit
-	return CFPreferencesGetAppBooleanValue(CFSTR("ReadReceiptsEnabled"), CFSTR("com.apple.madrid"), nil);
+	return CFPreferencesGetAppBooleanValue(key, CFSTR("com.apple.madrid"), nil);
 }
 
 #pragma mark - Keys
