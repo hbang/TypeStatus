@@ -37,9 +37,12 @@ BOOL sendReceipt = NO;
 	// if we are enabled, and com.apple.madrid’s ReadReceiptsEnabled key is being
 	// queried, override it. otherwise, return the original value as per usual
 	if ([preferences.class shouldEnable] && [(__bridge NSString *)applicationID isEqualToString:@"com.apple.madrid"] && [(__bridge NSString *)key isEqualToString:@"ReadReceiptsEnabled"]) {
-		*keyExistsAndHasValidFormat = YES;
+		// if the pointer arg is non-null, set it
+		if (keyExistsAndHasValidFormat != NULL) {
+			*keyExistsAndHasValidFormat = YES;
+		}
 
-		// save value and set back to NO for safety
+		// override value and set our var back to NO for safety
 		BOOL result = sendReceipt;
 		sendReceipt = NO;
 		return result;
