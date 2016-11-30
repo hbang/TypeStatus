@@ -4,7 +4,7 @@ Depends: firmware (>= 7.0), firmware (<< 9.4), mobilesubstrate, preferenceloader
 Recommends: firmware (>= 9.2) | libstatusbar (>= 1:0.9.9.0-1), firmware (<< 9.2) | libmoorecon (>= 0.9.9.0)
 Conflicts: ws.hbang.typestatus
 Replaces: ws.hbang.typestatus
-Version: 2.1.7
+Version: 2.1.8
 Architecture: iphoneos-arm
 Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <support@hbang.ws>
@@ -12,7 +12,7 @@ Author: HASHBANG Productions <support@hbang.ws>
 Section: Tweaks
 Icon: file:///Library/PreferenceBundles/TypeStatus.bundle/icon@2x.png
 Depiction: https://cydia.hbang.ws/depiction/ws.hbang.typestatus2/
-Support: https://www.hbang.ws/support/
+Support: https://hbang.ws/support/
 Sponsor: thebigboss.org <http://thebigboss.org>
 Tag: purpose::extension, compatible::ios7, compatible::ios8, compatible::ios9
 dev: hbang
