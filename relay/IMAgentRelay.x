@@ -4,8 +4,7 @@
 #import <IMFoundation/FZMessage.h>
 #import <version.h>
 
-// TODO: this is very incorrect (are the flags XOR’d?), however it seems to
-// always be this value
+// TODO: this is very incorrect (are the flags XOR’d?), however it seems to always be this value
 #define IMMessageItemFlagsTypingBegan (IMMessageItemFlags)4096
 
 #pragma mark - Communication with SpringBoard
@@ -39,6 +38,16 @@ void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 		HBTSPostMessage(HBTSMessageTypeTypingEnded, message.handle, NO);
 	}
 }
+
+%group PhilSchiller
+- (void)didReceiveMessages:(NSArray <FZMessage *> *)messages forChat:(id)chat style:(unsigned char)style account:(id)account {
+	%orig;
+	
+	for (FZMessage *message in messages) {
+		[self _typeStatus_didReceiveMessage:message];
+	}
+}
+%end
 
 %group EddyCue
 - (void)didReceiveMessage:(FZMessage *)message forChat:(id)chat style:(unsigned char)style account:(id)account {
@@ -80,6 +89,10 @@ void HBTSTestRead() {
 		%init(EddyCue);
 	} else {
 		%init(CraigFederighi);
+	}
+
+	if (IS_IOS_OR_NEWER(iOS_10_0)) {
+		%init(PhilSchiller);
 	}
 
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, kNilOptions);
