@@ -5,6 +5,7 @@ TWEAK_NAME = TypeStatusClient
 TypeStatusClient_FILES = $(wildcard *.x) $(wildcard *.m) ../global/HBTSPreferences.m
 TypeStatusClient_FRAMEWORKS = UIKit CoreGraphics
 TypeStatusClient_EXTRA_FRAMEWORKS = Cephei
+TypeStatusClient_LIBRARIES = rocketbootstrap
 TypeStatusClient_CFLAGS = -I../global -include ../global/Global.h -fobjc-arc
 
 HBTSStatusBarForegroundView.x_CFLAGS = -fno-objc-arc
