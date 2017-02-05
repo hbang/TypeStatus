@@ -7,7 +7,7 @@ HBTSSpringBoardServer *server;
 
 void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex size, void *info) {
 	// check that we aren’t being given a message that’s too short
-	if (size < (long)sizeof(LMMessage)) {
+	if ((size_t)size < sizeof(LMMessage)) {
 		HBLogError(@"received a bad message? size = %li", size);
 		return;
 	}
@@ -32,7 +32,7 @@ void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex
 
 	server = [[HBTSSpringBoardServer alloc] init];
 
-	kern_return_t result = LMStartService((char *)"ws.hbang.typestatus.springboardserver", CFRunLoopGetCurrent(), (CFMachPortCallBack)ReceivedRelayedNotification);
+	kern_return_t result = LMStartService(springboardService.serverName, CFRunLoopGetCurrent(), (CFMachPortCallBack)ReceivedRelayedNotification);
 
 	if (result) {
 		HBLogError(@"failed to start service! result = %i", result);
