@@ -1,6 +1,7 @@
 #import "HBTSConversationPreferences.h"
 #import <IMCore/IMChat.h>
 #import <IMCore/IMHandle.h>
+#import <version.h>
 
 HBTSConversationPreferences *preferences;
 
@@ -25,6 +26,18 @@ HBTSConversationPreferences *preferences;
 	}
 }
 
+%group PhilSchiller
+- (void)setLocalUserIsComposing:(BOOL)isComposing typingIndicatorIcon:(id)icon {
+	// “composing” presumably refers to all situations where the user is doing something that’s about
+	// to be sent. for instance, drawing a digital touch thingy. so cover that as well
+	if ([preferences.class shouldEnable]) {
+		%orig(isComposing && [preferences typingNotificationsEnabledForConversation:self]);
+	} else {
+		%orig;
+	}
+}
+%end
+
 %end
 
 %ctor {
@@ -32,5 +45,9 @@ HBTSConversationPreferences *preferences;
 	if ([HBTSConversationPreferences isAvailable]) {
 		preferences = [[HBTSConversationPreferences alloc] init];
 		%init;
+
+		if (IS_IOS_OR_NEWER(iOS_10_0)) {
+			%init(PhilSchiller);
+		}
 	}
 }
