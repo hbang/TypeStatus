@@ -144,8 +144,8 @@
 #pragma mark - Lock Screen Grabber
 
 - (void)_setLockScreenGrabberVisible:(BOOL)state {
-	// we must be in springboard
-	if (!IN_SPRINGBOARD) {
+	// we must be in springboard, and not on iOS 10 (which removed the grabbers)
+	if (!IN_SPRINGBOARD || IS_IOS_OR_NEWER(iOS_10_0)) {
 		return;
 	}
 
