@@ -18,8 +18,8 @@
 		isAvailable = IS_IOS_OR_NEWER(iOS_9_0) &&
 			// we don't really want to do anything if someone else is already doing it
 			![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"] &&
-			// Remote Messages also likes to be annoying by calling its daemon
-			// com.apple.MobileSMS. make sure we don’t touch it
+			// Remote Messages also likes to be annoying by calling its daemon com.apple.MobileSMS. make
+			// sure we don’t touch it
 			![[NSBundle mainBundle].executablePath isEqualToString:@"/Library/Application Support/RemoteMessages/RemoteMessages"];
 	});
 

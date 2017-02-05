@@ -7,9 +7,8 @@ HBTSConversationPreferences *preferences;
 %hook CKConversation
 
 - (void)setLocalUserIsTyping:(BOOL)isTyping {
-	// if the local user is typing AND typing notifications are enabled, go ahead
-	// and set it to YES. otherwise, they’re either not typing or have disabled
-	// typing notifications.
+	// if the local user is typing AND typing notifications are enabled, go ahead and set it to YES.
+	// otherwise, they’re either not typing or have disabled typing notifications
 	if ([preferences.class shouldEnable]) {
 		%orig(isTyping && [preferences typingNotificationsEnabledForConversation:self]);
 	} else {

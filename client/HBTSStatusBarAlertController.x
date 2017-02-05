@@ -100,8 +100,8 @@
 }
 
 - (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
-	// if for some crazy reason we don’t have a foreground view, log that (it
-	// really shouldn’t happen…) and return
+	// if for some crazy reason we don’t have a foreground view, log that (it really shouldn’t
+	// happen…) and return
 	if (!statusBar._typeStatus_foregroundView) {
 		HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
 		return;
@@ -121,9 +121,9 @@
 - (void)_receivedStatusNotification:(NSNotification *)notification {
 	NSTimeInterval timeout = ((NSNumber *)notification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
 
-	// when apps are paused in the background, notifications get queued up and
-	// delivered when they resume. to work around this, we determine if it’s
-	// been longer than the specified duration; if so, disregard the alert
+	// when apps are paused in the background, notifications get queued up and delivered when they
+	// resume. to work around this, we determine if it’s been longer than the specified duration; if
+	// so, disregard the alert
 	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > timeout) {
 		return;
 	}

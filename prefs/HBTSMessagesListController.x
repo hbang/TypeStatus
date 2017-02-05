@@ -92,8 +92,8 @@
 		NSString *name = _items[handle];
 		NSString *displayedHandle = handle;
 
-		// if a phone number, get the formatted phone number – hopefully just
-		// checking for an “@” is good enough?
+		// if a phone number, get the formatted phone number – hopefully just checking for an “@” is
+		// good enough?
 		if ([handle rangeOfString:@"@"].location == NSNotFound) {
 			displayedHandle = [CNPhoneNumber phoneNumberWithStringValue:handle].formattedStringValue;
 		}
@@ -186,8 +186,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-	// use “Remove” instead of “Delete” for the delete button, and cache the
-	// localized string
+	// use “Remove” instead of “Delete” for the delete button, and cache the localized string
 	static NSString *DeleteString = @"";
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{

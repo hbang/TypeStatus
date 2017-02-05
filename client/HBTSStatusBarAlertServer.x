@@ -147,8 +147,8 @@
 		// we just need to call hide
 		[self hide];
 	} else {
-		// grab all data needed to turn a typestatus specific alert into a generic
-		// alert, and then pass it through
+		// grab all data needed to turn a typestatus specific alert into a generic alert, and then pass
+		// it through
 		NSString *iconName = [self iconNameForType:type];
 
 		NSRange boldRange;

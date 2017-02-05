@@ -54,9 +54,9 @@ BOOL sendReceipt = NO;
 %hook IMDaemon
 
 - (void)_loadServices {
-	// /System/Library/Messages/PlugIns/iMessage.imservice is lazy loaded by this
-	// method, and that’s the bundle MessageServiceSession lives in. wait for it
-	// to be loaded and then allow the hooks to be initialised
+	// /System/Library/Messages/PlugIns/iMessage.imservice is lazy loaded by this method, and that’s
+	// the bundle MessageServiceSession lives in. wait for it to be loaded and then allow the hooks
+	// to be initialised
 	%orig;
 	%init(Stuff);
 }

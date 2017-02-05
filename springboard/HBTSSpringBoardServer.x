@@ -87,8 +87,8 @@
 	if (hideInMessages) {
 		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
 
-		// if the device is locked, or there is no frontmost app, or the frontmost
-		// app is not messages, we can show it
+		// if the device is locked, or there is no frontmost app, or the frontmost app is not messages,
+		// we can show it
 		return app.isLocked || !app._accessibilityFrontMostApplication
 			|| ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
