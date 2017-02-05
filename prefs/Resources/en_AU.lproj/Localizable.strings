@@ -7,11 +7,15 @@
 	<string>Typing:</string>
 	<key>READ</key>
 	<string>Read:</string>
+	<key>SENDING_FILE</key>
+	<string>Sending File:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ is typing</string>
 	<key>READ_NATURAL</key>
 	<string>Read by %@</string>
+	<key>SENDING_FILE_NATURAL</key>
+	<string>%@ is sending a file</string>
 </dict>
 </plist>

@@ -41,6 +41,10 @@
 		case HBTSMessageTypeReadReceipt:
 			notificationType = _preferences.readType;
 			break;
+
+		case HBTSMessageTypeSendingFile:
+			notificationType = HBTSNotificationTypeOverlay;
+			break;
 	}
 
 	NSTimeInterval timeout = isTyping && _preferences.useTypingTimeout ? kHBTSTypingTimeout : _preferences.overlayDisplayDuration;
@@ -73,6 +77,10 @@
 
 		case HBTSMessageTypeReadReceipt:
 			hideInMessages = _preferences.readHideInMessages;
+			break;
+
+		case HBTSMessageTypeSendingFile:
+			return YES;
 			break;
 	}
 

@@ -20,6 +20,10 @@
 
 		case HBTSMessageTypeTypingEnded:
 			break;
+			
+		case HBTSMessageTypeSendingFile:
+			name = @"TypeStatus";
+			break;
 	}
 
 	return name;
@@ -51,13 +55,16 @@
 
 				case HBTSMessageTypeTypingEnded:
 					break;
+
+				case HBTSMessageTypeSendingFile:
+					format = [PrefsBundle localizedStringForKey:@"SENDING_FILE_NATURAL" value:nil table:@"Localizable"];
+					break;
 			}
 
 			NSUInteger location = [format rangeOfString:@"%@"].location;
 
-			// if the %@ wasn’t found, the string probably isn’t translated… this is
-			// pretty bad so we should probably just return what we have so the error
-			// is obvious
+			// if the %@ wasn’t found, the string probably isn’t translated… this is pretty bad so we
+			// should probably just return what we have so the error is obvious
 			if (location == NSNotFound) {
 				*boldRange = NSMakeRange(0, 0);
 				return format;
@@ -84,6 +91,10 @@
 					break;
 
 				case HBTSMessageTypeTypingEnded:
+					break;
+
+				case HBTSMessageTypeSendingFile:
+					prefix = [PrefsBundle localizedStringForKey:@"SENDING_FILE" value:nil table:@"Localizable"];
 					break;
 			}
 

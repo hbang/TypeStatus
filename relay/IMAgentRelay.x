@@ -1,7 +1,9 @@
 #import <Foundation/NSDistributedNotificationCenter.h>
+#import <IMDaemonCore/IMDFileTransferCenter.h>
 #import <IMDaemonCore/IMDMessageStore.h>
 #import <IMDaemonCore/IMDServiceSession.h>
 #import <IMFoundation/FZMessage.h>
+#import <IMSharedUtilities/IMFileTransfer.h>
 #import <version.h>
 
 // TODO: this is very incorrect (are the flags XOR’d?), however it seems to always be this value
@@ -66,6 +68,30 @@ void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 - (void)didReceiveMessageReadReceiptForMessageID:(NSString *)messageID date:(NSDate *)date completionBlock:(id)completion {
 	%orig;
 	HBTSPostMessage(HBTSMessageTypeReadReceipt, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:messageID].handle, NO);
+}
+
+%end
+
+#pragma mark - Transfer notifications
+
+%hook IMDFileTransferCenter
+
+- (void)_addActiveTransfer:(NSString *)transferGUID {
+	%orig;
+
+	IMFileTransfer *transfer = [self transferForGUID:transferGUID];
+
+	HBTSPostMessage(HBTSMessageTypeSendingFile, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:transfer.messageGUID].handle, NO);
+}
+
+- (void)updateTransfer:(NSString *)transferGUID currentBytes:(unsigned long long)currentBytes totalBytes:(unsigned long long)totalBytes {
+	%orig;
+
+	IMFileTransfer *transfer = [self transferForGUID:transferGUID];
+
+	if (currentBytes >= totalBytes) {
+		HBTSPostMessage(HBTSMessageTypeTypingEnded, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:transfer.messageGUID].handle, NO);
+	}
 }
 
 %end

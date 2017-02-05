@@ -5,7 +5,8 @@
 typedef NS_ENUM(NSUInteger, HBTSMessageType) {
 	HBTSMessageTypeTyping,
 	HBTSMessageTypeTypingEnded,
-	HBTSMessageTypeReadReceipt
+	HBTSMessageTypeReadReceipt,
+	HBTSMessageTypeSendingFile
 };
 
 typedef NS_ENUM(NSUInteger, HBTSNotificationType) {

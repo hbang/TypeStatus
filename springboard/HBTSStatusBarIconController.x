@@ -17,6 +17,10 @@ NSMutableDictionary <NSString *, LSStatusBarItem *> *statusBarItems;
 		case HBTSMessageTypeReadReceipt:
 			return @"TypeStatusRead";
 			break;
+		
+		case HBTSMessageTypeSendingFile:
+			return @"TypeStatus";
+			break;
 	}
 }
 
@@ -73,6 +77,7 @@ NSMutableDictionary <NSString *, LSStatusBarItem *> *statusBarItems;
 	switch (type) {
 		case HBTSMessageTypeTyping:
 		case HBTSMessageTypeReadReceipt:
+		case HBTSMessageTypeSendingFile:
 			[self showIcon:[self _iconNameForType:type] timeout:timeout];
 			break;
 
