@@ -31,7 +31,7 @@ HBTSConversationPreferences *preferences;
 	// “composing” presumably refers to all situations where the user is doing something that’s about
 	// to be sent. for instance, drawing a digital touch thingy. so cover that as well
 	if ([preferences.class shouldEnable]) {
-		%orig(isComposing && [preferences typingNotificationsEnabledForConversation:self]);
+		%orig(isComposing && [preferences typingNotificationsEnabledForConversation:self], icon);
 	} else {
 		%orig;
 	}
