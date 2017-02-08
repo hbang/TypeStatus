@@ -1,6 +1,6 @@
 Package: ws.hbang.typestatus2
 Name: TypeStatus 2 (iOS 7 – 9)
-Depends: firmware (>= 7.0), firmware (<< 10.3), mobilesubstrate, preferenceloader, ws.hbang.common (>= 1.9), com.rpetrich.rocketbootstrap (>= 1.0.4)
+Depends: firmware (>= 7.0), firmware (<< 10.3), mobilesubstrate, preferenceloader, ws.hbang.common (>= 1.10), com.rpetrich.rocketbootstrap (>= 1.0.4)
 Recommends: firmware (>= 9.2) | libstatusbar (>= 1:0.9.9.0-1), firmware (<< 9.2) | libmoorecon (>= 0.9.9.0)
 Conflicts: ws.hbang.typestatus
 Replaces: ws.hbang.typestatus
