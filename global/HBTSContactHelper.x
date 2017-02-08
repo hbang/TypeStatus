@@ -76,20 +76,29 @@ HBTSPreferences *preferences;
 		CNContactFormatter *contactFormatter = [[CNContactFormatter alloc] init];
 		return [contactFormatter stringFromContact:contact];
 	} else {
-		CKEntity *entity = [%c(CKEntity) copyEntityForAddressString:handle];
+		static NSString *buddyNameString;
+		static dispatch_once_t onceToken;
+		dispatch_once(&onceToken, ^{
+			NSBundle *imCoreBundle = [NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/IMCore.framework"];
+			buddyNameString = [imCoreBundle localizedStringForKey:@"Buddy Name" value:@"" table:@"IMCoreLocalizable"];
+		});
 
-		// if we didn’t get anything, just fall back to the handle. if it’s a
-		// person, return their display name. if it’s a business, return the entity
-		// name. if none of these are available, fall back to the handle
+		CKEntity *entity = [%c(CKEntity) copyEntityForAddressString:handle];
+		NSString *result = nil;
+
+		// if we didn’t get anything, just fall back to the handle. if it’s a person, return their
+		// display name. if it’s a business, return the entity name. if none of these are available,
+		// fall back to the handle
 		if (!entity) {
-			return handle;
+			result = nil;
 		} else if (entity.handle.person && entity.handle._displayNameWithAbbreviation) {
-			return entity.handle._displayNameWithAbbreviation;
+			result = entity.handle._displayNameWithAbbreviation;
 		} else if (entity.name) {
-			return entity.name;
-		} else {
-			return handle;
+			result = entity.name;
 		}
+
+		// if our result is non-nil and not equal to “Buddy Name”, return it. otherwise, use the handle
+		return result && ![result isEqualToString:buddyNameString] ? result : handle;
 	}
 }
 
