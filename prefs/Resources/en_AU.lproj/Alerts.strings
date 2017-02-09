@@ -100,6 +100,6 @@
 
 	<!-- Explanation under the ignore muted/blocked senders switch. -->
 	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
-	<string>If you mute or block someone, TypeStatus won’t show typing or read receipt alerts from them.</string>
+	<string>If you mute or block someone, TypeStatus won’t show any alerts from them.</string>
 </dict>
 </plist>
