@@ -7,6 +7,7 @@
 		<key>Bundles</key>
 		<array>
 			<string>com.apple.chatkit</string>
+			<string>com.apple.springboard</string>
 		</array>
 		<key>CoreFoundationVersion</key>
 		<array>

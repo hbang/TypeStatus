@@ -1,8 +1,17 @@
 #import "HBTSConversationPreferences.h"
 #import "HBTSPreferences.h"
 #import <Cephei/HBPreferences.h>
-#import <ChatKit/CKConversation.h>
+#import <IMCore/IMChat.h>
+#import <IMCore/IMHandle.h>
 #import <version.h>
+
+@interface IMChatRegistry : NSObject
+
++ (instancetype)sharedInstance;
+
+- (NSArray <IMChat *> *)allExistingChats;
+
+@end
 
 @implementation HBTSConversationPreferences {
 	HBPreferences *_preferences;
@@ -38,17 +47,25 @@
 
 	if (self) {
 		_preferences = [[HBPreferences alloc] initWithIdentifier:@"ws.hbang.typestatus.conversationprefs"];
+
+		[self _mirrorNativeReadReceiptPreferences];
 	}
 
 	return self;
 }
 
-#pragma mark - External
+#pragma mark - State
+
+- (BOOL)_isInIMAgent {
+	NSString *bundle = [NSBundle mainBundle].bundleURL.lastPathComponent;
+	return [bundle isEqualToString:@"imagent.app"];
+}
 
 - (BOOL)_readReceiptsEnabled {
 	// use a special™ key when in imagent so we don’t override it
-	NSString *bundle = [NSBundle mainBundle].bundleURL.lastPathComponent;
-	CFStringRef key = [bundle isEqualToString:@"imagent.app"] ? CFSTR("ReadReceiptsEnabled-nohaxplz") : CFSTR("ReadReceiptsEnabled");
+	CFStringRef key = self._isInIMAgent && !IS_IOS_OR_NEWER(iOS_10_0)
+		? CFSTR("ReadReceiptsEnabled-nohaxplz")
+		: CFSTR("ReadReceiptsEnabled");
 
 	// the prefs bundle falls back to NO, so probably we should follow suit
 	return CFPreferencesGetAppBooleanValue(key, CFSTR("com.apple.madrid"), nil);
@@ -56,12 +73,8 @@
 
 #pragma mark - Keys
 
-- (NSString *)_keyForConversation:(CKConversation *)conversation type:(NSString *)type {
-	if (!conversation._chatSupportsTypingIndicators || conversation.isGroupConversation) {
-		return nil;
-	}
-
-	return [NSString stringWithFormat:@"%@-%@", conversation.uniqueIdentifier, type];
+- (NSString *)_keyForChat:(IMChat *)chat type:(NSString *)type {
+	return [NSString stringWithFormat:@"%@-%@", chat.recipient.ID, type];
 }
 
 - (NSString *)_keyForHandle:(NSString *)handle type:(NSString *)type {
@@ -74,13 +87,13 @@
 	return _preferences.dictionaryRepresentation;
 }
 
-- (BOOL)typingNotificationsEnabledForConversation:(CKConversation *)conversation {
-	NSString *key = [self _keyForConversation:conversation type:@"Typing"];
+- (BOOL)typingNotificationsEnabledForChat:(IMChat *)chat {
+	NSString *key = [self _keyForChat:chat type:@"Typing"];
 	return key ? [_preferences boolForKey:key default:YES] : YES;
 }
 
-- (BOOL)readReceiptsEnabledForConversation:(CKConversation *)conversation {
-	NSString *key = [self _keyForConversation:conversation type:@"Read"];
+- (BOOL)readReceiptsEnabledForChat:(IMChat *)chat {
+	NSString *key = [self _keyForChat:chat type:@"Read"];
 	return key ? [_preferences boolForKey:key default:self._readReceiptsEnabled] : self._readReceiptsEnabled;
 }
 
@@ -96,12 +109,12 @@
 
 #pragma mark - Setters
 
-- (void)setTypingNotificationsEnabled:(BOOL)enabled forConversation:(CKConversation *)conversation {
-	[_preferences setBool:enabled forKey:[self _keyForConversation:conversation type:@"Typing"]];
+- (void)setTypingNotificationsEnabled:(BOOL)enabled forChat:(IMChat *)chat {
+	[_preferences setBool:enabled forKey:[self _keyForChat:chat type:@"Typing"]];
 }
 
-- (void)setReadReceiptsEnabled:(BOOL)enabled forConversation:(CKConversation *)conversation {
-	[_preferences setBool:enabled forKey:[self _keyForConversation:conversation type:@"Read"]];
+- (void)setReadReceiptsEnabled:(BOOL)enabled forChat:(IMChat *)chat {
+	[_preferences setBool:enabled forKey:[self _keyForChat:chat type:@"Read"]];
 }
 
 - (void)setTypingNotificationsEnabled:(BOOL)enabled forHandle:(NSString *)handle {
@@ -122,6 +135,26 @@
 - (void)removeHandle:(NSString *)handle {
 	[_preferences removeObjectForKey:[self _keyForHandle:handle type:@"Typing"]];
 	[_preferences removeObjectForKey:[self _keyForHandle:handle type:@"Read"]];
+}
+
+#pragma mark - Migrate
+
+- (void)_mirrorNativeReadReceiptPreferences {
+	if (!IS_IOS_OR_NEWER(iOS_10_0) && !IN_SPRINGBOARD) {
+		return;
+	}
+
+	// using %c(), so we don’t have to link IMCore where this class is used but this method isn’t
+	NSArray <IMChat *> *chats = ((IMChatRegistry *)[%c(IMChatRegistry) sharedInstance]).allExistingChats;
+	BOOL globalState = self._readReceiptsEnabled;
+
+	for (IMChat *chat in chats) {
+		NSNumber *value = [chat valueForChatProperty:@"EnableReadReceiptForChat"];
+		
+		if (value && value.boolValue != globalState) {
+			[self setReadReceiptsEnabled:value.boolValue forChat:chat];
+		}
+	}
 }
 
 @end

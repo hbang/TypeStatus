@@ -3,7 +3,7 @@
 #import <ChatKit/CKConversation.h>
 #import <ChatKit/CKTranscriptRecipientsController.h>
 #import <ChatKit/CKTranscriptRecipientsHeaderFooterView.h>
-#import <UIKit/UITableView+Private.h>
+#import <version.h>
 
 #pragma mark - Constants
 
@@ -131,24 +131,24 @@ NSBundle *bundle;
 
 %new - (void)_typeStatus_configureDisableTypingCell:(HBTSSwitchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	cell.control.tag = 0;
-	cell.control.on = [self._typeStatus_preferences typingNotificationsEnabledForConversation:self.conversation];
+	cell.control.on = [self._typeStatus_preferences typingNotificationsEnabledForChat:self.conversation.chat];
 	cell.textLabel.text = [bundle localizedStringForKey:@"SEND_TYPING_NOTIFICATIONS" value:nil table:@"Messages"];
 }
 
 %new - (void)_typeStatus_configureDisableReadReceiptsCell:(HBTSSwitchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	cell.control.tag = 1;
-	cell.control.on = [self._typeStatus_preferences readReceiptsEnabledForConversation:self.conversation];
+	cell.control.on = [self._typeStatus_preferences readReceiptsEnabledForChat:self.conversation.chat];
 	cell.textLabel.text = [bundle localizedStringForKey:@"SEND_READ_RECEIPTS" value:nil table:@"Messages"];
 }
 
 %new - (void)_typeStatus_switchValueChanged:(UISwitch *)sender {
 	switch (sender.tag) {
 		case 0:
-			[self._typeStatus_preferences setTypingNotificationsEnabled:sender.on forConversation:self.conversation];
+			[self._typeStatus_preferences setTypingNotificationsEnabled:sender.on forChat:self.conversation.chat];
 			break;
 
 		case 1:
-			[self._typeStatus_preferences setReadReceiptsEnabled:sender.on forConversation:self.conversation];
+			[self._typeStatus_preferences setReadReceiptsEnabled:sender.on forChat:self.conversation.chat];
 			break;
 	}
 }
@@ -156,8 +156,8 @@ NSBundle *bundle;
 %end
 
 %ctor {
-	// only initialise these hooks if we’re allowed to
-	if ([HBTSConversationPreferences isAvailable]) {
+	// only initialise these hooks if we’re allowed to, and only on iOS 9
+	if ([HBTSConversationPreferences isAvailable] && !IS_IOS_OR_NEWER(iOS_10_0)) {
 		bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
 		
 		%init;
