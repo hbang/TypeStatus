@@ -57,6 +57,8 @@
 	<string>กำลังพิมพ์</string>
 	<key>READ_HEADER</key>
 	<string>แจ้งว่าอ่านแล้ว</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>การส่งไฟล์</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>ทดสอบเตือนการพิมพ์</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>ทดสอบแจ้งเตือนว่าอ่านแล้ว</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>ทดสอบแจ้งเตือนการส่งไฟล์</string>
+
+ 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>ละทิ้งผู้ส่งที่ถูกบล๊อค</string>
+
+	<!-- Explanation under the ignore muted/blocked senders switch. -->
+	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>TypeStatus ไม่สามารถแสดงการแจ้งเตือนจากคนที่คุณได้ทำการบล๊อกไว้ได้</string>
 </dict>
 </plist>

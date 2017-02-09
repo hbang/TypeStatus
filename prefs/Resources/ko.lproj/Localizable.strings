@@ -7,11 +7,15 @@
 	<string>입력중:</string>
 	<key>READ</key>
 	<string>읽음:</string>
+	<key>SENDING_FILE</key>
+	<string>전송 파일:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ 님이 입력중입니다</string>
 	<key>READ_NATURAL</key>
 	<string>%@ 님이 당신의 메시지를 읽고있습니다</string>
+	<key>SENDING_FILE_NATURAL</key>
+	<string>%@ 가 파일을 보내고 있습니다.</string>
 </dict>
 </plist>

@@ -57,6 +57,8 @@
 	<string>Escrivint</string>
 	<key>READ_HEADER</key>
 	<string>Llegit</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Enviant fitxer</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Provar l’alerta d’escrivint</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Provar l’alerta de llegit</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Alerta de prova d'"Enviant fitxer"</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Ignorar remitents silenciats i/o bloquejats.</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Si algú està silenciat o bloquejat, el TypeStatus no n'ensenyarà cap alerta.</string>
 </dict>
 </plist>

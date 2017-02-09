@@ -57,6 +57,8 @@
 	<string>Tippt</string>
 	<key>READ_HEADER</key>
 	<string>Gelesen</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Datei senden</string>
  
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Teste Tippen Benachrichtigung</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Teste Lesebestätigung</string>
+  	<key>TEST_SENDING_FILE</key>
+ 	<string>Dateiübertragung testen</string>
+
+ 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Stumm geschaltete / Ignorierte Kontakte</string>
+
+	<!-- Explanation under the ignore muted/blocked senders switch. -->
+	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Du erhältst keine Benachrichtigungen von blockierten oder stumm geschalteten Kontakten.</string>
 </dict>
 </plist>

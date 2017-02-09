@@ -7,11 +7,15 @@
 	<string>Écrit:</string>
 	<key>READ</key>
 	<string>Lu:</string>
+	<key>SENDING_FILE</key>
+	<string>Envoi du fichier:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ est en train d’écrire</string>
 	<key>READ_NATURAL</key>
 	<string>Lu par %@</string>
+	<key>SENDING_FILE_NATURAL</key>
+	<string>%@ est en train d'envoyer fichier</string>
 </dict>
 </plist>

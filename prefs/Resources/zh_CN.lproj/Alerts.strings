@@ -57,6 +57,8 @@
 	<string>打字中</string>
 	<key>READ_HEADER</key>
 	<string>已读回执</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>发送文件</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,6 +91,8 @@
 	<string>测试打字警示</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>测试已读警示</string>
+  	<key>TEST_SENDING_FILE</key>
+ 	<string>测试发送文件横幅</string>
 	
 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
 	<key>IGNORE_DND_SENDERS</key>
@@ -96,6 +100,6 @@
 
 	<!-- Explanation under the ignore muted/blocked senders switch. -->
 	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
-	<string>如果你静音或者屏蔽了某个人，TypeStatus 将不会显示来自他们的输入或阅读状态。</string>
+	<string>如果对某人开启了勿扰或屏蔽, TypeStatus将不会显示来自这些人的横幅.</string>
 </dict>
 </plist>

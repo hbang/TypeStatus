@@ -7,11 +7,15 @@
 	<string>Aan het typen:</string>
 	<key>READ</key>
 	<string>Gelezen:</string>
+	<key>SENDING_FILE</key>
+	<string>Bestand aan het verzenden:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ is aan het typen</string>
 	<key>READ_NATURAL</key>
 	<string>Gelezen door %@</string>
+	<key>SENDING_FILE_NATURAL</key>
+	<string>%@ is een bestaand aan het verzenden</string>
 </dict>
 </plist>

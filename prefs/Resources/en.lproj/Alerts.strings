@@ -57,6 +57,8 @@
 	<string>Typing</string>
 	<key>READ_HEADER</key>
 	<string>Read Receipt</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Sending File</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,6 +91,8 @@
 	<string>Test Typing Alert</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Test Read Receipt Alert</string>
+	<key>TEST_SENDING_FILE</key>
+	<string>Test Sending File Alert</string>
 
 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
 	<key>IGNORE_DND_SENDERS</key>

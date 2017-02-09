@@ -57,6 +57,8 @@
 	<string>Escrita</string>
 	<key>READ_HEADER</key>
 	<string>Recibo de Leitura</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Enviando Ficheiro</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Testar alerta de escrita</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Testar alerta de recibo de leitura</string>
+	<key>TEST_SENDING_FILE</key>
+	<string>Teste Alerta de Envio de Ficheiro</string>
+
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Ignorar Usuários Bloqueados</string>
+
+	<!-- Explanation under the ignore muted/blocked senders switch. -->
+	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>se bloquear alguém, TypeStatus não mostrará alertas desses usuários.</string>
 </dict>
 </plist>

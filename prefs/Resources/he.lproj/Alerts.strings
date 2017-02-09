@@ -53,6 +53,8 @@
 	<string>מקליד/ה</string>
 	<key>READ_HEADER</key>
 	<string>אישור קריאה</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>שולח קובץ</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -85,5 +87,15 @@
 	<string>בדיקת התראת הקלדה</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>בדיקת התראת אישור קריאה</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>בדיקת התראת שליחת קובץ</string>
+
+ 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>התעלם משולחים מושתקים/חסומים</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>אם את/ה משתיק/ה או חוסמ/ת מישהו/י, TypeStatus לא יציג התראות מהם.</string>
 </dict>
 </plist>

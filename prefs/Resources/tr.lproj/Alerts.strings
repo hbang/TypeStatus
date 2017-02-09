@@ -57,6 +57,8 @@
 	<string>Yazıyor</string>
 	<key>READ_HEADER</key>
 	<string>Okundu</string>
+	<key>SENDING_FILE_HEADER/key>
+	<string>Dosya Gönderiliyor</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Yazıyor Uyarısını Test Et</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Okundu Uyarısını Test Et</string>
+	 <key>TEST_SENDING_FILE</key>
+	<string>Dosya Gönderiliyor Bildirimini Dene</string>
+
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Sessiz/Engellenmiş Kullanıcıları Görmezden Gel</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Birisini engeller veya sessize alırsanız, TypeStatus onlardan herhangi bir bildirimi göstermez.</string>
 </dict>
 </plist>

@@ -7,11 +7,15 @@
 	<string>Tippt:</string>
 	<key>READ</key>
 	<string>Gelesen:</string>
+	<key>SENDING_FILE</key>
+	<string>Datei senden:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ schreibt</string>
 	<key>READ_NATURAL</key>
 	<string>Gelesen von %@</string>
+	<key>SENDING_FILE_NATURAL</key>
+	<string>%@ sendet eine Datei</string>
 </dict>
 </plist>

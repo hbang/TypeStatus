@@ -7,11 +7,15 @@
 	<string>Piše:</string>
 	<key>READ</key>
 	<string>Čita:</string>
+	<key>SENDING_FILE</key>
+	<string>Slanje datoteke:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ piše</string>
 	<key>READ_NATURAL</key>
 	<string>%@ je pročitao tvoju poruku</string>
+	<key>SENDING_FILE_NATURAL</key>
+	<string>%@ šalje datoteku</string>
 </dict>
 </plist>

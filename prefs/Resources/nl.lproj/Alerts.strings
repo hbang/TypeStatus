@@ -57,6 +57,8 @@
 	<string>Typen</string>
 	<key>READ_HEADER</key>
 	<string>Leesbewijzen</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Bestand aan het verzenden</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,16 @@
 	<string>Test typmelding</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Test leesbewijsmelding</string>
+
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Bestand aan het verzenden-notificatie testen</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Geblokkeerde of gedempte verzenders negeren</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Als een verzender geblokkeerd is, zal TypeStatus geen notificaties voor hem of haar laten zien.</string>
 </dict>
 </plist>

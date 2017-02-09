@@ -57,6 +57,8 @@
 	<string>Mecanografía</string>
 	<key>READ_HEADER</key>
 	<string>Leí Recibo</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Enviando archivo</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,16 @@
 	<string>Prueba Alerta Mecanografía</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Prueba de Lectura Alerta Recibo</string>
+
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Alerta de prueba de "Enviando archivo"</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Ignorar remitentes silenciados y/o bloqueados.</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Si silencias o bloqueas una persona, TypeStatus no mostrará notificaciones para ella.</string>
 </dict>
 </plist>

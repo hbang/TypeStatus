@@ -57,6 +57,8 @@
 	<string>Menulis</string>
 	<key>READ_HEADER</key>
 	<string>Penerimaan Bacaan</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Menghantar Fail</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Uji Isyarat Menulis</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Uji Isyarat Bacaan Penerimaan</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Isyarat Percubaan Menghantar Fail</string>
+
+ 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Abaikan Penghantar yang Disenyap/Disekat</string>
+
+	<!-- Explanation under the ignore muted/blocked senders switch. -->
+	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Jika anda meredam atau menyekat seseorang, TypeStatus tidak akan menunjukkan apa-apa isyarat daripada mereka.</string>
 </dict>
 </plist>
