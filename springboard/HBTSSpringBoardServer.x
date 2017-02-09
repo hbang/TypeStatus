@@ -35,15 +35,15 @@
 	switch (type) {
 		case HBTSMessageTypeTyping:
 		case HBTSMessageTypeTypingEnded:
-			notificationType = _preferences.typingType;
+			notificationType = _preferences.typingAlertType;
 			break;
 
 		case HBTSMessageTypeReadReceipt:
-			notificationType = _preferences.readType;
+			notificationType = _preferences.readAlertType;
 			break;
 
 		case HBTSMessageTypeSendingFile:
-			notificationType = HBTSNotificationTypeOverlay;
+			notificationType = _preferences.sendingFileAlertType;
 			break;
 	}
 
@@ -80,7 +80,7 @@
 			break;
 
 		case HBTSMessageTypeSendingFile:
-			return YES;
+			hideInMessages = _preferences.sendingFileHideInMessages;
 			break;
 	}
 

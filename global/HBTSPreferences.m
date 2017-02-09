@@ -3,11 +3,6 @@
 
 @implementation HBTSPreferences {
 	HBPreferences *_preferences;
-
-	BOOL _typingStatus;
-	BOOL _typingIcon;
-	BOOL _readStatus;
-	BOOL _readIcon;
 }
 
 + (instancetype)sharedInstance {
@@ -26,31 +21,15 @@
 	if (self) {
 		_preferences = [[HBPreferences alloc] initWithIdentifier:@"ws.hbang.typestatus"];
 
-		[_preferences registerDefaults:@{
-			@"TypingStatus": @YES,
-			@"TypingIcon": @NO,
+		[self _migrateIfNeeded];
 
-			@"ReadStatus": @YES,
-			@"ReadIcon": @NO,
-
-			@"OverlaySlide": @YES,
-			@"OverlayFade": @NO,
-
-			@"MessagesEnabled": @YES
-		}];
-
-		if (![_preferences objectForKey:@"OverlayAnimation"]) {
-			HBTSStatusBarAnimation animation = HBTSStatusBarAnimationSlide;
-
-			if ([_preferences boolForKey:@"OverlayFade"]) {
-				animation = HBTSStatusBarAnimationFade;
-			}
-
-			[_preferences setInteger:animation forKey:@"OverlayAnimation"];
-		}
+		[_preferences registerInteger:(NSInteger *)_typingAlertType default:HBTSNotificationTypeOverlay forKey:@"TypingAlertType"];
+		[_preferences registerInteger:(NSInteger *)_readAlertType default:HBTSNotificationTypeOverlay forKey:@"ReadAlertType"];
+		[_preferences registerInteger:(NSInteger *)_sendingFileAlertType default:HBTSNotificationTypeOverlay forKey:@"SendingFileAlertType"];
 
 		[_preferences registerBool:&_typingHideInMessages default:YES forKey:@"HideInMessages"];
-		[_preferences registerBool:&_readHideInMessages default:YES forKey:@"HideReadInMessages"];
+		[_preferences registerBool:&_readHideInMessages default:YES forKey:@"ReadHideInMessages"];
+		[_preferences registerBool:&_sendingFileHideInMessages default:YES forKey:@"SendingFileHideInMessages"];
 
 		[_preferences registerBool:&_useTypingTimeout default:NO forKey:@"TypingTimeout"];
 		[_preferences registerDouble:&_overlayDisplayDuration default:5.0 forKey:@"OverlayDuration"];
@@ -65,61 +44,52 @@
 	return self;
 }
 
-- (HBTSNotificationType)typingType {
-	if ([_preferences boolForKey:@"TypingStatus"]) {
-		return HBTSNotificationTypeOverlay;
-	} else if ([_preferences boolForKey:@"TypingIcon"]) {
-		return HBTSNotificationTypeIcon;
-	} else {
-		return HBTSNotificationTypeNone;
+- (void)_migrateIfNeeded {
+	// upgrade old, ugly, boolean preferences to cleaner enums
+
+	[_preferences registerDefaults:@{
+		@"TypingStatus": @YES,
+		@"TypingIcon": @NO,
+
+		@"ReadStatus": @YES,
+		@"ReadIcon": @NO,
+
+		@"OverlaySlide": @YES,
+		@"OverlayFade": @NO
+	}];
+
+	if (!_preferences[@"TypingAlertType"]) {
+		HBTSNotificationType type = HBTSNotificationTypeNone;
+
+		if ([_preferences boolForKey:@"TypingStatus"]) {
+			type = HBTSNotificationTypeOverlay;
+		} else if ([_preferences boolForKey:@"TypingIcon"]) {
+			type = HBTSNotificationTypeIcon;
+		}
+
+		[_preferences setInteger:type forKey:@"TypingAlertType"];
 	}
-}
 
-- (void)setTypingType:(HBTSNotificationType)typingType {
-	switch (typingType) {
-		case HBTSNotificationTypeNone:
-			[_preferences setBool:NO forKey:@"TypingStatus"];
-			[_preferences setBool:NO forKey:@"TypingIcon"];
-			break;
+	if (!_preferences[@"ReadAlertType"]) {
+		HBTSNotificationType type = HBTSNotificationTypeNone;
 
-		case HBTSNotificationTypeOverlay:
-			[_preferences setBool:YES forKey:@"TypingStatus"];
-			[_preferences setBool:NO forKey:@"TypingIcon"];
-			break;
+		if ([_preferences boolForKey:@"ReadStatus"]) {
+			type = HBTSNotificationTypeOverlay;
+		} else if ([_preferences boolForKey:@"ReadIcon"]) {
+			type = HBTSNotificationTypeIcon;
+		}
 
-		case HBTSNotificationTypeIcon:
-			[_preferences setBool:NO forKey:@"TypingStatus"];
-			[_preferences setBool:YES forKey:@"TypingIcon"];
-			break;
+		[_preferences setInteger:type forKey:@"ReadAlertType"];
 	}
-}
 
-- (HBTSNotificationType)readType {
-	if ([_preferences boolForKey:@"ReadStatus"]) {
-		return HBTSNotificationTypeOverlay;
-	} else if ([_preferences boolForKey:@"ReadIcon"]) {
-		return HBTSNotificationTypeIcon;
-	} else {
-		return HBTSNotificationTypeNone;
-	}
-}
+	if (!_preferences[@"OverlayAnimation"]) {
+		HBTSStatusBarAnimation animation = HBTSStatusBarAnimationSlide;
 
-- (void)setReadType:(HBTSNotificationType)readType {
-	switch (readType) {
-		case HBTSNotificationTypeNone:
-			[_preferences setBool:NO forKey:@"ReadStatus"];
-			[_preferences setBool:NO forKey:@"ReadIcon"];
-			break;
+		if ([_preferences boolForKey:@"OverlayFade"]) {
+			animation = HBTSStatusBarAnimationFade;
+		}
 
-		case HBTSNotificationTypeOverlay:
-			[_preferences setBool:YES forKey:@"ReadStatus"];
-			[_preferences setBool:NO forKey:@"ReadIcon"];
-			break;
-
-		case HBTSNotificationTypeIcon:
-			[_preferences setBool:NO forKey:@"ReadStatus"];
-			[_preferences setBool:YES forKey:@"ReadIcon"];
-			break;
+		[_preferences setInteger:animation forKey:@"OverlayAnimation"];
 	}
 }
 

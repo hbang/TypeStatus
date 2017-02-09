@@ -1,4 +1,5 @@
 #import "HBTSConversationPreferences.h"
+#import <version.h>
 
 extern NSString *kFZDaemonPropertyEnableReadReceipts;
 

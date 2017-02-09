@@ -42,30 +42,16 @@
 
 #pragma mark - Callbacks
 
-- (NSNumber *)typingTypeWithSpecifier:(PSSpecifier *)specifier {
-	return @(_preferences.typingType);
-}
-
-- (void)setTypingType:(NSNumber *)typingType specifier:(PSSpecifier *)specifier {
-	_preferences.typingType = typingType.unsignedIntegerValue;
-	notify_post("ws.hbang.typestatus/ReloadPrefs");
-}
-
-- (NSNumber *)readReceiptTypeWithSpecifier:(PSSpecifier *)specifier {
-	return @(_preferences.readType);
-}
-
-- (void)setReadReceiptType:(NSNumber *)readType specifier:(PSSpecifier *)specifier {
-	_preferences.readType = readType.unsignedIntegerValue;
-	notify_post("ws.hbang.typestatus/ReloadPrefs");
-}
-
 - (void)testTyping {
 	notify_post("ws.hbang.typestatus/TestTyping");
 }
 
 - (void)testReadReceipt {
 	notify_post("ws.hbang.typestatus/TestRead");
+}
+
+- (void)testSendingFile {
+	notify_post("ws.hbang.typestatus/TestSendingFile");
 }
 
 - (void)openLibstatusbarPackage {

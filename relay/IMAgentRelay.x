@@ -106,6 +106,10 @@ void HBTSTestRead() {
 	HBTSPostMessage(HBTSMessageTypeReadReceipt, @"example@hbang.ws", NO);
 }
 
+void HBTSTestSendingFile() {
+	HBTSPostMessage(HBTSMessageTypeSendingFile, @"example@hbang.ws", NO);
+}
+
 #pragma mark - Constructor
 
 %ctor {
@@ -123,4 +127,5 @@ void HBTSTestRead() {
 
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestTyping, CFSTR("ws.hbang.typestatus/TestTyping"), NULL, kNilOptions);
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestRead, CFSTR("ws.hbang.typestatus/TestRead"), NULL, kNilOptions);
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)HBTSTestSendingFile, CFSTR("ws.hbang.typestatus/TestSendingFile"), NULL, kNilOptions);
 }

@@ -130,13 +130,11 @@
 			<key>cell</key>
 			<string>PSSegmentCell</string>
 			<key>default</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
-			<key>get</key>
-			<string>typingTypeWithSpecifier:</string>
-			<key>set</key>
-			<string>setTypingType:specifier:</string>
+			<key>key</key>
+			<string>TypingAlertType</string>
 			<key>validTitles</key>
 			<array>
 				<string>OFF</string>
@@ -212,13 +210,11 @@
 			<key>cell</key>
 			<string>PSSegmentCell</string>
 			<key>default</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
-			<key>get</key>
-			<string>readReceiptTypeWithSpecifier:</string>
-			<key>set</key>
-			<string>setReadReceiptType:specifier:</string>
+			<key>key</key>
+			<string>ReadAlertType</string>
 			<key>validTitles</key>
 			<array>
 				<string>OFF</string>
@@ -255,6 +251,58 @@
 			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>TEST_READ_RECEIPT</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>SENDING_FILE_HEADER</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<integer>1</integer>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>SendingFileAlertType</string>
+			<key>validTitles</key>
+			<array>
+				<string>OFF</string>
+				<string>ALERT_TYPE_ICON</string>
+				<string>ALERT_TYPE_OVERLAY</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>SendingFileHideInMessages</string>
+			<key>label</key>
+			<string>HIDE_IN_MESSAGES</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>testSendingFile</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>HBTintedTableCell</string>
+			<key>label</key>
+			<string>TEST_SENDING_FILE</string>
 		</dict>
 		<dict>
 			<key>cell</key>

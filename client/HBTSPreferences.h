@@ -2,11 +2,13 @@
 
 + (instancetype)sharedInstance;
 
-@property (nonatomic) HBTSNotificationType typingType;
-@property (nonatomic) HBTSNotificationType readType;
+@property (nonatomic) HBTSNotificationType typingAlertType;
+@property (nonatomic) HBTSNotificationType readAlertType;
+@property (nonatomic) HBTSNotificationType sendingFileAlertType;
 
 @property (nonatomic, readonly) BOOL typingHideInMessages;
 @property (nonatomic, readonly) BOOL readHideInMessages;
+@property (nonatomic, readonly) BOOL sendingFileHideInMessages;
 
 @property (nonatomic, readonly) BOOL useTypingTimeout;
 
