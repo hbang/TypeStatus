@@ -1,3 +1,5 @@
+#import <Cephei/HBPreferences.h>
+
 @class IMChat;
 
 @interface HBTSConversationPreferences : NSObject
@@ -6,6 +8,7 @@
 + (BOOL)shouldEnable;
 
 - (NSDictionary *)dictionaryRepresentation;
+- (void)registerPreferenceChangeBlock:(HBPreferencesChangeCallback)callback;
 
 - (BOOL)typingNotificationsEnabledForChat:(IMChat *)chat;
 - (BOOL)readReceiptsEnabledForChat:(IMChat *)chat;

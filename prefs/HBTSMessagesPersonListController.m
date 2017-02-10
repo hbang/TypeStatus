@@ -2,6 +2,7 @@
 #import "HBTSConversationPreferences.h"
 #import "HBTSPersonTableCell.h"
 #import <Preferences/PSSpecifier.h>
+#import <notify.h>
 
 @implementation HBTSMessagesPersonListController {
 	NSString *_handle;
@@ -36,11 +37,13 @@
 }
 
 - (void)setTypingNotificationsEnabled:(NSNumber *)enabled forSpecifier:(PSSpecifier *)specifier {
-	return [_preferences setTypingNotificationsEnabled:enabled.boolValue forHandle:_handle];
+	[_preferences setTypingNotificationsEnabled:enabled.boolValue forHandle:_handle];
+	notify_post("ws.hbang.typestatus.conversationprefs/ReloadPrefs");
 }
 
 - (void)setReadReceiptsEnabled:(NSNumber *)enabled forSpecifier:(PSSpecifier *)specifier {
-	return [_preferences setReadReceiptsEnabled:enabled.boolValue forHandle:_handle];
+	[_preferences setReadReceiptsEnabled:enabled.boolValue forHandle:_handle];
+	notify_post("ws.hbang.typestatus.conversationprefs/ReloadPrefs");
 }
 
 - (void)removePerson:(PSSpecifier *)specifier {

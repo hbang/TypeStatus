@@ -3,17 +3,7 @@
 #import <Cephei/HBPreferences.h>
 #import <IMCore/IMChat.h>
 #import <IMCore/IMHandle.h>
-#import <IMDaemonCore/IMDChat.h>
-#import <IMDaemonCore/IMDChatRegistry.h>
 #import <version.h>
-
-@interface IMChatRegistry : NSObject
-
-+ (instancetype)sharedInstance;
-
-- (NSArray <IMChat *> *)allExistingChats;
-
-@end
 
 @implementation HBTSConversationPreferences {
 	HBPreferences *_preferences;
@@ -49,8 +39,6 @@
 
 	if (self) {
 		_preferences = [[HBPreferences alloc] initWithIdentifier:@"ws.hbang.typestatus.conversationprefs"];
-
-		[self _mirrorNativeReadReceiptPreferences];
 	}
 
 	return self;
@@ -71,6 +59,10 @@
 
 	// the prefs bundle falls back to NO, so probably we should follow suit
 	return CFPreferencesGetAppBooleanValue(key, CFSTR("com.apple.madrid"), nil);
+}
+
+- (void)registerPreferenceChangeBlock:(HBPreferencesChangeCallback)callback {
+	[_preferences registerPreferenceChangeBlock:callback];
 }
 
 #pragma mark - Keys
@@ -137,42 +129,6 @@
 - (void)removeHandle:(NSString *)handle {
 	[_preferences removeObjectForKey:[self _keyForHandle:handle type:@"Typing"]];
 	[_preferences removeObjectForKey:[self _keyForHandle:handle type:@"Read"]];
-}
-
-#pragma mark - Migrate
-
-- (void)_mirrorNativeReadReceiptPreferences {
-	// if we’re not in imagent, do nothing
-	if (!self._isInIMAgent) {
-		return;
-	}
-
-	// using %c(), so we don’t have to link IMCore where this class is used but this method isn’t
-	NSArray <IMDChat *> *chats = ((IMDChatRegistry *)[%c(IMDChatRegistry) sharedInstance]).chats;
-	BOOL globalState = self._readReceiptsEnabled;
-
-	// loop over the chats
-	for (IMChat *chat in chats) {
-		// get the native read receipt value, as well as our own
-		NSNumber *value = chat.properties[@"EnableReadReceiptForChat"];
-		NSNumber *ourValue = _preferences[[self _keyForChat:chat type:@"Read"]];
-		
-		// if it’s been set at least once before and is different from the global state
-		if (value && value.boolValue != globalState) {
-			// mirror it over to our side
-			[self setReadReceiptsEnabled:value.boolValue forChat:chat];
-		} else if (!value) {
-			// if the value is nil, but we have a value
-			
-			if (ourValue) {
-				// mirror it over to the other side
-				[chat updateProperties:@{
-					@"EnableReadReceiptForChat": ourValue,
-					@"EnableReadReceiptForChatVersionID": @1
-				}];
-			}
-		}
-	}
 }
 
 @end

@@ -29,14 +29,14 @@ BOOL sendReceipt = NO;
 %end
 
 %hookf(Boolean, CFPreferencesGetAppBooleanValue, CFStringRef key, CFStringRef applicationID, Boolean *keyExistsAndHasValidFormat) {
-	// if we’re being asked for the original unmodified value by
-	// HBTSConversationPreferences, give it that
+	// if we’re being asked for the original unmodified value by HBTSConversationPreferences, give
+	// it that
 	if ([(__bridge NSString *)applicationID isEqualToString:@"com.apple.madrid"] && [(__bridge NSString *)key isEqualToString:@"ReadReceiptsEnabled-nohaxplz"]) {
 		return %orig(CFSTR("ReadReceiptsEnabled"), applicationID, keyExistsAndHasValidFormat);
 	}
 
-	// if we are enabled, and com.apple.madrid’s ReadReceiptsEnabled key is being
-	// queried, override it. otherwise, return the original value as per usual
+	// if we are enabled, and com.apple.madrid’s ReadReceiptsEnabled key is being queried, override
+	// it. otherwise, return the original value as per usual
 	if ([preferences.class shouldEnable] && [(__bridge NSString *)applicationID isEqualToString:@"com.apple.madrid"] && [(__bridge NSString *)key isEqualToString:@"ReadReceiptsEnabled"]) {
 		// if the pointer arg is non-null, set it
 		if (keyExistsAndHasValidFormat != NULL) {
@@ -65,9 +65,13 @@ BOOL sendReceipt = NO;
 %end
 
 %ctor {
-	// only initialise these hooks if we’re allowed to
+	// only proceed if we’re allowed to
 	if ([HBTSConversationPreferences isAvailable]) {
 		preferences = [[HBTSConversationPreferences alloc] init];
-		%init;
+
+		// only use these hooks on iOS <10
+		if (!IS_IOS_OR_NEWER(iOS_10_0)) {
+			%init;
+		}
 	}
 }
