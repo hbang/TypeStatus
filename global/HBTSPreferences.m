@@ -23,9 +23,9 @@
 
 		[self _migrateIfNeeded];
 
-		[_preferences registerInteger:(NSInteger *)_typingAlertType default:HBTSNotificationTypeOverlay forKey:@"TypingAlertType"];
-		[_preferences registerInteger:(NSInteger *)_readAlertType default:HBTSNotificationTypeOverlay forKey:@"ReadAlertType"];
-		[_preferences registerInteger:(NSInteger *)_sendingFileAlertType default:HBTSNotificationTypeOverlay forKey:@"SendingFileAlertType"];
+		[_preferences registerInteger:(NSInteger *)&_typingAlertType default:HBTSNotificationTypeOverlay forKey:@"TypingAlertType"];
+		[_preferences registerInteger:(NSInteger *)&_readAlertType default:HBTSNotificationTypeOverlay forKey:@"ReadAlertType"];
+		[_preferences registerInteger:(NSInteger *)&_sendingFileAlertType default:HBTSNotificationTypeOverlay forKey:@"SendingFileAlertType"];
 
 		[_preferences registerBool:&_typingHideInMessages default:YES forKey:@"HideInMessages"];
 		[_preferences registerBool:&_readHideInMessages default:YES forKey:@"ReadHideInMessages"];
