@@ -7,15 +7,15 @@
 	<string>Печатает:</string>
 	<key>READ</key>
 	<string>Прочитано:</string>
-	<key>SENDING_FILE</key>
-	<string>Отправка файла:</string>
+	<key>SENDING_FILE</key> 
+	<string>Отправка файла:</string> 
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ пишет...</string>
 	<key>READ_NATURAL</key>
 	<string>Прочтено: %@</string>
-	<key>SENDING_FILE_NATURAL</key>
+	<key>SENDING_FILE_NATURAL</key> 
 	<string>%@ отправляет файл</string>
 </dict>
 </plist>

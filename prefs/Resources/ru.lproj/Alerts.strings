@@ -58,7 +58,7 @@
 	<key>READ_HEADER</key>
 	<string>Отчет о доставке</string>
 	<key>SENDING_FILE_HEADER</key>
-	<string>Отправка файла</string>
+	<string>Отправка файла</string> 
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -92,14 +92,14 @@
 	<key>TEST_READ_RECEIPT</key>
 	<string>Проверить отчет о доставке</string>
 	<key>TEST_SENDING_FILE</key>
- 	<string>Пробное уведомление об отправке файла</string>
+ 	<string>Пробное уведомление об отправке файла</string> 
 
 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
 	<key>IGNORE_DND_SENDERS</key>
-	<string>Игнорировать заблокированных отправителей/отправителей, для которых отключены уведомления</string>
+	<string>Игнорировать заблокированных отправителей/отправителей, для которых отключены уведомления.</string> 
  
  	<!-- Explanation under the ignore muted/blocked senders switch. -->
   	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
-	<string>Если вы заблокируете/отключите уведомления для кого-то, TypeStatus не будет показывать уведомления от них</string>
+	<string>Если вы отключите или заблокируете уведомления от кого-то, то TypeStatus не будет показывать уведомлений от них.</string>
 </dict>
 </plist>
