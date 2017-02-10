@@ -57,6 +57,8 @@
 	<string>Tasteaza</string>
 	<key>READ_HEADER</key>
 	<string>Citit</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Trimitere fisier</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Testeaza Alerta Tastare</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Testeaza Alerta Citit</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Testeaza alerta de fisier trimis</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Ignora expeditori mut/blocat</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Daca blochezi sau muti pe cineva, TypeStatus nu-ti va arata nicio alerta de la acea persoana.</string>
 </dict>
 </plist>
