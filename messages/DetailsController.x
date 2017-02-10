@@ -138,9 +138,6 @@ NSBundle *bundle;
 }
 
 - (void)readReceiptsSwitchValueChanged:(UISwitch *)sender {
-	// let the system read receipt state update itself
-	%orig;
-
 	// update ours as well
 	[self._typeStatus_preferences setReadReceiptsEnabled:sender.on forChat:self.conversation.chat];
 }
