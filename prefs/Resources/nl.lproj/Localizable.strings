@@ -8,7 +8,7 @@
 	<key>READ</key>
 	<string>Gelezen:</string>
 	<key>SENDING_FILE</key>
-	<string>Bestand aan het verzenden:</string>
+	<string>Stuurt een bestand:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
@@ -16,6 +16,6 @@
 	<key>READ_NATURAL</key>
 	<string>Gelezen door %@</string>
 	<key>SENDING_FILE_NATURAL</key>
-	<string>%@ is een bestaand aan het verzenden</string>
+	<string>%@ stuurt een bestand</string>
 </dict>
 </plist>
