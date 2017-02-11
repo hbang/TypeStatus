@@ -57,6 +57,8 @@
 	<string>Đang viết</string>
 	<key>READ_HEADER</key>
 	<string>Đã đọc</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Gửi Tập Tin</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Xem Thử Thông Báo Đang Viết</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Xem Thử Thông Báo Đã Đọc</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Thử Thông Báo Gửi Tập Tin</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Bỏ Qua Những Người Đã Bị Khoá Và Im Lặng</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Nếu Bạn Im Lặng Hoặc Khoá Ai Đó, TypeStatus Sẽ Không Hiển Thị Những Thông Báo Từ Người Gửi.</string>
 </dict>
 </plist>
