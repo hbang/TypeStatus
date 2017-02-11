@@ -21,5 +21,9 @@
 	<!-- TypeStatus Plus (Do not translate as it's a name)-->
 	<key>TYPESTATUS_PLUS</key>
 	<string>TypeStatus Plus</string>
+
+	<!-- Explanation of TypeStatus Plus features. -->
+	<key>TYPESTATUS_PLUS_SUBTITLE</key>
+	<string>התראות הקלדה לאפליקציות נוספות, יחד עם תכונות אחרות.</string>
 </dict>
 </plist>
