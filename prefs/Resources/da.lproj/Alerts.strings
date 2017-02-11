@@ -57,6 +57,8 @@
 	<string>Skriver</string>
 	<key>READ_HEADER</key>
 	<string>Læst kvitteringer</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Sender fil</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Test skrive status</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Test læst kvittering status</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Test sender fil advarsel</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Ignorer mutede/blokerede afsendere</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>Hvis du muter eller blokerer nogen, vil TypeStatus ikke vise nogen advarsler fra dem.</string>
 </dict>
 </plist>
