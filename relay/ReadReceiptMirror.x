@@ -7,12 +7,11 @@
 
 - (BOOL)_readReceiptsEnabled;
 
+- (NSNumber *)readReceiptsEnabledForHandleAsNumber:(NSString *)handle;
+
 @end
 
 extern HBTSConversationPreferences *preferences;
-
-// ugly workaround to avoid infinite loops
-BOOL updating = YES;
 
 void mirrorNativeReadReceiptPreferences() {
 	// grab the chats, and the global state
@@ -31,18 +30,19 @@ void mirrorNativeReadReceiptPreferences() {
 
 		// get the native read receipt value, as well as our own
 		NSNumber *value = chat.properties[@"EnableReadReceiptForChat"];
-		BOOL ourValue = [preferences readReceiptsEnabledForHandle:handle];
+		NSNumber *ourValue = [preferences readReceiptsEnabledForHandleAsNumber:handle];
 		
 		// if it’s been set at least once before and is different from the global state
 		if (value && value.boolValue != globalState) {
 			// mirror it over to our side
-			updating = YES;
 			[preferences setReadReceiptsEnabled:value.boolValue forHandle:handle];
-		} else if (!value && ourValue != globalState) {
-			// if the value is nil, but we have a value that is different from the global state
+		}
+		
+		// if we have a value, and the system doesn’t or it differs from ours
+		if (ourValue && (!value || value.boolValue != ourValue.boolValue)) {
 			// mirror it over to the other side
 			[chat updateProperties:@{
-				@"EnableReadReceiptForChat": @(ourValue),
+				@"EnableReadReceiptForChat": ourValue,
 				@"EnableReadReceiptForChatVersionID": @1
 			}];
 		}
@@ -52,9 +52,11 @@ void mirrorNativeReadReceiptPreferences() {
 %hook IMDChatRegistry
 
 - (void)loadChatsWithCompletionBlock:(void(^)())completion {
-	// override the completion block so we can execute our mirror logic immediately
+	// override the completion block so we can execute our mirror logic afterwards
+	__block void (^oldCompletion)() = [completion copy];
+
 	void (^newCompletion)() = ^{
-		completion();
+		oldCompletion();
 		mirrorNativeReadReceiptPreferences();
 	};
 
@@ -64,11 +66,6 @@ void mirrorNativeReadReceiptPreferences() {
 %end
 
 %ctor {
-	[preferences registerPreferenceChangeBlock:^{
-		if (updating) {
-			updating = NO;
-		} else {
-			mirrorNativeReadReceiptPreferences();
-		}
-	}];
+	// register a preference change block so we can execute another mirror
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)mirrorNativeReadReceiptPreferences, CFSTR("ws.hbang.typestatus/ReadReceiptSettingsChanged"), NULL, kNilOptions);
 }

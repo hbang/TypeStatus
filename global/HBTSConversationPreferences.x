@@ -4,6 +4,7 @@
 #import <IMCore/IMChat.h>
 #import <IMCore/IMHandle.h>
 #import <version.h>
+#include <notify.h>
 
 @implementation HBTSConversationPreferences {
 	HBPreferences *_preferences;
@@ -65,6 +66,14 @@
 	[_preferences registerPreferenceChangeBlock:callback];
 }
 
+- (void)_postReadReceiptNotification {
+	// if we do this in imagent, the callback for this notification can cause an infinite loop, so
+	// don’t post it in that case
+	if (!self._isInIMAgent) {
+		notify_post("ws.hbang.typestatus/ReadReceiptSettingsChanged");
+	}
+}
+
 #pragma mark - Keys
 
 - (NSString *)_keyForChat:(IMChat *)chat type:(NSString *)type {
@@ -101,6 +110,11 @@
 	return key ? [_preferences boolForKey:key default:self._readReceiptsEnabled] : self._readReceiptsEnabled;
 }
 
+- (NSNumber *)readReceiptsEnabledForHandleAsNumber:(NSString *)handle {
+	NSString *key = [self _keyForHandle:handle type:@"Read"];
+	return key ? [_preferences objectForKey:key] : nil;
+}
+
 #pragma mark - Setters
 
 - (void)setTypingNotificationsEnabled:(BOOL)enabled forChat:(IMChat *)chat {
@@ -109,6 +123,7 @@
 
 - (void)setReadReceiptsEnabled:(BOOL)enabled forChat:(IMChat *)chat {
 	[_preferences setBool:enabled forKey:[self _keyForChat:chat type:@"Read"]];
+	[self _postReadReceiptNotification];
 }
 
 - (void)setTypingNotificationsEnabled:(BOOL)enabled forHandle:(NSString *)handle {
@@ -117,6 +132,7 @@
 
 - (void)setReadReceiptsEnabled:(BOOL)enabled forHandle:(NSString *)handle {
 	[_preferences setBool:enabled forKey:[self _keyForHandle:handle type:@"Read"]];
+	[self _postReadReceiptNotification];
 }
 
 #pragma mark - Add/Remove
