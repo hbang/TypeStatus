@@ -92,6 +92,7 @@
 	<key>TEST_READ_RECEIPT</key>
 	<string>Testaa lukukuittaus-ilmoitusta</string>
 	<key>TEST_SENDING_FILE</key>
+	<string>Testaa lähetetään tiedostoa ilmoitusta</string>
 	
 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
 	<key>IGNORE_DND_SENDERS</key>
