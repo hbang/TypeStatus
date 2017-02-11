@@ -80,7 +80,7 @@
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>Om de melding te tonen voor de tijd ingesteld op de vorige pagina, selecteer “Mijn ingestelde duur”. Om de melding te tonen voor als lang als de verzender aan het typen is, selecteer “Duur van het typen”.</string>
+	<string>Om de melding te tonen voor de tijd ingesteld op de vorige pagina, selecteer 'Mijn ingestelde duur'. Om de melding te tonen voor als lang als de verzender aan het typen is, selecteer 'Duur van het typen'.</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
@@ -93,14 +93,14 @@
 	<string>Test leesbewijsmelding</string>
 
 	<key>TEST_SENDING_FILE</key>
- 	<string>Bestand aan het verzenden-notificatie testen</string>
-	
+	<string>Test bestandmelding</string>
+
 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
 	<key>IGNORE_DND_SENDERS</key>
-	<string>Geblokkeerde of gedempte verzenders negeren</string>
+	<string>Negeer bepaalde verzenders</string>
  
- 	<!-- Explanation under the ignore muted/blocked senders switch. -->
-  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
-	<string>Als een verzender geblokkeerd is, zal TypeStatus geen notificaties voor hem of haar laten zien.</string>
+	<!-- Explanation under the ignore muted/blocked senders switch. -->
+	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>TypeStatus toont geen meldingen voor geblokkeerde of genegeerde verzenders.</string>
 </dict>
 </plist>
