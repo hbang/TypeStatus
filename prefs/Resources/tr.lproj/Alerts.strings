@@ -57,7 +57,7 @@
 	<string>Yazıyor</string>
 	<key>READ_HEADER</key>
 	<string>Okundu</string>
-	<key>SENDING_FILE_HEADER/key>
+	<key>SENDING_FILE_HEADER</key>
 	<string>Dosya Gönderiliyor</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
