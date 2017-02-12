@@ -14,7 +14,7 @@
 	<key>TYPING_NATURAL</key>
 	<string>%@ píše</string>
 	<key>READ_NATURAL</key>
-	<string>%@ přečetla zprávu</string>
+	<string>%@ si přečetl zprávu</string>
 	<key>SENDING_FILE_NATURAL</key>
 	<string>%@ odesílá soubor</string>
 </dict>

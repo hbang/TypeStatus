@@ -4,11 +4,11 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-	<string>Dostávám potvrzení o přečtení a notifikace o psaní druhých na ném %@ díky TypeStatus! 💬</string>
+	<string>Dostávám potvrzení o přečtení a upozornění o psaní druhých na mém %@ díky TypeStatus! 💬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
-	<string>Upozornìní</string>
+	<string>Upozornění</string>
 
 	<!-- Messages-related features button. -->
 	<key>MESSAGES</key>

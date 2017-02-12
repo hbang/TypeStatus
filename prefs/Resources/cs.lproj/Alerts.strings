@@ -8,21 +8,21 @@
 
 	<!-- Button for choosing the alert format. -->
 	<key>OVERLAY_FORMAT</key>
-	<string>Formát varování</string>
+	<string>Formát upozornění</string>
 
 	<!-- Options for the alert format. -->
 	<key>OVERLAY_FORMAT_NATURAL</key>
-	<string>Naturální</string>
+	<string>Přirozené</string>
 	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
-	<string>Naturální: Johnny Appleseed píše</string>
+	<string>Přirozené: Johnny Appleseed píše</string>
 	<key>OVERLAY_FORMAT_TRADITIONAL</key>
 	<string>Tradiční</string>
 	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
-	<string>Tradičně: Píše: Johnny Appleseed</string>
+	<string>Tradiční: Píše: Johnny Appleseed</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY</key>
-	<string>Jenom jméno</string>
+	<string>Pouze jméno</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
-	<string>Jenom jméno: Johnny Appleseed</string>
+	<string>Pouze jméno: Johnny Appleseed</string>
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
@@ -36,7 +36,7 @@
 
 	<!-- Header for the display duration selection. -->
 	<key>DISPLAY_DURATION</key>
-	<string>Ukazovací doba</string>
+	<string>Délka zobrazení</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>ONE_SECOND</key>
@@ -46,7 +46,7 @@
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>libstatusbar je podmínkou pro ukazování ikon na stavové liště.</string>
+	<string>libstatusbar je podmínkou pro zobrazení ikon ve stavovém řádku.</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->
 	<key>INSTALL_LIBSTATUSBAR</key>
@@ -54,9 +54,9 @@
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
-	<string>Píše</string>
+	<string>Psaní</string>
 	<key>READ_HEADER</key>
-	<string>Přečtení potvrzeno</string>
+	<string>Potvrzení o přečtení</string>
 	<key>SENDING_FILE_HEADER</key>
 	<string>Odesílání souboru</string>
 
@@ -64,23 +64,23 @@
 	<key>OFF</key>
 	<string>Vypnout</string>
 	<key>ALERT_TYPE_ICON</key>
-	<string>Ikona jenom</string>
+	<string>Pouze ikona</string>
 	<key>ALERT_TYPE_OVERLAY</key>
-	<string>Překrytí stavového řádku</string>
+	<string>Stavový řádek</string>
 
 	<!-- Button for choosing how long the alert shows for. -->
 	<key>SHOW_FOR</key>
-	<string>Ukazovat na</string>
+	<string>Zobrazení</string>
 
 	<!-- Options for "Show For". -->
 	<key>SHOW_FOR_SPECIFIED</key>
-	<string>Ukazovat na určitou dobu</string>
+	<string>Zobrazit po určitou dobu</string>
 	<key>SHOW_FOR_TYPING</key>
-	<string>Ukazování pro psaní</string>
+	<string>Zobrazit při psaní</string>
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>Chcete-li zobrazit upozornění na uvedenou dobu na předchozí stránce, vyberte "Ukazovat na určitou dobu". Chcete-li zobrazit upozornění na tak dlouho, dokud odesílatel je píše, zvolte "Ukazování pro psaní".</string>
+	<string>Chcete-li zobrazit upozornění po dobu uvedenou na předchozí stránce, zvolte "Zobrazit po určitou dobu". Chcete-li, aby se upozornění zobrazovalo po celou dobu, co odesílatel píše, zvolte "Zobrazit při psaní".</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
@@ -88,9 +88,9 @@
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>Test notifikace psaní</string>
+	<string>Test ukazatele psaní</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>Test notifikace přečtení</string>
+	<string>Test potvrzení o přečtení</string>
   	<key>TEST_SENDING_FILE</key>
  	<string>Test upozornění odesílání souboru</string>
 	
