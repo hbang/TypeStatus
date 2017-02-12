@@ -17,5 +17,9 @@
 	<!-- TypeStatus Plus (Do not translate as it's a name)-->
 	<key>TYPESTATUS_PLUS</key>
 	<string>TypeStatus Plus</string>
+
+	<!-- Explanation of TypeStatus Plus features. -->
+	<key>TYPESTATUS_PLUS_SUBTITLE</key>
+	<string>Indicatori de scriere pentru mai multe aplicații, împreună cu alte utilități</string>
 </dict>
 </plist>
