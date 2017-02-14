@@ -57,6 +57,8 @@
 	<string>Písanie</string>
 	<key>READ_HEADER</key>
 	<string>Prečítanie</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>Odosielanie súboru</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
@@ -89,5 +91,15 @@
 	<string>Testovať Upozornenie Písania</string>
 	<key>TEST_READ_RECEIPT</key>
 	<string>Testovať Upozornenie na prečítanie</string>
+	<key>TEST_SENDING_FILE</key>
+ 	<string>Test notifikácie upozornenia súboru</string>
+	
+	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
+	<key>IGNORE_DND_SENDERS</key>
+	<string>Ignorovať stlmených/zablokovaných odosielateľov</string>
+ 
+ 	<!-- Explanation under the ignore muted/blocked senders switch. -->
+  	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
+	<string>V prípade, že máte niekoho zablokovaného, TypeStatus nezobrazí žiadne upozornenia.</string>
 </dict>
 </plist>
