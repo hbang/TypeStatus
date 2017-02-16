@@ -103,26 +103,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>id</key>
-			<string>NoLibstatusbarGroup</string>
-			<key>footerText</key>
-			<string>LIBSTATUSBAR_NOT_INSTALLED</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>openLibstatusbarPackage</string>
-			<key>cell</key>
-			<string>PSLinkCell</string>
-			<key>cellClass</key>
-			<string>HBTintedTableCell</string>
-			<key>id</key>
-			<string>NoLibstatusbar</string>
-			<key>label</key>
-			<string>INSTALL_LIBSTATUSBAR</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>TYPING_HEADER</string>
 		</dict>

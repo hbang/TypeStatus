@@ -46,11 +46,11 @@
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>libstatusbar je nužan kako bi se pokazale ikone statusne trake.</string>
+	<string>%@ je nužan kako bi se pokazale ikone statusne trake.</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->
 	<key>INSTALL_LIBSTATUSBAR</key>
-	<string>Instaliraj libstatusbar</string>
+	<string>Instaliraj %@</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>

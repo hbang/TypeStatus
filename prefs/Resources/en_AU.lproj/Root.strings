@@ -12,7 +12,7 @@
 
 	<!-- Messages-related features button. -->
 	<key>MESSAGES</key>
-	<string>Messages</string>
+	<string>Blocking</string>
 
 	<!-- TypeStatus Plus (Do not translate as it's a name)-->
 	<key>TYPESTATUS_PLUS</key>

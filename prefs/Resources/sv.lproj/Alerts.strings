@@ -46,11 +46,11 @@
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>libstatusbar krävs för att visa statusfältets ikoner.</string>
+	<string>%@ krävs för att visa statusfältets ikoner.</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->
 	<key>INSTALL_LIBSTATUSBAR</key>
-	<string>Installera libstatusbar</string>
+	<string>Installera %@</string>
 	
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
