@@ -56,7 +56,7 @@
 	NSBundle *bundle = [NSBundle bundleForClass:self.class];
 	NSString *title = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"INSTALL_LIBSTATUSBAR", @"Alerts", bundle, @""), package];
 	NSString *body = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"LIBSTATUSBAR_NOT_INSTALLED", @"Alerts", bundle, @""), package];
-	NSString *yes = NSLocalizedStringFromTableInBundle(@"INSTALL_NOW", @"Software Update", [NSBundle bundleForClass:PSListController.class], @"");
+	NSString *yes = NSLocalizedStringFromTableInBundle(@"INSTALL", @"Alerts", bundle, @"");
 	NSString *no = NSLocalizedStringFromTableInBundle(@"Cancel", @"Localizable", [NSBundle bundleForClass:UIView.class], @"");
 
 	// construct and show the alert view
