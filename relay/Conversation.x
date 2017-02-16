@@ -4,6 +4,7 @@
 extern NSString *kFZDaemonPropertyEnableReadReceipts;
 
 HBTSConversationPreferences *preferences;
+BOOL hasValue = NO;
 BOOL sendReceipt = NO;
 
 %group Stuff
@@ -11,18 +12,24 @@ BOOL sendReceipt = NO;
 
 - (void)sendReadReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
 	// indicate to the hook below if receipts are blocked or not
+	hasValue = YES;
 	sendReceipt = [preferences readReceiptsEnabledForHandle:identifier];
 	%orig;
+	hasValue = NO;
 }
 
 - (void)sendPlayedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
+	hasValue = YES;
 	sendReceipt = [preferences readReceiptsEnabledForHandle:identifier];
 	%orig;
+	hasValue = NO;
 }
 
 - (void)sendSavedReceiptForMessage:(id)message toChatID:(NSString *)chatID identifier:(NSString *)identifier style:(unsigned char)style {
+	hasValue = YES;
 	sendReceipt = [preferences readReceiptsEnabledForHandle:identifier];
 	%orig;
+	hasValue = NO;
 }
 
 %end
@@ -35,18 +42,16 @@ BOOL sendReceipt = NO;
 		return %orig(CFSTR("ReadReceiptsEnabled"), applicationID, keyExistsAndHasValidFormat);
 	}
 
-	// if we are enabled, and com.apple.madrid’s ReadReceiptsEnabled key is being queried, override
-	// it. otherwise, return the original value as per usual
-	if ([preferences.class shouldEnable] && [(__bridge NSString *)applicationID isEqualToString:@"com.apple.madrid"] && [(__bridge NSString *)key isEqualToString:@"ReadReceiptsEnabled"]) {
+	// if we are enabled, and com.apple.madrid’s ReadReceiptsEnabled key is being queried, and we
+	// have something to use, override it. otherwise, return the original value as per usual
+	if ([preferences.class shouldEnable] && [(__bridge NSString *)applicationID isEqualToString:@"com.apple.madrid"] && [(__bridge NSString *)key isEqualToString:@"ReadReceiptsEnabled"] && hasValue) {
 		// if the pointer arg is non-null, set it
 		if (keyExistsAndHasValidFormat != NULL) {
 			*keyExistsAndHasValidFormat = YES;
 		}
 
-		// override value and set our var back to NO for safety
-		BOOL result = sendReceipt;
-		sendReceipt = NO;
-		return result;
+		// return our overridden value
+		return sendReceipt;
 	}
 
 	return %orig;
