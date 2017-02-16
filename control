@@ -11,7 +11,7 @@ Maintainer: HASHBANG Productions <support@hbang.ws>
 Author: HASHBANG Productions <support@hbang.ws>
 Section: Messaging
 Icon: file:///Library/PreferenceBundles/TypeStatus.bundle/icon@2x.png
-Depiction: https://cydia.hbang.ws/depiction/ws.hbang.typestatus2/
+Depiction: https://cydia.hbang.ws/package/ws.hbang.typestatus2/
 Support: https://hbang.ws/support/
 Sponsor: thebigboss.org <http://thebigboss.org>
 Tag: purpose::extension, compatible::ios7, compatible::ios8, compatible::ios9, compatible::ios10
