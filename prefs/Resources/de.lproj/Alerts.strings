@@ -50,7 +50,7 @@
  
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>%@ wird vorrausgesetzt, damit Statusbar Icons angezeigt werden.</string>
+	<string>%@ wird benötigt um Icons in der Statusleiste anzuzeigen.</string>
 
 	<!-- Label of button that opens libstatusbar in Cydia. -->
 	<key>INSTALL</key>
