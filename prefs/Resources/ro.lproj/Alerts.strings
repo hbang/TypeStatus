@@ -44,13 +44,17 @@
 	<key>N_SECONDS</key>
 	<string>%i Secunde</string>
 
-	<!-- Header for the section shown when libstatusbar isn't installed. -->
-	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>%@ este necesar pentru a afisa icoanele in bara de status.</string>
-
 	<!-- Button that opens Cydia to the libstatusbar package. -->
 	<key>INSTALL_LIBSTATUSBAR</key>
 	<string>Instaleaza %@</string>
+
+	<!-- Header for the section shown when libstatusbar isn't installed. -->
+	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
+	<string>%@ este necesară pentru a arăta icoanele din bara de stare</string>
+
+	<!-- Label of button that opens libstatusbar in Cydia. -->
+	<key>INSTALL</key>
+	<string>Instaleaza</string>
 	
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>

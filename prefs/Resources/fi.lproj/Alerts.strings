@@ -44,13 +44,17 @@
 	<key>N_SECONDS</key>
 	<string>%i sekuntia</string>
 
+	<!-- Button that opens Cydia to the libstatusbar package. -->
+	<key>INSTALL_LIBSTATUSBAR</key>
+	<string>Asenna %@</string>
+
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
 	<string>%@:ia tarvitaan tilapalkin kuvakkeiden näyttämiseen.</string>
 
-	<!-- Button that opens Cydia to the libstatusbar package. -->
-	<key>INSTALL_LIBSTATUSBAR</key>
-	<string>Asenna %@</string>
+	<!-- Label of button that opens libstatusbar in Cydia. -->
+	<key>INSTALL</key>
+	<string>Asenna</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>

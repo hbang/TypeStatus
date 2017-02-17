@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Page title. -->
+    <!-- Page title. -->
 	<key>MESSAGES</key>
-	<string>הודעות</string>
+    <string>חסימה</string>
 
 	<!-- Explanation displayed under the Enable switch. -->
 	<key>MESSAGES_EXPLANATION</key>
