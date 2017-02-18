@@ -50,7 +50,7 @@
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>Cần cài đặt %@ để hiển thị trên thanh trạng thái.</string>
+	<string>%@ là cần thiết để hiển thị những biểu tượng trên thanh trạng thái.</string>
 
 	<!-- Label of button that opens libstatusbar in Cydia. -->
 	<key>INSTALL</key>
