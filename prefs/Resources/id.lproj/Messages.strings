@@ -4,7 +4,7 @@
 <dict>
 	<!-- Page title. -->
 	<key>MESSAGES</key>
-	<string>Pesan</string>
+	<string>Memblokir</string>
 
 	<!-- Explanation displayed under the Enable switch. -->
 	<key>MESSAGES_EXPLANATION</key>

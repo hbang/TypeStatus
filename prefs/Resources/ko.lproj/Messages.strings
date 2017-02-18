@@ -4,7 +4,7 @@
 <dict>
 	<!-- Page title. -->
 	<key>MESSAGES</key>
-	<string>메시지</string>
+	<string>차단</string>
 
 	<!-- Explanation displayed under the Enable switch. -->
 	<key>MESSAGES_EXPLANATION</key>
