@@ -50,7 +50,7 @@
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>Perlukan %@ untuk menunjukkan ikon pada status bar.</string>
+	<string>%@ diperlukan bagi menunjuk ikon batang status.</string>
 
 	<!-- Label of button that opens libstatusbar in Cydia. -->
 	<key>INSTALL</key>
