@@ -199,9 +199,17 @@
 #pragma mark - Constructor
 
 %ctor {
-	NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
+	NSBundle *bundle = [NSBundle mainBundle];
+	NSString *bundleIdentifier = bundle.bundleIdentifier;
+	NSDictionary <NSString *, id> *infoPlist = bundle.infoDictionary;
 
-	if ([bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"] || [bundleIdentifier isEqualToString:@"com.apple.SafariViewService"]) {
+	// blacklist:
+	// • AccessibilityUIServer (has no status bar anyway)
+	// • SafariViewService (no idea why it crashes…)
+	// • app extensions/plugins (can have a pretty locked down sandbox)
+	if ([bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"]
+		|| [bundleIdentifier isEqualToString:@"com.apple.SafariViewService"]
+		|| infoPlist[@"NSExtension"] || infoPlist[@"PlugInKit"]) {
 		return;
 	}
 
