@@ -4,12 +4,13 @@
 #import "HBTSStatusBarAlertServer.h"
 #import "HBTSStatusBarAlertServer+Private.h"
 #import "HBTSStatusBarIconController.h"
-#import <SpringBoard/SpringBoard.h>
-#import <SpringBoard/SBApplication.h>
+#import <SpringBoardServices/SpringBoardServices.h>
 
 @implementation HBTSServerController {
 	HBTSPreferences *_preferences;
 }
+
+#pragma mark - NSObject
 
 - (instancetype)init {
 	self = [super init];
@@ -21,17 +22,16 @@
 	return self;
 }
 
+#pragma mark - Callbacks
+
 - (void)receivedRelayedNotification:(NSDictionary *)userInfo {
-	HBLogDebug(@"hi %@", userInfo);
 	HBTSMessageType type = (HBTSMessageType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
 	NSString *sender = userInfo[kHBTSMessageSenderKey];
 	BOOL isTyping = ((NSNumber *)userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
-	HBLogDebug(@"asdsd");
 	if (![self shouldShowAlertOfType:type] || [HBTSContactHelper isHandleMuted:sender]) {
 		return;
 	}
-	HBLogDebug(@"asdsd");
 
 	HBTSNotificationType notificationType = HBTSNotificationTypeNone;
 
@@ -49,10 +49,8 @@
 			notificationType = _preferences.sendingFileAlertType;
 			break;
 	}
-	HBLogDebug(@"asdsd");
 
 	NSTimeInterval timeout = isTyping && _preferences.useTypingTimeout ? kHBTSTypingTimeout : _preferences.overlayDisplayDuration;
-	HBLogDebug(@"asdsd");
 
 	switch (notificationType) {
 		case HBTSNotificationTypeNone:
@@ -66,8 +64,9 @@
 			[HBTSStatusBarIconController showIconType:type timeout:timeout];
 			break;
 	}
-	HBLogDebug(@"asdsd");
 }
+
+#pragma mark - Logic
 
 - (BOOL)shouldShowAlertOfType:(HBTSMessageType)type {
 	BOOL hideInMessages = NO;
@@ -91,23 +90,36 @@
 	}
 
 	if (hideInMessages) {
-		// get the SBS port
-		mach_port_t port = SBSSpringBoardServerPort();
-
-		// get the frontmost app id
-		char identifier[512];
-		memset(identifier, 0, sizeof identifier);
-		SBFrontmostApplicationDisplayIdentifier(port, identifier);
-
-		// get the screen lock status
-		bool isLocked, passcodeLocked;
-		SBGetScreenLockStatus(port, &isLocked, &passcodeLocked);
-
 		// if it’s messages, and the device isn’t locked, return NO
-		return isLocked || strcmp(identifier, "com.apple.MobileSMS") != 0;
+		return self._isDeviceLocked || [self._frontmostAppIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
 
 	return YES;
+}
+
+#pragma mark - SBS helpers
+
+- (NSString *)_frontmostAppIdentifier {
+	// get the SBS port
+	mach_port_t port = SBSSpringBoardServerPort();
+
+	// get the frontmost app id
+	char identifier[512];
+	memset(identifier, 0, sizeof identifier);
+	SBFrontmostApplicationDisplayIdentifier(port, identifier);
+
+	return [NSString stringWithUTF8String:identifier];
+}
+
+- (BOOL)_isDeviceLocked {
+	// get the SBS port
+	mach_port_t port = SBSSpringBoardServerPort();
+
+	// get the screen lock status
+	BOOL isLocked, passcodeLocked;
+	SBGetScreenLockStatus(port, &isLocked, &passcodeLocked);
+
+	return isLocked;
 }
 
 @end
