@@ -28,15 +28,14 @@ typedef NS_ENUM(NSUInteger, HBTSStatusBarFormat) {
 
 #pragma mark - Constants
 
-static LMConnection springboardService = {
+static LMConnection daemonService = {
 	MACH_PORT_NULL,
-	"ws.hbang.typestatus.springboardserver"
+	"ws.hbang.typestatus.daemonserver"
 };
 
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
-// old values may be used here for compatibility with other tweaks that listen
-// for typestatus notifications
+// old values may be used here for compatibility with other tweaks that listen for our notifications
 
 static NSString *const HBTSClientSetStatusBarNotification = @"HBTSClientSetStatusBar";
 static NSString *const HBTSSpringBoardReceivedMessageNotification = @"HBTSSpringBoardReceivedMessageNotification";

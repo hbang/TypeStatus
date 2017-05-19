@@ -1,4 +1,4 @@
-@interface HBTSSpringBoardServer : NSObject
+@interface HBTSServerController : NSObject
 
 - (void)receivedRelayedNotification:(NSDictionary *)userInfo;
 

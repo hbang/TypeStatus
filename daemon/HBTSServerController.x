@@ -1,4 +1,4 @@
-#import "HBTSSpringBoardServer.h"
+#import "HBTSServerController.h"
 #import "HBTSContactHelper.h"
 #import "HBTSPreferences.h"
 #import "HBTSStatusBarAlertServer.h"
@@ -7,7 +7,7 @@
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBApplication.h>
 
-@implementation HBTSSpringBoardServer {
+@implementation HBTSServerController {
 	HBTSPreferences *_preferences;
 }
 
@@ -22,13 +22,16 @@
 }
 
 - (void)receivedRelayedNotification:(NSDictionary *)userInfo {
+	HBLogDebug(@"hi %@", userInfo);
 	HBTSMessageType type = (HBTSMessageType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
 	NSString *sender = userInfo[kHBTSMessageSenderKey];
 	BOOL isTyping = ((NSNumber *)userInfo[kHBTSMessageIsTypingKey]).boolValue;
 
+	HBLogDebug(@"asdsd");
 	if (![self shouldShowAlertOfType:type] || [HBTSContactHelper isHandleMuted:sender]) {
 		return;
 	}
+	HBLogDebug(@"asdsd");
 
 	HBTSNotificationType notificationType = HBTSNotificationTypeNone;
 
@@ -46,8 +49,10 @@
 			notificationType = _preferences.sendingFileAlertType;
 			break;
 	}
+	HBLogDebug(@"asdsd");
 
 	NSTimeInterval timeout = isTyping && _preferences.useTypingTimeout ? kHBTSTypingTimeout : _preferences.overlayDisplayDuration;
+	HBLogDebug(@"asdsd");
 
 	switch (notificationType) {
 		case HBTSNotificationTypeNone:
@@ -61,6 +66,7 @@
 			[HBTSStatusBarIconController showIconType:type timeout:timeout];
 			break;
 	}
+	HBLogDebug(@"asdsd");
 }
 
 - (BOOL)shouldShowAlertOfType:(HBTSMessageType)type {
@@ -85,12 +91,20 @@
 	}
 
 	if (hideInMessages) {
-		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
+		// get the SBS port
+		mach_port_t port = SBSSpringBoardServerPort();
 
-		// if the device is locked, or there is no frontmost app, or the frontmost app is not messages,
-		// we can show it
-		return app.isLocked || !app._accessibilityFrontMostApplication
-			|| ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
+		// get the frontmost app id
+		char identifier[512];
+		memset(identifier, 0, sizeof identifier);
+		SBFrontmostApplicationDisplayIdentifier(port, identifier);
+
+		// get the screen lock status
+		bool isLocked, passcodeLocked;
+		SBGetScreenLockStatus(port, &isLocked, &passcodeLocked);
+
+		// if it’s messages, and the device isn’t locked, return NO
+		return isLocked || strcmp(identifier, "com.apple.MobileSMS") != 0;
 	}
 
 	return YES;
