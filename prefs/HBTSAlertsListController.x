@@ -52,7 +52,7 @@
 
 - (void)_showLibstatusbarPrompt {
 	// this is friggin insanity
-	NSString *package = IS_IOS_OR_NEWER(iOS_9_0) ? @"libmoorecon" : @"libstatusbar";
+	NSString *package = IS_IOS_OR_NEWER(iOS_9_1) ? @"libstatus9" : @"libstatusbar";
 	NSBundle *bundle = [NSBundle bundleForClass:self.class];
 	NSString *title = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"INSTALL_LIBSTATUSBAR", @"Alerts", bundle, @""), package];
 	NSString *body = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"LIBSTATUSBAR_NOT_INSTALLED", @"Alerts", bundle, @""), package];
@@ -71,7 +71,7 @@
 		NSURL *url;
 
 		if (IS_IOS_OR_NEWER(iOS_9_0)) {
-			url = [NSURL URLWithString:@"cydia://url/https://cydia.saurik.com/api/share#?source=http%3A%2F%2Ftateu.net%2Frepo%2F&package=libmoorecon"];
+			url = [NSURL URLWithString:@"cydia://package/org.thebigboss.libstatus9"];
 		} else {
 			url = [NSURL URLWithString:@"cydia://package/libstatusbar"];
 		}
