@@ -29,7 +29,7 @@
 	dispatch_once(&onceToken, ^{
 		[[NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/ChatKit.framework"] load];
 	});
-	
+
 	HBTSMessageType type = (HBTSMessageType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
 	NSString *sender = userInfo[kHBTSMessageSenderKey];
 	BOOL isTyping = ((NSNumber *)userInfo[kHBTSMessageIsTypingKey]).boolValue;
@@ -62,7 +62,7 @@
 			break;
 
 		case HBTSNotificationTypeOverlay:
-			[%c(HBTSStatusBarAlertServer) sendMessagesAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
+			[HBTSStatusBarAlertServer sendMessagesAlertType:type sender:[HBTSContactHelper nameForHandle:sender useShortName:YES] timeout:timeout];
 			break;
 
 		case HBTSNotificationTypeIcon:
