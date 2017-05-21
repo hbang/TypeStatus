@@ -5,8 +5,8 @@ TOOL_NAME = typestatusd
 typestatusd_FILES = $(wildcard *.x) $(wildcard *.m) ../global/HBTSContactHelper.x ../global/HBTSPreferences.m ../global/HBTSStatusBarAlertServer.m
 typestatusd_INSTALL_PATH = /Library/Application Support/TypeStatus/typestatusd.app
 typestatusd_WEAK_FRAMEWORKS = Contacts
-typestatusd_PRIVATE_FRAMEWORKS = ChatKit
-typestatusd_EXTRA_FRAMEWORKS = Cephei CydiaSubstrate SpringBoardServices
+typestatusd_PRIVATE_FRAMEWORKS = SpringBoardServices
+typestatusd_EXTRA_FRAMEWORKS = Cephei CydiaSubstrate
 typestatusd_LIBRARIES = rocketbootstrap
 typestatusd_CFLAGS = -I../global -include ../global/Global.h -fobjc-arc
 

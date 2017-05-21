@@ -25,6 +25,11 @@
 #pragma mark - Callbacks
 
 - (void)receivedRelayedNotification:(NSDictionary *)userInfo {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		[[NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/ChatKit.framework"] load];
+	});
+	
 	HBTSMessageType type = (HBTSMessageType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
 	NSString *sender = userInfo[kHBTSMessageSenderKey];
 	BOOL isTyping = ((NSNumber *)userInfo[kHBTSMessageIsTypingKey]).boolValue;
