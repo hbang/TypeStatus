@@ -96,7 +96,7 @@
 
 	if (hideInMessages) {
 		// if it’s messages, and the device isn’t locked, return NO
-		return self._isDeviceLocked || [self._frontmostAppIdentifier isEqualToString:@"com.apple.MobileSMS"];
+		return self._isDeviceLocked || ![self._frontmostAppIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
 
 	return YES;
