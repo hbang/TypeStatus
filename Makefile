@@ -26,3 +26,6 @@ endif
 
 	$(ECHO_NOTHING)mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework$(ECHO_END)
 	$(ECHO_NOTHING)cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework$(ECHO_END)
+
+	$(ECHO_NOTHING)mkdir -p $(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries$(ECHO_END)
+	$(ECHO_NOTHING)touch $(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries/TypeStatus.dylib$(ECHO_END)
