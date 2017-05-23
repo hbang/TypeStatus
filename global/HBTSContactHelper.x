@@ -33,7 +33,7 @@ HBTSPreferences *preferences;
 	static NSArray *keysToFetch;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		contactStore = [[CNContactStore alloc] init];
+		contactStore = [[%c(CNContactStore) alloc] init];
 
 		// yeah, it’s a real class. way to lazy out
 		NSArray *descriptions = [%c(CN) allNameComponentRelatedProperties];
@@ -48,11 +48,11 @@ HBTSPreferences *preferences;
 
 	// search for contacts with that email address
 	NSError *error = nil;
-	NSArray <CNContact *> *contacts = [contactStore unifiedContactsMatchingPredicate:[CNContact predicateForContactMatchingEmailAddress:handle] keysToFetch:keysToFetch error:&error];
+	NSArray <CNContact *> *contacts = [contactStore unifiedContactsMatchingPredicate:[%c(CNContact) predicateForContactMatchingEmailAddress:handle] keysToFetch:keysToFetch error:&error];
 
 	if (error || contacts.count == 0) {
 		// try with the phone number
-		contacts = [contactStore unifiedContactsMatchingPredicate:[CNContact predicateForContactMatchingPhoneNumber:[CNPhoneNumber phoneNumberWithStringValue:handle]] keysToFetch:keysToFetch error:&error];
+		contacts = [contactStore unifiedContactsMatchingPredicate:[%c(CNContact) predicateForContactMatchingPhoneNumber:[%c(CNPhoneNumber) phoneNumberWithStringValue:handle]] keysToFetch:keysToFetch error:&error];
 
 		if (error || contacts.count == 0) {
 			// nothing found. just return nil
@@ -66,28 +66,25 @@ HBTSPreferences *preferences;
 }
 
 + (NSString *)nameForHandle:(NSString *)handle useShortName:(BOOL)shortName {
+	static NSString *buddyNameString;
+	static CNContactFormatter *contactFormatter;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSBundle *imCoreBundle = [NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/IMCore.framework"];
+		buddyNameString = [imCoreBundle localizedStringForKey:@"Buddy Name" value:@"" table:@"IMCoreLocalizable"];
+
+		contactFormatter = %c(CNContactFormatter) ? [[%c(CNContactFormatter) alloc] init] : nil;
+	});
+
 	if ([handle isEqualToString:@"example@hbang.ws"]) {
 		return @"Johnny Appleseed";
-	} else if (%c(CNContact) && !shortName) {
+	} else if (!shortName && %c(CNContact)) {
 		// ios 9+: use Contacts.framework because Contacts.framework is awesome
 		CNContact *contact = [self _contactForHandle:handle];
 
-		// contact doesn’t exist? return the handle
-		if (!contact) {
-			return handle;
-		}
-
-		// get a contact formatter and use it to return the name
-		CNContactFormatter *contactFormatter = [[CNContactFormatter alloc] init];
-		return [contactFormatter stringFromContact:contact];
+		// use the contact formatter to get the display name, or fall back to the handle
+		return contact ? [contactFormatter stringFromContact:contact] : handle;
 	} else {
-		static NSString *buddyNameString;
-		static dispatch_once_t onceToken;
-		dispatch_once(&onceToken, ^{
-			NSBundle *imCoreBundle = [NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/IMCore.framework"];
-			buddyNameString = [imCoreBundle localizedStringForKey:@"Buddy Name" value:@"" table:@"IMCoreLocalizable"];
-		});
-
 		CKEntity *entity = [%c(CKEntity) copyEntityForAddressString:handle];
 		NSString *result = nil;
 
