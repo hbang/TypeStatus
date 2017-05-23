@@ -2,13 +2,9 @@
 
 + (instancetype)sharedInstance;
 
-@property (nonatomic) HBTSNotificationType typingAlertType;
-@property (nonatomic) HBTSNotificationType readAlertType;
-@property (nonatomic) HBTSNotificationType sendingFileAlertType;
+@property (nonatomic) HBTSNotificationType typingAlertType, readAlertType, sendingFileAlertType;
 
-@property (nonatomic, readonly) BOOL typingHideInMessages;
-@property (nonatomic, readonly) BOOL readHideInMessages;
-@property (nonatomic, readonly) BOOL sendingFileHideInMessages;
+@property (nonatomic, readonly) BOOL typingHideInMessages, readHideInMessages, sendingFileHideInMessages;
 
 @property (nonatomic, readonly) BOOL useTypingTimeout;
 
@@ -18,6 +14,6 @@
 
 @property (nonatomic, readonly) BOOL ignoreDNDSenders;
 
-@property (nonatomic, readonly) BOOL messagesEnabled;
+@property (nonatomic, readonly) BOOL messagesEnabled, messagesGlobalSendTyping;
 
 @end

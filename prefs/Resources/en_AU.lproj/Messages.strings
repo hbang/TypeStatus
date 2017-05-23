@@ -14,6 +14,14 @@
 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
 	<string>This feature is unavailable because it conflicts with SelectiveReading.</string>
 
+	<!-- Label for settings that apply to all recipients. -->
+	<key>GLOBAL</key>
+	<string>Global</string>
+
+	<!-- Explanation of the global section. -->
+	<key>GLOBAL_EXPLANATION</key>
+	<string>Default settings to use when not explicitly set below.</string>
+
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
 	<string>Send Typing Notifications</string>
