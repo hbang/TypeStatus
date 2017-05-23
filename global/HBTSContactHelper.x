@@ -1,8 +1,8 @@
-@import Contacts;
 #import "HBTSContactHelper.h"
 #import "HBTSPreferences.h"
 #import <ChatKit/CKEntity.h>
 #import <ChatKit/CKDNDList.h>
+#import <Contacts/Contacts.h>
 #import <Contacts/CN.h>
 #import <Contacts/CNContact+Private.h>
 #import <Contacts/CNContactFormatter+Private.h>
@@ -16,8 +16,13 @@ HBTSPreferences *preferences;
 @implementation HBTSContactHelper
 
 + (BOOL)isHandleMuted:(NSString *)handle {
-	if (preferences.ignoreDNDSenders && %c(CKDNDList) && [(CKDNDList *)[%c(CKDNDList) sharedList] isMutedChatIdentifier:handle]) {
-		return YES;
+	// if ignore DND is enabled and the feature is available (iOS 8.2+)
+	if (preferences.ignoreDNDSenders && %c(CKDNDList)) {
+		// get the unmute date, which is probably distantFuture
+		NSDate *unmuteDate = [(CKDNDList *)[%c(CKDNDList) sharedList] unmuteDateForIdentifier:handle];
+
+		// if the date is non-nil and still in the future, the handle is muted
+		return unmuteDate && [unmuteDate compare:[NSDate date]] == NSOrderedDescending;
 	}
 
 	return NO;
