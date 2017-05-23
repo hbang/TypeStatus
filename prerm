@@ -1,3 +1,0 @@
-#!/bin/bash
-# unload typestatusd
-launchctl unload -w /Library/LaunchDaemons/ws.hbang.typestatusd.plist

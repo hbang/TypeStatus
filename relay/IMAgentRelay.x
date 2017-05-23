@@ -19,7 +19,7 @@ void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 			kHBTSMessageIsTypingKey: @(isTyping)
 		};
 
-		LMConnectionSendOneWayData(&daemonService, 0, (__bridge CFDataRef)LMDataForPropertyList(data));
+		LMConnectionSendOneWayData(&springboardService, 0, (__bridge CFDataRef)LMDataForPropertyList(data));
 	});
 }
 

@@ -14,14 +14,14 @@ export ADDITIONAL_CFLAGS = -Wextra -Wno-unused-parameter
 
 include $(THEOS)/makefiles/common.mk
 
-SUBPROJECTS = daemon client relay prefs messages
+SUBPROJECTS = springboard client relay prefs messages
 
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-stage::
 ifneq ($(PACKAGE_BUILDNAME)$(IMAGENT),debug)
 	$(ECHO_NOTHING)mkdir -p $(THEOS_STAGING_DIR)/DEBIAN$(ECHO_END)
-	$(ECHO_NOTHING)cp postinst prerm postrm $(THEOS_STAGING_DIR)/DEBIAN$(ECHO_END)
+	$(ECHO_NOTHING)cp postinst postrm $(THEOS_STAGING_DIR)/DEBIAN$(ECHO_END)
 endif
 
 	$(ECHO_NOTHING)mkdir -p $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework$(ECHO_END)

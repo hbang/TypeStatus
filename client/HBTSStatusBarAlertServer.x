@@ -36,7 +36,7 @@
 		PrefsBundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
 	});
 
-	HBTSPreferences *preferences = [HBTSPreferences sharedInstance];
+	HBTSPreferences *preferences = [%c(HBTSPreferences) sharedInstance];
 
 	switch (preferences.overlayFormat) {
 		case HBTSStatusBarFormatNatural:
@@ -123,7 +123,7 @@
 
 	// if the timeout is -1, replace it with the user's specified duration
 	if (timeout == -1) {
-		timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
+		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
 	}
 
 	// send the notification

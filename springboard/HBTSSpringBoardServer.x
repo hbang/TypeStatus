@@ -1,16 +1,15 @@
-#import "HBTSServerController.h"
+#import "HBTSSpringBoardServer.h"
 #import "HBTSContactHelper.h"
 #import "HBTSPreferences.h"
 #import "HBTSStatusBarAlertServer.h"
 #import "HBTSStatusBarAlertServer+Private.h"
 #import "HBTSStatusBarIconController.h"
-#import <SpringBoardServices/SpringBoardServices.h>
+#import <SpringBoard/SpringBoard.h>
+#import <SpringBoard/SBApplication.h>
 
-@implementation HBTSServerController {
+@implementation HBTSSpringBoardServer {
 	HBTSPreferences *_preferences;
 }
-
-#pragma mark - NSObject
 
 - (instancetype)init {
 	self = [super init];
@@ -21,8 +20,6 @@
 
 	return self;
 }
-
-#pragma mark - Callbacks
 
 - (void)receivedRelayedNotification:(NSDictionary *)userInfo {
 	HBTSMessageType type = (HBTSMessageType)((NSNumber *)userInfo[kHBTSMessageTypeKey]).intValue;
@@ -66,8 +63,6 @@
 	}
 }
 
-#pragma mark - Logic
-
 - (BOOL)shouldShowAlertOfType:(HBTSMessageType)type {
 	BOOL hideInMessages = NO;
 
@@ -90,36 +85,15 @@
 	}
 
 	if (hideInMessages) {
-		// if it’s messages, and the device isn’t locked, return NO
-		return self._isDeviceLocked || [self._frontmostAppIdentifier isEqualToString:@"com.apple.MobileSMS"];
+		SpringBoard *app = (SpringBoard *)[UIApplication sharedApplication];
+
+		// if the device is locked, or there is no frontmost app, or the frontmost app is not messages,
+		// we can show it
+		return app.isLocked || !app._accessibilityFrontMostApplication
+			|| ![app._accessibilityFrontMostApplication.bundleIdentifier isEqualToString:@"com.apple.MobileSMS"];
 	}
 
 	return YES;
-}
-
-#pragma mark - SBS helpers
-
-- (NSString *)_frontmostAppIdentifier {
-	// get the SBS port
-	mach_port_t port = SBSSpringBoardServerPort();
-
-	// get the frontmost app id
-	char identifier[512];
-	memset(identifier, 0, sizeof identifier);
-	SBFrontmostApplicationDisplayIdentifier(port, identifier);
-
-	return [NSString stringWithUTF8String:identifier];
-}
-
-- (BOOL)_isDeviceLocked {
-	// get the SBS port
-	mach_port_t port = SBSSpringBoardServerPort();
-
-	// get the screen lock status
-	BOOL isLocked, passcodeLocked;
-	SBGetScreenLockStatus(port, &isLocked, &passcodeLocked);
-
-	return isLocked;
 }
 
 @end
