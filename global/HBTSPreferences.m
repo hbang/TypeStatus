@@ -39,6 +39,7 @@
 		[_preferences registerBool:&_ignoreDNDSenders default:YES forKey:@"IgnoreDNDSenders"];
 
 		[_preferences registerBool:&_messagesEnabled default:YES forKey:@"MessagesEnabled"];
+		[_preferences registerBool:&_messagesGlobalSendTyping default:YES forKey:@"MessagesGlobalSendTyping"];
 	}
 
 	return self;

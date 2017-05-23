@@ -52,6 +52,10 @@
 	return [bundle isEqualToString:@"imagent.app"];
 }
 
+- (BOOL)_typingNotificationsEnabled {
+	return ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).messagesGlobalSendTyping;
+}
+
 - (BOOL)_readReceiptsEnabled {
 	// use a special™ key when in imagent so we don’t override it
 	CFStringRef key = self._isInIMAgent && !IS_IOS_OR_NEWER(iOS_10_0)
@@ -92,7 +96,7 @@
 
 - (BOOL)typingNotificationsEnabledForChat:(IMChat *)chat {
 	NSString *key = [self _keyForChat:chat type:@"Typing"];
-	return key ? [_preferences boolForKey:key default:YES] : YES;
+	return key ? [_preferences boolForKey:key default:self._typingNotificationsEnabled] : self._typingNotificationsEnabled;
 }
 
 - (BOOL)readReceiptsEnabledForChat:(IMChat *)chat {
@@ -102,7 +106,7 @@
 
 - (BOOL)typingNotificationsEnabledForHandle:(NSString *)handle {
 	NSString *key = [self _keyForHandle:handle type:@"Typing"];
-	return key ? [_preferences boolForKey:key default:YES] : YES;
+	return key ? [_preferences boolForKey:key default:self._typingNotificationsEnabled] : self._typingNotificationsEnabled;
 }
 
 - (BOOL)readReceiptsEnabledForHandle:(NSString *)handle {
@@ -138,7 +142,7 @@
 #pragma mark - Add/Remove
 
 - (void)addHandle:(NSString *)handle {
-	[self setTypingNotificationsEnabled:YES forHandle:handle];
+	[self setTypingNotificationsEnabled:self._typingNotificationsEnabled forHandle:handle];
 	[self setReadReceiptsEnabled:self._readReceiptsEnabled forHandle:handle];
 }
 
