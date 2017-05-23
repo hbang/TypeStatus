@@ -28,11 +28,10 @@ void receivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex
 
 int main() {
 	@autoreleasepool {
-		// load TypeStatusClient so we get HBTSPreferences
-		dlopen("/Library/MobileSubstrate/DynamicLibraries/TypeStatusClient.dylib", RTLD_LAZY);
-
+		// intantiate our server controller
 		server = [[HBTSServerController alloc] init];
 
+		// start the ipc server
 		kern_return_t result = LMStartService(daemonService.serverName, CFRunLoopGetCurrent(), (CFMachPortCallBack)receivedRelayedNotification);
 
 		if (result) {
