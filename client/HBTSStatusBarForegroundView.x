@@ -9,7 +9,6 @@
 @interface HBTSStatusBarForegroundView ()
 
 - (void)_typeStatus_init;
-- (void)_typeStatus_setUpLayout;
 
 @property (nonatomic, retain) UIView *containerView;
 @property (nonatomic, retain) HBTSStatusBarIconItemView *iconItemView;
@@ -68,13 +67,6 @@
 	self.contentItemView = [[%c(HBTSStatusBarContentItemView) alloc] initWithItem:[[%c(UIStatusBarItem) alloc] init] data:nil actions:kNilOptions style:self.foregroundStyle];
 	self.contentItemView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.containerView addSubview:self.contentItemView];
-}
-
-%new - (void)_typeStatus_setUpLayout {
-	// if constraints are already set up, no need to do anything
-	if (self.containerView.constraints.count != 0) {
-		return;
-	}
 
 	NSDictionary <NSString *, UIView *> *views = @{
 		@"self": self,
@@ -142,7 +134,6 @@
 
 	self.contentItemView.attributedString = attributedString;
 
-	[self _typeStatus_setUpLayout];
 	[self setNeedsLayout];
 }
 
