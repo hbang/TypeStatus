@@ -67,30 +67,34 @@
 - (void)_swapToNewForegroundView {
 	%orig;
 
-	// if we need a new foreground view, and we’re not a fake status bar, and we’re not in a carplay
-	// (stark) status bar
-	if (self._typeStatus_needsNewForegroundView && ![self isKindOfClass:%c(SBFakeStatusBarView)] && ![self.window isKindOfClass:%c(SBStarkStatusBarWindow)]) {
-		self._typeStatus_needsNewForegroundView = NO;
-
-		[self._typeStatus_foregroundView removeFromSuperview];
-
-		UIStatusBarForegroundView *statusBarView = [self valueForKey:@"_foregroundView"];
-		HBTSStatusBarForegroundView *typeStatusView;
-
-		if ([%c(HBTSStatusBarForegroundView) instancesRespondToSelector:@selector(initWithFrame:foregroundStyle:usesVerticalLayout:)]) {
-			typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle usesVerticalLayout:NO];
-		} else {
-			typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle];
-		}
-
-		typeStatusView.statusBarView = statusBarView;
-		typeStatusView.hidden = YES;
-		[self insertSubview:typeStatusView aboveSubview:statusBarView];
-
-		self._typeStatus_foregroundView = typeStatusView;
-
-		[[HBTSStatusBarAlertController sharedInstance] displayCurrentAlertInStatusBar:self animated:NO];
+	// if we don’t need a new foreground view, or we’re a fake status bar on iOS <9, or we’re a
+	// carplay (stark) status bar, then return
+	if (!self._typeStatus_needsNewForegroundView
+		|| ([self isKindOfClass:%c(SBFakeStatusBarView)] && !IS_IOS_OR_NEWER(iOS_9_0))
+		|| [self.window isKindOfClass:%c(SBStarkStatusBarWindow)]) {
+		return;
 	}
+
+	self._typeStatus_needsNewForegroundView = NO;
+
+	[self._typeStatus_foregroundView removeFromSuperview];
+
+	UIStatusBarForegroundView *statusBarView = [self valueForKey:@"_foregroundView"];
+	HBTSStatusBarForegroundView *typeStatusView;
+
+	if ([%c(HBTSStatusBarForegroundView) instancesRespondToSelector:@selector(initWithFrame:foregroundStyle:usesVerticalLayout:)]) {
+		typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle usesVerticalLayout:NO];
+	} else {
+		typeStatusView = [[%c(HBTSStatusBarForegroundView) alloc] initWithFrame:statusBarView.frame foregroundStyle:statusBarView.foregroundStyle];
+	}
+
+	typeStatusView.statusBarView = statusBarView;
+	typeStatusView.hidden = YES;
+	[self insertSubview:typeStatusView aboveSubview:statusBarView];
+
+	self._typeStatus_foregroundView = typeStatusView;
+
+	[[HBTSStatusBarAlertController sharedInstance] displayCurrentAlertInStatusBar:self animated:NO];
 }
 
 #pragma mark - Show/Hide
