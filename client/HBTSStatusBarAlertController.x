@@ -19,6 +19,7 @@
 
 @implementation HBTSStatusBarAlertController {
 	NSMutableSet *_statusBars;
+	dispatch_queue_t _queue;
 
 	BOOL _visible;
 	NSString *_currentIconName;
@@ -47,6 +48,10 @@
 	if (self) {
 		_statusBars = [[NSMutableSet alloc] init];
 
+		// we use a serial queue to avoid racing whenever we access the status bars set, or the other
+		// status bar alert values
+		_queue = dispatch_queue_create("ws.hbang.typestatus.statusbarcontrollerqueue", DISPATCH_QUEUE_SERIAL);
+
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(_receivedStatusNotification:) name:HBTSClientSetStatusBarNotification object:nil];
 	}
 
@@ -56,44 +61,54 @@
 #pragma mark - Status Bar Management
 
 - (void)addStatusBar:(UIStatusBar *)statusBar {
-	if ([_statusBars containsObject:statusBar]) {
-		HBLogWarn(@"attempting to add a status bar that’s already known");
-	}
+	dispatch_async(_queue, ^{
+		if ([_statusBars containsObject:statusBar]) {
+			HBLogWarn(@"attempting to add a status bar that’s already known");
+		}
 
-	[_statusBars addObject:statusBar];
+		[_statusBars addObject:statusBar];
+	});
 }
 
 - (void)removeStatusBar:(UIStatusBar *)statusBar {
-	[_statusBars removeObject:statusBar];
+	// this must be synchronous, because this method is called when a status bar is deallocating. if
+	// we’re too late, the status bar is already deallocated and we crash!
+	dispatch_sync(_queue, ^{
+		[_statusBars removeObject:statusBar];
+	});
 }
 
 #pragma mark - Show/Hide
 
 - (void)_showWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
-	[self _setLockScreenGrabberVisible:!direction];
-	[self _announceAlertWithText:text];
+	dispatch_async(_queue, ^{
+		[self _setLockScreenGrabberVisible:!direction];
+		[self _announceAlertWithText:text];
 
-	_currentIconName = iconName;
-	_currentText = text;
-	_currentBoldRange = boldRange;
+		_currentIconName = iconName;
+		_currentText = text;
+		_currentBoldRange = boldRange;
 
-	_visible = direction;
+		_visible = direction;
 
-	for (UIStatusBar *statusBar in _statusBars) {
-		[self displayCurrentAlertInStatusBar:statusBar animated:YES];
-	}
+		for (UIStatusBar *statusBar in _statusBars) {
+			[self displayCurrentAlertInStatusBar:statusBar animated:YES];
+		}
 
-	if (direction) {
-		if (_timeoutTimer) {
+		if (direction) {
+			if (_timeoutTimer) {
+				[_timeoutTimer invalidate];
+				_timeoutTimer = nil;
+			}
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				_timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO];
+			});
+		} else {
 			[_timeoutTimer invalidate];
 			_timeoutTimer = nil;
 		}
-
-		_timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO];
-	} else {
-		[_timeoutTimer invalidate];
-		_timeoutTimer = nil;
-	}
+	});
 }
 
 - (void)hide {
@@ -101,20 +116,22 @@
 }
 
 - (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
-	// if for some crazy reason we don’t have a foreground view, log that (it really shouldn’t
-	// happen…) and return
-	if (!statusBar._typeStatus_foregroundView) {
-		HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
-		return;
-	}
+	dispatch_async(dispatch_get_main_queue(), ^{
+		// if for some crazy reason we don’t have a foreground view, log that (it really shouldn’t
+		// happen…) and return
+		if (!statusBar._typeStatus_foregroundView) {
+			HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
+			return;
+		}
+		
+		// animate that status bar!
+		[statusBar _typeStatus_changeToDirection:_visible animated:animated];
 
-	// animate that status bar!
-	[statusBar _typeStatus_changeToDirection:_visible animated:animated];
-
-	// if we’re animating to visible, set the new values
-	if (_visible) {
-		[statusBar._typeStatus_foregroundView setIconName:_currentIconName text:_currentText boldRange:_currentBoldRange];
-	}
+		// if we’re animating to visible, set the new values
+		if (_visible) {
+			[statusBar._typeStatus_foregroundView setIconName:_currentIconName text:_currentText boldRange:_currentBoldRange];
+		}
+	});
 }
 
 #pragma mark - Notification
