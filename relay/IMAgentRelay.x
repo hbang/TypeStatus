@@ -80,17 +80,15 @@ void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 	%orig;
 
 	IMFileTransfer *transfer = [self transferForGUID:transferGUID];
-
-	HBTSPostMessage(HBTSMessageTypeSendingFile, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:transfer.messageGUID].handle, NO);
+	HBTSPostMessage(HBTSMessageTypeSendingFile, transfer.otherPerson, NO);
 }
 
-- (void)updateTransfer:(NSString *)transferGUID currentBytes:(unsigned long long)currentBytes totalBytes:(unsigned long long)totalBytes {
+- (void)updateTransfer:(NSString *)transferGUID currentBytes:(size_t)currentBytes totalBytes:(size_t)totalBytes {
 	%orig;
 
-	IMFileTransfer *transfer = [self transferForGUID:transferGUID];
-
 	if (currentBytes >= totalBytes) {
-		HBTSPostMessage(HBTSMessageTypeTypingEnded, [[%c(IMDMessageStore) sharedInstance] messageWithGUID:transfer.messageGUID].handle, NO);
+		IMFileTransfer *transfer = [self transferForGUID:transferGUID];
+		HBTSPostMessage(HBTSMessageTypeTypingEnded, transfer.otherPerson, NO);
 	}
 }
 
