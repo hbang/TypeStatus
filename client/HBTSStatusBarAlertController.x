@@ -137,19 +137,18 @@
 #pragma mark - Notification
 
 - (void)_receivedStatusNotification:(NSNotification *)notification {
+	// grab all the data
+	NSString *iconName = notification.userInfo[kHBTSMessageIconNameKey];
+	NSString *content = notification.userInfo[kHBTSMessageContentKey];
+	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
 	NSTimeInterval timeout = ((NSNumber *)notification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
 
 	// when apps are paused in the background, notifications get queued up and delivered when they
 	// resume. to work around this, we determine if it’s been longer than the specified duration; if
 	// so, disregard the alert
-	if ([[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > timeout) {
+	if (direction && [[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > timeout) {
 		return;
 	}
-
-	// grab all the data
-	NSString *iconName = notification.userInfo[kHBTSMessageIconNameKey];
-	NSString *content = notification.userInfo[kHBTSMessageContentKey];
-	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
 
 	// deserialize the bold range array to NSRange
 	NSArray <NSNumber *> *boldRangeArray = notification.userInfo[kHBTSMessageBoldRangeKey];
