@@ -4,7 +4,7 @@
 <dict>
 	<!-- Page title. -->
 	<key>ALERTS</key>
-	<string>アラート</string>
+	<string>通知</string>
 
 	<!-- Button for choosing the alert format. -->
 	<key>OVERLAY_FORMAT</key>
@@ -12,13 +12,13 @@
 
 	<!-- Options for the alert format. -->
 	<key>OVERLAY_FORMAT_NATURAL</key>
-	<string>ナチュラル</string>
+	<string>同然</string>
 	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
-	<string>ナチュラル: Johnny Appleseedが入力されています</string>
+	<string>同然: Johhny Appleseedさんが入力されています</string>
 	<key>OVERLAY_FORMAT_TRADITIONAL</key>
-	<string>伝統的</string>
+	<string>ノーマル</string>
 	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
-	<string>伝統的: 入力中: Johnny Appleseed</string>
+	<string>ノーマル: 入力中: Johnny Appleseed</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY</key>
 	<string>名前のみ</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
@@ -26,7 +26,7 @@
 
 	<!-- Header for the animation type segmented control. -->
 	<key>ANIMATION_TYPE</key>
-	<string>アニメーション</string>
+	<string>表示スタイル</string>
 
 	<!-- Buttons shown in the segmented control for the animation type. -->
 	<key>ANIMATION_SLIDE</key>
@@ -50,7 +50,7 @@
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>ステータスバーでアイコンを表示ために%@をインストールする必要です。</string>
+	<string>ステータスバーでアイコンを表示するには%@が必要です。</string>
 
 	<!-- Label of button that opens libstatusbar in Cydia. -->
 	<key>INSTALL</key>
@@ -61,10 +61,12 @@
 	<string>入力中</string>
 	<key>READ_HEADER</key>
 	<string>既読</string>
+	<key>SENDING_FILE_HEADER</key>
+	<string>ファイル送信</string>
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
-	<string>切</string>
+	<string>オフ</string>
 	<key>ALERT_TYPE_ICON</key>
 	<string>アイコンのみ</string>
 	<key>ALERT_TYPE_OVERLAY</key>
@@ -78,11 +80,11 @@
 	<key>SHOW_FOR_SPECIFIED</key>
 	<string>表示時間の設定</string>
 	<key>SHOW_FOR_TYPING</key>
-	<string>入力中の間表示</string>
+	<string>入力中の間</string>
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>アラートを特定の時間表示持する場合は「表示時間の設定」をタップし、相手が入力中の間表示する場合は「入力中の間表示」をタップしてください。</string>
+	<string>相手が入力中の間に表示するには「入力中の間」を使用</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
@@ -90,8 +92,10 @@
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>入力中アラートのテストt</string>
+	<string>入力中通知をテスト</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>既読アラートのテスト</string>
+	<string>既読通知をテスト</string>
+	<key>TEST_SENDING_FILE</key>
+	<string>ファイル送信通知をテスト</string>
 </dict>
 </plist>

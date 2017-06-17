@@ -12,7 +12,7 @@
  
 	<!-- Message displayed when a conflicting tweak is installed. -->
 	<key>MESSAGES_NOT_AVAILABLE_EXPLANATION</key>
-	<string>それはSelectiveReadingと競合するため、この機能は利用できません.</string>
+	<string>それはSelectiveReadingと競合するため、この機能は利用できません。</string>
 	
 	<!-- Switch in Messages app to enable/disable typing notifications. -->
 	<key>SEND_TYPING_NOTIFICATIONS</key>
@@ -20,7 +20,7 @@
 
 	<!-- Explanation of the typing switch. -->
 	<key>DISABLE_TYPING_NOTIFICATIONS_EXPLANATION</key>
-	<string>相手に入力中の通知を見せる・見せない。</string>
+	<string>オフにすると相手に入力中通知を送らない。</string>
 
 	<!-- Switch in Messages app to enable/disable read receipt notifications. -->
 	<key>SEND_READ_RECEIPTS</key>
@@ -28,7 +28,7 @@
 
 	<!-- Explanation of the read receipt switch. -->
 	<key>DISABLE_READ_RECEIPTS_EXPLANATION</key>
-	<string>相手に既読通知を送る・送らない。</string>
+	<string>オフにすると相手に既読通知を送らない。</string>
 
 	<!-- Heading for the list of people. -->
 	<key>PEOPLE</key>

@@ -8,7 +8,7 @@
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
-	<string>アラート</string>
+	<string>通知</string>
 
 	<!-- Messages-related features button. -->
 	<key>MESSAGES</key>
@@ -17,5 +17,9 @@
 	<!-- TypeStatus Plus (Do not translate as it's a name)-->
 	<key>TYPESTATUS_PLUS</key>
 	<string>TypeStatus Plus</string>
+
+	<!-- Explanation of TypeStatus Plus features. -->
+	<key>TYPESTATUS_PLUS_SUBTITLE</key>
+	<string>様々なアプリからの通知や他の機能を追加できます</string>
 </dict>
 </plist>

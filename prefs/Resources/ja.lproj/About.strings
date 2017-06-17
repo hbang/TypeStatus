@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>THANKS_HEADER</key>
-	<string>TypeStatus開発に手を貸して頂いた皆さん、ありがとうございます。</string>
+	<string>次の人がTypeStatusの開発に手伝いて、ありがとうございます。</string>
 	<key>THANKS_FOOTER</key>
-	<string>…あと、ベータテスターやユーザーも本当に有難う！</string>
+	<string>…また、ベータテスターやユーザーも本当にありがとうございます！</string>
 
 	<key>ORIGINAL_IDEA</key>
 	<string>原案</string>
