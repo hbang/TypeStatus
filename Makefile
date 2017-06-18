@@ -1,6 +1,6 @@
 export TARGET = iphone:clang:latest:7.0
 
-INSTALL_TARGET_PROCESSES = typestatusd MobileSMS Preferences
+INSTALL_TARGET_PROCESSES = MobileSMS Preferences
 
 ifeq ($(RESPRING),1)
 INSTALL_TARGET_PROCESSES += SpringBoard
