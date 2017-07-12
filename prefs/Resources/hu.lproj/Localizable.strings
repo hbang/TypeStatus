@@ -7,11 +7,15 @@
 	<string>Gépel:</string>
 	<key>READ</key>
 	<string>Látta:</string>
+	<key>SENDING_FILE</key>
+	<string>Fájl küldése:</string>
 
 	<!-- Strings used in status bar notifications to naturally describe the notification. -->
 	<key>TYPING_NATURAL</key>
 	<string>%@ gépel</string>
 	<key>READ_NATURAL</key>
 	<string>%@ az üzeneted olvassa</string>
+	<key>SENDING_FILE_NATURAL</key>
+	<string>%@ egy fájlt küld Önnek</string>
 </dict>
 </plist>
