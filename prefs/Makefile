@@ -1,9 +1,7 @@
-TARGET = :clang::5.0
-
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = TypeStatus
-TypeStatus_FILES = $(wildcard *.m) $(wildcard *.x) ../global/HBTSConversationPreferences.x ../global/HBTSContactHelper.x
+TypeStatus_FILES = $(wildcard *.x) $(wildcard *.m)
 TypeStatus_INSTALL_PATH = /Library/PreferenceBundles
 TypeStatus_FRAMEWORKS = CoreGraphics UIKit
 TypeStatus_PRIVATE_FRAMEWORKS = Preferences
