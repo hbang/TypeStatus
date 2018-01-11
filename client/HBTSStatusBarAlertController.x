@@ -142,13 +142,18 @@
 	NSString *content = notification.userInfo[kHBTSMessageContentKey];
 	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
 	NSTimeInterval timeout = ((NSNumber *)notification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
+	NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]];
 
 	// when apps are paused in the background, notifications get queued up and delivered when they
 	// resume. to work around this, we determine if it’s been longer than the specified duration; if
 	// so, disregard the alert
-	if (direction && [[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]] > timeout) {
+	if (direction && delta > timeout) {
 		return;
 	}
+
+	// remove the delta from the timeout, so e.g. if the timeout is 5 secs, and the current app is
+	// resumed 2 secs after the alert is sent, we only show it for 3 secs
+	timeout -= delta;
 
 	// deserialize the bold range array to NSRange
 	NSArray <NSNumber *> *boldRangeArray = notification.userInfo[kHBTSMessageBoldRangeKey];
