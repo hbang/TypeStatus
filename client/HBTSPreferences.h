@@ -8,7 +8,7 @@
 
 @property (nonatomic, readonly) BOOL useTypingTimeout;
 
-@property (nonatomic, readonly) HBTSStatusBarAnimation overlayAnimation;
+@property (nonatomic, readonly) BOOL reduceMotion;
 @property (nonatomic, readonly) NSTimeInterval overlayDisplayDuration;
 @property (nonatomic, readonly) HBTSStatusBarFormat overlayFormat;
 

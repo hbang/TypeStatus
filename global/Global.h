@@ -15,11 +15,6 @@ typedef NS_ENUM(NSUInteger, HBTSNotificationType) {
 	HBTSNotificationTypeIcon
 };
 
-typedef NS_ENUM(NSUInteger, HBTSStatusBarAnimation) {
-	HBTSStatusBarAnimationSlide,
-	HBTSStatusBarAnimationFade
-};
-
 typedef NS_ENUM(NSUInteger, HBTSStatusBarFormat) {
 	HBTSStatusBarFormatNatural,
 	HBTSStatusBarFormatTraditional,

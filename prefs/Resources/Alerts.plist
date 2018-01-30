@@ -52,25 +52,17 @@
 		</dict>
 		<dict>
 			<key>cell</key>
-			<string>PSSegmentCell</string>
+			<string>PSSwitchCell</string>
 			<key>default</key>
-			<integer>0</integer>
+			<false/>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>id</key>
 			<string>AnimationTypeSegmentCell</string>
 			<key>key</key>
 			<string>OverlayAnimation</string>
-			<key>validTitles</key>
-			<array>
-				<string>ANIMATION_SLIDE</string>
-				<string>ANIMATION_FADE</string>
-			</array>
-			<key>validValues</key>
-			<array>
-				<integer>0</integer>
-				<integer>1</integer>
-			</array>
+			<key>label</key>
+			<string>REDUCE_MOTION</string>
 			<key>PostNotification</key>
 			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>

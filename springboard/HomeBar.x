@@ -73,7 +73,7 @@
 		return;
 	}
 
-	HBTSStatusBarAnimation animation = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayAnimation;
+	BOOL reduceMotion = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).reduceMotion;
 
 	HBTSStatusBarForegroundView *foregroundView = self._typeStatus_foregroundView;
 	MTLumaDodgePillView *backgroundView = self._typeStatus_backgroundView;
@@ -84,7 +84,7 @@
 	self._typeStatus_isAnimating = animated;
 
 	if (animated) {
-		if (animation == HBTSStatusBarAnimationSlide) {
+		if (reduceMotion) {
 			// if showing, set the initial frame of the background view to the frame of the pill view, so
 			// we can seamlessly switch between them
 			if (direction) {
@@ -111,14 +111,14 @@
 	UIStatusBarHideAnimationParameters *animationParameters = animated ? [[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] : nil;
 
 	[%c(UIStatusBarAnimationParameters) animateWithParameters:(UIStatusBarAnimationParameters *)animationParameters animations:^{
-		if (animation == HBTSStatusBarAnimationSlide) {
-			// if showing, expand the background view so it fits the foreground view, or if hiding,
-			// collapse back to the pill view frame
-			backgroundView.frame = direction ? [self _typeStatus_foregroundViewFrame] : pillView.frame;
-		} else {
+		if (reduceMotion) {
 			// do a simple fade to switch the two views over
 			backgroundView.alpha = direction ? 1 : 0;
 			pillView.alpha = direction ? 0 : 1;
+		} else {
+			// if showing, expand the background view so it fits the foreground view, or if hiding,
+			// collapse back to the pill view frame
+			backgroundView.frame = direction ? [self _typeStatus_foregroundViewFrame] : pillView.frame;
 		}
 
 		foregroundView.alpha = direction ? 0 : 1;

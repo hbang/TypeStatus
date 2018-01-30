@@ -33,7 +33,7 @@
 
 		[_preferences registerBool:&_useTypingTimeout default:NO forKey:@"TypingTimeout"];
 		[_preferences registerDouble:&_overlayDisplayDuration default:5.0 forKey:@"OverlayDuration"];
-		[_preferences registerInteger:(NSInteger *)&_overlayAnimation default:HBTSStatusBarAnimationSlide forKey:@"OverlayAnimation"];
+		[_preferences registerBool:&_reduceMotion default:NO forKey:@"OverlayAnimation"];
 		[_preferences registerInteger:(NSInteger *)&_overlayFormat default:HBTSStatusBarFormatNatural forKey:@"OverlayFormat"];
 
 		[_preferences registerBool:&_ignoreDNDSenders default:YES forKey:@"IgnoreDNDSenders"];
@@ -84,13 +84,8 @@
 	}
 
 	if (!_preferences[@"OverlayAnimation"]) {
-		HBTSStatusBarAnimation animation = HBTSStatusBarAnimationSlide;
-
-		if ([_preferences boolForKey:@"OverlayFade"]) {
-			animation = HBTSStatusBarAnimationFade;
-		}
-
-		[_preferences setInteger:animation forKey:@"OverlayAnimation"];
+		BOOL reduceMotion = [_preferences boolForKey:@"OverlayFade"];
+		[_preferences setBool:reduceMotion forKey:@"OverlayAnimation"];
 	}
 }
 

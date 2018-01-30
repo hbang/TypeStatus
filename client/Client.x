@@ -114,7 +114,7 @@
 		return;
 	}
 
-	HBTSStatusBarAnimation animation = [HBTSPreferences sharedInstance].overlayAnimation;
+	BOOL reduceMotion = [HBTSPreferences sharedInstance].reduceMotion;
 
 	HBTSStatusBarForegroundView *typeStatusView = self._typeStatus_foregroundView;
 	UIStatusBarForegroundView *statusBarView = [self valueForKey:@"_foregroundView"];
@@ -127,7 +127,7 @@
 
 	statusBarView.hidden = NO;
 
-	if (animation == HBTSStatusBarAnimationSlide) {
+	if (!reduceMotion) {
 		CGRect typeStatusFrame = typeStatusView.frame;
 		typeStatusFrame.origin.y = direction ? -typeStatusFrame.size.height : 0;
 		typeStatusView.frame = typeStatusFrame;
@@ -144,7 +144,7 @@
 	UIStatusBarHideAnimationParameters *animationParameters = animated ? [[%c(UIStatusBarHideAnimationParameters) alloc] initWithDefaultParameters] : nil;
 
 	[%c(UIStatusBarAnimationParameters) animateWithParameters:(UIStatusBarAnimationParameters *)animationParameters animations:^{
-		if (animation == HBTSStatusBarAnimationSlide) {
+		if (!reduceMotion) {
 			CGRect typeStatusFrame = typeStatusView.frame;
 			typeStatusFrame.origin.y = direction ? 0 : -typeStatusFrame.size.height;
 			typeStatusView.frame = typeStatusFrame;
