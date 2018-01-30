@@ -34,14 +34,10 @@
 	<key>ANIMATION_FADE</key>
 	<string>Eltûnés</string>
 
-	<!-- Header for the display duration selection. -->
-	<key>DISPLAY_DURATION</key>
-	<string>Megjelenítés ideje</string>
-
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>ONE_SECOND</key>
+	<key>DISPLAY_FOR_ONE_SECOND</key>
 	<string>1 másodperc</string>
-	<key>N_SECONDS</key>
+	<key>DISPLAY_FOR_N_SECONDS</key>
 	<string>%i másodperc</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->

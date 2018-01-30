@@ -34,14 +34,10 @@
 	<key>ANIMATION_FADE</key>
 	<string>ค่อย ๆ ปรากฏ</string>
 
-	<!-- Header for the display duration selection. -->
-	<key>DISPLAY_DURATION</key>
-	<string>เวลาในการแสดง</string>
-
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>ONE_SECOND</key>
+	<key>DISPLAY_FOR_ONE_SECOND</key>
 	<string>1 วินาที</string>
-	<key>N_SECONDS</key>
+	<key>DISPLAY_FOR_N_SECONDS</key>
 	<string>%i วินาที</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->

@@ -34,14 +34,10 @@
 	<key>ANIMATION_FADE</key>
 	<string>Згасання</string>
 
-	<!-- Header for the display duration selection. -->
-	<key>DISPLAY_DURATION</key>
-	<string>Тривалість відображення</string>
-
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>ONE_SECOND</key>
+	<key>DISPLAY_FOR_ONE_SECOND</key>
 	<string>1 секунда</string>
-	<key>N_SECONDS</key>
+	<key>DISPLAY_FOR_N_SECONDS</key>
 	<string>%i секунд(и)</string>
 
 	<!-- The Typing and Read Receipt headings. -->

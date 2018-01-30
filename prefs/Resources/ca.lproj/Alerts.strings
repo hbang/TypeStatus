@@ -39,9 +39,9 @@
 	<string>Temps de mostra</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>ONE_SECOND</key>
+	<key>DISPLAY_FOR_ONE_SECOND</key>
 	<string>1 segon</string>
-	<key>N_SECONDS</key>
+	<key>DISPLAY_FOR_N_SECONDS</key>
 	<string>%i segons</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->

@@ -34,14 +34,10 @@
 	<key>ANIMATION_FADE</key>
 	<string>淡化</string>
 
-	<!-- Header for the display duration selection. -->
-	<key>DISPLAY_DURATION</key>
-	<string>显示时间</string>
-
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>ONE_SECOND</key>
+	<key>DISPLAY_FOR_ONE_SECOND</key>
 	<string>1 秒</string>
-	<key>N_SECONDS</key>
+	<key>DISPLAY_FOR_N_SECONDS</key>
 	<string>%i 秒</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->
