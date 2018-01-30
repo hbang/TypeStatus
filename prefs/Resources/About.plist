@@ -36,7 +36,7 @@
 			<key>subtitle</key>
 			<string>VISIT_WEBSITE</string>
 			<key>url</key>
-			<string>https://www.hbang.ws/</string>
+			<string>https://hbang.ws/</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -77,8 +77,6 @@
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>ICONS</string>
-			<key>footerText</key>
-			<string>THANKS_FOOTER</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
@@ -99,6 +97,22 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>THANKS_FOOTER</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>HBLinkTableCell</string>
+			<key>label</key>
+			<string>TRANSLATORS</string>
+			<key>url</key>
+			<string>https://hbang.ws/translations/</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 		</dict>
 		<dict>
 			<key>action</key>
@@ -115,20 +129,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>cellClass</key>
-			<string>HBLinkTableCell</string>
-			<key>label</key>
-			<string>TRANSLATORS</string>
-			<key>url</key>
-			<string>https://www.hbang.ws/translations/</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
 			<key>footerText</key>
 			<string>DONATE_FOOTER</string>
 		</dict>
@@ -138,9 +138,9 @@
 			<key>cellClass</key>
 			<string>HBLinkTableCell</string>
 			<key>label</key>
-			<string>DONATE</string>
+			<string>Patreon</string>
 			<key>url</key>
-			<string>https://www.hbang.ws/donate/</string>
+			<string>https://hbang.ws/donate/</string>
 		</dict>
 	</array>
 	<key>title</key>
