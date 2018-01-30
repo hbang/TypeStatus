@@ -19,7 +19,11 @@ void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 			kHBTSMessageIsTypingKey: @(isTyping)
 		};
 
-		LMConnectionSendOneWayData(&springboardService, 0, (__bridge CFDataRef)LMDataForPropertyList(data));
+		kern_return_t result = LMConnectionSendOneWayData(&springboardService, 0, (__bridge CFDataRef)LMDataForPropertyList(data));
+
+		if (result != KERN_SUCCESS) {
+			HBLogError(@"failed to send message! result = %i", result);
+		}
 	});
 }
 
