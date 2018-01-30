@@ -6,7 +6,7 @@ HBTSSpringBoardServer *server;
 #pragma mark - IPC
 
 void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex size, void *info) {
-=	// check that we aren’t being given a message that’s too short
+	// check that we aren’t being given a message that’s too short
 	if ((size_t)size < sizeof(LMMessage)) {
 		HBLogError(@"received a bad message? size = %li", size);
 		return;
