@@ -79,26 +79,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>IGNORE_DND_SENDERS_EXPLANATION</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>IgnoreDNDSenders</string>
-			<key>label</key>
-			<string>IGNORE_DND_SENDERS</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>TYPING_HEADER</string>
 		</dict>
@@ -285,6 +265,26 @@
 			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>TEST_SENDING_FILE</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>IGNORE_DND_SENDERS_EXPLANATION</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>IgnoreDNDSenders</string>
+			<key>label</key>
+			<string>IGNORE_DND_SENDERS</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 	</array>
 	<key>title</key>
