@@ -24,25 +24,15 @@
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
 	<string>Name Only: Johnny Appleseed</string>
 
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>Animation</string>
-
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>Slide</string>
-	<key>ANIMATION_FADE</key>
-	<string>Fade</string>
-
-	<!-- Header for the display duration selection. -->
-	<key>DISPLAY_DURATION</key>
-	<string>Display Duration</string>
+	<!-- Label of switch to enable reduced motion (fade animations). -->
+	<key>REDUCE_MOTION</key>
+	<string>Reduce Motion</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
-	<key>ONE_SECOND</key>
-	<string>1 Second</string>
-	<key>N_SECONDS</key>
-	<string>%i Seconds</string>
+	<key>DISPLAY_FOR_ONE_SECOND</key>
+	<string>Display For: 1 Second</string>
+	<key>DISPLAY_FOR_N_SECONDS</key>
+	<string>Display For: %i Seconds</string>
 
 	<!-- Title for the alert shown when libstatusbar isn’t installed. -->
 	<key>INSTALL_LIBSTATUSBAR</key>

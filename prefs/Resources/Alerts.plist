@@ -43,12 +43,24 @@
 			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>id</key>
-			<string>AnimationTypeGroupCell</string>
+			<key>cellClass</key>
+			<string>HBStepperTableCell</string>
+			<key>default</key>
+			<real>5</real>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>key</key>
+			<string>OverlayDuration</string>
 			<key>label</key>
-			<string>ANIMATION_TYPE</string>
+			<string>DISPLAY_FOR_N_SECONDS</string>
+			<key>max</key>
+			<real>15</real>
+			<key>min</key>
+			<real>1</real>
+			<key>singularLabel</key>
+			<string>DISPLAY_FOR_ONE_SECOND</string>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -57,8 +69,6 @@
 			<false/>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
-			<key>id</key>
-			<string>AnimationTypeSegmentCell</string>
 			<key>key</key>
 			<string>OverlayAnimation</string>
 			<key>label</key>
@@ -69,26 +79,20 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>DISPLAY_DURATION</string>
+			<key>footerText</key>
+			<string>IGNORE_DND_SENDERS_EXPLANATION</string>
 		</dict>
 		<dict>
-			<key>cellClass</key>
-			<string>HBStepperTableCell</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
 			<key>default</key>
-			<real>5</real>
+			<true/>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
 			<key>key</key>
-			<string>OverlayDuration</string>
+			<string>IgnoreDNDSenders</string>
 			<key>label</key>
-			<string>N_SECONDS</string>
-			<key>max</key>
-			<real>15</real>
-			<key>min</key>
-			<real>1</real>
-			<key>singularLabel</key>
-			<string>ONE_SECOND</string>
+			<string>IGNORE_DND_SENDERS</string>
 			<key>PostNotification</key>
 			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
@@ -281,26 +285,6 @@
 			<string>HBTintedTableCell</string>
 			<key>label</key>
 			<string>TEST_SENDING_FILE</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerText</key>
-			<string>IGNORE_DND_SENDERS_EXPLANATION</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>ws.hbang.typestatus</string>
-			<key>key</key>
-			<string>IgnoreDNDSenders</string>
-			<key>label</key>
-			<string>IGNORE_DND_SENDERS</string>
-			<key>PostNotification</key>
-			<string>ws.hbang.typestatus/ReloadPrefs</string>
 		</dict>
 	</array>
 	<key>title</key>
