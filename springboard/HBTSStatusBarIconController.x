@@ -1,6 +1,7 @@
 #import "HBTSStatusBarIconController.h"
 #import "HBTSPreferences.h"
 #import <libstatusbar/LSStatusBarItem.h>
+#include <dlfcn.h>
 
 NSTimer *timer;
 NSMutableDictionary <NSString *, LSStatusBarItem *> *statusBarItems;

@@ -106,7 +106,6 @@
 		}
 
 		self._typeStatus_isAnimating = YES;
-		self._typeStatus_isVisible = YES;
 
 		if (IN_SPRINGBOARD) {
 			notify_post("ws.hbang.typestatus/OverlayWillShow");

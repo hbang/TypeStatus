@@ -1,20 +1,28 @@
-export TARGET = iphone:clang:latest:7.0
+ifeq ($(SIMULATOR),1)
+	export TARGET = simulator:latest:7.0
+else
+	export TARGET = iphone:latest:7.0
+endif
 
 INSTALL_TARGET_PROCESSES = MobileSMS Preferences
 
 ifeq ($(RESPRING),1)
-INSTALL_TARGET_PROCESSES += SpringBoard
+	INSTALL_TARGET_PROCESSES += SpringBoard
 endif
 
 ifeq ($(IMAGENT),1)
-INSTALL_TARGET_PROCESSES += imagent
+	INSTALL_TARGET_PROCESSES += imagent
 endif
 
 export ADDITIONAL_CFLAGS = -Wextra -Wno-unused-parameter
 
 include $(THEOS)/makefiles/common.mk
 
-SUBPROJECTS = springboard client relay prefs messages
+SUBPROJECTS = springboard client prefs messages
+
+ifneq ($(SIMULATOR),1)
+	SUBPROJECTS += relay
+endif
 
 include $(THEOS_MAKE_PATH)/aggregate.mk
 

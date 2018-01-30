@@ -2,7 +2,9 @@
 #import "HBTSStatusBarForegroundView.h"
 #import "HBTSPreferences.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
+#import <MobileGestalt/MobileGestalt.h>
 #import <SpringBoard/SBChevronView.h>
+#import <SpringBoard/SBHomeGrabberView.h>
 #import <SpringBoard/SBLockScreenManager.h>
 #import <SpringBoard/SBLockScreenViewController.h>
 #import <SpringBoard/SBLockScreenView.h>
@@ -17,8 +19,18 @@
 
 @end
 
+@interface SBHomeGrabberView (TypeStatus)
+
+@property (nonatomic, strong) HBTSStatusBarForegroundView *_typeStatus_foregroundView;
+
+- (void)_typeStatus_changeToDirection:(BOOL)direction animated:(BOOL)animated;
+- (void)_typeStatus_sizeToFitForegroundView;
+
+@end
+
 @implementation HBTSStatusBarAlertController {
-	NSMutableSet *_statusBars;
+	NSMutableSet <UIStatusBar *> *_statusBars;
+	NSMutableSet <SBHomeGrabberView *> *_homeGrabbers;
 	dispatch_queue_t _queue;
 
 	BOOL _visible;
@@ -28,6 +40,15 @@
 
 	BOOL _topGrabberWasHidden;
 	NSTimer *_timeoutTimer;
+}
+
++ (BOOL)isHomeBarDevice {
+	if (IS_IOS_OR_NEWER(iOS_11_0)) {
+		NSNumber *homeButtonType = (__bridge NSNumber *)MGCopyAnswer(CFSTR("HomeButtonType"));
+		return homeButtonType != nil && homeButtonType.integerValue == 2;
+	}
+
+	return NO;
 }
 
 + (instancetype)sharedInstance {
@@ -47,6 +68,7 @@
 
 	if (self) {
 		_statusBars = [[NSMutableSet alloc] init];
+		_homeGrabbers = [[NSMutableSet alloc] init];
 
 		// we use a serial queue to avoid racing whenever we access the status bars set, or the other
 		// status bar alert values
@@ -78,6 +100,24 @@
 	});
 }
 
+- (void)addHomeGrabber:(SBHomeGrabberView *)homeGrabber {
+	dispatch_async(_queue, ^{
+		if ([_homeGrabbers containsObject:homeGrabber]) {
+			HBLogWarn(@"attempting to add a home bar that’s already known");
+		}
+
+		[_homeGrabbers addObject:homeGrabber];
+	});
+}
+
+- (void)removeHomeGrabber:(SBHomeGrabberView *)homeGrabber {
+	// this must be synchronous, because this method is called when a home bar is deallocating. if
+	// we’re too late, the home bar is already deallocated and we crash!
+	dispatch_sync(_queue, ^{
+		[_homeGrabbers removeObject:homeGrabber];
+	});
+}
+
 #pragma mark - Show/Hide
 
 - (void)_showWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
@@ -93,6 +133,10 @@
 
 		for (UIStatusBar *statusBar in _statusBars) {
 			[self displayCurrentAlertInStatusBar:statusBar animated:YES];
+		}
+
+		for (SBHomeGrabberView *homeGrabber in _homeGrabbers) {
+			[self displayCurrentAlertInHomeGrabber:homeGrabber animated:YES];
 		}
 
 		if (direction) {
@@ -131,6 +175,18 @@
 		if (_visible) {
 			[statusBar._typeStatus_foregroundView setIconName:_currentIconName text:_currentText boldRange:_currentBoldRange];
 		}
+	});
+}
+
+- (void)displayCurrentAlertInHomeGrabber:(SBHomeGrabberView *)homeGrabber animated:(BOOL)animated {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		// if we’re animating to visible, set the new values
+		if (_visible) {
+			[homeGrabber._typeStatus_foregroundView setIconName:_currentIconName text:_currentText boldRange:_currentBoldRange];
+		}
+
+		// animate that home bar!
+		[homeGrabber _typeStatus_changeToDirection:_visible animated:animated];
 	});
 }
 

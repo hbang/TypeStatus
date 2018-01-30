@@ -35,8 +35,8 @@ static LMConnection springboardService = {
 
 static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 
-// old values may be used here for compatibility with other tweaks that listen
-// for typestatus notifications
+// old non-matching values may be used here for compatibility with other tweaks that listen for
+// typestatus notifications
 
 static NSString *const HBTSClientSetStatusBarNotification = @"HBTSClientSetStatusBar";
 static NSString *const HBTSSpringBoardReceivedMessageNotification = @"HBTSSpringBoardReceivedMessageNotification";

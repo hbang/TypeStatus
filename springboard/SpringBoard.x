@@ -6,7 +6,7 @@ HBTSSpringBoardServer *server;
 #pragma mark - IPC
 
 void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex size, void *info) {
-	// check that we aren’t being given a message that’s too short
+=	// check that we aren’t being given a message that’s too short
 	if ((size_t)size < sizeof(LMMessage)) {
 		HBLogError(@"received a bad message? size = %li", size);
 		return;
@@ -34,7 +34,7 @@ void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex
 
 	kern_return_t result = LMStartService(springboardService.serverName, CFRunLoopGetCurrent(), (CFMachPortCallBack)ReceivedRelayedNotification);
 
-	if (result) {
+	if (result != KERN_SUCCESS) {
 		HBLogError(@"failed to start service! result = %i", result);
 	}
 }

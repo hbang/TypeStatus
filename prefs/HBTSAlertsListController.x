@@ -1,5 +1,6 @@
 #import "HBTSAlertsListController.h"
 #import "HBTSPreferences.h"
+#import "HBTSStatusBarAlertController.h"
 #import <Preferences/PSSpecifier.h>
 #import <version.h>
 #include <notify.h>
@@ -31,23 +32,39 @@
 		HBTSNotificationType type = (HBTSNotificationType)((NSNumber *)value).unsignedIntegerValue;
 		
 		// if it’s icon, and libstatusbar is not installed
-		if (type == HBTSNotificationTypeIcon && ![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib"]) {
-			// flick it back to overlay
-			value = @(HBTSNotificationTypeOverlay);
-			[super setPreferenceValue:value specifier:specifier];
+		if (type == HBTSNotificationTypeIcon) {
+			BOOL needsLibstatusbar = ![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib"];
+			BOOL isHomeBarDevice = [%c(HBTSStatusBarAlertController) isHomeBarDevice];
 
-			// force the specifier to show the new value
-			specifier.properties[PSValueKey] = value;
-			[self reloadSpecifiers];
+			if (needsLibstatusbar || isHomeBarDevice) {
+				// flick it back to overlay
+				value = @(HBTSNotificationTypeOverlay);
+				[super setPreferenceValue:value specifier:specifier];
 
-			// show the install prompt
-			[self _showLibstatusbarPrompt];
+				// force the specifier to show the new value
+				specifier.properties[PSValueKey] = value;
+				[self reloadSpecifiers];
+			}
+
+			if (isHomeBarDevice) {
+				// show not supported alert
+				[self _showiPhoneXStatusBarIconAlert];
+			} else if (needsLibstatusbar) {
+				// show the install prompt
+				[self _showLibstatusbarPrompt];
+			}
 
 			return;
 		}
 	}
 
 	[super setPreferenceValue:value specifier:specifier];
+}
+
+- (void)_showiPhoneXStatusBarIconAlert {
+	NSString *ok = NSLocalizedStringFromTableInBundle(@"OK", @"Localizable", [NSBundle bundleForClass:UIView.class], @"");
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Status Bar Icon is not yet available for iPhone X." message:nil delegate:nil cancelButtonTitle:ok otherButtonTitles:nil];
+	[alertView show];
 }
 
 - (void)_showLibstatusbarPrompt {
@@ -70,7 +87,7 @@
 		// determine the appropriate url for the iOS version
 		NSURL *url;
 
-		if (IS_IOS_OR_NEWER(iOS_9_0)) {
+		if (IS_IOS_OR_NEWER(iOS_9_1)) {
 			url = [NSURL URLWithString:@"cydia://package/org.thebigboss.libstatus9"];
 		} else {
 			url = [NSURL URLWithString:@"cydia://package/libstatusbar"];

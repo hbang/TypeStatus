@@ -1,6 +1,5 @@
 #import "HBTSConversationPreferences.h"
 #import "HBTSPreferences.h"
-#import <Cephei/HBPreferences.h>
 #import <IMCore/IMChat.h>
 #import <IMCore/IMHandle.h>
 #import <version.h>
