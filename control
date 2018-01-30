@@ -1,10 +1,10 @@
 Package: ws.hbang.typestatus2
 Name: TypeStatus 2 (iOS 7 – 10)
-Depends: firmware (>= 7.0), firmware (<< 10.3), mobilesubstrate, preferenceloader, ws.hbang.common (>= 1.10), com.rpetrich.rocketbootstrap (>= 1.0.5)
+Depends: firmware (>= 7.0), firmware (<< 11.3), mobilesubstrate, preferenceloader, ws.hbang.common (>= 1.10), com.rpetrich.rocketbootstrap (>= 1.0.5)
 Recommends: firmware (>= 9.0) | libstatusbar (>= 1:0.9.9.0-1), firmware (<< 9.1) | org.thebigboss.libstatus9 (>= 1:0.0.1.5-0)
 Conflicts: ws.hbang.typestatus
 Replaces: ws.hbang.typestatus
-Version: 2.3.2
+Version: 2.4
 Architecture: iphoneos-arm
 Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <support@hbang.ws>
@@ -14,5 +14,5 @@ Icon: file:///Library/PreferenceBundles/TypeStatus.bundle/icon@2x.png
 Depiction: https://cydia.hbang.ws/package/ws.hbang.typestatus2/
 Support: https://hbang.ws/support/
 Sponsor: thebigboss.org <http://thebigboss.org>
-Tag: purpose::extension, compatible::ios7, compatible::ios8, compatible::ios9, compatible::ios10
+Tag: purpose::extension, compatible::ios7, compatible::ios8, compatible::ios9, compatible::ios10, compatible::ios11
 dev: hbang
