@@ -20,15 +20,9 @@
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
 	<string>שם בלבד: פלוני אלמוני</string>
 
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>אנימציה</string>
-
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>החלקה</string>
-	<key>ANIMATION_FADE</key>
-	<string>דהייה</string>
+	<!-- Label of switch to enable reduced motion (fade animations). -->
+	<key>REDUCE_MOTION</key>
+	<string>הפחת תזוזות</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>DISPLAY_FOR_ONE_SECOND</key>

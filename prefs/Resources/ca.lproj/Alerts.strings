@@ -24,19 +24,9 @@
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
 	<string>Només nom: Johnny Appleseed</string>
 
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>Animacions</string>
-
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>Lliscar</string>
-	<key>ANIMATION_FADE</key>
-	<string>Difulminat</string>
-
-	<!-- Header for the display duration selection. -->
-	<key>DISPLAY_DURATION</key>
-	<string>Temps de mostra</string>
+	<!-- Label of switch to enable reduced motion (fade animations). -->
+	<key>REDUCE_MOTION</key>
+	<string>Reduir el moviment</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>DISPLAY_FOR_ONE_SECOND</key>

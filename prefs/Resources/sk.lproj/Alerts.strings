@@ -24,15 +24,9 @@
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
 	<string>Iba meno : Johnny Appleseed</string>
 
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>Animácia</string>
-
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>Potiahnutie</string>
-	<key>ANIMATION_FADE</key>
-	<string>Zoslabenie</string>
+	<!-- Label of switch to enable reduced motion (fade animations). -->
+	<key>REDUCE_MOTION</key>
+	<string>Obmedziť pohyb</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>DISPLAY_FOR_ONE_SECOND</key>

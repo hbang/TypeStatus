@@ -24,15 +24,9 @@
  	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
  	<string>僅顯示名字：Johnny Appleseed</string>
 
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>動畫</string>
-
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>滑動</string>
-	<key>ANIMATION_FADE</key>
-	<string>淡化</string>
+	<!-- Label of switch to enable reduced motion (fade animations). -->
+	<key>REDUCE_MOTION</key>
+	<string>減少動態效果</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>DISPLAY_FOR_ONE_SECOND</key>

@@ -24,15 +24,9 @@
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
 	<string>केवल नाम : Johnny Appleseed</string>
 
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>एनीमेशन</string>
-
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>स्लाइड</string>
-	<key>ANIMATION_FADE</key>
-	<string>मुरझाना</string>
+	<!-- Label of switch to enable reduced motion (fade animations). -->
+	<key>REDUCE_MOTION</key>
+	<string>गति घटाएँ</string>
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>DISPLAY_FOR_ONE_SECOND</key>

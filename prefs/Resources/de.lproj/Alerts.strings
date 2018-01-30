@@ -23,16 +23,10 @@
 	<string>Nur Name</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
 	<string>Nur Name: Johnny Appleseed</string>
- 
-	<!-- Header for the animation type segmented control. -->
-	<key>ANIMATION_TYPE</key>
-	<string>Animation</string>
- 
-	<!-- Buttons shown in the segmented control for the animation type. -->
-	<key>ANIMATION_SLIDE</key>
-	<string>Gleiten</string>
-	<key>ANIMATION_FADE</key>
-	<string>Ausblenden</string>
+
+	<!-- Label of switch to enable reduced motion (fade animations). -->
+	<key>REDUCE_MOTION</key>
+	<string>Bewegung reduzieren</string>
  
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>DISPLAY_FOR_ONE_SECOND</key>
