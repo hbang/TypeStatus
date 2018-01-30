@@ -1,5 +1,8 @@
 #import "HBTSPreferences.h"
 #import <Cephei/HBPreferences.h>
+#include <dlfcn.h>
+
+typedef BOOL (*UIAccessibilityIsReduceMotionEnabledType)();
 
 @implementation HBTSPreferences {
 	HBPreferences *_preferences;
@@ -85,6 +88,18 @@
 
 	if (!_preferences[@"OverlayAnimation"]) {
 		BOOL reduceMotion = [_preferences boolForKey:@"OverlayFade"];
+
+		// if the user hasn’t specifically set a reduce motion preference, get the user’s system-wide
+		// reduce motion preference and set that. dlsym() needed as the API was added in iOS 8.0
+		// TODO: does this or something similar exist for iOS 7?
+		if (!reduceMotion) {
+			UIAccessibilityIsReduceMotionEnabledType myUIAccessibilityIsReduceMotionEnabled = (UIAccessibilityIsReduceMotionEnabledType)dlsym(RTLD_DEFAULT, "UIAccessibilityIsReduceMotionEnabled");
+
+			if (myUIAccessibilityIsReduceMotionEnabled) {
+				reduceMotion = (*myUIAccessibilityIsReduceMotionEnabled)();
+			}
+		}
+
 		[_preferences setBool:reduceMotion forKey:@"OverlayAnimation"];
 	}
 }
