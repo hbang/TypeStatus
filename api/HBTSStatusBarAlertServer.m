@@ -1,33 +1,10 @@
+#import "HBTSNotification+Private.h"
 #import "HBTSStatusBarAlertServer.h"
 #import "HBTSPreferences.h"
 #import "HBTSStatusBarAlertController.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 
 @implementation HBTSStatusBarAlertServer
-
-+ (NSString *)iconNameForType:(HBTSMessageType)type {
-	// return the appropriate icon name
-	NSString *name = nil;
-
-	switch (type) {
-		case HBTSMessageTypeTyping:
-			name = @"TypeStatus";
-			break;
-
-		case HBTSMessageTypeReadReceipt:
-			name = @"TypeStatusRead";
-			break;
-
-		case HBTSMessageTypeTypingEnded:
-			break;
-			
-		case HBTSMessageTypeSendingFile:
-			name = @"TypeStatus";
-			break;
-	}
-
-	return name;
-}
 
 + (NSString *)textForType:(HBTSMessageType)type sender:(NSString *)sender boldRange:(out NSRange *)boldRange {
 	static NSBundle *PrefsBundle;
@@ -36,7 +13,7 @@
 		PrefsBundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
 	});
 
-	HBTSPreferences *preferences = [%c(HBTSPreferences) sharedInstance];
+	HBTSPreferences *preferences = [HBTSPreferences sharedInstance];
 
 	switch (preferences.overlayFormat) {
 		case HBTSStatusBarFormatNatural:
@@ -116,55 +93,35 @@
 
 #pragma mark - Send
 
-+ (void)sendAlertWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange source:(NSString *)source timeout:(NSTimeInterval)timeout {
++ (void)sendNotification:(HBTSNotification *)notification {
+	HBLogDebug(@"showing notification %@", notification);
+
 	// ensure no required arguments are missing
-	NSParameterAssert(text);
-	NSParameterAssert(source);
+	NSParameterAssert(notification);
 
 	// if the timeout is -1, replace it with the user's specified duration
-	if (timeout == -1) {
-		timeout = ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).overlayDisplayDuration;
+	if (notification.timeout == -1) {
+		notification.timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
 	}
+
+	NSMutableDictionary *userInfo = [notification.dictionaryRepresentation mutableCopy];
+	userInfo[kHBTSMessageDirectionKey] = @YES;
 
 	// send the notification
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
-			kHBTSMessageIconNameKey: iconName ?: @"",
-			kHBTSMessageContentKey: text ?: @"",
-			kHBTSMessageBoldRangeKey: @[ @(boldRange.location), @(boldRange.length) ],
-			kHBTSMessageSourceKey: source ?: @"",
-
-			kHBTSMessageDirectionKey: @YES,
-			kHBTSMessageTimeoutKey: @(timeout),
-			kHBTSMessageSendDateKey: [NSDate date]
-		}]];
+		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:HBTSClientSetStatusBarNotification object:nil userInfo:userInfo];
 	});
 }
 
-+ (void)sendMessagesAlertType:(HBTSMessageType)type sender:(NSString *)sender timeout:(NSTimeInterval)timeout {
-	// if this is a typing ended message
-	if (type == HBTSMessageTypeTypingEnded) {
-		// we just need to call hide
-		[self hide];
-	} else {
-		// grab all data needed to turn a typestatus specific alert into a generic alert, and then pass
-		// it through
-		NSString *iconName = [self iconNameForType:type];
-
-		NSRange boldRange;
-		NSString *text = [self textForType:type sender:sender boldRange:&boldRange];
-
-		[self sendAlertWithIconName:iconName text:text boldRange:boldRange source:@"com.apple.MobileSMS" timeout:timeout];
-	}
-}
-
 + (void)hide {
+	HBLogDebug(@"hiding current notification");
+
 	// a hide message is just sending nil values with the direction set to NO (hide)
 	// send the notification
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[[NSDistributedNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
+		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
 			kHBTSMessageDirectionKey: @NO
-		}]];
+		}];
 	});
 }
 

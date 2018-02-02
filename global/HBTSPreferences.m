@@ -22,7 +22,7 @@ typedef BOOL (*UIAccessibilityIsReduceMotionEnabledType)();
 	self = [super init];
 
 	if (self) {
-		_preferences = [[HBPreferences alloc] initWithIdentifier:@"ws.hbang.typestatus"];
+		_preferences = [HBPreferences preferencesForIdentifier:@"ws.hbang.typestatus"];
 
 		[self _migrateIfNeeded];
 
@@ -46,6 +46,10 @@ typedef BOOL (*UIAccessibilityIsReduceMotionEnabledType)();
 	}
 
 	return self;
+}
+
+- (BOOL)isProviderEnabled:(NSString *)appIdentifier {
+	return [_preferences boolForKey:[NSString stringWithFormat:@"ProviderEnabled-%@", appIdentifier] default:YES];
 }
 
 - (void)_migrateIfNeeded {

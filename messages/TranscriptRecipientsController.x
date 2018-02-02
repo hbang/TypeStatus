@@ -159,7 +159,7 @@ NSBundle *bundle;
 	// only initialise these hooks if we’re allowed to, and only on iOS 9
 	if ([HBTSConversationPreferences isAvailable] && !IS_IOS_OR_NEWER(iOS_10_0)) {
 		bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
-		
+
 		%init;
 	}
 }

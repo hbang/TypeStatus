@@ -24,20 +24,20 @@ void mirrorNativeReadReceiptPreferences() {
 		if (chat.participants.count != 1) {
 			continue;
 		}
-		
+
 		// grab the handle
 		NSString *handle = chat.participants[0].ID;
 
 		// get the native read receipt value, as well as our own
 		NSNumber *value = chat.properties[@"EnableReadReceiptForChat"];
 		NSNumber *ourValue = [preferences readReceiptsEnabledForHandleAsNumber:handle];
-		
+
 		// if it’s been set at least once before and is different from the global state
 		if (value && value.boolValue != globalState) {
 			// mirror it over to our side
 			[preferences setReadReceiptsEnabled:value.boolValue forHandle:handle];
 		}
-		
+
 		// if we have a value, and the system doesn’t or it differs from ours
 		if (ourValue && (!value || value.boolValue != ourValue.boolValue)) {
 			// mirror it over to the other side

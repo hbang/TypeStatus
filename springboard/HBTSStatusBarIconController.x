@@ -1,3 +1,4 @@
+#import "../api/HBTSNotification.h"
 #import "HBTSStatusBarIconController.h"
 #import "HBTSPreferences.h"
 #import <libstatusbar/LSStatusBarItem.h>
@@ -7,23 +8,6 @@ NSTimer *timer;
 NSMutableDictionary <NSString *, LSStatusBarItem *> *statusBarItems;
 
 @implementation HBTSStatusBarIconController
-
-+ (NSString *)_iconNameForType:(HBTSMessageType)type {
-	switch (type) {
-		case HBTSMessageTypeTyping:
-		case HBTSMessageTypeTypingEnded:
-			return @"TypeStatus";
-			break;
-
-		case HBTSMessageTypeReadReceipt:
-			return @"TypeStatusRead";
-			break;
-		
-		case HBTSMessageTypeSendingFile:
-			return @"TypeStatus";
-			break;
-	}
-}
 
 + (BOOL)_hasLibstatusbar {
 	// is libstatusbar loaded? if not, let's try dlopening it
@@ -72,20 +56,6 @@ NSMutableDictionary <NSString *, LSStatusBarItem *> *statusBarItems;
 
 	// set up the hide timer
 	timer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO];
-}
-
-+ (void)showIconType:(HBTSMessageType)type timeout:(NSTimeInterval)timeout {
-	switch (type) {
-		case HBTSMessageTypeTyping:
-		case HBTSMessageTypeReadReceipt:
-		case HBTSMessageTypeSendingFile:
-			[self showIcon:[self _iconNameForType:type] timeout:timeout];
-			break;
-
-		case HBTSMessageTypeTypingEnded:
-			[self hide];
-			break;
-	}
 }
 
 + (void)hide {

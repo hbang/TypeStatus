@@ -1,6 +1,7 @@
 #import "HBTSStatusBarAlertController.h"
 #import "HBTSStatusBarForegroundView.h"
 #import "HBTSPreferences.h"
+#import "../api/HBTSNotification+Private.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <MobileGestalt/MobileGestalt.h>
 #import <SpringBoard/SBChevronView.h>
@@ -120,14 +121,14 @@
 
 #pragma mark - Show/Hide
 
-- (void)_showWithIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+- (void)_showWithNotification:(HBTSNotification *)notification animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
 	dispatch_async(_queue, ^{
 		[self _setLockScreenGrabberVisible:!direction];
-		[self _announceAlertWithText:text];
+		[self _announceAlertWithText:notification.content];
 
-		_currentIconName = iconName;
-		_currentText = text;
-		_currentBoldRange = boldRange;
+		_currentIconName = notification.statusBarIconName;
+		_currentText = notification.content;
+		_currentBoldRange = notification.boldRange;
 
 		_visible = direction;
 
@@ -139,24 +140,21 @@
 			[self displayCurrentAlertInHomeGrabber:homeGrabber animated:YES];
 		}
 
+		if (_timeoutTimer) {
+			[_timeoutTimer invalidate];
+			_timeoutTimer = nil;
+		}
+
 		if (direction) {
-			if (_timeoutTimer) {
-				[_timeoutTimer invalidate];
-				_timeoutTimer = nil;
-			}
-			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				_timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO];
 			});
-		} else {
-			[_timeoutTimer invalidate];
-			_timeoutTimer = nil;
 		}
 	});
 }
 
 - (void)hide {
-	[self _showWithIconName:nil text:nil boldRange:NSMakeRange(0, 0) animatingInDirection:NO timeout:0];
+	[self _showWithNotification:nil animatingInDirection:NO timeout:0];
 }
 
 - (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
@@ -167,7 +165,7 @@
 			HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
 			return;
 		}
-		
+
 		// animate that status bar!
 		[statusBar _typeStatus_changeToDirection:_visible animated:animated];
 
@@ -192,13 +190,12 @@
 
 #pragma mark - Notification
 
-- (void)_receivedStatusNotification:(NSNotification *)notification {
+- (void)_receivedStatusNotification:(NSNotification *)nsNotification {
 	// grab all the data
-	NSString *iconName = notification.userInfo[kHBTSMessageIconNameKey];
-	NSString *content = notification.userInfo[kHBTSMessageContentKey];
-	BOOL direction = ((NSNumber *)notification.userInfo[kHBTSMessageDirectionKey]).boolValue;
-	NSTimeInterval timeout = ((NSNumber *)notification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
-	NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:notification.userInfo[kHBTSMessageSendDateKey]];
+	HBTSNotification *notification = [[HBTSNotification alloc] initWithDictionary:nsNotification.userInfo];
+	BOOL direction = ((NSNumber *)nsNotification.userInfo[kHBTSMessageDirectionKey]).boolValue;
+	NSTimeInterval timeout = ((NSNumber *)nsNotification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
+	NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:notification.date];
 
 	// when apps are paused in the background, notifications get queued up and delivered when they
 	// resume. to work around this, we determine if it’s been longer than the specified duration; if
@@ -211,12 +208,8 @@
 	// resumed 2 secs after the alert is sent, we only show it for 3 secs
 	timeout -= delta;
 
-	// deserialize the bold range array to NSRange
-	NSArray <NSNumber *> *boldRangeArray = notification.userInfo[kHBTSMessageBoldRangeKey];
-	NSRange boldRange = NSMakeRange(boldRangeArray[0].unsignedIntegerValue, boldRangeArray[1].unsignedIntegerValue);
-
 	// show it! (or hide it)
-	[self _showWithIconName:iconName text:content boldRange:boldRange animatingInDirection:direction timeout:timeout];
+	[self _showWithNotification:notification animatingInDirection:direction timeout:timeout];
 }
 
 #pragma mark - Lock Screen Grabber
@@ -252,7 +245,7 @@
 
 - (void)_announceAlertWithText:(NSString *)text {
 	// we must be in springboard, and we must have voiceover enabled
-	if (IN_SPRINGBOARD && UIAccessibilityIsVoiceOverRunning()) {
+	if (text && IN_SPRINGBOARD && UIAccessibilityIsVoiceOverRunning()) {
 		// post an announcement notification that voiceover will say
 		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, text);
 	}

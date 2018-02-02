@@ -18,7 +18,7 @@ export ADDITIONAL_CFLAGS = -Wextra -Wno-unused-parameter
 
 include $(THEOS)/makefiles/common.mk
 
-SUBPROJECTS = springboard client prefs messages
+SUBPROJECTS = api springboard client prefs messages
 
 ifneq ($(SIMULATOR),1)
 	SUBPROJECTS += relay

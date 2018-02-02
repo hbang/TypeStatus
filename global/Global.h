@@ -2,13 +2,6 @@
 
 #pragma mark - Types
 
-typedef NS_ENUM(NSUInteger, HBTSMessageType) {
-	HBTSMessageTypeTyping,
-	HBTSMessageTypeTypingEnded,
-	HBTSMessageTypeReadReceipt,
-	HBTSMessageTypeSendingFile
-};
-
 typedef NS_ENUM(NSUInteger, HBTSNotificationType) {
 	HBTSNotificationTypeNone,
 	HBTSNotificationTypeOverlay,
@@ -40,11 +33,4 @@ static NSString *const kHBTSMessageTypeKey = @"Type";
 static NSString *const kHBTSMessageSenderKey = @"Name";
 static NSString *const kHBTSMessageIsTypingKey = @"IsTyping";
 
-static NSString *const kHBTSMessageIconNameKey = @"IconName";
-static NSString *const kHBTSMessageContentKey = @"Content";
-static NSString *const kHBTSMessageBoldRangeKey = @"BoldRange";
 static NSString *const kHBTSMessageDirectionKey = @"Direction";
-static NSString *const kHBTSMessageSourceKey = @"Source";
-
-static NSString *const kHBTSMessageTimeoutKey = @"Duration";
-static NSString *const kHBTSMessageSendDateKey = @"Date";

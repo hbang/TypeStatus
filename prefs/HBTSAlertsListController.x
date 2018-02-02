@@ -30,7 +30,7 @@
 	if (specifier.cellType == PSSegmentCell && [specifier.identifier hasSuffix:@"AlertType"]) {
 		// get the value
 		HBTSNotificationType type = (HBTSNotificationType)((NSNumber *)value).unsignedIntegerValue;
-		
+
 		// if it’s icon, and libstatusbar is not installed
 		if (type == HBTSNotificationTypeIcon) {
 			BOOL needsLibstatusbar = ![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib"];

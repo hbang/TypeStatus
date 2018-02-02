@@ -1,3 +1,4 @@
+#import "../api/HBTSNotification.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 #import <IMDaemonCore/IMDFileTransferCenter.h>
 #import <IMDaemonCore/IMDMessageStore.h>
@@ -48,7 +49,7 @@ void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 %group PhilSchiller
 - (void)didReceiveMessages:(NSArray <FZMessage *> *)messages forChat:(id)chat style:(unsigned char)style account:(id)account {
 	%orig;
-	
+
 	for (FZMessage *message in messages) {
 		[self _typeStatus_didReceiveMessage:message];
 	}
