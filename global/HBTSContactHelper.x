@@ -1,6 +1,5 @@
 #import "HBTSContactHelper.h"
 #import "HBTSPreferences.h"
-#import <ChatKit/CKEntity.h>
 #import <ChatKit/CKDNDList.h>
 #import <IMCore/IMHandle.h>
 #import <IMCore/IMPerson.h>
