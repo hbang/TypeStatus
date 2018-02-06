@@ -61,6 +61,8 @@
 	<string>Icon Only</string>
 	<key>ALERT_TYPE_OVERLAY</key>
 	<string>Status Bar</string>
+	<key>ALERT_TYPE_HOME_BAR</key>
+	<string>Home Bar</string>
 
 	<!-- Button for choosing how long the alert shows for. -->
 	<key>SHOW_FOR</key>

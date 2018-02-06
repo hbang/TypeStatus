@@ -2,8 +2,6 @@
 
 @interface HBTSStatusBarAlertController : NSObject
 
-+ (BOOL)isHomeBarDevice;
-
 + (instancetype)sharedInstance;
 
 - (void)addStatusBar:(UIStatusBar *)statusBar;

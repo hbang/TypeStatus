@@ -2,6 +2,7 @@
 #import "HBTSPreferences.h"
 #import "HBTSStatusBarAlertController.h"
 #import <Preferences/PSSpecifier.h>
+#import <UIKit/UIScreen+Private.h>
 #import <version.h>
 #include <notify.h>
 
@@ -25,18 +26,49 @@
 	return self;
 }
 
+#pragma mark - PSListController
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	[self _configureAlertTypeSpecifiers];
+}
+
+- (void)reloadSpecifiers {
+	[super reloadSpecifiers];
+	[self _configureAlertTypeSpecifiers];
+}
+
+- (BOOL)_isHomeBarDevice {
+	if (@available(iOS 11.0, *)) {
+		return [UIScreen mainScreen]._sceneSafeAreaInsets.bottom > 0;
+	}
+
+	return NO;
+}
+
+- (void)_configureAlertTypeSpecifiers {
+	if (self._isHomeBarDevice) {
+		[self removeSpecifierID:@"TypingAlertTypeClassic"];
+		[self removeSpecifierID:@"ReadAlertTypeClassic"];
+		[self removeSpecifierID:@"SendingFileAlertTypeClassic"];
+	} else {
+		[self removeSpecifierID:@"TypingAlertTypeX"];
+		[self removeSpecifierID:@"ReadAlertTypeX"];
+		[self removeSpecifierID:@"SendingFileAlertTypeX"];
+	}
+}
+
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier {
 	// check that this is the cell we want to apply to
-	if (specifier.cellType == PSSegmentCell && [specifier.identifier hasSuffix:@"AlertType"]) {
+	if (specifier.cellType == PSSegmentCell && ([specifier.identifier hasSuffix:@"AlertTypeClassic"] || [specifier.identifier hasSuffix:@"AlertTypeX"])) {
 		// get the value
 		HBTSNotificationType type = (HBTSNotificationType)((NSNumber *)value).unsignedIntegerValue;
 
 		// if it’s icon, and libstatusbar is not installed
 		if (type == HBTSNotificationTypeIcon) {
 			BOOL needsLibstatusbar = ![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib"];
-			BOOL isHomeBarDevice = [%c(HBTSStatusBarAlertController) isHomeBarDevice];
 
-			if (needsLibstatusbar || isHomeBarDevice) {
+			if (needsLibstatusbar || self._isHomeBarDevice) {
 				// flick it back to overlay
 				value = @(HBTSNotificationTypeOverlay);
 				[super setPreferenceValue:value specifier:specifier];
@@ -46,7 +78,7 @@
 				[self reloadSpecifiers];
 			}
 
-			if (isHomeBarDevice) {
+			if (self._isHomeBarDevice) {
 				// show not supported alert
 				[self _showiPhoneXStatusBarIconAlert];
 			} else if (needsLibstatusbar) {

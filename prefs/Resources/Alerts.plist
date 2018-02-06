@@ -89,6 +89,8 @@
 			<integer>1</integer>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>TypingAlertTypeClassic</string>
 			<key>key</key>
 			<string>TypingAlertType</string>
 			<key>validTitles</key>
@@ -96,6 +98,32 @@
 				<string>OFF</string>
 				<string>ALERT_TYPE_ICON</string>
 				<string>ALERT_TYPE_OVERLAY</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+			</array>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<integer>1</integer>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>TypingAlertTypeX</string>
+			<key>key</key>
+			<string>TypingAlertType</string>
+			<key>validTitles</key>
+			<array>
+				<string>OFF</string>
+				<string>ALERT_TYPE_OVERLAY</string>
+				<string>ALERT_TYPE_HOME_BAR</string>
 			</array>
 			<key>validValues</key>
 			<array>
@@ -171,6 +199,8 @@
 			<integer>1</integer>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>ReadAlertTypeClassic</string>
 			<key>key</key>
 			<string>ReadAlertType</string>
 			<key>validTitles</key>
@@ -178,6 +208,32 @@
 				<string>OFF</string>
 				<string>ALERT_TYPE_ICON</string>
 				<string>ALERT_TYPE_OVERLAY</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+			</array>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<integer>1</integer>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>ReadAlertTypeX</string>
+			<key>key</key>
+			<string>ReadAlertType</string>
+			<key>validTitles</key>
+			<array>
+				<string>OFF</string>
+				<string>ALERT_TYPE_OVERLAY</string>
+				<string>ALERT_TYPE_HOME_BAR</string>
 			</array>
 			<key>validValues</key>
 			<array>
@@ -225,6 +281,8 @@
 			<integer>1</integer>
 			<key>defaults</key>
 			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>SendingFileAlertTypeClassic</string>
 			<key>key</key>
 			<string>SendingFileAlertType</string>
 			<key>validTitles</key>
@@ -232,6 +290,32 @@
 				<string>OFF</string>
 				<string>ALERT_TYPE_ICON</string>
 				<string>ALERT_TYPE_OVERLAY</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>2</integer>
+				<integer>1</integer>
+			</array>
+			<key>PostNotification</key>
+			<string>ws.hbang.typestatus/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<integer>1</integer>
+			<key>defaults</key>
+			<string>ws.hbang.typestatus</string>
+			<key>id</key>
+			<string>SendingFileAlertTypeX</string>
+			<key>key</key>
+			<string>SendingFileAlertType</string>
+			<key>validTitles</key>
+			<array>
+				<string>OFF</string>
+				<string>ALERT_TYPE_OVERLAY</string>
+				<string>ALERT_TYPE_HOME_BAR</string>
 			</array>
 			<key>validValues</key>
 			<array>

@@ -43,15 +43,6 @@
 	NSTimer *_timeoutTimer;
 }
 
-+ (BOOL)isHomeBarDevice {
-	if (IS_IOS_OR_NEWER(iOS_11_0)) {
-		NSNumber *homeButtonType = (__bridge NSNumber *)MGCopyAnswer(CFSTR("HomeButtonType"));
-		return homeButtonType != nil && homeButtonType.integerValue == 2;
-	}
-
-	return NO;
-}
-
 + (instancetype)sharedInstance {
 	static HBTSStatusBarAlertController *sharedInstance;
 	static dispatch_once_t onceToken;
