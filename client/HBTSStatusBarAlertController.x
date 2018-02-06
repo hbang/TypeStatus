@@ -161,7 +161,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		// if for some crazy reason we don’t have a foreground view, log that (it really shouldn’t
 		// happen…) and return
-		if (!statusBar._typeStatus_foregroundView) {
+		if (![statusBar respondsToSelector:@selector(_typeStatus_foregroundView)] || !statusBar._typeStatus_foregroundView) {
 			HBLogWarn(@"found a status bar without a foreground view! %@", statusBar);
 			return;
 		}

@@ -16,6 +16,7 @@
 @property BOOL _typeStatus_isAnimating;
 @property BOOL _typeStatus_isVisible;
 
+- (BOOL)_typeStatus_isStatusBarWeird;
 - (void)_typeStatus_changeToDirection:(BOOL)direction animated:(BOOL)animated;
 
 @end
@@ -36,7 +37,9 @@
 	self = %orig;
 
 	if (self) {
-		if (![self isKindOfClass:%c(SBFakeStatusBarView)]) {
+		// TODO: how the hell are we ending up here, where self is a UIStatusBar_Modern (iPhone X status
+		// bar), but UIStatusBar_Modern doesn’t inherit from UIStatusBar, nor vice versa?
+		if (!self._typeStatus_isStatusBarWeird) {
 			[[HBTSStatusBarAlertController sharedInstance] addStatusBar:self];
 		}
 	}
@@ -44,12 +47,18 @@
 	return self;
 }
 
+%new - (BOOL)_typeStatus_isStatusBarWeird {
+	return [self isKindOfClass:%c(SBFakeStatusBarView)]
+		|| [self isKindOfClass:%c(UIStatusBar_Modern)]
+		|| [self.window isKindOfClass:%c(SBStarkStatusBarWindow)];
+}
+
 #pragma mark - Status bar state
 
 %group CraigFederighi
 
 - (void)_prepareToSetStyle:(UIStatusBarStyle)style animation:(UIStatusBarAnimation)animation {
-	self._typeStatus_needsNewForegroundView = YES;
+	self._typeStatus_needsNewForegroundView = !self._typeStatus_isStatusBarWeird;
 	%orig;
 }
 
@@ -67,11 +76,8 @@
 - (void)_swapToNewForegroundView {
 	%orig;
 
-	// if we don’t need a new foreground view, or we’re a fake status bar on iOS <9, or we’re a
-	// carplay (stark) status bar, then return
-	if (!self._typeStatus_needsNewForegroundView
-		|| ([self isKindOfClass:%c(SBFakeStatusBarView)] && !IS_IOS_OR_NEWER(iOS_9_0))
-		|| [self.window isKindOfClass:%c(SBStarkStatusBarWindow)]) {
+	// if we don’t need a new foreground view, we have nothing to do here. just return
+	if (!self._typeStatus_needsNewForegroundView) {
 		return;
 	}
 
@@ -100,6 +106,10 @@
 #pragma mark - Show/Hide
 
 %new - (void)_typeStatus_changeToDirection:(BOOL)direction animated:(BOOL)animated {
+	if (!self._typeStatus_foregroundView) {
+		return;
+	}
+
 	if (direction) {
 		if (self._typeStatus_isVisible || self._typeStatus_isAnimating) {
 			return;
@@ -195,6 +205,18 @@
 
 %end
 
+// this is for the weirdo iphone x status bar thing i kinda sorta mentioned above
+
+%group WTFiPhoneX
+%hook UIStatusBar_Modern
+
+%new - (BOOL)_typeStatus_isStatusBarWeird {
+	return YES;
+}
+
+%end
+%end
+
 #pragma mark - Constructor
 
 %ctor {
@@ -213,6 +235,10 @@
 	}
 
 	%init;
+
+	if (IS_IOS_OR_NEWER(iOS_11_0)) {
+		%init(WTFiPhoneX);
+	}
 
 	if (IS_IOS_OR_NEWER(iOS_9_0)) {
 		%init(EddyCue);
