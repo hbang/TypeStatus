@@ -6,6 +6,7 @@
 #import <UIKit/UIStatusBarAnimationParameters.h>
 #import <UIKit/UIStatusBarForegroundStyleAttributes.h>
 
+static CGFloat const kHBTSExpandedHomeGrabberWidth = 200.f;
 static CGFloat const kHBTSExpandedHomeGrabberHeight = 20.f;
 
 #pragma mark - SBHomeGrabberView category
@@ -181,7 +182,7 @@ static CGFloat const kHBTSExpandedHomeGrabberHeight = 20.f;
 
 	CGRect frame = self._typeStatus_pillViewFrame;
 	// frame.size = [self._typeStatus_foregroundView sizeThatFits:CGSizeMake(self.frame.size.width - (edgeSpacing * 2.f), kHBTSExpandedHomeGrabberHeight)];
-	frame.size = (CGSize){ 300, kHBTSExpandedHomeGrabberHeight };
+	frame.size = CGSizeMake(kHBTSExpandedHomeGrabberWidth, kHBTSExpandedHomeGrabberHeight);
 	frame.origin.x = (self.frame.size.width - frame.size.width) / 2;
 	frame.origin.y = self.frame.size.height - edgeSpacing - frame.size.height;
 	return frame;

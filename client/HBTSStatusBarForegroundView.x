@@ -104,11 +104,11 @@
 	%orig;
 }
 
-%new - (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
-	if (!self.containerView) {
-		return;
-	}
+- (CGSize)sizeThatFits:(CGSize)size {
+	return [self.containerView sizeThatFits:size];
+}
 
+%new - (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
 	UIFont *font = [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleRegular];
 	UIFont *boldFont = [self.foregroundStyle textFontForStyle:UIStatusBarItemViewTextStyleBold];
 
