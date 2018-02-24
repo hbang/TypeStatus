@@ -48,10 +48,6 @@ typedef BOOL (*UIAccessibilityIsReduceMotionEnabledType)();
 	return self;
 }
 
-- (BOOL)isProviderEnabled:(NSString *)appIdentifier {
-	return [_preferences boolForKey:[NSString stringWithFormat:@"ProviderEnabled-%@", appIdentifier] default:YES];
-}
-
 - (void)_migrateIfNeeded {
 	// upgrade old, ugly, boolean preferences to cleaner enums
 

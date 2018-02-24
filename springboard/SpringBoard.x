@@ -41,13 +41,3 @@ void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex
 		HBLogError(@"failed to start service! result = %i", result);
 	}
 }
-
-#import "../api/HBTSNotification+Private.h"
-#import "../api/HBTSStatusBarAlertServer.h"
-%ctor {
-	[NSTimer scheduledTimerWithTimeInterval:8 repeats:YES block:^(NSTimer *timer) {
-		HBTSNotification*a=[[HBTSNotification alloc] initWithType:0 sender:@"kirb" iconName:@"TypeStatus"];
-		a.sourceBundleID=@"com.apple.MobileSMS";
-		[HBTSStatusBarAlertServer sendNotification:a];
-	}];
-}

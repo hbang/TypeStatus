@@ -14,15 +14,8 @@
 #pragma mark - State
 
 - (BOOL)isEnabled {
-	HBTSPreferences *preferences = [%c(HBTSPreferences) sharedInstance];
-
-	if (self.preferencesBundle) {
-		// the provider manages its own preferences. return YES
-		return YES;
-	} else {
-		// ask the preferences if we're enabled
-		return [preferences isProviderEnabled:self.appIdentifier];
-	}
+	// the toggles to enable/disable a handler is handled by TypeStatus Plus, so always use YES here
+	return YES;
 }
 
 #pragma mark - Messaging methods

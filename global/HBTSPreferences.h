@@ -16,6 +16,4 @@
 
 @property (nonatomic, readonly) BOOL messagesEnabled, messagesGlobalSendTyping;
 
-- (BOOL)isProviderEnabled:(NSString *)appIdentifier;
-
 @end
