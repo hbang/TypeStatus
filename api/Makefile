@@ -12,6 +12,7 @@ TypeStatusProvider_FRAMEWORKS = MobileCoreServices
 TypeStatusProvider_PRIVATE_FRAMEWORKS = AppSupport
 TypeStatusProvider_EXTRA_FRAMEWORKS = Cephei CydiaSubstrate
 TypeStatusProvider_LIBRARIES = rocketbootstrap
+TypeStatusProvider_INSTALL_PATH = /usr/lib/TypeStatus
 
 include $(THEOS)/makefiles/framework.mk
 

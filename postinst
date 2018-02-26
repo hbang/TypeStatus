@@ -1,10 +1,5 @@
 #!/bin/bash
+set -e
+
 # relaunch imagent so we get injected into it
 launchctl stop com.apple.imagent
-
-# create our providers directory and move it to the stash
-if [[ -x /usr/libexec/cydia/move.sh ]]; then
-	/usr/libexec/cydia/move.sh /Library/TypeStatus
-fi
-
-mkdir -p /Library/TypeStatus/Providers

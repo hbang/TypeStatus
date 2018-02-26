@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+# if /Library/TypeStatus exists and /usr/lib/TypeStatus/Providers doesn’t yet, move it over. else if
+# cydia’s move script exists, use it to create a stashed providers dir. else, just create it ourselves
+if [[ -d /Library/TypeStatus || -h /Library/TypeStatus ]] && [[ ! -d /usr/lib/TypeStatus/Providers ]]; then
+	mv /Library/TypeStatus /usr/lib/TypeStatus
+	rm -rf /Library/TypeStatus
+elif [[ -x /usr/libexec/cydia/move.sh ]]; then
+	bash /usr/libexec/cydia/move.sh /usr/lib/TypeStatus
+else
+	mkdir -p /usr/lib/TypeStatus/Providers
+fi
+
+# if /Library/TypeStatus isn’t a symlink, make it be one now
+if [[ ! -h /Library/TypeStatus ]]; then
+	ln -s /usr/lib/TypeStatus /Library/TypeStatus
+fi
