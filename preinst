@@ -1,18 +1,35 @@
 #!/bin/bash
 set -e
 
-# if /Library/TypeStatus exists and /usr/lib/TypeStatus/Providers doesn’t yet, move it over. else if
-# cydia’s move script exists, use it to create a stashed providers dir. else, just create it ourselves
-if [[ -d /Library/TypeStatus || -h /Library/TypeStatus ]] && [[ ! -d /usr/lib/TypeStatus/Providers ]]; then
-	mv /Library/TypeStatus /usr/lib/TypeStatus
-	rm -rf /Library/TypeStatus
-elif [[ -x /usr/libexec/cydia/move.sh ]]; then
-	bash /usr/libexec/cydia/move.sh /usr/lib/TypeStatus
-else
-	mkdir -p /usr/lib/TypeStatus/Providers
+# if the providers directory doesn’t exist yet
+if [[ ! -d /usr/lib/TypeStatus/Providers ]]; then
+	# if /Library/TypeStatus is a symlink, just copy the symlink. easy
+	if [[ -h /Library/TypeStatus ]]; then
+		cp /Library/TypeStatus /usr/lib/TypeStatus
+	else
+		# stash /usr/lib/TypeStatus if necessary
+		if [[ -x /usr/libexec/cydia/move.sh ]]; then
+			bash /usr/libexec/cydia/move.sh /usr/lib/TypeStatus
+		else
+			mkdir -p /usr/lib/TypeStatus
+		fi
+
+		# if there are providers in the old location, move them. otherwise, create an empty dir
+		if [[ -d /Library/TypeStatus/Providers ]]; then
+			mv /Library/TypeStatus/Providers /usr/lib/TypeStatus/Providers
+		else
+			mkdir -p /usr/lib/TypeStatus/Providers
+		fi
+	fi
 fi
 
 # if /Library/TypeStatus isn’t a symlink, make it be one now
 if [[ ! -h /Library/TypeStatus ]]; then
 	ln -s /usr/lib/TypeStatus /Library/TypeStatus
+fi
+
+# if the framework leads to the wrong place, fix it (why does this happen?)
+if [[ "$(readlink -eq /Library/Frameworks/TypeStatusProvider.framework)" == "" ]]; then
+	rm -rf /Library/Frameworks/TypeStatusProvider.framework
+	ln -s /usr/lib/TypeStatusProvider.framework /Library/Frameworks/TypeStatusProvider.framework
 fi
