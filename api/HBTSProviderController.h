@@ -28,7 +28,7 @@ static NSString *const kHBTSKeepApplicationAliveKey = @"HBTSKeepApplicationAlive
 /// the app.
 ///
 /// @see providerForAppIdentifier:
-@property (nonatomic, retain, readonly) NSSet *providers;
+@property (nonatomic, retain, readonly) NSSet <HBTSProvider *> *providers;
 
 /// Retrieves the provider corresponding to the specified app bundle identifier.
 ///
@@ -36,14 +36,14 @@ static NSString *const kHBTSKeepApplicationAliveKey = @"HBTSKeepApplicationAlive
 /// @return The HBTSProvider corresponding to the provider, or nil if it doesn't exist or the
 /// bundle is not loaded in this process.
 /// @see providers
-- (HBTSProvider *)providerForAppIdentifier:(NSString *)appIdentifier;
+- (nullable HBTSProvider *)providerForAppIdentifier:(NSString *)appIdentifier;
 
 /// Indicates whether the specified app bundle identifier is being kept active in the background by
 /// a TypeStatus Plus provider.
 ///
 /// @param bundleIdentifier The bundle identifier to check.
 /// @return Whether the app is being kept active in the background.
-- (BOOL)doesApplicationIdentifierRequireBackgrounding:(NSString *)bundleIdentifier;
+- (BOOL)doesApplicationIdentifierRequireBackgrounding:(NSString *)bundleIdentifier NS_SWIFT_NAME(doesApplicationRequireBackgrounding(bundleIdentifier:));
 
 @end
 
