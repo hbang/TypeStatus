@@ -37,3 +37,13 @@ endif
 
 	$(ECHO_NOTHING)cp Resources/*.png $(THEOS_STAGING_DIR)/System/Library/Frameworks/UIKit.framework$(ECHO_END)
 	$(ECHO_NOTHING)ln -s /usr/lib/TypeStatus/TypeStatusProvider.framework $(THEOS_STAGING_DIR)/Library/Frameworks/TypeStatusProvider.framework$(ECHO_END)
+
+docs:
+	$(ECHO_BEGIN)$(PRINT_FORMAT_MAKING) "Generating docs"; jazzy --module-version $(THEOS_PACKAGE_BASE_VERSION)$(ECHO_END)
+	$(ECHO_BEGIN)rm -rf docs/undocumented.json build/$(ECHO_END)
+
+ifeq ($(FINALPACKAGE),1)
+before-package:: docs
+endif
+
+.PHONY: docs

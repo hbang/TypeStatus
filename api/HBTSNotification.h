@@ -1,3 +1,5 @@
+@import Foundation;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Notification types natively supported by TypeStatus.

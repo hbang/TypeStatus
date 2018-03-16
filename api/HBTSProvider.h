@@ -1,3 +1,4 @@
+@import Foundation;
 #import "HBTSNotification.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -1,3 +1,5 @@
+@import Foundation;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// The Info.plist key used to retrieve the app bundle identifier. Value may be a string or array
