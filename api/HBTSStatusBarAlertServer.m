@@ -7,10 +7,10 @@
 @implementation HBTSStatusBarAlertServer
 
 + (NSString *)textForType:(HBTSMessageType)type sender:(NSString *)sender boldRange:(out NSRange *)boldRange {
-	static NSBundle *PrefsBundle;
+	static NSBundle *FrameworkBundle;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		PrefsBundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/TypeStatus.bundle"];
+		FrameworkBundle = [NSBundle bundleForClass:self];
 	});
 
 	HBTSPreferences *preferences = [HBTSPreferences sharedInstance];
@@ -23,18 +23,18 @@
 
 			switch (type) {
 				case HBTSMessageTypeTyping:
-					format = [PrefsBundle localizedStringForKey:@"TYPING_NATURAL" value:nil table:@"Localizable"];
+					format = [FrameworkBundle localizedStringForKey:@"TYPING_NATURAL" value:nil table:@"Localizable"];
 					break;
 
 				case HBTSMessageTypeReadReceipt:
-					format = [PrefsBundle localizedStringForKey:@"READ_NATURAL" value:nil table:@"Localizable"];
+					format = [FrameworkBundle localizedStringForKey:@"READ_NATURAL" value:nil table:@"Localizable"];
 					break;
 
 				case HBTSMessageTypeTypingEnded:
 					break;
 
 				case HBTSMessageTypeSendingFile:
-					format = [PrefsBundle localizedStringForKey:@"SENDING_FILE_NATURAL" value:nil table:@"Localizable"];
+					format = [FrameworkBundle localizedStringForKey:@"SENDING_FILE_NATURAL" value:nil table:@"Localizable"];
 					break;
 			}
 
@@ -60,18 +60,18 @@
 
 			switch (type) {
 				case HBTSMessageTypeTyping:
-					prefix = [PrefsBundle localizedStringForKey:@"TYPING" value:nil table:@"Localizable"];
+					prefix = [FrameworkBundle localizedStringForKey:@"TYPING" value:nil table:@"Localizable"];
 					break;
 
 				case HBTSMessageTypeReadReceipt:
-					prefix = [PrefsBundle localizedStringForKey:@"READ" value:nil table:@"Localizable"];
+					prefix = [FrameworkBundle localizedStringForKey:@"READ" value:nil table:@"Localizable"];
 					break;
 
 				case HBTSMessageTypeTypingEnded:
 					break;
 
 				case HBTSMessageTypeSendingFile:
-					prefix = [PrefsBundle localizedStringForKey:@"SENDING_FILE" value:nil table:@"Localizable"];
+					prefix = [FrameworkBundle localizedStringForKey:@"SENDING_FILE" value:nil table:@"Localizable"];
 					break;
 			}
 
