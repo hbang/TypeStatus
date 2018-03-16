@@ -5,8 +5,6 @@
 #import <IMCore/IMPerson.h>
 #import <IMCore/IMServiceImpl.h>
 
-BOOL letMeIn = NO;
-
 @implementation HBTSContactHelper
 
 + (BOOL)isHandleMuted:(NSString *)handle {
@@ -50,11 +48,7 @@ BOOL letMeIn = NO;
 		}
 	}
 
-	if (person.name) {
-		return person.name;
-	}
-
-	return handle;
+	return person.name ?: handle;
 }
 
 @end
