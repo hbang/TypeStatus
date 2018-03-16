@@ -26,18 +26,20 @@ typedef NS_ENUM(NSUInteger, HBTSMessageType) {
 - (instancetype)initWithType:(HBTSMessageType)type sender:(NSString *)sender iconName:(NSString *)iconName;
 
 /// Initialises and returns an HBTSNotification with the provided serialized notification dictionary.
-/// Used by TypeStatus Plus when internally deserializing a notification to be displayed.
+///
+/// Used by TypeStatus when internally deserializing a notification to be displayed.
 ///
 /// @param dictionary The serialized notification dictionary.
 /// @return An instance of HBTSNotification populated with the deserialized parameters.
 /// @see dictionaryRepresentation
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary <NSString *, id> *)dictionary;
 
-/// Serializes the notification into a dictionary. Used by TypeStatus Plus internally to prepare the
-/// notification to be sent to other processes.
+/// Serializes the notification into a dictionary.
+///
+/// Used by TypeStatus Plus internally to prepare the notification to be sent to other processes.
 ///
 /// @see initWithDictionary:
-- (NSDictionary *)dictionaryRepresentation;
+- (NSDictionary <NSString *, id> *)dictionaryRepresentation;
 
 /// The bundle identifier of the app this notification originates from, or nil to have this property
 /// automatically determined by TypeStatus based on the provider's matching app identifier.
@@ -54,7 +56,9 @@ typedef NS_ENUM(NSUInteger, HBTSMessageType) {
 
 /// The date the notification originated. Displayed in Notification Center bulletins.
 ///
-/// The default value is the timestamp that the HBTSNotification was initialised.
+/// The default value is the timestamp of when the HBTSNotification was initialised. Notifications
+/// with a date more than a minute in the past will be ignored to avoid confusing the user, and to
+/// prevent many old notifications appearing at once when the device regains an internet connection.
 @property (nonatomic, copy) NSDate *date;
 
 /// The icon to display in the status bar, or nil to not display an icon.

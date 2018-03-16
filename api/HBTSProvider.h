@@ -8,15 +8,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// class is required even if it doesn't implement any methods on its own.
 @interface HBTSProvider : NSObject
 
-/// The name of the provider, to display in the TypeStatus Plus settings. This typically does not
-/// need to be set, and will be populated with the app name corresponding to appIdentifier.
-///
-/// @see appIdentifier
-@property (nonatomic, retain) NSString *name;
-
 /// The bundle identifier of the app corresponding to this provider. This typically does not need to
 /// be set, and will be populated by the `HBTSApplicationBundleIdentifier` value provided in the
-/// provider's Info.plist.
+/// provider’s Info.plist.
 @property (nonatomic, retain, nullable) NSString *appIdentifier;
 
 /// Custom Preferences list controller bundle.
@@ -40,10 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Indicates whether the user has enabled the provider.
 ///
-/// If TypeStatus Plus is disabled by the user, this property is set to `NO`. If a custom preference
-/// list controller is used, this property is set to `YES` and you are expected to handle enabled
-/// state separately from TypeStatus Plus. Otherwise, this property is the enabled state of this
-/// provider as configured by the user.
+/// If TypeStatus is disabled by the user, this property is set to `NO`. If a custom preference list
+/// controller is used, this property is set to `YES` and you are expected to handle enabled state
+/// separately from TypeStatus. Otherwise, this property is the enabled state of this provider as
+/// configured by the user.
 ///
 /// @return As described above.
 @property (nonatomic, assign, readonly) BOOL isEnabled;
