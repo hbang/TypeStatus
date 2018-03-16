@@ -6,12 +6,23 @@
 // TODO: make these public?
 @property (nonatomic) NSTimeInterval timeout;
 @property (nonatomic) HBTSNotificationType notificationType;
+@property (nonatomic) BOOL direction;
 
 @end
 
 @implementation HBTSNotification
 
-#pragma mark - NSObject
+#pragma mark - Init
+
++ (instancetype)hideNotification {
+	static dispatch_once_t onceToken;
+	static HBTSNotification *hideNotification = nil;
+	dispatch_once(&onceToken, ^{
+		hideNotification = [[HBTSNotification alloc] init];
+	});
+
+	return hideNotification;
+}
 
 - (instancetype)init {
 	self = [super init];
@@ -30,8 +41,11 @@
 	self = [self init];
 
 	if (self) {
-		_content = [HBTSStatusBarAlertServer textForType:type sender:sender boldRange:&_boldRange];
-		_statusBarIconName = iconName;
+		if (type != HBTSMessageTypeTypingEnded) {
+			_direction = YES;
+			_content = [HBTSStatusBarAlertServer textForType:type sender:sender boldRange:&_boldRange];
+			_statusBarIconName = iconName;
+		}
 	}
 
 	return self;
@@ -45,6 +59,7 @@
 		_sourceBundleID = [dictionary[kHBTSMessageSourceKey] copy];
 		_content = [dictionary[kHBTSMessageContentKey] copy];
 		_statusBarIconName = [dictionary[kHBTSMessageIconNameKey] copy];
+		_direction = ((NSNumber *)dictionary[kHBTSMessageDirectionKey]).boolValue;
 
 		if (dictionary[kHBTSMessageSendDateKey]) {
 			id date = dictionary[kHBTSMessageSendDateKey];
@@ -81,13 +96,19 @@
 #pragma mark - Serialization
 
 - (NSString *)_contentWithBoldRange:(out NSRange *)boldRange {
-	// we should never end up with nothing to return. crash if so
-	NSAssert(_content, @"No notification content found");
-	NSAssert(_content.length > 0, @"No notification content found");
+	if (_direction) {
+		// we should never end up with nothing to return. crash if so
+		NSAssert(_content, @"No notification content found");
+		NSAssert(_content.length > 0, @"No notification content found");
 
-	// grab the bold range, and return the content
-	*boldRange = _boldRange;
-	return _content;
+		// grab the bold range, and return the content
+		*boldRange = _boldRange;
+		return _content;
+	} else {
+		// if this is a hide notification, return nothing
+		*boldRange = NSMakeRange(0, 0);
+		return @"";
+	}
 }
 
 - (NSDictionary *)dictionaryRepresentation {
@@ -105,6 +126,7 @@
 		kHBTSMessageBoldRangeKey: @[ @(boldRange.location), @(boldRange.length) ],
 		kHBTSMessageIconNameKey: _statusBarIconName ?: @"",
 		kHBTSMessageActionURLKey: _actionURL ? _actionURL.absoluteString : @"",
+		kHBTSMessageDirectionKey: @(_direction),
 		kHBTSMessageSendDateKey: _date,
 		kHBTSMessageTimeoutKey: @(_timeout)
 	};

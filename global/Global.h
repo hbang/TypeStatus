@@ -27,10 +27,9 @@ static NSTimeInterval const kHBTSTypingTimeout = 60.0;
 // typestatus notifications
 
 static NSString *const HBTSClientSetStatusBarNotification = @"HBTSClientSetStatusBar";
+static NSString *const HBTSSpringBoardSetIconNotification = @"HBTSSpringBoardSetIconNotification";
 static NSString *const HBTSSpringBoardReceivedMessageNotification = @"HBTSSpringBoardReceivedMessageNotification";
 
 static NSString *const kHBTSMessageTypeKey = @"Type";
 static NSString *const kHBTSMessageSenderKey = @"Name";
 static NSString *const kHBTSMessageIsTypingKey = @"IsTyping";
-
-static NSString *const kHBTSMessageDirectionKey = @"Direction";

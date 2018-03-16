@@ -3,7 +3,6 @@
 #import "../api/HBTSPreferences.h"
 #import "../api/HBTSProviderController.h"
 #import "HBTSContactHelper.h"
-#import "HBTSStatusBarIconController.h"
 #import <Cephei/NSDictionary+HBAdditions.h>
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBApplication.h>
@@ -65,36 +64,13 @@
 	NSString *iconName = [self.class iconNameForType:type];
 	NSTimeInterval timeout = isTyping && preferences.useTypingTimeout ? kHBTSTypingTimeout : preferences.overlayDisplayDuration;
 
-	switch (notificationType) {
-		case HBTSNotificationTypeNone:
-			break;
-
-		case HBTSNotificationTypeOverlay:
-		{
-			HBTSNotification *notification = [[HBTSNotification alloc] initWithType:type sender:contactName iconName:iconName];
-			notification.timeout = timeout;
-			notification.actionURL = [NSURL URLWithString:[NSString stringWithFormat:@"sms://open?%@", @{
-				@"address": sender ?: @""
-			}.hb_queryString]];
-			[self showNotification:notification];
-			break;
-		}
-
-		case HBTSNotificationTypeIcon:
-			switch (type) {
-				case HBTSMessageTypeTyping:
-				case HBTSMessageTypeReadReceipt:
-				case HBTSMessageTypeSendingFile:
-					[HBTSStatusBarIconController showIcon:iconName timeout:timeout];
-					break;
-
-				case HBTSMessageTypeTypingEnded:
-					[HBTSStatusBarIconController hide];
-					break;
-			}
-
-			break;
-	}
+	HBTSNotification *notification = [[HBTSNotification alloc] initWithType:type sender:contactName iconName:iconName];
+	notification.notificationType = notificationType;
+	notification.timeout = timeout;
+	notification.actionURL = [NSURL URLWithString:[NSString stringWithFormat:@"sms://open?%@", @{
+		@"address": sender ?: @""
+	}.hb_queryString]];
+	[self showNotification:notification];
 }
 
 - (BOOL)_shouldShowAlertOfType:(HBTSMessageType)type {

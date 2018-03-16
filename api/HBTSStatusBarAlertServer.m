@@ -104,13 +104,24 @@
 		notification.timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
 	}
 
-	NSMutableDictionary *userInfo = [notification.dictionaryRepresentation mutableCopy];
-	userInfo[kHBTSMessageDirectionKey] = @YES;
+	__block NSDictionary <NSString *, id> *userInfo = notification.dictionaryRepresentation;
 
-	// send the notification
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:HBTSClientSetStatusBarNotification object:nil userInfo:userInfo];
-	});
+	switch (notification.notificationType) {
+		case HBTSNotificationTypeNone:
+			break;
+		
+		case HBTSNotificationTypeOverlay:
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[[NSDistributedNotificationCenter defaultCenter] postNotificationName:HBTSClientSetStatusBarNotification object:nil userInfo:userInfo];
+			});
+			break;
+		
+		case HBTSNotificationTypeIcon:
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[[NSDistributedNotificationCenter defaultCenter] postNotificationName:HBTSSpringBoardSetIconNotification object:nil userInfo:userInfo];
+			});
+			break;
+	}
 }
 
 + (void)hide {
@@ -120,6 +131,10 @@
 	// send the notification
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:HBTSClientSetStatusBarNotification object:nil userInfo:@{
+			kHBTSMessageDirectionKey: @NO
+		}];
+
+		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:HBTSSpringBoardSetIconNotification object:nil userInfo:@{
 			kHBTSMessageDirectionKey: @NO
 		}];
 	});

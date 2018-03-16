@@ -112,16 +112,16 @@
 
 #pragma mark - Show/Hide
 
-- (void)_showWithNotification:(HBTSNotification *)notification animatingInDirection:(BOOL)direction timeout:(NSTimeInterval)timeout {
+- (void)_showWithNotification:(HBTSNotification *)notification timeout:(NSTimeInterval)timeout {
 	dispatch_async(_queue, ^{
-		[self _setLockScreenGrabberVisible:!direction];
+		[self _setLockScreenGrabberVisible:!notification.direction];
 		[self _announceAlertWithText:notification.content];
 
 		_currentIconName = notification.statusBarIconName;
 		_currentText = notification.content;
 		_currentBoldRange = notification.boldRange;
 
-		_visible = direction;
+		_visible = notification.direction;
 
 		for (UIStatusBar *statusBar in _statusBars) {
 			[self displayCurrentAlertInStatusBar:statusBar animated:YES];
@@ -136,7 +136,7 @@
 			_timeoutTimer = nil;
 		}
 
-		if (direction) {
+		if (notification.direction) {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				_timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(hide) userInfo:nil repeats:NO];
 			});
@@ -145,7 +145,7 @@
 }
 
 - (void)hide {
-	[self _showWithNotification:nil animatingInDirection:NO timeout:0];
+	[self _showWithNotification:nil timeout:0];
 }
 
 - (void)displayCurrentAlertInStatusBar:(UIStatusBar *)statusBar animated:(BOOL)animated {
@@ -184,23 +184,20 @@
 - (void)_receivedStatusNotification:(NSNotification *)nsNotification {
 	// grab all the data
 	HBTSNotification *notification = [[HBTSNotification alloc] initWithDictionary:nsNotification.userInfo];
-	BOOL direction = ((NSNumber *)nsNotification.userInfo[kHBTSMessageDirectionKey]).boolValue;
-	NSTimeInterval timeout = ((NSNumber *)nsNotification.userInfo[kHBTSMessageTimeoutKey]).doubleValue;
-	NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:notification.date];
+
+	// remove the delta from the timeout, so e.g. if the timeout is 5 secs, and the current app is
+	// resumed 2 secs after the alert is sent, we only show it for 3 secs
+	NSTimeInterval delta = notification.timeout - [[NSDate date] timeIntervalSinceDate:notification.date];
 
 	// when apps are paused in the background, notifications get queued up and delivered when they
 	// resume. to work around this, we determine if it’s been longer than the specified duration; if
 	// so, disregard the alert
-	if (direction && delta > timeout) {
+	if (notification.direction && delta < 0) {
 		return;
 	}
 
-	// remove the delta from the timeout, so e.g. if the timeout is 5 secs, and the current app is
-	// resumed 2 secs after the alert is sent, we only show it for 3 secs
-	timeout -= delta;
-
 	// show it! (or hide it)
-	[self _showWithNotification:notification animatingInDirection:direction timeout:timeout];
+	[self _showWithNotification:notification timeout:delta];
 }
 
 #pragma mark - Lock Screen Grabber
