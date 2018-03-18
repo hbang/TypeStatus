@@ -1,13 +1,8 @@
-APPLEDOCFILES = $(wildcard *.h) $(wildcard prefs/*.h)
-DOCS_STAGING_DIR = _docs
-DOCS_OUTPUT_PATH = docs
-
 include $(THEOS)/makefiles/common.mk
 
 FRAMEWORK_NAME = TypeStatusProvider
 TypeStatusProvider_FILES = $(wildcard *.m) $(wildcard *.x) $(wildcard *.xm)
 TypeStatusProvider_PUBLIC_HEADERS = TypeStatusProvider.h HBTSNotification.h HBTSProvider.h HBTSProviderController.h
-TypeStatusProvider_CFLAGS = -I../global -include ../global/Global.h -fobjc-arc
 TypeStatusProvider_FRAMEWORKS = MobileCoreServices
 TypeStatusProvider_PRIVATE_FRAMEWORKS = AppSupport
 TypeStatusProvider_EXTRA_FRAMEWORKS = Cephei CydiaSubstrate
