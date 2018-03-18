@@ -104,9 +104,9 @@
 
 <p>Documentation is available at <strong><a href="https://hbang.github.io/TypeStatus/">hbang.github.io/TypeStatus</a></strong>.</p>
 
-<p>Make sure Opener is already installed on your device.</p>
+<p>Make sure TypeStatus is already installed on your device.</p>
 
-<p>Theos includes headers and a linkable framework for Opener, so you don’t need to worry about copying files over from your device.</p>
+<p>Theos includes headers and a linkable framework for TypeStatus, so you don’t need to worry about copying files over from your device.</p>
 
 <p>To develop a provider, create a bundle project. You can do this with a Theos makefile similar to this one:</p>
 <pre class="highlight make"><code><span class="nv">INSTALL_TARGET_PROCESSES</span> <span class="o">=</span> SpringBoard
@@ -115,8 +115,8 @@
 
 <span class="nv">BUNDLE_NAME</span> <span class="o">=</span> MyAwesomeProvider
 <span class="nv">MyAwesomeProvider_FILES</span> <span class="o">=</span> XXXMyAwesomeProvider.m
-<span class="nv">MyAwesomeProvider_INSTALL_PATH</span> <span class="o">=</span> /Library/Opener
-<span class="nv">MyAwesomeProvider_EXTRA_FRAMEWORKS</span> <span class="o">=</span> Opener
+<span class="nv">MyAwesomeProvider_INSTALL_PATH</span> <span class="o">=</span> /Library/TypeStatus/Providers
+<span class="nv">MyAwesomeProvider_EXTRA_FRAMEWORKS</span> <span class="o">=</span> TypeStatusProvider
 
 <span class="err">include</span> <span class="err">$(THEOS_MAKE_PATH)/bundle.mk</span>
 </code></pre>
@@ -183,7 +183,7 @@
 
 <p>The <code>iconName</code> parameter can either be nil to use TypeStatus’s built-in icons for the predefined notification types, or the string of a <a href="http://iphonedevwiki.net/index.php/Libstatusbar">status bar icon</a> name, installed identically to the way you would for a libstatusbar icon.</p>
 
-<p>You must also add <code>ws.hbang.typestatus2</code> to the <code>Depends:</code> list in your control file. If Opener isn’t present on the device, your binaries will fail to load. For example:</p>
+<p>You must also add <code>ws.hbang.typestatus2</code> to the <code>Depends:</code> list in your control file. If TypeStatus isn’t present on the device, your binaries will fail to load. For example:</p>
 <pre class="highlight plaintext"><code>Depends: mobilesubstrate, something-else, some-other-package, ws.hbang.typestatus2 (&gt;= 2.4)
 </code></pre>
 
