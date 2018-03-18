@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, HBTSMessageType) {
 - (NSDictionary <NSString *, id> *)dictionaryRepresentation;
 
 /// The bundle identifier of the app this notification originates from, or nil to have this property
-/// automatically determined by TypeStatus based on the provider's matching app identifier.
+/// automatically determined by TypeStatus based on the provider’s matching app identifier.
 ///
 /// @see -[HBTSProvider appIdentifier]
 @property (nonatomic, copy, nullable) NSString *sourceBundleID;

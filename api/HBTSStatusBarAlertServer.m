@@ -99,7 +99,7 @@
 	// ensure no required arguments are missing
 	NSParameterAssert(notification);
 
-	// if the timeout is -1, replace it with the user's specified duration
+	// if the timeout is -1, replace it with the user’s specified duration
 	if (notification.timeout == -1) {
 		notification.timeout = [HBTSPreferences sharedInstance].overlayDisplayDuration;
 	}

@@ -33,7 +33,7 @@ static NSString *const kHBTSKeepApplicationAliveKey = @"HBTSKeepApplicationAlive
 /// Retrieves the provider corresponding to the specified app bundle identifier.
 ///
 /// @param appIdentifier The bundle identifier of the app to retrieve the corresponding provider for.
-/// @return The HBTSProvider corresponding to the provider, or nil if it doesn't exist or the
+/// @return The HBTSProvider corresponding to the provider, or nil if it doesn’t exist or the
 /// bundle is not loaded in this process.
 /// @see providers
 - (nullable HBTSProvider *)providerForAppIdentifier:(NSString *)appIdentifier;

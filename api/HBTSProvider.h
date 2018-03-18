@@ -5,7 +5,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// HBTSProvider is the class used to represent a provider. You should subclass HBTSProvider
 /// in your provider bundle, and then set it as the principal class in the Info.plist. A provider
-/// class is required even if it doesn't implement any methods on its own.
+/// class is required even if it doesn’t implement any methods on its own.
 @interface HBTSProvider : NSObject
 
 /// The bundle identifier of the app corresponding to this provider. This typically does not need to

@@ -17,7 +17,7 @@
 }
 
 + (BOOL)_hasLibstatusbar {
-	// is libstatusbar loaded? if not, let's try dlopening it
+	// is libstatusbar loaded? if not, let’s try dlopening it
 	if (!%c(LSStatusBarItem)) {
 		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 	}

@@ -17,7 +17,7 @@
 	dispatch_once(&onceToken, ^{
 		// we need to be on iOS 9.0+
 		isAvailable = IS_IOS_OR_NEWER(iOS_9_0) &&
-			// we don't really want to do anything if someone else is already doing it
+			// we don’t really want to do anything if someone else is already doing it
 			![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SelectiveReading.dylib"] &&
 			// Remote Messages also likes to be annoying by calling its daemon com.apple.MobileSMS. make
 			// sure we don’t touch it
@@ -28,7 +28,7 @@
 }
 
 + (BOOL)shouldEnable {
-	// if there's a conflict, return NO. otherwise, return whether the setting is enabled
+	// if there’s a conflict, return NO. otherwise, return whether the setting is enabled
 	return [self isAvailable] && ((HBTSPreferences *)[%c(HBTSPreferences) sharedInstance]).messagesEnabled;
 }
 

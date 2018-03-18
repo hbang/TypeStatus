@@ -21,7 +21,7 @@
 #pragma mark - Messaging methods
 
 - (void)showNotification:(HBTSNotification *)notification {
-	// don't bother doing anything if this provider is disabled
+	// don’t bother doing anything if this provider is disabled
 	if (!self.isEnabled) {
 		return;
 	}
@@ -36,7 +36,7 @@
 }
 
 - (void)hideNotification {
-	// don't bother doing anything if this provider is disabled
+	// don’t bother doing anything if this provider is disabled
 	if (!self.isEnabled) {
 		return;
 	}
