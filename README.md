@@ -6,9 +6,9 @@ See also: [TypeStatus for Mac](https://github.com/hbang/TypeStatus-Mac).
 ## Creating a TypeStatus provider
 Documentation is available at **[hbang.github.io/TypeStatus](https://hbang.github.io/TypeStatus/)**.
 
-Make sure Opener is already installed on your device.
+Make sure TypeStatus is already installed on your device.
 
-Theos includes headers and a linkable framework for Opener, so you don’t need to worry about copying files over from your device.
+Theos includes headers and a linkable framework for TypeStatus, so you don’t need to worry about copying files over from your device.
 
 To develop a provider, create a bundle project. You can do this with a Theos makefile similar to this one:
 
@@ -19,8 +19,8 @@ include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = MyAwesomeProvider
 MyAwesomeProvider_FILES = XXXMyAwesomeProvider.m
-MyAwesomeProvider_INSTALL_PATH = /Library/Opener
-MyAwesomeProvider_EXTRA_FRAMEWORKS = Opener
+MyAwesomeProvider_INSTALL_PATH = /Library/TypeStatus/Providers
+MyAwesomeProvider_EXTRA_FRAMEWORKS = TypeStatusProvider
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 ```
@@ -95,7 +95,7 @@ Or, alternatively, just create a stub class, and use [HBTSProviderController](ht
 
 The `iconName` parameter can either be nil to use TypeStatus’s built-in icons for the predefined notification types, or the string of a [status bar icon](http://iphonedevwiki.net/index.php/Libstatusbar) name, installed identically to the way you would for a libstatusbar icon.
 
-You must also add `ws.hbang.typestatus2` to the `Depends:` list in your control file. If Opener isn’t present on the device, your binaries will fail to load. For example:
+You must also add `ws.hbang.typestatus2` to the `Depends:` list in your control file. If TypeStatus isn’t present on the device, your binaries will fail to load. For example:
 
 ```
 Depends: mobilesubstrate, something-else, some-other-package, ws.hbang.typestatus2 (>= 2.4)
