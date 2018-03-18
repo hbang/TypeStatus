@@ -100,11 +100,99 @@
 <p>iMessage typing and read receipt indicators for the iOS status bar. <a href="https://typestatus.com/">https://typestatus.com/</a></p>
 
 <p>See also: <a href="https://github.com/hbang/TypeStatus-Mac">TypeStatus for Mac</a>.</p>
+<h2 id='creating-a-typestatus-provider' class='heading'>Creating a TypeStatus provider</h2>
+
+<p>Documentation is available at <strong><a href="https://hbang.github.io/TypeStatus/">hbang.github.io/TypeStatus</a></strong>.</p>
+
+<p>Make sure Opener is already installed on your device.</p>
+
+<p>Theos includes headers and a linkable framework for Opener, so you don’t need to worry about copying files over from your device.</p>
+
+<p>To develop a provider, create a bundle project. You can do this with a Theos makefile similar to this one:</p>
+<pre class="highlight make"><code><span class="nv">INSTALL_TARGET_PROCESSES</span> <span class="o">=</span> SpringBoard
+
+<span class="err">include</span> <span class="err">$(THEOS)/makefiles/common.mk</span>
+
+<span class="nv">BUNDLE_NAME</span> <span class="o">=</span> MyAwesomeProvider
+<span class="nv">MyAwesomeProvider_FILES</span> <span class="o">=</span> XXXMyAwesomeProvider.m
+<span class="nv">MyAwesomeProvider_INSTALL_PATH</span> <span class="o">=</span> /Library/Opener
+<span class="nv">MyAwesomeProvider_EXTRA_FRAMEWORKS</span> <span class="o">=</span> Opener
+
+<span class="err">include</span> <span class="err">$(THEOS_MAKE_PATH)/bundle.mk</span>
+</code></pre>
+
+<p>A provider class subclasses from <a href="https://hbang.github.io/TypeStatus/Classes/HBTSProvider.html">HBTSProvider</a>. This must be the bundle’s principal class, defined in the Info.plist key <code>NSPrincipalClass</code>. Here is a simple example:</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;TypeStatusProvider/TypeStatusProvider.h&gt;
+</span>
+<span class="k">@interface</span> <span class="nc">XXXMyAwesomeProvider</span> <span class="p">:</span> <span class="nc">HBLOProvider</span>
+
+<span class="k">@end</span>
+</code></pre>
+<pre class="highlight objective_c"><code><span class="cp">#import "XXXMyAwesomeProvider.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">XXXMyAwesomeProvider</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">init</span> <span class="p">{</span>
+    <span class="n">self</span> <span class="o">=</span> <span class="p">[</span><span class="n">super</span> <span class="nf">init</span><span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// do your thing to set up your notifications here…
+</span>    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">receivedNotification</span><span class="o">:</span><span class="p">(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="n">notification</span> <span class="p">{</span>
+    <span class="c1">// do your thing to get data from the notification here…
+</span>    <span class="n">NSString</span> <span class="o">*</span><span class="n">sender</span> <span class="o">=</span> <span class="err">…</span><span class="p">;</span>
+
+    <span class="n">HBTSNotification</span> <span class="o">*</span><span class="n">notification</span> <span class="o">=</span> <span class="p">[[</span><span class="n">HBTSNotification</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithType</span><span class="p">:</span><span class="n">HBTSMessageTypeTyping</span> <span class="nf">sender</span><span class="p">:</span><span class="n">sender</span> <span class="n">iconName</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">showNotification</span><span class="p">:</span><span class="n">notification</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre>
+
+<p>Or, alternatively, just create a stub class, and use <a href="https://hbang.github.io/TypeStatus/Classes/HBTSProviderController.html">HBTSProviderController</a> to get an instance of your provider to cal <code>showNotification:</code> on. For instance:</p>
+<pre class="highlight objective_c"><code><span class="cp">#import "XXXMyAwesomeProvider.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">XXXMyAwesomeProvider</span>
+
+<span class="k">@end</span>
+</code></pre>
+<pre class="highlight plaintext"><code>#import "XXXMyAwesomeProvider.h"
+#import &lt;TypeStatusProvider/TypeStatusProvider.h&gt;
+
+%hook XXXSomeClassInTheApp
+
+- (void)messageReceived:(XXXMessage *)message {
+    %orig;
+
+    // do your thing to determine the message type and get data from the notification here…
+    if (message.isTypingMessage) {
+        NSString *sender = …;
+
+        HBTSNotification *notification = [[HBTSNotification alloc] initWithType:HBTSMessageTypeTyping sender:sender iconName:nil];
+        XXXMyAwesomeProvider *provider = (XXXMyAwesomeProvider *)[[HBTSProviderController sharedInstance] providerForAppIdentifier:@"com.example.awesomemessenger"];
+        [provider showNotification:notification];
+    }
+}
+
+%end
+</code></pre>
+
+<p>The <code>iconName</code> parameter can either be nil to use TypeStatus’s built-in icons for the predefined notification types, or the string of a <a href="http://iphonedevwiki.net/index.php/Libstatusbar">status bar icon</a> name, installed identically to the way you would for a libstatusbar icon.</p>
+
+<p>You must also add <code>ws.hbang.typestatus2</code> to the <code>Depends:</code> list in your control file. If Opener isn’t present on the device, your binaries will fail to load. For example:</p>
+<pre class="highlight plaintext"><code>Depends: mobilesubstrate, something-else, some-other-package, ws.hbang.typestatus2 (&gt;= 2.4)
+</code></pre>
+
+<p>You should specify the current version of TypeStatus as the minimum requirement, so you can guarantee all features you use are available.</p>
 <h2 id='license' class='heading'>License</h2>
 
 <p>Licensed under the Apache License, version 2.0. Refer to <a href="LICENSE.md">LICENSE.md</a>.</p>
 
-<p>See <a href="prefs/Resources/About.plist">About.plist</a> and our <a href="https://www.hbang.ws/translations/">Translations</a> page for credits.</p>
+<p>See <a href="https://github.com/hbang/TypeStatus/blob/master/prefs/Resources/About.plist">About.plist</a> and our <a href="https://hbang.ws/translations/">Translations</a> page for credits.</p>
 
           </div>
         </section>
@@ -113,7 +201,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2018-03-16)</p>
+      <p>&copy; 2018 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2018-03-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
