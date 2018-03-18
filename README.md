@@ -12,7 +12,7 @@ Theos includes headers and a linkable framework for TypeStatus, so you don’t n
 
 To develop a provider, create a bundle project. You can do this with a Theos makefile similar to this one:
 
-```make
+```makefile
 INSTALL_TARGET_PROCESSES = SpringBoard
 
 include $(THEOS)/makefiles/common.mk
