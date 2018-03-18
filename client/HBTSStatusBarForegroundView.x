@@ -105,7 +105,11 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-	return [self.containerView sizeThatFits:size];
+	if (IS_IOS_OR_NEWER(iOS_8_0)) {
+		return [self.containerView systemLayoutSizeFittingSize:size withHorizontalFittingPriority:UILayoutPriorityDefaultLow verticalFittingPriority:UILayoutPriorityDefaultLow];
+	} else {
+		return %orig;
+	}
 }
 
 %new - (void)setIconName:(NSString *)iconName text:(NSString *)text boldRange:(NSRange)boldRange {
