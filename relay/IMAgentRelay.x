@@ -22,7 +22,8 @@ void HBTSPostMessage(HBTSMessageType type, NSString *name, BOOL isTyping) {
 
 		kern_return_t result = LMConnectionSendOneWayData(&springboardService, 0, (__bridge CFDataRef)LMDataForPropertyList(data));
 
-		if (result != KERN_SUCCESS) {
+		// for some reason, we might get KERN_INVALID_ADDRESS (1) even though it sent successfully
+		if (result != KERN_SUCCESS && result != KERN_INVALID_ADDRESS) {
 			HBLogError(@"failed to send message! result = %i", result);
 		}
 	});
