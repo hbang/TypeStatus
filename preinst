@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# delete a broken symlink if necessary
+if [[ -h /Library/TypeStatus && "$(readlink -eq /Library/TypeStatus)" == "" ]]; then
+	rm /Library/TypeStatus
+fi
+
 # if the providers directory doesn’t exist yet
 if [[ ! -d /usr/lib/TypeStatus/Providers ]]; then
 	# if /Library/TypeStatus is a symlink, just copy the symlink. easy
@@ -29,7 +34,9 @@ if [[ ! -h /Library/TypeStatus ]]; then
 fi
 
 # if the framework leads to the wrong place, fix it (why does this happen?)
-if [[ "$(readlink -eq /Library/Frameworks/TypeStatusProvider.framework)" == "" ]]; then
+fw_link="$(readlink -eq /Library/Frameworks/TypeStatusProvider.framework)"
+
+if [[ "$fw_link" == "" || "$fw_link" == "/usr/lib/TypeStatus/TypeStatusProvider.framework" ]]; then
 	rm -rf /Library/Frameworks/TypeStatusProvider.framework
 	ln -s /usr/lib/TypeStatusProvider.framework /Library/Frameworks/TypeStatusProvider.framework
 fi
