@@ -22,13 +22,8 @@
 		dlopen("/Library/MobileSubstrate/DynamicLibraries/libstatusbar.dylib", RTLD_LAZY);
 	}
 
-	// still not loaded? probably not installed. just bail out
-	if (!%c(LSStatusBarItem)) {
-		HBLogWarn(@"attempting to display a status bar icon, but libstatusbar isn’t installed");
-		return NO;
-	}
-
-	return YES;
+	// return based on whether LSStatusBarItem exists now
+	return %c(LSStatusBarItem) != Nil;
 }
 
 + (instancetype)sharedInstance {
