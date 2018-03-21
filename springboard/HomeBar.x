@@ -1,3 +1,4 @@
+#if __arm64__
 #import "../client/HBTSStatusBarForegroundView.h"
 #import "HBTSStatusBarAlertController.h"
 #import "HBTSPreferences.h"
@@ -260,3 +261,4 @@ static CGFloat const kHBTSExpandedHomeGrabberHeight = 20.f;
 		%init;
 	}
 }
+#endif
