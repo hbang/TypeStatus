@@ -33,14 +33,12 @@
 	});
 
 	// try and get a person object
-	NSArray <IMPerson *> *people = [service imABPeopleWithScreenName:handle];
-	IMPerson *person = people.count > 0 ? people[0] : nil;
+	IMPerson *person = [service imABPeopleWithScreenName:handle].firstObject;
 
 	// for short name, get the IMHandle and try _displayNameWithAbbreviation. if that’s nil or if we
 	// want a full name, use the person name. if none of these are available, fall back to the handle
 	if (shortName) {
-		NSArray <IMHandle *> *handles = [%c(IMHandle) imHandlesForIMPerson:person];
-		IMHandle *imHandle = handles.count > 0 ? handles[0] : nil;
+		IMHandle *imHandle = [%c(IMHandle) imHandlesForIMPerson:person].firstObject;
 		NSString *result = imHandle._displayNameWithAbbreviation;
 
 		if (result) {
