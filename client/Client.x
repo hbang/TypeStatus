@@ -33,8 +33,26 @@
 
 #pragma mark - Initialization
 
-- (id)initWithFrame:(CGRect)frame showForegroundView:(BOOL)showForegroundView inProcessStateProvider:(id)stateProvider {
-	self = %orig;
+%group PhilSchiller
+
+- (instancetype)initWithFrame:(CGRect)frame showForegroundView:(BOOL)showForegroundView inProcessStateProvider:(id)stateProvider {
+	%orig;
+
+	if (self) {
+		if (!self._typeStatus_isStatusBarWeird) {
+			[[HBTSStatusBarAlertController sharedInstance] addStatusBar:self];
+		}
+	}
+
+	return self;
+}
+
+%end
+
+%group AngelaAhrendts
+
+- (instancetype)_initWithFrame:(CGRect)frame showForegroundView:(BOOL)showForegroundView inProcessStateProvider:(id)stateProvider {
+	%orig;
 
 	if (self) {
 		// TODO: how the hell are we ending up here, where self is a UIStatusBar_Modern (iPhone X status
@@ -46,6 +64,8 @@
 
 	return self;
 }
+
+%end
 
 %new - (BOOL)_typeStatus_isStatusBarWeird {
 	return [self isKindOfClass:%c(SBFakeStatusBarView)]
@@ -237,7 +257,10 @@
 	%init;
 
 	if (IS_IOS_OR_NEWER(iOS_11_0)) {
+		%init(AngelaAhrendts);
 		%init(WTFiPhoneX);
+	} else {
+		%init(PhilSchiller);
 	}
 
 	if (IS_IOS_OR_NEWER(iOS_9_0)) {
