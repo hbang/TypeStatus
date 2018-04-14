@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# fix my broken logic from 2.0b2…
+if [[ -h /Library/TypeStatus/TypeStatus ]]; then
+	rm /Library/TypeStatus/TypeStatus
+fi
+
 # delete a broken symlink if necessary
 if [[ -h /Library/TypeStatus && "$(readlink -q /Library/TypeStatus)" == "" ]]; then
 	rm /Library/TypeStatus
@@ -29,7 +34,7 @@ if [[ ! -d /usr/lib/TypeStatus/Providers ]]; then
 fi
 
 # if /Library/TypeStatus isn’t a symlink, make it be one now
-if [[ ! -h /Library/TypeStatus ]]; then
+if [[ ! -h /Library/TypeStatus && ! -d /Library/TypeStatus ]]; then
 	ln -s /usr/lib/TypeStatus /Library/TypeStatus
 fi
 
