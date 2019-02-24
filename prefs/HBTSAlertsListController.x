@@ -2,7 +2,6 @@
 #import "HBTSPreferences.h"
 #import "HBTSStatusBarAlertController.h"
 #import <Preferences/PSSpecifier.h>
-#import <UIKit/UIScreen+Private.h>
 #import <version.h>
 #include <notify.h>
 
@@ -40,7 +39,7 @@
 
 - (BOOL)_isHomeBarDevice {
 	if (@available(iOS 11.0, *)) {
-		return [UIScreen mainScreen]._sceneSafeAreaInsets.bottom > 0;
+		return [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0;
 	}
 
 	return NO;

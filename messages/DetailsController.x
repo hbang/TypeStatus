@@ -24,8 +24,8 @@ NSBundle *bundle;
 
 %hook CKDetailsController
 
-%property (nonatomic, retain) NSInteger _typeStatus_sectionIndex;
-%property (nonatomic, retain) NSInteger _typeStatus_originalRowCount;
+%property (nonatomic, assign) NSInteger _typeStatus_sectionIndex;
+%property (nonatomic, assign) NSInteger _typeStatus_originalRowCount;
 %property (nonatomic, retain) HBTSConversationPreferences *_typeStatus_preferences;
 
 #pragma mark - UIViewController
