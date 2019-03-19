@@ -11,9 +11,7 @@ Description: iMessage typing/read indicators in status bar
 Maintainer: HASHBANG Productions <support@hbang.ws>
 Author: HASHBANG Productions <support@hbang.ws>
 Section: Messaging
-Icon: file:///Library/PreferenceBundles/TypeStatus.bundle/icon@2x.png
-Depiction: https://cydia.hbang.ws/package/ws.hbang.typestatus2/
-Support: https://hbang.ws/support/
-Sponsor: thebigboss.org <http://thebigboss.org>
+Icon: https://repo.chariz.io/package/ws.hbang.typestatus2/icon@3x.png
+Depiction: https://repo.chariz.io/package/ws.hbang.typestatus2/
+Support: https://hashbang.productions/support/
 Tag: purpose::extension, compatible::ios7, compatible::ios8, compatible::ios9, compatible::ios10, compatible::ios11
-dev: hbang

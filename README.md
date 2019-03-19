@@ -106,4 +106,4 @@ You should specify the current version of TypeStatus as the minimum requirement,
 ## License
 Licensed under the Apache License, version 2.0. Refer to [LICENSE.md](LICENSE.md).
 
-See [About.plist](https://github.com/hbang/TypeStatus/blob/master/prefs/Resources/About.plist) and our [Translations](https://hbang.ws/translations/) page for credits.
+See [About.plist](https://github.com/hbang/TypeStatus/blob/master/prefs/Resources/About.plist) and our [Translations](https://hashbang.productions/translations/) page for credits.

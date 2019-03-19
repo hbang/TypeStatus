@@ -29,14 +29,12 @@
 			<string>HBLinkTableCell</string>
 			<key>height</key>
 			<integer>64</integer>
-			<key>icon</key>
-			<string>hbang.png</string>
 			<key>label</key>
 			<string>HASHBANG Productions</string>
 			<key>subtitle</key>
 			<string>VISIT_WEBSITE</string>
 			<key>url</key>
-			<string>https://hbang.ws/</string>
+			<string>https://hashbang.productions/</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -108,7 +106,7 @@
 			<key>label</key>
 			<string>TRANSLATORS</string>
 			<key>url</key>
-			<string>https://hbang.ws/translations/</string>
+			<string>https://hashbang.productions/translations/</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -138,9 +136,9 @@
 			<key>cellClass</key>
 			<string>HBLinkTableCell</string>
 			<key>label</key>
-			<string>Patreon</string>
+			<string>DONATE</string>
 			<key>url</key>
-			<string>https://hbang.ws/donate/</string>
+			<string>https://hashbang.productions/donate/</string>
 		</dict>
 	</array>
 	<key>title</key>
