@@ -8,21 +8,21 @@
 
 	<!-- Button for choosing the alert format. -->
 	<key>OVERLAY_FORMAT</key>
-	<string>نوع التنبيه</string>
+	<string>صيغة التنبيه</string>
 
 	<!-- Options for the alert format. -->
 	<key>OVERLAY_FORMAT_NATURAL</key>
 	<string>الطبيعي</string>
 	<key>OVERLAY_FORMAT_NATURAL_WITH_EXAMPLE</key>
-	<string>الطبيعي: Johnny Appleseed يكتب رسالة</string>
+	<string>الطبيعي: Johnny Appleseed يكتب...</string>
 	<key>OVERLAY_FORMAT_TRADITIONAL</key>
 	<string>التقليدي</string>
 	<key>OVERLAY_FORMAT_TRADITIONAL_WITH_EXAMPLE</key>
 	<string>التقليدي: يكتب: Johnny Appleseed</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY</key>
-	<string>الإسم فقط</string>
+	<string>الاسم فقط</string>
 	<key>OVERLAY_FORMAT_NAME_ONLY_WITH_EXAMPLE</key>
-	<string>الإسم فقط: Johnny Appleseed</string>
+	<string>الاسم فقط: Johnny Appleseed</string>
 
 	<!-- Label of switch to enable reduced motion (fade animations). -->
 	<key>REDUCE_MOTION</key>
@@ -30,25 +30,25 @@
 
 	<!-- The label showing how many seconds the user has specified. -->
 	<key>DISPLAY_FOR_ONE_SECOND</key>
-	<string>1 ثانية</string>
+	<string>إظهار لمدة: ثانية واحدة</string>
 	<key>DISPLAY_FOR_N_SECONDS</key>
-	<string>%i ثانية</string>
+	<string>إظهار لمدة: %i ثانية</string>
 
 	<!-- Button that opens Cydia to the libstatusbar package. -->
 	<key>INSTALL_LIBSTATUSBAR</key>
-	<string>تنصيب %@</string>
+	<string>تثبيت %@</string>
 
 	<!-- Header for the section shown when libstatusbar isn't installed. -->
 	<key>LIBSTATUSBAR_NOT_INSTALLED</key>
-	<string>آداة %@ مطلوبة لعرض أيقونات شريط الحالة.</string>
+	<string>يتطلب تثبيت %@ لإظهار أيقونات البار العلوي.</string>
 
 	<!-- Label of button that opens libstatusbar in Cydia. -->
 	<key>INSTALL</key>
-	<string>تنصيب</string>
+	<string>تثبيت</string>
 
 	<!-- The Typing and Read Receipt headings. -->
 	<key>TYPING_HEADER</key>
-	<string>عند الكتابة</string>
+	<string>جارِ الكتابة</string>
 	<key>READ_HEADER</key>
 	<string>إيصالات القراءة</string>
 	<key>SENDING_FILE_HEADER</key>
@@ -56,44 +56,46 @@
 
 	<!-- Buttons shown in the segmented controls for the alert type. -->
 	<key>OFF</key>
-	<string>تعطيل</string>
+	<string>إيقاف</string>
 	<key>ALERT_TYPE_ICON</key>
-	<string>الأيقونة فقط</string>
+	<string>أيقونة فقط</string>
 	<key>ALERT_TYPE_OVERLAY</key>
-	<string>شريط الحالة</string>
+	<string>البار العلوي</string>
+	<key>ALERT_TYPE_HOME_BAR</key>
+	<string>شريط زر الهوم</string>
 
 	<!-- Button for choosing how long the alert shows for. -->
 	<key>SHOW_FOR</key>
-	<string>إظهار لـِ</string>
+	<string>مدة الإظهار</string>
 
 	<!-- Options for "Show For". -->
 	<key>SHOW_FOR_SPECIFIED</key>
-	<string>المدة التي حددتها أنا</string>
+	<string>المدة التي قمتُ بتحديدها</string>
 	<key>SHOW_FOR_TYPING</key>
-	<string>المدة التي يجري فيها الكتابة</string>
+	<string>طوال مدة الكتابة</string>
 
 	<!-- Explanation shown under the "Show For" list. -->
 	<key>SHOW_FOR_EXPLANATION</key>
-	<string>لإظهار التنبيه في المدة التي تم تحديدها في الصفحة السابقة إختر "المدة التي حددتها أنا". لإظهار التنبيه طالما المرسل يستمر بالكتابة إختر "المدة التي يجري فيها الكتابة".</string>
+	<string>لإظهار التنبيه في المدة التي قمتَ بتحديدها في الصفحة السابقة اختر 'المدة التي قمتُ بتحديدها'، أما إذا كنت تريد استمرار ظهور التنبيه طالما أن المرسل مازال يكتب فاختر 'طوال مدة الكتابة'.</string>
 
 	<!-- Switch to allow or disallow alerts showing in Messages. -->
 	<key>HIDE_IN_MESSAGES</key>
-	<string>إخفاء التنبيهات في تطبيق الرسائل</string>
+	<string>إخفاء في تطبيق الرسائل</string>
 
 	<!-- Buttons to test the alerts. -->
 	<key>TEST_TYPING</key>
-	<string>تجربة تنبيه الكتابة</string>
+	<string>تجربة تنبيه جارِ الكتابة</string>
 	<key>TEST_READ_RECEIPT</key>
-	<string>إختبار إيصيالات الكتابة</string>
+	<string>تجربة تنبيه إيصالات القراءة</string>
 	<key>TEST_SENDING_FILE</key>
- 	<string>اختبار إرسال تنبيه الملف</string>
+ 	<string>تجربة تنبيه إرسال ملف</string>
 
 	<!-- Switch to allow or ignore notifications from muted/blocked senders. -->
 	<key>IGNORE_DND_SENDERS</key>
-	<string>تجاهل صامت المرسلين / المحظور</string>
+	<string>تجاهل الأشخاص المكتومين والمحظورين</string>
  
  	<!-- Explanation under the ignore muted/blocked senders switch. -->
   	<key>IGNORE_DND_SENDERS_EXPLANATION</key>
-	<string>إذا كنت كتم أو منع شخص ما، سوف TypeStatus لا تظهر أية تنبيهات منها.</string>
+	<string>إذا قمت بكتم أو حظر شخص ما، فلن يعرض TypeStatus أي تنبيهات منه.</string>
 </dict>
 </plist>

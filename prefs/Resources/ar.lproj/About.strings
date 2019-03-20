@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>THANKS_HEADER</key>
-	<string>الشكر للذين مذكورة أسمائهم أدناه للمساهمة في تطوير TypeStatus.</string>
+	<string>شكراً لكل شخص مذكور اسمه أدناه لمساهمتهم في TypeStatus.</string>
 	<key>THANKS_FOOTER</key>
-	<string>...وأيضاً للذين ساهموا بتجربة النسخ التجريبية, شكرأ لكم جميعاً فانتم رائعون.</string>
+	<string>وأيضاً، شكراً لكل من قام باختبار الأداة قبل إطلاقها للعامة، أنتم حقاً رائعون يا رفاق.</string>
 
 	<key>ORIGINAL_IDEA</key>
-	<string>ألفكرة من</string>
+	<string>الفكرة الأصلية</string>
 </dict>
 </plist>

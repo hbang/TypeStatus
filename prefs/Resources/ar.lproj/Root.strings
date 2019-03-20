@@ -4,7 +4,7 @@
 <dict>
 	<!-- Default text for sharing the tweak. %@ is the device type (ie, iPhone). -->
 	<key>SHARE_TEXT</key>
-	<string>أنا أحصل على تنبيهات عند الكتابة وعند قراءة الرسالة في جهازي الـ %@, شكراً لِـ TypeStatus! 💬</string>
+	<string>أنا أحصل على تنبيهات 'إيصالات القراءة' و 'جارِ الكتابة' في البار العلوي لجهازي الـ %@، شكراً لـ TypeStatus! 💬</string>
 
 	<!-- Alert types button. -->
 	<key>ALERTS</key>
@@ -12,7 +12,7 @@
 
 	<!-- Messages-related features button. -->
 	<key>MESSAGES</key>
-	<string>الرسائل</string>
+	<string>المحظورين</string>
 
 	<!-- TypeStatus Plus (Do not translate as it's a name)-->
 	<key>TYPESTATUS_PLUS</key>
@@ -20,6 +20,6 @@
 
 	<!-- Explanation of TypeStatus Plus features. -->
 	<key>TYPESTATUS_PLUS_SUBTITLE</key>
-	<string>إشعارات لمن يكتب لك للتطبيقات الأخرى, مع مميزات اخرى كثيرة.</string>
+	<string>هي أداة بنفس المزايا بالإضافة لمميزات أخرى رائعة، ولكن للكثير من التطبيقات.</string>
 </dict>
 </plist>
