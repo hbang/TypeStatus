@@ -6,20 +6,14 @@ HBTSIMessageProvider *provider = nil;
 
 #pragma mark - IPC
 
-void ReceivedRelayedNotification(CFMachPortRef port, LMMessage *request, CFIndex size, void *info) {
+void ReceivedRelayedNotification(CFMachPortRef port, LMResponseBuffer *response, CFIndex size, void *info) {
 	// check that we aren’t being given a message that’s too short
 	if ((size_t)size < sizeof(LMMessage)) {
 		HBLogError(@"received a bad message? size = %li", size);
 		return;
 	}
 
-	// get the raw data sent
-	const void *rawData = LMMessageGetData(request);
-	size_t length = LMMessageGetDataLength(request);
-
-	// translate to NSData, then NSDictionary
-	CFDataRef data = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)rawData, length, kCFAllocatorNull);
-	NSDictionary <NSString *, id> *userInfo = LMPropertyListForData((__bridge NSData *)data);
+	NSDictionary <NSString *, id> *userInfo = LMResponseConsumePropertyList(response);
 
 	// forward to the main controller
 	if (!provider) {
